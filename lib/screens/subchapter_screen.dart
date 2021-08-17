@@ -1,7 +1,7 @@
 
 
-import 'package:avrod/data/book_map.dart';
 import 'package:avrod/data/book_class.dart';
+import 'package:avrod/data/book_map.dart';
 import 'package:flutter/material.dart';
 
 class SubchapterScreen extends StatefulWidget {
@@ -26,7 +26,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
               return const Center(child: CircularProgressIndicator());
             default:
               if (snapshot.hasError) {
-                return const Center(child: Text('Some error occured'));
+                return const Center(child: Text('Some error occured', style: TextStyle(fontSize: 22.0),));
               } else {
                 return buildBook(books!);
               }
@@ -42,7 +42,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
       itemBuilder: (context, index) {
         final book = books[index];
         return  ListTile(
-          title: Text(book.name!),
+          title: Text(book.chapters![index].name!),
         );
       });
 }

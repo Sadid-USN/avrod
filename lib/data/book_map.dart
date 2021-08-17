@@ -7,6 +7,6 @@ class BookMap {
     final assetBundle = DefaultAssetBundle.of(context);
     final data = await assetBundle.loadString('lib/data/book.json');
     final body = json.decode(data);
-    return body.map<Book>(Book.fromJson).toList();
+    return body.map<Book>(Book.fromJson(body)).toList();
   }
 }
