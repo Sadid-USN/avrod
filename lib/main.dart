@@ -53,175 +53,170 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: gradientEndColor,
-        body: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [gradientStartColor, gradientEndColor],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.3, 0.7])),
-          child: FutureBuilder(
-            future: DefaultAssetBundle.of(context)
-                .loadString('lib/data/book.json'),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                var showData = json.decode(snapshot.data?.toString() ?? '');
-                return ListView.builder(
-                  itemBuilder: (BuildContext context, int index) {
-                    return SafeArea(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(10.0),
+      backgroundColor: gradientEndColor,
+      body: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [gradientStartColor, gradientEndColor],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [0.3, 0.7])),
+        child: FutureBuilder(
+          future:
+              DefaultAssetBundle.of(context).loadString('lib/data/book.json'),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var showData = json.decode(snapshot.data?.toString() ?? '');
+              return ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return SafeArea(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(10.0),
+                        ),
+                        // ignore: sized_box_for_whitespace
+                        Container(
+                          height: 40,
+                          child: AnimatedTextKit(
+                            totalRepeatCount: 2,
+                            animatedTexts: [
+                              ColorizeAnimatedText('Авроди субҳу шом',
+                                  textStyle: colorizeTextStyle,
+                                  colors: colorizeColors),
+                            ],
                           ),
-                          // ignore: sized_box_for_whitespace
-                          Container(
-                            height: 40,
-                            child: AnimatedTextKit(
-                              totalRepeatCount: 2,
-                              animatedTexts: [
-                                ColorizeAnimatedText('Авроди субҳу шом',
-                                    textStyle: colorizeTextStyle,
-                                    colors: colorizeColors),
-                              ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(left: 32, top: 60),
+                          height: 570,
+                          child: Swiper(
+                            autoplayDisableOnInteraction: true,
+                            itemCount: showData.length,
+                            itemWidth:
+                                MediaQuery.of(context).size.width - 2 * 64,
+                            layout: SwiperLayout.STACK,
+                            pagination: const SwiperPagination(
+                              margin: EdgeInsets.only(top: 20),
+                              builder: DotSwiperPaginationBuilder(
+                                  activeSize: 15, space: 6),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(left: 32, top: 60),
-                            height: 570,
-                            child: Swiper(
-                              autoplayDisableOnInteraction: true,
-                              itemCount: showData.length,
-                              itemWidth:
-                                  MediaQuery.of(context).size.width - 2 * 64,
-                              layout: SwiperLayout.STACK,
-                              pagination: const SwiperPagination(
-                                margin: EdgeInsets.only(top: 20),
-                                builder: DotSwiperPaginationBuilder(
-                                    activeSize: 15, space: 6),
-                              ),
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () {
-                                    Navigator.push(context, PageRouteBuilder(
-                                        pageBuilder: (context, a, b) {
-                                      return const SubchapterScreen();
-                                    }));
-                                  },
-                                  child: Stack(
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(
-                                            height: 100,
-                                          ),
-                                          // ignore: sized_box_for_whitespace
-                                          Container(
-                                            height: 320,
-                                            width: 310,
-                                            child: Card(
-                                              elevation: 8,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(25.0),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Center(
-                                                      child: Text(
-                                                        showData[index]['name'],
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: const TextStyle(
-                                                            fontSize: 30,
-                                                            color:
-                                                                primaryTextColor,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w900),
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.push(context, PageRouteBuilder(
+                                      pageBuilder: (context, a, b) {
+                                    return SubchapterScreen(index);
+                                  }));
+                                },
+                                child: Stack(
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(
+                                          height: 100,
+                                        ),
+                                        // ignore: sized_box_for_whitespace
+                                        Container(
+                                          height: 320,
+                                          width: 310,
+                                          child: Card(
+                                            elevation: 8,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(25)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(25.0),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Center(
+                                                    child: Text(
+                                                      showData[index]['name'],
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: const TextStyle(
+                                                          fontSize: 30,
+                                                          color:
+                                                              primaryTextColor,
+                                                          fontWeight:
+                                                              FontWeight.w900),
+                                                    ),
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      const SizedBox(
+                                                        height: 30,
                                                       ),
-                                                    ),
-                                                    Column(
-                                                      children: [
-                                                        const SizedBox(
-                                                          height: 30,
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: const [
-                                                            Text(
-                                                              'Маълумоти бештар',
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      primaryTextColor,
-                                                                  fontSize: 15,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 5,
-                                                            ),
-                                                            Icon(
-                                                              FontAwesomeIcons
-                                                                  .arrowRight,
-                                                              color:
-                                                                  contentTextColor,
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          Text(
+                                                            'Маълумоти бештар',
+                                                            style: TextStyle(
+                                                                color:
+                                                                    primaryTextColor,
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 5,
+                                                          ),
+                                                          Icon(
+                                                            FontAwesomeIcons
+                                                                .arrowRight,
+                                                            color:
+                                                                contentTextColor,
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                      Image.asset(showData[index]['image']),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
+                                        ),
+                                      ],
+                                    ),
+                                    Image.asset(showData[index]['image']),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
-                         
-                        ],
-                      ),
-                      
-                    );
-                  },
-                  itemCount: showData.length,
-                );
-              } else {
-                return const Offstage();
-              }
-            },
-          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                itemCount: showData.length,
+              );
+            } else {
+              return const Offstage();
+            }
+          },
         ),
-          bottomNavigationBar: Container(
+      ),
+      bottomNavigationBar: Container(
           decoration: BoxDecoration(
               color: Colors.white.withOpacity(.3),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(16.0))),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(16.0))),
           padding: const EdgeInsets.all(25),
           child: GNav(
-            
-              rippleColor:
-                  Colors.blue, // tab button ripple color when pressed
+              rippleColor: Colors.blue, // tab button ripple color when pressed
               hoverColor: Colors.blue[700], // tab button hover color
               haptic: true, // haptic feedback
               tabBorderRadius: 15,
@@ -233,7 +228,8 @@ class _HomePageState extends State<HomePage> {
                 BoxShadow(color: Colors.white, blurRadius: 8)
               ], // tab button shadow
               curve: Curves.easeIn, // tab animation curves
-              duration: const Duration(milliseconds: 300), // tab animation duration
+              duration:
+                  const Duration(milliseconds: 300), // tab animation duration
               gap: 8, // the tab button gap between icon and text
               color: Colors.blueGrey, // unselected icon color
               activeColor: Colors.blue, // selected icon and text color
@@ -245,7 +241,8 @@ class _HomePageState extends State<HomePage> {
               tabs: [
                 const GButton(
                   backgroundColor: Colors.white,
-                  icon: Icons.favorite_sharp, iconSize: 26,
+                  icon: Icons.favorite_sharp,
+                  iconSize: 26,
                   iconColor: Colors.red,
                   text: 'Мунтахаб',
                 ),
@@ -263,7 +260,6 @@ class _HomePageState extends State<HomePage> {
                 )
               ])),
     );
-      
   }
 // Text(showData[index]['name'])
   // Future<List<Avrod>> readJsonData() async {

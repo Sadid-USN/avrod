@@ -1,11 +1,11 @@
-
-
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:flutter/material.dart';
 
 class SubchapterScreen extends StatefulWidget {
-  const SubchapterScreen({Key? key}) : super(key: key);
+  final int bookIndex;
+
+  const SubchapterScreen(this.bookIndex);
 
   @override
   State<SubchapterScreen> createState() => _SubchapterScreenState();
@@ -26,9 +26,13 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
               return const Center(child: CircularProgressIndicator());
             default:
               if (snapshot.hasError) {
-                return const Center(child: Text('Some error occured', style: TextStyle(fontSize: 22.0),));
+                return const Center(
+                    child: Text(
+                  'Some error occured',
+                  style: TextStyle(fontSize: 22.0),
+                ));
               } else {
-                return buildBook(books!);
+                return buildBook(books![widget.bookIndex]);
               }
           }
         },
@@ -36,13 +40,13 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
     );
   }
 
-  Widget buildBook(List<Book> books) => ListView.builder(
+  Widget buildBook(Book book) => ListView.builder(
       physics: const BouncingScrollPhysics(),
-      itemCount: books.length,
+      itemCount: book.chapters?.length ?? 0,
       itemBuilder: (context, index) {
-        final book = books[index];
-        return  ListTile(
-          title: Text(book.chapters![index].name!),
+        final chapter = book.chapters![index];
+        return ListTile(
+          title: Text(chapter.name!),
         );
       });
 }
