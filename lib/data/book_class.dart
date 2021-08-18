@@ -11,7 +11,7 @@ class Book {
     if (json['chapters'] != null) {
       chapters = [];
       json['chapters'].forEach((v) {
-        chapters!.add( Chapters.fromJson(v));
+        chapters!.add(Chapters.fromJson(v));
       });
     }
   }
@@ -26,7 +26,7 @@ class Book {
 }
 
 class Chapters {
-  String ?name;
+  String? name;
   List<Texts>? texts;
 
   Chapters({this.name, this.texts});
@@ -42,7 +42,7 @@ class Chapters {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['texts'] = texts!.map((v) => v.toJson()).toList();
     return data;
@@ -50,10 +50,10 @@ class Chapters {
 }
 
 class Texts {
-  String?id;
-  String?text;
-  String?arabic;
-  String?translation;
+  String? id;
+  String? text;
+  String? arabic;
+  String? translation;
 
   Texts({this.id, this.text, this.arabic, this.translation});
 
@@ -65,8 +65,8 @@ class Texts {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
-    data['id'] =id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['text'] = text;
     data['arabic'] = arabic;
     data['translation'] = translation;
