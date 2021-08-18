@@ -1,5 +1,3 @@
-
-
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:flutter/material.dart';
@@ -21,15 +19,14 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
         future: BookMap.getBookLocally(context),
         builder: (contex, snapshot) {
           final books = snapshot.data;
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return const Center(child: CircularProgressIndicator());
-            default:
-              if (snapshot.hasError) {
-                return const Center(child: Text('Some error occured', style: TextStyle(fontSize: 22.0),));
-              } else {
-                return buildBook(books!);
-              }
+          if (snapshot.hasData) {
+            return buildBook(books!);
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text('Some erro occured'),
+            );
+          } else {
+            return const CircularProgressIndicator();
           }
         },
       ),
@@ -41,7 +38,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
       itemCount: books.length,
       itemBuilder: (context, index) {
         final book = books[index];
-        return  ListTile(
+        return ListTile(
           title: Text(book.chapters![index].name!),
         );
       });
