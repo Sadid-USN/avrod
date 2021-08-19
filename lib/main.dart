@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () {
                                     Navigator.push(context, PageRouteBuilder(
                                         pageBuilder: (context, a, b) {
-                                      return const SubchapterScreen();
+                                      return  SubchapterScreen(index);
                                     }));
                                   },
                                   child: Stack(
