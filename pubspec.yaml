@@ -38,6 +38,7 @@ dependencies:
   progress_indicators: ^1.0.0
   font_awesome_flutter: ^8.8.1
   http: ^0.13.3
+  like_button: ^2.0.3
   
 
 

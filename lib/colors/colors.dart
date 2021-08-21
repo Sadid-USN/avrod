@@ -8,3 +8,4 @@ const Color navigationColor = Color(0xFF290015);
 const Color gradientStartColor = Color(0xFF0050AC);
 const Color gradientEndColor = Color(0xFF9354B9);
 const Color brownColor = Color(0xFF290015);
+const Color listColor = Color(0xFF6D5ACF );
