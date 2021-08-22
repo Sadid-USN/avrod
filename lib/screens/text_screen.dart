@@ -12,23 +12,48 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
+
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_unnecessary_containers
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Лафзи дуо'),
-          centerTitle: true,
+      body: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [gradientStartColor, gradientEndColor],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [0.3, 0.7])),
+        child: FutureBuilder<List<Book>>(
+          future: BookMap.getBookLocally(context),
+          builder: (contex, snapshot) {
+            final books = snapshot.data;
+
+            if (snapshot.hasData) {
+              return buildBook(books![widget.textIndex ?? 0]);
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('Some erro occured'),
+              );
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
         ),
-        // ignore: avoid_unnecessary_containers
-        body: Container(
-          child: const Center(child: Text('Text of book')),
-        ));
+      ),
+      
+    );
+    
   }
 
-//   Widget buildBook(Book book) {
-
-//     return
-//   }
-// }
+  Widget buildBook(Book book) {
+    
+    return ListView.builder(
+      
+        itemCount: book.chapters!.length,
+        itemBuilder: (context, index) {
+          final text = book.chapters![index].texts;
+          // ignore: avoid_unnecessary_containers
+          return Container(child: Center(child: Text(text?[index].id ?? '')));
+        });
+  }
 }
