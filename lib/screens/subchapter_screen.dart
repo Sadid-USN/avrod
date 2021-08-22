@@ -1,4 +1,5 @@
 import 'package:avrod/colors/colors.dart';
+
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/screens/text_screen.dart';
@@ -23,14 +24,14 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
     return Scaffold(
       appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: Colors.indigo.withOpacity(0.9),
+          backgroundColor: gradientStartColor,
           title: const Text('Рӯйхати бобҳо'),
           centerTitle: true),
       // ignore: avoid_unnecessary_containers
       body: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-                colors: [gradientStartColor, gradientEndColor],
+                colors: [ gradientStartColor, gradientEndColor],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 stops: [0.3, 0.7])),
@@ -66,16 +67,17 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
         itemCount: books.chapters?.length ?? 0,
         itemBuilder: (context, index) {
           final chapters = books.chapters![index];
+         
 
           // ignore: sized_box_for_whitespace
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: InkWell(
-              onTap: () {
-               // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                 // return TextScreen();
-                //}));
-              },
+              // onTap: () {
+              //  Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //    return TextScreen(index);
+              //   }));
+              // },
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(

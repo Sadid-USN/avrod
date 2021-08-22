@@ -2,14 +2,21 @@
 import 'dart:convert';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:avrod/colors/colors.dart';
+
 import 'package:avrod/screens/subchapter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 
-import 'colors/colors.dart';
+
+
+
+import 'data/book_class.dart';
+import 'data/book_map.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,9 +50,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final colorizeColors = [
     Colors.white,
-    Colors.green,
-    Colors.pink,
-    Colors.deepOrange,
+    Colors.purple,
+    Colors.indigo,
+    Colors.blueGrey,
   ];
 
   final colorizeTextStyle =
@@ -61,12 +68,11 @@ class _HomePageState extends State<HomePage> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 stops: [0.3, 0.7])),
-        child: FutureBuilder(
-          future:
-              DefaultAssetBundle.of(context).loadString('lib/data/book.json'),
-          builder: (context, snapshot) {
+        child: FutureBuilder<List<Book>>(
+          future: BookMap.getBookLocally(context),
+          builder: (contex, snapshot) {
+            final books = snapshot.data;
             if (snapshot.hasData) {
-              var showData = json.decode(snapshot.data?.toString() ?? '');
               return ListView(
                 children: [
                   Column(
@@ -79,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         height: 40,
                         child: AnimatedTextKit(
-                          totalRepeatCount: 2,
+                          totalRepeatCount: 3,
                           animatedTexts: [
                             ColorizeAnimatedText('Авроди субҳу шом',
                                 textStyle: colorizeTextStyle,
@@ -93,8 +99,8 @@ class _HomePageState extends State<HomePage> {
                         child: Swiper(
                           scrollDirection: Axis.horizontal,
                           autoplayDisableOnInteraction: true,
-                          itemCount: showData.length,
-                          itemWidth: MediaQuery.of(context).size.width -2 * 65,
+                          itemCount: books.length,
+                          itemWidth: MediaQuery.of(context).size.width - 2 * 65,
                           layout: SwiperLayout.STACK,
                           pagination: const SwiperPagination(
                             margin: EdgeInsets.only(top: 20),
@@ -136,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                                               children: [
                                                 Center(
                                                   child: Text(
-                                                    showData[index]['name'],
+                                                    books[index].name,
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
                                                         fontSize: 30,
@@ -185,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ],
                                   ),
-                                  Image.asset(showData[index]['image']),
+                                  Image.asset(books[index].image),
                                 ],
                               ),
                             );
@@ -196,8 +202,22 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               );
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('Some erro occured'),
+              );
             } else {
-              return const Offstage();
+              return Center(
+                  child: GlowingProgressIndicator(
+                duration: const Duration(seconds: 2),
+                child: FadingText(
+                  'Боргузорӣ...',
+                  style: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600),
+                ),
+              ));
             }
           },
         ),
