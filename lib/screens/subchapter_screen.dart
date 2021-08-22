@@ -73,11 +73,12 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: InkWell(
-              // onTap: () {
-              //  Navigator.push(context, MaterialPageRoute(builder: (context) {
-              //    return TextScreen(index);
-              //   }));
-              // },
+              onTap: () {
+              
+               Navigator.push(context, MaterialPageRoute(builder: (context) {
+                 return const TextScreen();
+                }));
+              },
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(

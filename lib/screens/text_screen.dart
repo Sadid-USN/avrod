@@ -4,8 +4,9 @@ import 'package:avrod/data/book_map.dart';
 import 'package:flutter/material.dart';
 
 class TextScreen extends StatefulWidget {
- final int textIndex;
-  const TextScreen(Key? key, this.textIndex) : super(key: key);
+  final int ?textIndex;
+  final Texts? texts;
+  const TextScreen({Key? key, this.textIndex,  this.texts}) : super(key: key);
   @override
   _TextScreenState createState() => _TextScreenState();
 }
@@ -31,7 +32,7 @@ class _TextScreenState extends State<TextScreen> {
             final texts = snapshot.data;
 
             if (snapshot.hasData) {
-              return buildBook(texts![widget.textIndex]);
+              return buildBook(texts![widget.textIndex ?? 0]);
             } else if (snapshot.hasError) {
               return const Center(
                 child: Text('Some erro occured'),
@@ -47,11 +48,11 @@ class _TextScreenState extends State<TextScreen> {
 
   Widget buildBook(Texts texts) {
     return ListView.builder(
-        itemCount: texts.text!.length,
+        itemCount: texts.text?.length ?? 0,
         itemBuilder: (context, index) {
-          final text = texts.text![index];
+          //final text = texts.text![index];
           // ignore: avoid_unnecessary_containers
-          return Container(child: Center(child: Text(text)));
+          return Container(child: Center(child: Text(texts.id ?? '', style: const TextStyle(fontSize: 25.0),)));
         });
   }
 }

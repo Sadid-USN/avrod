@@ -11,6 +11,16 @@ class BookMap {
   }
 }
 
+class SubchaptersMap {
+  static Future<List<Chapters>> getSubchaptersLocally(BuildContext context) async {
+    final assetBundle = DefaultAssetBundle.of(context);
+    final data = await assetBundle.loadString('lib/data/book.json');
+    final List<dynamic> body = json.decode(data);
+    return body.map((e) => Chapters.fromJson(e)).toList();
+  }
+}
+
+
 class TextsMap {
   static Future<List<Texts>> getTextsLocally(BuildContext context) async {
     final assetBundle = DefaultAssetBundle.of(context);
