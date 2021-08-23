@@ -78,7 +78,7 @@ class _TextScreenState extends State<TextScreen> {
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 25.0,
             color: Colors.white,
           ),

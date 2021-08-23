@@ -9,25 +9,21 @@ class BookMap {
     final List<dynamic> body = json.decode(data);
     return body.map((e) => Book.fromJson(e)).toList();
   }
-}
 
-class SubchaptersMap {
-  static Future<List<Chapters>> getSubchaptersLocally(BuildContext context) async {
-    final assetBundle = DefaultAssetBundle.of(context);
-    final data = await assetBundle.loadString('lib/data/book.json');
-    final List<dynamic> body = json.decode(data);
-    return body.map((e) => Chapters.fromJson(e)).toList();
+  static Future<List<Chapters>> getSubchaptersLocally(
+    BuildContext context,
+    int book,
+  ) async {
+    final List<Book> books = await getBookLocally(context);
+    return books[book].chapters!;
+  }
+
+  static Future<List<Texts>> getTextsLocally(
+    BuildContext context,
+    int book,
+    int chapter,
+  ) async {
+    List<Chapters> chapters = await getSubchaptersLocally(context, book);
+    return chapters[chapter].texts!;
   }
 }
-
-
-class TextsMap {
-  static Future<List<Texts>> getTextsLocally(BuildContext context) async {
-    final assetBundle = DefaultAssetBundle.of(context);
-    final data = await assetBundle.loadString('lib/data/book.json');
-    final List<dynamic> body = json.decode(data);
-    return body.map((e) => Texts.fromJson(e)).toList();
-  }
-}
-
-
