@@ -1,7 +1,7 @@
 class Book {
   String? name;
   String? image;
-  List<Chapters> ?chapters;
+  List<Chapters>? chapters;
 
   Book({this.name, this.image, this.chapters});
 

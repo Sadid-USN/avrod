@@ -4,9 +4,10 @@ import 'package:avrod/data/book_map.dart';
 import 'package:flutter/material.dart';
 
 class TextScreen extends StatefulWidget {
-  final int ?textIndex;
-  final Texts? texts;
-  const TextScreen({Key? key, this.textIndex,  this.texts}) : super(key: key);
+  final List<Texts>? texts;
+
+  const TextScreen({Key? key, this.texts}) : super(key: key);
+
   @override
   _TextScreenState createState() => _TextScreenState();
 }
@@ -15,7 +16,7 @@ class _TextScreenState extends State<TextScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: widget.texts!.length,
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
@@ -24,60 +25,65 @@ class _TextScreenState extends State<TextScreen> {
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                  colors: [gradientStartColor, gradientEndColor],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0.3, 0.7])),
+                colors: [gradientStartColor, gradientEndColor],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.3, 0.7],
+              ),
+            ),
           ),
-          bottom: const TabBar(tabs: [
-           Tab(text: 'Дуои 1',),
-           Tab(text: 'Дуои 2',),
-           Tab(text: 'Дуои 3',),
-           Tab(text: 'Дуои 4',),
-          ],),
-           
+          bottom: TabBar(
+            tabs: widget.texts!
+                .map(
+                  (Texts e) => Tab(text: e.id),
+                )
+                .toList(),
+          ),
         ),
-        body: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [gradientStartColor, gradientEndColor],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.3, 0.7])),
-          child: FutureBuilder<List<Texts>>(
-            future: TextsMap.getTextsLocally(context),
-            builder: (contex, snapshot) {
-              final texts = snapshot.data;
-    
-              if (snapshot.hasData) {
-                return buildBook(texts![widget.textIndex ?? 0] );
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Some erro occured'),
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
-          ),
+        body: TabBarView(
+          children: widget.texts!
+              .map((e) => Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [gradientStartColor, gradientEndColor],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0.3, 0.7],
+                      ),
+                    ),
+                    child: Builder(builder: (context) {
+                      return buildBook(e);
+                    }),
+                  ))
+              .toList(),
         ),
       ),
     );
   }
 
   Widget buildBook(Texts texts) {
-    return ListView.builder(
-        itemCount: texts.text?.length ?? 0,
-        itemBuilder: (context, index) {
-          final id = texts.id![index];
-          // ignore: avoid_unnecessary_containers
-          return TabBarView(children:[
-            // ignore: avoid_unnecessary_containers
-            Container(
-             
-              child: 
-            Center(child: Text(id, style: const TextStyle(fontSize: 25.0),)))
-          ] );
-        });
+    return ListView(
+      children: [
+        _contentItem(texts.id!),
+        _contentItem(texts.text!),
+        _contentItem(texts.arabic!),
+        _contentItem(texts.translation!),
+      ],
+    );
+  }
+
+  Widget _contentItem(String text) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: Center(
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 25.0,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
   }
 }
