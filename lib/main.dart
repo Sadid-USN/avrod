@@ -10,10 +10,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
 import 'package:progress_indicators/progress_indicators.dart';
-
-
-
 
 import 'data/book_class.dart';
 import 'data/book_map.dart';
@@ -29,14 +27,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme:
-            GoogleFonts.ptSerifCaptionTextTheme(Theme.of(context).textTheme),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const HomePage(),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme:
+              GoogleFonts.ptSerifCaptionTextTheme(Theme.of(context).textTheme),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: const HomePage());
   }
 }
 
@@ -213,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                 child: FadingText(
                   'Боргузорӣ...',
                   style: const TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 21.0,
                       color: Colors.white,
                       fontWeight: FontWeight.w600),
                 ),
@@ -252,17 +249,19 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(
                   horizontal: 20, vertical: 5), // navigation bar padding
               tabs: [
-                const GButton(
-                  backgroundColor: Colors.white,
-                  icon: Icons.favorite_sharp,
-                  iconSize: 26,
-                  iconColor: Colors.red,
-                  text: 'Мунтахаб',
-                ),
+               
                 GButton(
                   backgroundColor: Colors.yellow[50],
                   icon: FontAwesomeIcons.search,
                   text: 'Ҷустуҷӯ',
+                ),
+                 const GButton(
+                  backgroundColor: Colors.white,
+                  icon: Icons.favorite_sharp, 
+                  iconSize: 26,
+                  iconColor: Colors.blueGrey,
+                  text: 'Мунтахаб',
+                  iconActiveColor: Colors.red,
                 ),
                 const GButton(
                   backgroundColor: Colors.white,

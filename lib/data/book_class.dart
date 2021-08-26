@@ -1,17 +1,17 @@
 class Book {
   String? name;
   String? image;
-  List<Chapters>? chapters;
+  List<Chapter>? chapter;
 
-  Book({this.name, this.image, this.chapters});
+  Book({this.name, this.image, this.chapter});
 
   Book.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     image = json['image'];
     if (json['chapters'] != null) {
-      chapters = [];
+      chapter = [];
       json['chapters'].forEach((v) {
-        chapters!.add(Chapters.fromJson(v));
+        chapter!.add(Chapter.fromJson(v));
       });
     }
   }
@@ -20,21 +20,21 @@ class Book {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['image'] = image;
-    if (chapters != null) {
-      data['chapters'] = chapters!.map((v) => v.toJson()).toList();
+    if (chapter != null) {
+      data['chapters'] = chapter!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Chapters {
+class Chapter {
   String? listimage;
   String? name;
   List<Texts>? texts;
 
-  Chapters({this.listimage, this.name, this.texts});
+  Chapter({this.listimage, this.name, this.texts});
 
-  Chapters.fromJson(Map<String, dynamic> json) {
+  Chapter.fromJson(Map<String, dynamic> json) {
     listimage = json['listimage'];
     name = json['name'];
     if (json['texts'] != null) {

@@ -72,9 +72,9 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
         scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(top: 5),
         physics: const BouncingScrollPhysics(),
-        itemCount: books.chapters?.length ?? 0,
+        itemCount: books.chapter?.length ?? 0,
         itemBuilder: (context, index) {
-          final Chapters chapters = books.chapters![index];
+          final Chapter chapter = books.chapter![index];
 
           // ignore: sized_box_for_whitespace
           return Padding(
@@ -82,11 +82,11 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
             child: InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TextScreen(texts: chapters.texts);
+                  return TextScreen(texts: chapter.texts);
                 }));
               },
               child: CachedNetworkImage(
-                  imageUrl: chapters.listimage!,
+                  imageUrl: chapter.listimage!,
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       decoration: BoxDecoration(
@@ -119,7 +119,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
                           ListTile(
                             title: Center(
                               child: Text(
-                                chapters.name!,
+                                chapter.name!,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     fontSize: 22.0,
@@ -132,13 +132,14 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
                             top: 15,
                             right: 10,
                             child: LikeButton(
+                             
                               size: 40,
                               circleColor: CircleColor(
-                                  start: Color(0xffDC143C),
+                                  start: Color(0xffFF0000),
                                   end: Color(0xffFF0000)),
                               bubblesColor: BubblesColor(
-                                dotPrimaryColor: Color(0xffFF0000),
-                                dotSecondaryColor: Color(0xffFF0000),
+                                dotPrimaryColor: Color(0xffffffff),
+                                dotSecondaryColor: Color(0xffBF40BF),
                               ),
                             ),
                           )
@@ -150,4 +151,6 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
           );
         });
   }
+
+  
 }
