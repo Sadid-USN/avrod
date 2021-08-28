@@ -251,6 +251,7 @@ class _HomePageState extends State<HomePage> {
               tabs: [
                
                 GButton(
+                  onPressed: (){},
                   backgroundColor: Colors.yellow[50],
                   icon: FontAwesomeIcons.search,
                   text: 'Ҷустуҷӯ',
