@@ -1,7 +1,9 @@
 import 'package:avrod/colors/colors.dart';
-
+import 'package:hive/hive.dart';
+import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
+import 'package:avrod/data/hero_images.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,19 @@ class SubchapterScreen extends StatefulWidget {
 }
 
 class _SubchapterScreenState extends State<SubchapterScreen> {
+  Box? likeBox;
+
+  @override
+  void initState() {
+    super.initState();
+
+    initHive();
+  }
+
+  void initHive() async {
+    likeBox = await Hive.openBox('Likes');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,16 +143,19 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
                               ),
                             ),
                           ),
-                          const Positioned(
+                          Positioned(
                             top: 15,
                             right: 10,
                             child: LikeButton(
-                             
+                              isLiked: isChapterLiked(chapter.id!),
+                              onTap: (isLiked) async {
+                                return setLike(chapter.id!, isLiked);
+                              },
                               size: 40,
-                              circleColor: CircleColor(
+                              circleColor: const CircleColor(
                                   start: Color(0xffFF0000),
                                   end: Color(0xffFF0000)),
-                              bubblesColor: BubblesColor(
+                              bubblesColor: const BubblesColor(
                                 dotPrimaryColor: Color(0xffffffff),
                                 dotSecondaryColor: Color(0xffBF40BF),
                               ),
@@ -152,5 +170,17 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
         });
   }
 
-  
+  Future<bool> setLike(int chapterID, bool isLiked) async {
+    await likeBox!.put(chapterID, (!isLiked).toString());
+    return !isLiked;
+  }
+  // Future<bool> setLike(int chapterID, bool isLiked) async {
+  //   await likeBox!.put(chapterID, isLiked.toString());
+  //   return isLiked;
+  // }
+
+  bool isChapterLiked(int chapterID) {
+    bool isLiked = likeBox!.get(chapterID) == "true";
+    return isLiked;
+  }
 }

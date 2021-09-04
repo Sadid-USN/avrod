@@ -1,7 +1,7 @@
 class Book {
-  String? name;
-  String? image;
-  List<Chapter>? chapter;
+  String ?name;
+  String ?image;
+  List<Chapter> ?chapter;
 
   Book({this.name, this.image, this.chapter});
 
@@ -11,47 +11,46 @@ class Book {
     if (json['chapters'] != null) {
       chapter = [];
       json['chapters'].forEach((v) {
-        chapter!.add(Chapter.fromJson(v));
+        chapter!.add( Chapter.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['name'] = name;
     data['image'] = image;
-    if (chapter != null) {
-      data['chapters'] = chapter!.map((v) => v.toJson()).toList();
-    }
+    data['chapters'] = chapter!.map((v) => v.toJson()).toList();
     return data;
   }
 }
 
 class Chapter {
-  String? listimage;
-  String? name;
-  List<Texts>? texts;
+  int? id;
+  String ?listimage;
+  String ?name;
+  List<Texts> ?texts;
 
-  Chapter({this.listimage, this.name, this.texts});
+  Chapter({this.id, this.listimage, this.name, this.texts});
 
   Chapter.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     listimage = json['listimage'];
     name = json['name'];
     if (json['texts'] != null) {
       texts = [];
       json['texts'].forEach((v) {
-        texts!.add(Texts.fromJson(v));
+        texts!.add( Texts.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['id'] = id;
     data['listimage'] = listimage;
     data['name'] = name;
-    if (texts != null) {
-      data['texts'] = texts!.map((v) => v.toJson()).toList();
-    }
+    data['texts'] = texts!.map((v) => v.toJson()).toList();
     return data;
   }
 }
@@ -72,7 +71,7 @@ class Texts {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = id;
     data['text'] = text;
     data['arabic'] = arabic;

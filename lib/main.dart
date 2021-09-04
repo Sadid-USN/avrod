@@ -1,23 +1,26 @@
 // @dart=2.9
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avrod/colors/colors.dart';
-
 import 'package:avrod/screens/subchapter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
 import 'package:progress_indicators/progress_indicators.dart';
-
 import 'data/book_class.dart';
 import 'data/book_map.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  
   runApp(const MyApp());
 }
 
@@ -45,6 +48,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+   
+
   final colorizeColors = [
     Colors.white,
     Colors.purple,
@@ -249,16 +255,15 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(
                   horizontal: 20, vertical: 5), // navigation bar padding
               tabs: [
-               
                 GButton(
-                  onPressed: (){},
-                  backgroundColor: Colors.yellow[50],
+                  onPressed: () {},
+                  backgroundColor: Colors.white,
                   icon: FontAwesomeIcons.search,
                   text: 'Ҷустуҷӯ',
                 ),
-                 const GButton(
+                const GButton(
                   backgroundColor: Colors.white,
-                  icon: Icons.favorite_sharp, 
+                  icon: Icons.favorite_sharp,
                   iconSize: 26,
                   iconColor: Colors.blueGrey,
                   text: 'Мунтахаб',

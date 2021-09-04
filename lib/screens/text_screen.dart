@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 
 class TextScreen extends StatefulWidget {
   final List<Texts>? texts;
+  final Chapter? chapter;
 
-  const TextScreen({Key? key, this.texts}) : super(key: key);
+  const TextScreen({Key? key, this.texts, this.chapter}) : super(key: key);
 
   @override
   _TextScreenState createState() => _TextScreenState();
 }
 
 class _TextScreenState extends State<TextScreen> {
- 
   Widget _contentItem(String text) {
     return Container(
       padding: const EdgeInsets.all(8),
@@ -39,14 +39,15 @@ class _TextScreenState extends State<TextScreen> {
       child: Column(
         children: [
           Container(
-            decoration: const BoxDecoration(
+           decoration: const BoxDecoration(
+             
                 boxShadow: [
                   BoxShadow(
                       color: Colors.white10,
                       offset: Offset(0.0, 2.0),
                       blurRadius: 6.0)
-                ],
-                gradient: LinearGradient(
+               ],
+                gradient:  LinearGradient(
                     colors: [Colors.white30, secondaryTextColor],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight),
@@ -88,19 +89,28 @@ class _TextScreenState extends State<TextScreen> {
         const SizedBox(
           height: 20.0,
         ),
-       const Padding(
-         padding: EdgeInsets.only(left: 10),
-         child: Text('Тоҷикӣ:', style: TextStyle(color: Colors.white),),
-       ),
+        const Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Text(
+            'Тоҷикӣ:',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
         _contentItem(texts.text!),
         const Padding(
-            padding: EdgeInsets.only(left: 10),
-           child: Text('Арабӣ:', style: TextStyle(color: Colors.white),),
-         ),
+          padding: EdgeInsets.only(left: 10),
+          child: Text(
+            'Арабӣ:',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
         _contentArabic(texts.arabic!),
-       const  Padding(
+        const Padding(
             padding: EdgeInsets.only(left: 10),
-           child: Text('Тарҷума:', style: TextStyle(color: Colors.white),)),
+            child: Text(
+              'Тарҷума:',
+              style: TextStyle(color: Colors.white),
+            )),
         _contentTranslation(texts.translation!),
       ],
     );
@@ -136,19 +146,21 @@ class _TextScreenState extends State<TextScreen> {
         ),
         body: TabBarView(
           children: widget.texts!
-              .map((e) => Container(
-                    decoration: const BoxDecoration(
+              .map(
+                (e) => Container(
+                  decoration: const BoxDecoration(
+                    
                       gradient: LinearGradient(
-                        colors: [gradientStartColor, gradientEndColor],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: [0.3, 0.7],
-                      ),
-                    ),
-                    child: Builder(builder: (context) {
-                      return buildBook(e);
-                    }),
-                  ))
+                          colors: [gradientStartColor, gradientEndColor],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          stops: [0.3, 0.7])
+                          ),
+                  child: Builder(builder: (context) {
+                    return buildBook(e);
+                  }),
+                ),
+              )
               .toList(),
         ),
       ),
