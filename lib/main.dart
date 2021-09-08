@@ -1,7 +1,4 @@
 // @dart=2.9
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/screens/subchapter_screen.dart';
@@ -11,16 +8,23 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:progress_indicators/progress_indicators.dart';
+import 'package:sizer/sizer.dart';
+import 'colors/colors.dart';
 import 'data/book_class.dart';
 import 'data/book_map.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'screens/favorite_chapter_screen.dart';
+
+// ignore: constant_identifier_names
+const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
-  
+  await Hive.openBox(FAVORITES_BOX);
+
   runApp(const MyApp());
 }
 
@@ -29,14 +33,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          textTheme:
-              GoogleFonts.ptSerifCaptionTextTheme(Theme.of(context).textTheme),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: const HomePage());
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              textTheme: GoogleFonts.ptSerifCaptionTextTheme(
+                  Theme.of(context).textTheme),
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            home: const HomePage());
+      },
+    );
   }
 }
 
@@ -48,23 +56,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-   
-
+  int _selectedIndex;
   final colorizeColors = [
     Colors.white,
-    Colors.purple,
+    Colors.orange,
     Colors.indigo,
     Colors.blueGrey,
   ];
 
   final colorizeTextStyle =
-      const TextStyle(fontSize: 30.0, fontWeight: FontWeight.w900);
+       TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w900);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: gradientEndColor,
       body: Container(
+        height: double.maxFinite,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [gradientStartColor, gradientEndColor],
@@ -84,11 +91,12 @@ class _HomePageState extends State<HomePage> {
                       const Padding(
                         padding: EdgeInsets.all(10.0),
                       ),
-                      // ignore: sized_box_for_whitespace
+                    
+                      // ignore: avoid_unnecessary_containers
                       Container(
-                        height: 40,
+   
                         child: AnimatedTextKit(
-                          totalRepeatCount: 3,
+                          totalRepeatCount: 2,
                           animatedTexts: [
                             ColorizeAnimatedText('Авроди субҳу шом',
                                 textStyle: colorizeTextStyle,
@@ -98,16 +106,16 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                         padding: const EdgeInsets.only(left: 32, top: 60),
-                        height: 570,
+                        height: 70.h,
                         child: Swiper(
                           scrollDirection: Axis.horizontal,
                           autoplayDisableOnInteraction: true,
                           itemCount: books.length,
-                          itemWidth: MediaQuery.of(context).size.width - 2 * 65,
+                          itemWidth: 67.w,
                           layout: SwiperLayout.STACK,
                           pagination: const SwiperPagination(
-                            margin: EdgeInsets.only(top: 20),
-                            builder: DotSwiperPaginationBuilder(
+                            margin:  EdgeInsets.only(top: 20),
+                            builder:  DotSwiperPaginationBuilder(
                                 activeSize: 15, space: 6),
                           ),
                           itemBuilder: (context, index) {
@@ -130,9 +138,10 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       // ignore: sized_box_for_whitespace
                                       Container(
-                                        height: 320,
-                                        width: 310,
+                                        height: 40.h,
+                                        width: 40.h,
                                         child: Card(
+
                                           elevation: 8,
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -147,8 +156,8 @@ class _HomePageState extends State<HomePage> {
                                                   child: Text(
                                                     books[index].name,
                                                     textAlign: TextAlign.center,
-                                                    style: const TextStyle(
-                                                        fontSize: 30,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp, 
                                                         color: primaryTextColor,
                                                         fontWeight:
                                                             FontWeight.w900),
@@ -163,26 +172,27 @@ class _HomePageState extends State<HomePage> {
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
-                                                      children: const [
+                                                      children:  [
                                                         Text(
                                                           'Маълумоти бештар',
                                                           style: TextStyle(
                                                               color:
                                                                   primaryTextColor,
-                                                              fontSize: 15,
+                                                              fontSize: 13.sp,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500),
                                                         ),
-                                                        SizedBox(
-                                                          width: 5,
+                                                        const SizedBox(
+                                                          width: 4,
                                                         ),
-                                                        Icon(
-                                                          FontAwesomeIcons
-                                                              .arrowRight,
-                                                          color:
-                                                              contentTextColor,
-                                                        )
+                                                        // ignore: sized_box_for_whitespace
+                                                       const Icon(
+                                                              FontAwesomeIcons
+                                                                  .arrowRight,
+                                                              color:
+                                                                  Colors.blueGrey,),
+                                                      
                                                       ],
                                                     ),
                                                   ],
@@ -194,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ],
                                   ),
-                                  Image.asset(books[index].image),
+                                  Image.asset(books[index].image, height: 35.h,),
                                 ],
                               ),
                             );
@@ -226,64 +236,70 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: Container(
+
           decoration: BoxDecoration(
               color: Colors.white.withOpacity(.3),
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(16.0))),
           padding: const EdgeInsets.all(25),
           child: GNav(
-              rippleColor: Colors.blue, // tab button ripple color when pressed
-              hoverColor: Colors.blue[700], // tab button hover color
-              haptic: true, // haptic feedback
-              tabBorderRadius: 15,
-              tabActiveBorder: Border.all(
-                  color: Colors.white, width: 1.5), // tab button border
-              tabBorder: Border.all(
-                  color: Colors.white, width: 1.5), // tab button border
-              tabShadow: const [
-                BoxShadow(color: Colors.white, blurRadius: 8)
-              ], // tab button shadow
-              curve: Curves.easeIn, // tab animation curves
-              duration:
-                  const Duration(milliseconds: 300), // tab animation duration
-              gap: 8, // the tab button gap between icon and text
-              color: Colors.blueGrey, // unselected icon color
-              activeColor: Colors.blue, // selected icon and text color
-              iconSize: 24, // tab button icon size
-              tabBackgroundColor: Colors.purple
-                  .withOpacity(0.1), // selected tab background color
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 20, vertical: 5), // navigation bar padding
-              tabs: [
-                GButton(
-                  onPressed: () {},
-                  backgroundColor: Colors.white,
-                  icon: FontAwesomeIcons.search,
-                  text: 'Ҷустуҷӯ',
-                ),
-                const GButton(
-                  backgroundColor: Colors.white,
-                  icon: Icons.favorite_sharp,
-                  iconSize: 26,
-                  iconColor: Colors.blueGrey,
-                  text: 'Мунтахаб',
-                  iconActiveColor: Colors.red,
-                ),
-                const GButton(
-                  backgroundColor: Colors.white,
-                  icon: FontAwesomeIcons.thumbsUp,
-                  //iconColor: Colors.green,
-                  text: 'Баҳодиҳи',
-                  textColor: Colors.blue,
-                )
-              ])),
+            rippleColor: Colors.blue, // tab button ripple color when pressed
+            hoverColor: Colors.blue[700], // tab button hover color
+            haptic: true, // haptic feedback
+            tabBorderRadius: 15,
+            tabActiveBorder: Border.all(
+                color: Colors.white, width: 1.5), // tab button border
+            tabBorder: Border.all(
+                color: Colors.white, width: 1.5), // tab button border
+            tabShadow: const [
+              BoxShadow(color: Colors.white, blurRadius: 8)
+            ], // tab button shadow
+            curve: Curves.easeIn, // tab animation curves
+            duration:
+                const Duration(milliseconds: 300), // tab animation duration
+            gap: 8, // the tab button gap between icon and text
+            color: Colors.blueGrey, // unselected icon color
+            activeColor: Colors.blue, // selected icon and text color
+            iconSize: 24, // tab button icon size
+            tabBackgroundColor:
+                Colors.purple.withOpacity(0.1), // selected tab background color
+            padding: const EdgeInsets.symmetric(
+                horizontal: 20, vertical: 5), // navigation bar padding
+            tabs: [
+              GButton(
+                onPressed: () {},
+                backgroundColor: Colors.white,
+                icon: FontAwesomeIcons.search,
+                text: 'Ҷустуҷӯ',
+              ),
+              GButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const FavoriteChapterSceen();
+                  }));
+                },
+                backgroundColor: Colors.white,
+                icon: Icons.favorite_sharp,
+                iconSize: 26,
+                iconColor: Colors.blueGrey,
+                text: 'Маҳбуб',
+                iconActiveColor: Colors.red,
+              ),
+              const GButton(
+                backgroundColor: Colors.white,
+                icon: FontAwesomeIcons.thumbsUp,
+                //iconColor: Colors.green,
+                text: 'Баҳодиҳи',
+                textColor: Colors.blue,
+              )
+            ],
+            selectedIndex: _selectedIndex,
+            onTabChange: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+          )),
     );
   }
-// Text(showData[index]['name'])
-  // Future<List<Avrod>> readJsonData() async {
-  //   final jsondata =
-  //       await rootbundle.rootBundle.loadString('lib/data/avrod.json');
-  //   final list = json.decode(jsondata) as List<dynamic>;
-  //   return list.map((e) => Avrod.fromJson(e)).toList();
-  // }
 }
