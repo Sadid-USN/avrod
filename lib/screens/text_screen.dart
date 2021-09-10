@@ -1,11 +1,10 @@
 import 'package:animate_icons/animate_icons.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/data/book_class.dart';
-import 'package:avrod/data/book_map.dart';
+
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts_arabic/fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextScreen extends StatefulWidget {
   final List<Texts>? texts;
@@ -18,11 +17,18 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
-  AnimateIconController controller = AnimateIconController();
+  AnimateIconController _controller = AnimateIconController();
+
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
+
   @override
   void initState() {
+    _controller = AnimateIconController();
     super.initState();
-    controller = AnimateIconController();
   }
 
   Widget _contentItem(String text) {
@@ -32,7 +38,7 @@ class _TextScreenState extends State<TextScreen> {
         AnimateIcons(
           startIcon: Icons.copy,
           endIcon: Icons.check,
-          controller: controller,
+          controller: _controller,
           size: 35.0,
           onStartIconPress: () {
             FlutterClipboard.copy(text);
@@ -47,9 +53,6 @@ class _TextScreenState extends State<TextScreen> {
           endIconColor: Colors.white,
           clockwise: false,
         ),
-
-    
-
         Container(
           padding: const EdgeInsets.all(8),
           child: Center(
@@ -89,9 +92,8 @@ class _TextScreenState extends State<TextScreen> {
             child: SelectableText(
               arabic,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontFamily: ArabicFonts.Reem_Kufi,
-                wordSpacing: 1.0,
+              style: GoogleFonts.amiri(
+                //wordSpacing: 1.0,
                 color: Colors.white,
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,

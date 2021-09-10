@@ -34,16 +34,15 @@ class FavoriteChapterSceen extends StatelessWidget {
               children: [
              
                 ListTile(
-                  // title: Center(
-                  //             child: Text(
-                  //               chapter!.name!,
-                  //               textAlign: TextAlign.center,
-                  //               style: const TextStyle(
-                  //                   fontSize: 22.0,
-                  //                   fontWeight: FontWeight.w600,
-                  //                   color: titleTextColor),
-                  //             ),
-                  //           ),
+                  title:  Text(
+                                chapter!.name!,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: titleTextColor),
+                              ),
+                           
                   trailing: IconButton(
                       onPressed: () {
                         Hive.box(FAVORITES_BOX).put(chapter!.id, chapter!.id);

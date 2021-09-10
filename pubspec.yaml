@@ -46,6 +46,7 @@ dependencies:
   google_fonts_arabic: ^1.1.7
   sizer: ^2.0.13
   animate_icons: ^2.0.0
+  smooth_page_indicator: ^1.0.0+2
  
 
   

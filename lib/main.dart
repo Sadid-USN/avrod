@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:sizer/sizer.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'colors/colors.dart';
 import 'data/book_class.dart';
 import 'data/book_map.dart';
@@ -56,7 +57,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final controller = PageController(viewportFraction: 12.0, keepPage: true);
   int _selectedIndex;
+  int yourActiveIndex;
   final colorizeColors = [
     Colors.white,
     Colors.orange,
@@ -65,7 +68,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final colorizeTextStyle =
-       TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w900);
+      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w900);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +87,7 @@ class _HomePageState extends State<HomePage> {
             final books = snapshot.data;
             if (snapshot.hasData) {
               return ListView(
+                
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,10 +95,9 @@ class _HomePageState extends State<HomePage> {
                       const Padding(
                         padding: EdgeInsets.all(10.0),
                       ),
-                    
+
                       // ignore: avoid_unnecessary_containers
                       Container(
-   
                         child: AnimatedTextKit(
                           totalRepeatCount: 2,
                           animatedTexts: [
@@ -108,17 +111,23 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.only(left: 32, top: 60),
                         height: 70.h,
                         child: Swiper(
+                          duration: 300,
+                          curve: Curves.linearToEaseOut,
                           scrollDirection: Axis.horizontal,
                           autoplayDisableOnInteraction: true,
                           itemCount: books.length,
-                          itemWidth: 67.w,
+                          itemWidth: 66.w,
                           layout: SwiperLayout.STACK,
-                          pagination: const SwiperPagination(
+                          pagination: const
+                          SwiperPagination(
                             margin:  EdgeInsets.only(top: 20),
                             builder:  DotSwiperPaginationBuilder(
+                              activeColor: Colors.cyanAccent,
                                 activeSize: 15, space: 6),
                           ),
                           itemBuilder: (context, index) {
+                           
+
                             return InkWell(
                               onTap: () {
                                 Navigator.push(context, PageRouteBuilder(
@@ -126,6 +135,7 @@ class _HomePageState extends State<HomePage> {
                                   return SubchapterScreen(index);
                                 }));
                               },
+                              
                               child: Stack(
                                 children: [
                                   Column(
@@ -141,7 +151,6 @@ class _HomePageState extends State<HomePage> {
                                         height: 40.h,
                                         width: 40.h,
                                         child: Card(
-
                                           elevation: 8,
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -157,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                                                     books[index].name,
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                        fontSize: 20.sp, 
+                                                        fontSize: 20.sp,
                                                         color: primaryTextColor,
                                                         fontWeight:
                                                             FontWeight.w900),
@@ -172,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
-                                                      children:  [
+                                                      children: [
                                                         Text(
                                                           'Маълумоти бештар',
                                                           style: TextStyle(
@@ -187,12 +196,13 @@ class _HomePageState extends State<HomePage> {
                                                           width: 4,
                                                         ),
                                                         // ignore: sized_box_for_whitespace
-                                                       const Icon(
-                                                              FontAwesomeIcons
-                                                                  .arrowRight,
-                                                              color:
-                                                                  Colors.blueGrey,),
-                                                      
+                                                        const Icon(
+                                                          FontAwesomeIcons
+                                                              .arrowRight,
+                                                              size: 16,
+                                                          color:
+                                                              Colors.blueGrey,
+                                                        ),
                                                       ],
                                                     ),
                                                   ],
@@ -204,13 +214,18 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ],
                                   ),
-                                  Image.asset(books[index].image, height: 35.h,),
+                                  Image.asset(
+                                    books[index].image,
+                                    height: 35.h,
+                                  ),
                                 ],
                               ),
                             );
                           },
                         ),
                       ),
+
+                   
                     ],
                   )
                 ],
@@ -236,7 +251,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: Container(
-
           decoration: BoxDecoration(
               color: Colors.white.withOpacity(.3),
               borderRadius:
