@@ -246,7 +246,7 @@
         "image": "images/duasalah.png",
         "chapters": [
             {
-                "id": 0,
+                "id": 14,
                 "listimage": "https://images.unsplash.com/photo-1562972661-a704b05a8a05?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80",
                 "name": "Зикрҳои азон",
                 "texts": [
@@ -259,7 +259,7 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 15,
                 "listimage": "https://images.unsplash.com/photo-1614040670004-44d0d9a3aa2b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 "name": "Он чи ҳангоми шаҳодат гуфтани муаззин, гуфта мешавад",
                 "texts": [
@@ -272,7 +272,7 @@
                 ]
             },
             {
-                "id": 2,
+                "id": 16,
                 "listimage": "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои баъди азон",
                 "texts": [
@@ -285,7 +285,7 @@
                 ]
             },
             {
-                "id": 3,
+                "id": 17,
                 "listimage": "https://images.unsplash.com/photo-1609770231080-e321deccc34c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=701&q=80",
                 "name": "Дуои истифтоҳ (он чи қабл аз сураи алҳам хонда мешавад)",
                 "texts": [
@@ -334,7 +334,7 @@
                 ]
             },
             {
-                "id": 4,
+                "id": 18,
                 "listimage": "https://p.scooper.news/v2-EagleNews/Eagle-NewsImage/detail/20201220/ab59e18b560268cf7f557d69e5b49715.webp",
                 "name": "Дуои рукуъ",
                 "texts": [
@@ -371,7 +371,7 @@
                 ]
             },
             {
-                "id": 5,
+                "id": 19,
                 "listimage": "https://images.unsplash.com/photo-1614050720822-104d43c380e1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1266&q=80",
                 "name": "Дуои баланд шудан аз рукуъ",
                 "texts": [
@@ -390,7 +390,7 @@
                 ]
             },
             {
-                "id": 6,
+                "id": 20,
                 "listimage": "https://img.freepik.com/free-photo/muslim-boy-praying-in-sujud-posture_53876-77604.jpg?size=626&ext=jpg",
                 "name": "Дуои саҷда",
                 "texts": [
@@ -439,7 +439,7 @@
                 ]
             },
             {
-                "id": 7,
+                "id": 21,
                 "listimage": "https://islam-today.ru/files/news/part_4/48307/288015-INNERRESIZED600-600-184185-INNERRESIZED600-700-1.jpg",
                 "name": "Дуои ҳангоми нишастани байни ду саҷда",
                 "texts": [
@@ -458,7 +458,7 @@
                 ]
             },
             {
-                "id": 8,
+                "id": 22,
                 "listimage": "https://img.freepik.com/free-photo/muslim-praying-in-sujud-posture_53876-25222.jpg?size=626&ext=jpg",
                 "name": "Дуои саҷдаи тиловат",
                 "texts": [
@@ -477,7 +477,7 @@
                 ]
             },
             {
-                "id": 9,
+                "id": 23,
                 "listimage": "https://islamdag.ru/sites/default/files/styles/large/public/img/2020/verouchenie/v_namaze01.jpg?itok=2gjiKtAo",
                 "name": "Ташаҳҳуд \n(атаҳиёт)",
                 "texts": [
@@ -496,7 +496,7 @@
                 ]
             },
             {
-                "id": 10,
+                "id": 24,
                 "listimage": "https://islam-today.ru/files/news/part_10/105792/449482-INNERRESIZED600-600-prophet-1815557_960_720.jpg",
                 "name": "Салавот ба Паёмбар (ﷺ)",
                 "texts": [
@@ -521,7 +521,7 @@
                 ]
             },
             {
-                "id": 11,
+                "id": 25,
                 "listimage": "https://img.freepik.com/free-photo/muslim-men-praying-tashahhud-posture_53876-48943.jpg?size=626&ext=jpg",
                 "name": "Дуо баъд аз ташаҳҳуди охир қабл аз салом",
                 "texts": [
@@ -594,7 +594,7 @@
                 ]
             },
             {
-                "id": 12,
+                "id": 26,
                 "listimage": "https://en.al-dirassa.com/wp-content/uploads/2021/01/end-the-salah-with-tasleem-2-salat-prayer-1024x678.jpg",
                 "name": "Зикрҳо пас аз намозҳои фарзӣ",
                 "texts": [
@@ -685,7 +685,7 @@
                 ]
             },
             {
-                "id": 13,
+                "id": 27,
                 "listimage": "https://s.yimg.com/ny/api/res/1.2/XIWYBaGb5x4XHbJHzJhy3g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM1OS45Mzk4NDk2MjQwNjAy/https://s.yimg.com/uu/api/res/1.2/8XmS_DJvxqoVRIgoAeGP6w--~B/aD0zNzQ7dz02NjU7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/id/viva_688/0e53a687a638a41a4d585ebab737cf8e",
                 "name": "Дуои қунут дар намози витр",
                 "texts": [
@@ -716,7 +716,7 @@
                 ]
             },
             {
-                "id": 14,
+                "id": 28,
                 "listimage": "https://m.islam-today.ru/files/news/part_4/48496/139021-INNERRESIZED600-600-1.jpg",
                 "name": "Дуои дафъи васваса дар намоз",
                 "texts": [
@@ -735,7 +735,7 @@
                 ]
             },
             {
-                "id": 15,
+                "id": 29,
                 "listimage": "http://1.bp.blogspot.com/-an4Wa87OfOY/UAnlYvGo6JI/AAAAAAAAGpE/Oa21LkU2fg4/s1600/4f722a474808c.jpg",
                 "name": "Дуои истихора",
                 "texts": [
@@ -754,7 +754,7 @@
         "image": "images/silhouette.png",
         "chapters": [
             {
-                "id": 0,
+                "id": 30,
                 "listimage": "https://cs2.livemaster.ru/storage/cc/3d/cb8659bac39af877a0826071d28z--dlya-doma-i-interera-musulmanskaya-kartina-ayat-al-kursi-pann.jpg",
                 "name": "Ояталкурси",
                 "texts": [
@@ -785,7 +785,7 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 31,
                 "listimage": "https://st.depositphotos.com/1162190/2634/i/600/depositphotos_26343919-stock-photo-beautiful-sunset-with-moon.jpg",
                 "name": "Дуоҳои субҳу шом",
                 "texts": [
@@ -846,7 +846,7 @@
                 ]
             },
             {
-                "id": 2,
+                "id": 32,
                 "listimage": "https://images.unsplash.com/photo-1607992922515-7e38329e65d4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=657&q=80",
                 "name": "Зикрҳои субҳу шом",
                 "texts": [
@@ -895,7 +895,7 @@
                 ]
             },
             {
-                "id": 3,
+                "id": 33,
                 "listimage": "https://images.firstpost.com/wp-content/uploads/2019/08/ramadan-3461512_1024.jpg",
                 "name": "Дуои сайидул истиғфор",
                 "texts": [
@@ -914,7 +914,7 @@
         "image": "images/sleep.png",
         "chapters": [
             {
-                "id": 0,
+                "id": 34,
                 "listimage": "https://images.unsplash.com/photo-1552858725-693709cc17c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80",
                 "name": "Хондани сураҳо пеш аз хоб",
                 "texts": [
@@ -999,7 +999,7 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 35,
                 "listimage": "https://images.unsplash.com/photo-1609487623546-f94a1b2161db?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=671&q=80",
                 "name": "Дуои ҳангоми ногаҳон аз хоб бедор шудан.",
                 "texts": [
@@ -1036,7 +1036,7 @@
                 ]
             },
             {
-                "id": 2,
+                "id": 36,
                 "listimage": "https://images.unsplash.com/photo-1422433555807-2559a27433bd?ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
                 "name": "Дуъоҳои вақти бедор шудан аз хоб",
                 "texts": [
@@ -1073,7 +1073,7 @@
         "image": "images/food.png",
         "chapters": [
             {
-                "id": 0,
+                "id": 37,
                 "listimage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzHcLH7iqhUd-3LOZA9A20BXEghCkhqK4ojM8c4VdkhERGxQdMu2Tx5if9HGLaJZiErAI&usqp=CAU",
                 "name": "Дуои рӯзадор ҳангоми ифтор",
                 "texts": [
@@ -1086,7 +1086,7 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 38,
                 "listimage": "https://images.unsplash.com/photo-1619964346678-252094a900aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=629&q=80",
                 "name": "Дуои қабл аз хурдани хурок",
                 "texts": [
@@ -1105,7 +1105,7 @@
                 ]
             },
             {
-                "id": 2,
+                "id": 39,
                 "listimage": "https://c4.wallpaperflare.com/wallpaper/43/940/58/photo-pepper-food-meat-products-wallpaper-preview.jpg",
                 "name": "Дуои баъд аз хӯрдани хӯрок",
                 "texts": [
@@ -1124,7 +1124,7 @@
                 ]
             },
             {
-                "id": 3,
+                "id": 40,
                 "listimage": "https://i.pinimg.com/736x/db/0d/de/db0dde4a967f49386675db55d5ffd570.jpg",
                 "name": "Дуои меҳмон барои соҳиби хӯрок",
                 "texts": [
@@ -1137,7 +1137,7 @@
                 ]
             },
             {
-                "id": 4,
+                "id": 41,
                 "listimage": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGRyaW5rJTIwd2F0ZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
                 "name": "Дуо барои касе, ки ба мо об дода бошад ва ё бихоҳад об диҳад",
                 "texts": [
@@ -1150,7 +1150,7 @@
                 ]
             },
             {
-                "id": 5,
+                "id": 42,
                 "listimage": "https://media.istockphoto.com/photos/family-ready-for-ftar-meal-in-ramadan-picture-id956134334?k=20&m=956134334&s=612x612&w=0&h=h-TY0VVV0xLxoJuYX-uG4q5NVn78ctsXQyOQSeq6Qcw=",
                 "name": "Дуо барои аҳли хонае, ки ифтор карда бошад",
                 "texts": [
@@ -1163,7 +1163,7 @@
                 ]
             },
             {
-                "id": 6,
+                "id": 43,
                 "listimage": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F4_3_horizontal_-_1200x900%2Fpublic%2Fimage%2F2018%2F03%2Fmain%2F1803w-dining-out-guide.jpg%3Fitok%3DrgwsP8GX",
                 "name": "Дуои рӯзадоре, ки ба суфраи хӯрок ҳозир шавад ва нахурад.",
                 "texts": [
@@ -1176,7 +1176,7 @@
                 ]
             },
             {
-                "id": 7,
+                "id": 44,
                 "listimage": "https://images.unsplash.com/photo-1592623159714-59671c62aebd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=659&q=80",
                 "name": "Он чи рӯзадор муқобили дашном, шоистааст бигӯяд",
                 "texts": [
@@ -1195,7 +1195,7 @@
         "image": "images/sadness.png",
         "chapters": [
             {
-                "id": 0,
+                "id": 45,
                 "listimage": "https://images.unsplash.com/photo-1543518360-68b9612a7c8c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
                 "name": "Дуои ғаму андуҳ",
                 "texts": [
@@ -1238,20 +1238,26 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 46,
                 "listimage": "http://s3-eu-west-1.amazonaws.com/pravdasevera/h0hgz1ub/gwbv.jpg",
                 "name": "Дуои ҳангоми шоди",
                 "texts": [
                     {
                         "id": "Дуои 1",
-                        "text": "",
-                        "arabic": "",
-                        "translation": ""
+                        "text": "Гуфтани Аллоҳу Акбар ҳангоми шодӣ, далели он аз Абубакр ривоят аст, ки ӯ қиссаи ҳиҷратро нақл карда гуфт: «Сипас расули Аллоҳ (ﷺ) (аз назди мушрикон) гузар кард ва ман ҳамроҳи эшон будам, то замонеки ба Мадина расидем, мардум ӯро пешвоз мегирифтанд, ҳама ба роҳу тангкучаҳо баромаданд, хидматкорону кӯдакон дарҳаму барҳам дар роҳ ҷамъ шуда (аз хурсандию шодӣ) мегуфтанд: Аллоҳу Акбар! Расули Аллоҳ омад, Муҳаммад (ﷺ) омад!»",
+                        "arabic": "عن أبي بكر رضي الله عنه قال في قصة هجرته مع النبي (ﷺ) قال: وَمَضَى رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ وَأَنَا مَعَهُ، حَتَّى قَدِمْنَا الْمَدِينَةَ، فَتَلَقَّاهُ النَّاسُ، فَخَرَجُوا فِي الطَّرِيقِ وَعَلَى الْأَجَاجِيرِ، فَاشْتَدَّ الْخَدَمُ وَالصِّبْيَانُ فِي الطَّرِيقِ، يَقُولُونَ : اللَّهُ أَكْبَرُ، جَاءَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، جَاءَ مُحَمَّدٌ. رواه أحمد",
+                        "translation": "Аллоҳу Акбар. Аллоҳ бузург аст."
+                    },
+                    {
+                        "id": "Дуои 2",
+                        "text": "«Гуфтани Алҳамдулиллоҳ ҳангоми шодӣ, далели он аз Абдулло ибни Қайс ривоят аст, ки гуфт: аз Оиша савол кардам: расули Аллоҳ (ﷺ) дар ҳолати ҷанобат чи тавр мекард? Оё қабл аз хобидан ғулс мегирифт, ё мехобид сипас ғусл мекард? Ӯ гуфт: «Ҳамаашро мекард, гоҳо ғусл гирифта сипас мехобид ва гоҳо хоб мекард сипас ғусл мегирифт. Ман гуфтам: Алҳамдулиллоҳ, ки дар ин амр осони бахшид.\nРивояти Муслим 1/171 ва Абу Авона 1/278 ва Аҳмад 6/73 ва 149».",
+                        "arabic": "عن أبي بكر رضي الله عنه قال في قصة هجرته مع النبي (ﷺ) قال: وَمَضَى رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ وَأَنَا مَعَهُ، حَتَّى قَدِمْنَا الْمَدِينَةَ، فَتَلَقَّاهُ النَّاسُ، فَخَرَجُوا فِي الطَّرِيقِ وَعَلَى الْأَجَاجِيرِ، فَاشْتَدَّ الْخَدَمُ وَالصِّبْيَانُ فِي الطَّرِيقِ، يَقُولُونَ : اللَّهُ أَكْبَرُ، جَاءَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، جَاءَ مُحَمَّدٌ. رواه أحمد",
+                        "translation": "Алҳмадулиллоҳ. Ҳамаи ҳмду сано аз они Аллоҳ аст."
                     }
                 ]
             },
             {
-                "id": 2,
+                "id": 47,
                 "listimage": "https://s2.best-wallpaper.net/wallpaper/iphone/1709/Hands-clenched-fist-hit_iphone_640x960.jpg",
                 "name": "Дуои ҳангоми рӯ ба рӯ шудан бо душман ва ситамгар",
                 "texts": [
@@ -1294,7 +1300,7 @@
                 ]
             },
             {
-                "id": 3,
+                "id": 48,
                 "listimage": "https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80",
                 "name": "Он чи ҳангоми тарс аз гурӯҳе шоиста аст бихонад.",
                 "texts": [
@@ -1307,7 +1313,7 @@
                 ]
             },
             {
-                "id": 4,
+                "id": 49,
                 "listimage": "https://www.b17.ru/foto/uploaded/upl_1548002516_278633.jpg",
                 "name": "Он чи ки шахси гунаҳкор шоистааст бигӯяд ва анҷом диҳад",
                 "texts": [
@@ -1320,7 +1326,7 @@
                 ]
             },
             {
-                "id": 5,
+                "id": 50,
                 "listimage": "https://lingua-airlines.ru/wp-content/uploads/2017/08/neudachi.jpg",
                 "name": "Дуои ҳангоми рух додани ҳодисаи нохушоянд ва ё шикасте дар кор",
                 "texts": [
@@ -1338,6 +1344,7 @@
                     }
                 ]
             }
+        
         ]
     },
     {
@@ -1345,15 +1352,15 @@
         "image": "images/hajj.png",
         "chapters": [
             {
-                "id": 0,
-                "listimage": "https://astroarinashirokova.com/wp-content/uploads/2020/10/231454678798645.jpg",
-                "name": "Дуои мушкил шуморидани коре",
+                "id": 51,
+                "listimage": "https://i.pinimg.com/550x/8c/fa/ce/8cfacea72171a26ae5025ce7b4e0e88e.jpg",
+                "name": "Иттилоот дар ояндаи наздик боргузори мешавад",
                 "texts": [
                     {
                         "id": "Дуои 1",
-                        "text": "Аллоҳумма ла саҳла илло ма ҷаъалтаҳу саҳлан ва анта таҷъалул ҳазна иза шиъта саҳлан.",
-                        "arabic": "اللَّهُمَّ لاَ سَهْلَ إِلاَّ مَا جَعَلْتَهُ سَهْلاً، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلاً",
-                        "translation": "Илоҳо, Худоё осони нест магар он чи Ту онро осон гардони ва агар Ту бихоҳи мушкилиро осон мегардони."
+                        "text": "...................",
+                        "arabic": "..................",
+                        "translation": "..................."
                     }
                 ]
             }
@@ -1364,8 +1371,8 @@
         "image": "images/shakinghands.png",
         "chapters": [
             {
-                "id": 0,
-                "listimage": "https://lfsp.ru/wp-content/uploads/2018/02/Vzyskanie-dolga-s-OOO-5-effektivnyh-sposobov-.jpg",
+                "id": 52,
+                "listimage": "https://media.istockphoto.com/photos/chained-picture-id182459301?k=20&m=182459301&s=612x612&w=0&h=iNcJ3767Snzb7K_KYE3kXait43LCYNPfsobWvgidi1k=",
                 "name": "Дуо ҳангоми нотавон мондан аз пардохтани қарз",
                 "texts": [
                     {
@@ -1383,7 +1390,7 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 53,
                 "listimage": "https://astroarinashirokova.com/wp-content/uploads/2020/10/231454678798645.jpg",
                 "name": "Дуои мушкил шуморидани коре",
                 "texts": [
@@ -1396,7 +1403,7 @@
                 ]
             },
             {
-                "id": 2,
+                "id": 54,
                 "listimage": "https://avatars.mds.yandex.net/get-zen_doc/1781308/pub_5d38d9541ee34f00ae6700e2_5d38ec29d4f07a00af1aaabc/scale_1200",
                 "name": "Дуои баъд аз атса задан",
                 "texts": [
@@ -1409,9 +1416,9 @@
                 ]
             },
             {
-                "id": 3,
-                "listimage": "https://media.gettyimages.com/photos/man-sneezing-by-tree-picture-id1127554563?s=612x612",
-                "name": "Агар ғайри мусалмон баъд аз атса 'Алҳамдулиллоҳ' гӯяд чигуна бояд ҷавоб дод?",
+                "id": 55,
+                "listimage": "https://health.mail.ru/pic/news/2020/06/29/46/0f/460f79151d3e3f676eaf15dbef4c3496.jpg",
+                "name": "Агар ғайри мусалмон баъд аз атса «Алҳамдулиллоҳ» гӯяд чигуна бояд ҷавоб дод?",
                 "texts": [
                     {
                         "id": "Дуои 1",
@@ -1421,60 +1428,9 @@
                     }
                 ]
             },
+            
             {
-                "id": 4,
-                "listimage": "https://quran-sunna.ru/wp-content/uploads/2017/12/pervaya-brachnaya-noch.jpg",
-                "name": "Дуо барои касе, ки издивоҷ кардааст",
-                "texts": [
-                    {
-                        "id": "Дуои 1",
-                        "text": "«Боракаллоҳу лак ва борака ъалайк ва ҷамаъа байнакумо фи хайрин»",
-                        "arabic": "بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
-                        "translation": "Аллоҳ барои ту баракат диҳад ва баракат диҳад ба ту ва шуморо ба некӣ гирд оварад."
-                    }
-                ]
-            },
-            {
-                "id": 5,
-                "listimage": "https://thumbs.dreamstime.com/b/%D0%BC%D1%83%D1%81%D1%83%D0%BB%D1%8C%D0%BC%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B5-%D0%BC%D0%BE%D0%BB%D1%8F-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA-%D0%B8-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0-%D0%B2-%D0%BC%D0%B5%D1%87%D0%B5%D1%82%D0%B8-126864460.jpg",
-                "name": "Дуои шаҳ барои арӯс ва дуои хариди чаҳорпои саворӣ",
-                "texts": [
-                    {
-                        "id": "Дуои 1",
-                        "text": "Ҳар гоҳ яке аз шумо бо зане издивоҷ кунад ва ё хидматгореро харидорӣ намояд, дасташро бар пешонааш гузошта бигуяд: «Аллоҳумма иннӣ асъалука хайраҳо ва хайра мо ҷабалтаҳо ъалайҳи ва аъӯзу бика мин шарриҳо ва шарри мо ҷабалтаҳо ъалайҳи»",
-                        "arabic": "بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
-                        "translation": "Илоҳо, ман аз Ту мехоҳам хайрашро ва хайри он чи ӯро бар он сиришт додӣ ва паноҳ мебарам ба Ту аз шарраш ва шарри он чи ӯро бар он сиришт додӣ."
-                    }
-                ]
-            },
-            {
-                "id": 6,
-                "listimage": "https://images.unsplash.com/photo-1567899482751-c8647fda8155?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
-                "name": "Дуои қабл аз наздики кардан бо зан",
-                "texts": [
-                    {
-                        "id": "Дуои 1",
-                        "text": "«Бисмиллаҳ, Аллоҳумма ҷаннибнаш-шайтон ва ҷанибби-ш-шайтона мо разақтано».",
-                        "arabic": "بِسْمِ اللَّهِ، اللَّهُمَّ جَنِّبْنَا الشَّيْطَانَ، وَجَنِّبِ الشَّيْطَانَ مَا رَزَقْتَنَا",
-                        "translation": "Ба номи Аллоҳ, Илоҳо, моро аз шайтон дур дор ва шайтонро аз он чизе ки насиби мо мекуни, дур дор."
-                    }
-                ]
-            },
-            {
-                "id": 7,
-                "listimage": "https://images.unsplash.com/photo-1493836512294-502baa1986e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1067&q=80",
-                "name": "Дуои ҳангоми хашм",
-                "texts": [
-                    {
-                        "id": "Дуои 1",
-                        "text": "«Аъузу биллаҳи минаш-шайтонир-раҷим».",
-                        "arabic": "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
-                        "translation": "Паноҳ мебарам ба Худо аз шайтони рондашуда."
-                    }
-                ]
-            },
-            {
-                "id": 8,
+                "id": 60,
                 "listimage": "https://t4.ftcdn.net/jpg/02/67/70/73/360_F_267707327_VDhLdCr0gOMgX8xAqMFl3zFkxVvX6xyR.jpg",
                 "name": "Дуои ҳангоми дидани касе, ки ба бало ва мусибат афтода бошад",
                 "texts": [
@@ -1487,7 +1443,7 @@
                 ]
             },
             {
-                "id": 9,
+                "id": 61,
                 "listimage": "https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80",
                 "name": "Он чи дар ҷамъомад ва ҳар маҷлис гуфта мешавад",
                 "texts": [
@@ -1500,7 +1456,7 @@
                 ]
             },
             {
-                "id": 10,
+                "id": 62,
                 "listimage": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
                 "name": "Кафораи маҷлисеки бе зикри Аллоҳ гузаронида шуд",
                 "texts": [
@@ -1513,7 +1469,7 @@
                 ]
             },
             {
-                "id": 11,
+                "id": 63,
                 "listimage": "https://images.unsplash.com/photo-1526035266069-fc237c5baddd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80",
                 "name": "Дуои барои касеки бигӯяд «Ғафара-\nллоҳу лак»",
                 "texts": [
@@ -1523,11 +1479,10 @@
                         "arabic": "إذا قال مسلم لأخيه غفر الله لك فليقل وَلَكَ",
                         "translation": ".................."
                     }
-                    
                 ]
             },
             {
-                "id": 12,
+                "id": 64,
                 "listimage": "https://pbs.twimg.com/media/CYXx2dEVAAAvE8B.jpg",
                 "name": "Дуо барои касе ки нисбат ба ту некӣ кардааст",
                 "texts": [
@@ -1537,7 +1492,6 @@
                         "arabic": "جَزَاكَ اللَّهُ خَيْراً",
                         "translation": "Аллоҳ ба ту подоши нек диҳад."
                     },
-                   
                     {
                         "id": "Дуои 2",
                         "text": "Аз Умар Ибни Хаттоб (Аллоҳ аз эшон хушнуд бошад) ривоят аст, ки гуфт: Агар шумо савоби гуфтани 'Ҷазокаллоҳу хайр'-ро аз барои бародаратон медонистед, гуфтани онро зиёд мекардед.\n(Мусаннафи Ибни Абу Шайбо 26519)",
@@ -1547,12 +1501,24 @@
                 ]
             },
             {
-                "id": 13,
+                "id": 64,
+                "listimage": "https://i.pinimg.com/originals/f2/cc/e4/f2cce4f081bb8448de4cc1f0516fb1d3.jpg",
+                "name": "«Дуо бар касе ки, бигӯяд Боракаллоҳу фик»",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Вафика баракаллоҳ».",
+                        "arabic": "وَفِيكَ بَارَكَ اللَّهُ",
+                        "translation": "Ва бар ту низ Аллоҳ баракат диҳад."
+                    }
+                    
+                ]
+            },
+            {
+                "id": 65,
                 "listimage": "https://stihi.ru/pics/2015/11/04/11474.jpg",
                 "name": "Дуо барои касе ки бигӯяд «инни уҳиббука филлаҳ»",
                 "texts": [
-                    
-                   
                     {
                         "id": "Дуои 1",
                         "text": "Агар як мусалмон ба дигаре гуяд «Иннӣ уҳиббӯка филлаҳ» Туро аз барои Аллоҳ дуст медорам, пас дар ҷавоб гӯяд: «Аҳаббакал-лазӣ аҳбабтанӣ лаҳу».",
@@ -1562,17 +1528,28 @@
                 ]
             },
             {
-                "id": 14,
+                "id": 66,
                 "listimage": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1623299459/zvjjtxhaorvumznb7hp3.jpg",
                 "name": "Дуо барои касе ки, дороияшро ба ту пешниҳод кунад",
                 "texts": [
-                    
-                   
                     {
                         "id": "Дуои 1",
                         "text": "«Боракаллоҳу лака фи аҳлика ва малик».",
                         "arabic": "بَارَكَ اللَّهُ لَكَ فِي أَهْلِكَ وَمَالِكَ",
                         "translation": "Аллоҳ барои ту дар хонаводаат ва дороият баракат диҳад."
+                    }
+                ]
+            },
+            {
+                "id": 67,
+                "listimage": "http://static3.banki.ru/ugc/5d/6c/6f/83/10913152.jpg",
+                "name": "Дуои қарзгиранда ба қарздиҳанда",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Боракаллоҳу лака фӣ аҳлика ва малик, иннамо ҷазоус-салафи алҳамду вал адо».",
+                        "arabic": "اسْتَقْرَضَ مِنِّي النبيُّ صلَّى اللهُ عليهِ وسلَّمَ أربعينَ ألفًا فَجاءهُ مالٌ فَدَفَعَهُ إِلَيَّ وقال بارَكَ اللهُ لكَ في أهلِكَ ومالِكَ إِنَّما جَزَاءُ السَّلَفِ الحمدُ والأَدَاءُ\n خلاصة حكم المحدث : حسن",
+                        "translation": "Аллоҳ барои ту дар хонаводаат ва дороият баракат диҳад, ҳароина подоши қарз додан, сипосгузорӣ ва пардохти он аст."
                     }
                 ]
             }
@@ -1583,7 +1560,7 @@
         "image": "images/storm.png",
         "chapters": [
             {
-                "id": 0,
+                "id": 67,
                 "listimage": "https://images.unsplash.com/photo-1505672678657-cc7037095e60?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои ҳангоми вазидани бод",
                 "texts": [
@@ -1596,7 +1573,7 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 68,
                 "listimage": "https://wallpaperaccess.com/full/3250.jpg",
                 "name": "Дуои ҳангоми шунидани раъду барқ",
                 "texts": [
@@ -1609,7 +1586,7 @@
                 ]
             },
             {
-                "id": 2,
+                "id": 69,
                 "listimage": "https://images.unsplash.com/photo-1508556919487-845f191e5742?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHJhaW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
                 "name": "Дуоҳои талаби борон",
                 "texts": [
@@ -1634,7 +1611,7 @@
                 ]
             },
             {
-                "id": 3,
+                "id": 70,
                 "listimage": "https://images.unsplash.com/photo-1533167649158-6d508895b680?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80",
                 "name": "Дуои ҳангоми боридани борон",
                 "texts": [
@@ -1647,7 +1624,7 @@
                 ]
             },
             {
-                "id": 4,
+                "id": 71,
                 "listimage": "https://images.unsplash.com/photo-1591925323320-f2246a3cfd36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80",
                 "name": "Дуои баъд аз поёни борон",
                 "texts": [
@@ -1660,7 +1637,7 @@
                 ]
             },
             {
-                "id": 5,
+                "id": 72,
                 "listimage": "https://images.unsplash.com/photo-1436891620584-47fd0e565afb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHNreXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
                 "name": "Дуои талаби соф шудани ҳаво",
                 "texts": [
@@ -1673,7 +1650,7 @@
                 ]
             },
             {
-                "id": 6,
+                "id": 73,
                 "listimage": "https://images.unsplash.com/photo-1514897575457-c4db467cf78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои ҳангоми дидани моҳи нав",
                 "texts": [
@@ -1686,15 +1663,15 @@
                 ]
             },
             {
-                "id": 7,
+                "id": 74,
                 "listimage": "https://images.unsplash.com/photo-1508116916455-2857e44c161e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
                 "name": "Дуои ҳангоми дидани самараи наврас",
                 "texts": [
                     {
                         "id": "Дуои 1",
-                        "text": "«Аллоҳу акбар, Аллоҳумма аҳиллаҳу ъалайно бил амни вал имони вас-саломати вал ислом ваттавфиқи лимо туҳиббу, Раббанно ва тарзо, Раббуно ва раббукаллоҳу.».",
-                        "arabic": "اللَّهُ أَكْبَرُ، اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْأَمْنِ وَالْإِيمَانِ، وَالسَّلاَمَةِ وَالْإِسْلاَمِ، وَالتَّوْفِيقِ لِمَا تُحِبُّ رَبَّنَا وَتَرْضَى، رَبُّنَا وَرَبُّكَ اللَّهُ",
-                        "translation": "Аллоҳ бузургтар аст, Илоҳо, моҳи навро бар мо бо амният ва имон ва саломатӣ ва Ислом ва муваффақият дар он чи дӯстдори эй парвардигори мо ва хушнуд мешавӣ барор, Парвардигори мо ва Парвардигори Ту (эй моҳ) Аллоҳ аст."
+                        "text": "«Аллоҳумма борик лано фи самарино ва борик лано фи мадинатино ва борик лано фи соъино ва борик лано фи муддино».",
+                        "arabic": "اللَّهُمَّ بَارِكْ لَنَا فِي ثَمَرِنَا، وَبَارِكْ لَنَا فِي مَدِينَتِنَا، وَبَارِكْ لَنَا فِي صَاعِنَا، وَبَارِكْ لَنَا فِي مُدِّنَا",
+                        "translation": "Илоҳо, бароямон дар меваи мо баракат деҳ ва дар шаҳри мо баракат деҳ ва дар соъ ва дар мудди мо бароямон баракат деҳ. (Як соъ паймонаест баробари чаҳор мудд ва ҳар мудд баробар аст бо микдори ду дасти марди миёна вақте ки ҳар ду кафи худро пур кунад.)"
                     }
                 ]
             }
@@ -1705,7 +1682,7 @@
         "image": "images/sick.png",
         "chapters": [
             {
-                "id": 0,
+                "id": 75,
                 "listimage": "http://ekladata.com/T2TxSABF2FzqyRb2Bp7ZC-yiEes.jpg",
                 "name": "Фазлу савобӣ хабар гирифтани бемор",
                 "texts": [
@@ -1718,7 +1695,7 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 76,
                 "listimage": "https://selforganization.ru/wp-content/uploads/2017/07/motiv-1.jpg",
                 "name": "Дуои беморе, ки аз зиндагии худ маъюс шуда бошад",
                 "texts": [
@@ -1743,7 +1720,7 @@
                 ]
             },
             {
-                "id": 2,
+                "id": 77,
                 "listimage": "https://ilifes.ru/wp-content/uploads/2019/12/tsitaty-i-aforizmy-ob-ispytaniyah-v-zhizni-e1576249703485.jpg",
                 "name": "Талқини шахсе, ки дар бистари марг аст",
                 "texts": [
@@ -1762,7 +1739,7 @@
                 ]
             },
             {
-                "id": 3,
+                "id": 78,
                 "listimage": "https://images.unsplash.com/photo-1516822671976-480ad5131e92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои шахсе, ки бар ӯ мусибате расида бошад",
                 "texts": [
@@ -1775,7 +1752,7 @@
                 ]
             },
             {
-                "id": 4,
+                "id": 79,
                 "listimage": "https://images.unsplash.com/photo-1419833173245-f59e1b93f9ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои ҳангоми бастани чашми майит (мурда)",
                 "texts": [
@@ -1788,7 +1765,7 @@
                 ]
             },
             {
-                "id": 5,
+                "id": 80,
                 "listimage": "https://2dbdd5116ffa30a49aa8-c03f075f8191fb4e60e74b907071aee8.ssl.cf1.rackcdn.com/16877258_14822037750_r.jpg",
                 "name": "Дуоҳои намози ҷаноза",
                 "texts": [
@@ -1855,7 +1832,7 @@
                 ]
             },
             {
-                "id": 6,
+                "id": 81,
                 "listimage": "https://images.unsplash.com/photo-1580341999466-e05436b9dc86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
                 "name": "Дуои таслият (ҳамдарди) гуфтан",
                 "texts": [
@@ -1880,7 +1857,7 @@
                 ]
             },
             {
-                "id": 7,
+                "id": 82,
                 "listimage": "https://www.islam21c.com/wp-content/uploads/grave2.png",
                 "name": "Дуои ниҳодани майит дар қабр",
                 "texts": [
@@ -1899,7 +1876,7 @@
                 ]
             },
             {
-                "id": 8,
+                "id": 83,
                 "listimage": "http://www.albiladdailyeng.com/wp-content/uploads/2017/10/64_big.jpg",
                 "name": "Дуои баъд аз хоксупории майит",
                 "texts": [
@@ -1912,7 +1889,7 @@
                 ]
             },
             {
-                "id": 9,
+                "id": 84,
                 "listimage": "https://s0.rbk.ru/v6_top_pics/ampresize/media/img/7/16/754220330793167.jpg",
                 "name": "Дуои зиёрати қабристон",
                 "texts": [
@@ -1930,8 +1907,22 @@
         "name": "Руқя аз сеҳру ҷоду",
         "image": "images/ruqya.png",
         "chapters": [
+
             {
-                "id": 0,
+                "id": 84,
+                "listimage": "https://azislam.com/wp-content/uploads/2020/05/Duas-from-Protection-from-Shirk-1280x720.jpg",
+                "name": "Дуо ҳангоми тарс аз ширк",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Аллоҳумма иннӣ аъузу бика ан ушрика бика ва ано аълам ва астағфирука лимо ла аълам»",
+                        "arabic": " يا أبا بكرٍ ، لَلشِّركُ فيكم أخْفى من دبيبِ النَّملِ والذي نفسي بيدِه ، لَلشِّركُ أخْفى من دَبيبِ النَّملِ ، ألا أدُلُّك على شيءٍ إذا فعلتَه ذهب عنك قليلهُ و كثيرهُ ؟ قل : اللهم إني أعوذُ بك أن أشرِكَ بك و أنا أعلمُ ، و أستغفِرُك لما لا أَعلمُ صحيح الأدب المفرد الرقم: 551",
+                        "translation": "Илоҳо, ба ростӣ, ки ман паноҳ мебарам ба Ту аз он, ки дониста ба ту ширк варзам ва омурзиш металабам аз он чи ки нодониста анҷом додам."
+                    }
+                ]
+            },
+            {
+                "id": 85,
                 "listimage": "https://static.turbosquid.com/Preview/2014/05/19__13_28_44/fallcity1200_001.jpga3fede5e-e2ed-4001-af31-edc31e63e8e3Large.jpg",
                 "name": "Дуои он касе, ки дар имон дучори шакку тардид шуда бошад",
                 "texts": [
@@ -1956,7 +1947,26 @@
                 ]
             },
             {
-                "id": 1,
+                "id": 84,
+                "listimage": "https://storge.pic2.me/cm/2560x1600/579/565eb12a45432.jpg",
+                "name": "Дуо ҳангоми фоли бад задан ба чизе",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Аллоҳумма ла тайра илла тайрук вала хайра илла хайрук ва ла илаҳа ғайрук».",
+                        "arabic": "مَنْ ردَّتْهُ الطِيَرَةُ عن حاجتِهِ فقدْ أشرَكَ قالوا : يا رسولَ الله وما كفارَةُ ذلِكَ قال يقولُ  اللهمَّ لا طيرَ إلَّا طيرُكَ ، ولَا خيرَ إلَّا خيرُكَ ، ولَا إلهَ غيرُكَ",
+                        "translation": "Илоҳо, паррандае нест, магар парандаи Ту ва хайре нест, магар хайре, ки аз назди Ту ояд ва нест маъбуди барҳақ, ба ҷуз Ту."
+                    },
+                    {
+                        "id": "Маънои ин дуо",
+                        "text": "«Аллоҳумма ла тайра илла тайрук вала хайра илла хайрук ва ла илаҳа ғайрук».",
+                        "arabic": "مَن رَدَّتْه الطِّيَرةُ عن حاجَتِه، رَدَّتْه أي: مَنَعَتْه من قَضائِها والاستِمْرارِ فيها، والطِّيرَةُ التَّطيُّرُ، وهو مَعنًى قد يُستخدَمُ في الخيرِ والشَّرِّ، ولكنَّ أغلَبَه يكونُ في التَّشاؤُمِ والشَّرِّ؛ فليس لأحَدٍ أنْ يظُنَّ أنَّ ما جعَله سببًا للتَّشاؤمِ سواءٌ كان مخلوقًا أو مكانًا أو زمانًا هو السَّببُ فيما يحدُثُ له، بل كلُّ شَيءٍ بقَدَرِ اللهِ عزَّ وجلَّ، فقد أشرَكَ، أي: صار مُشابِهًا للمُشرِكينَ المُعتقِدينَ أنَّ للهِ شريكًا في الخيرِ والشَّرِّ، تَعالى اللهُ عن ذلك، قالوا: يا رسولَ اللهِ وما كَفارةُ ذلك؟، أي: كيف يُكفِّرُ ويتوبُ مَن وَقَعَ في هذا الفِعلِ، قال يقولُ: اللهمَّ لا طَيرَ إلَّا طيرُكَ، أي: مَن وَقَعَ في هذا الأمْرِ يقولُ: يا ربِّ، لا يُرجَى الخيرُ إلَّا مِنكَ دُون سِواكَ؛ فلن يحصُلَ إلَّا قضاؤُك الذي قَضَيْتَه، ولن يحصُلَ ويُقضى إلَّا ما قَدَّرتَه على العبدِ، فعِلمُ الغيبياتِ إنَّما هو عندَك وحدَك؛ فإنَّ الطَّيرَ من مخلوقاتِك لا يضُرُّ ولا ينفَعُ، وإنَّما الذي يضُرُّ وينفَعُ هو أنتَ سُبحانَك، ولا إلهَ غيرُك، أي: لا إلهَ بحَقٍّ إلَّا أنتَ؛ فلا يُعبَدُ سِواك، ولا يُحمَدُ سِواك، ولا يُقدِّرُ الأُمورَ والمقاديرَ على الخلائِقِ سِواك يا اللهُ؛ فهذه كَفارةٌ لمَنْ يقَعُ في هذا الأمْرِ، وعليه أن يَمضِيَ مع ذلك، ويتوكَّلَ على اللهِ إلَّا أنْ تَمنَعَه الأسبابُ فلا شَيءَ عليه",
+                        "translation": "......................."
+                    }
+                ]
+            },
+            {
+                "id": 86,
                 "listimage": "https://www.paraklit.org/wp-content/uploads/derevenskoaya_magiya.jpg",
                 "name": "Оятҳои сураи Бақара зиди сеҳр",
                 "texts": [
@@ -1987,7 +1997,7 @@
                 ]
             },
             {
-                "id": 2,
+                "id": 87,
                 "listimage": "https://i.pinimg.com/originals/68/1b/22/681b2224cad0da46f7c422864bcf1385.jpg",
                 "name": "Чаҳор сура",
                 "texts": [
@@ -2018,7 +2028,7 @@
                 ]
             },
             {
-                "id": 3,
+                "id": 88,
                 "listimage": "https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png",
                 "name": "Ду ояти охирини сураи Бақара",
                 "texts": [
@@ -2037,7 +2047,7 @@
                 ]
             },
             {
-                "id": 4,
+                "id": 89,
                 "listimage": "https://p4.wallpaperbetter.com/wallpaper/651/692/851/light-holy-book-god-quran-hd-wallpaper-preview.jpg",
                 "name": "1\nБархе аз оятҳои Қуръони\n зиди сеҳр",
                 "texts": [
@@ -2080,7 +2090,7 @@
                 ]
             },
             {
-                "id": 5,
+                "id": 90,
                 "listimage": "http://islamwallpapers.com/wp-content/uploads/2019/10/Calligraphy-Art-Amoled-Islamic-Wallpaper-473x1024.jpg",
                 "name": "2\nБархе аз оятҳои Қуръони\n зиди сеҳр",
                 "texts": [
@@ -2123,7 +2133,7 @@
                 ]
             },
             {
-                "id": 6,
+                "id": 91,
                 "listimage": "https://i.pinimg.com/originals/46/b3/a7/46b3a71972767fe8c49cb693f54c4049.png",
                 "name": "3\nБархе аз оятҳои Қуръони\n зиди сеҳр",
                 "texts": [
@@ -2178,7 +2188,7 @@
                 ]
             },
             {
-                "id": 7,
+                "id": 92,
                 "listimage": "https://p4.wallpaperbetter.com/wallpaper/71/282/336/islam-arabic-hd-wallpaper-preview.jpg",
                 "name": "1\nРуқяи Набавӣ",
                 "texts": [
@@ -2209,7 +2219,7 @@
                 ]
             },
             {
-                "id": 8,
+                "id": 93,
                 "listimage": "https://rukminim1.flixcart.com/image/416/416/khqllzk0-0/regionalbooks/m/v/b/sahih-bukhari-6-volume-original-imafxzgyxgchhyzx.jpeg?q=70",
                 "name": "2\nРуқяи Набавӣ",
                 "texts": [
@@ -2252,7 +2262,7 @@
                 ]
             },
             {
-                "id": 9,
+                "id": 94,
                 "listimage": "https://images.unsplash.com/photo-1541543975512-86aad5d2cf93?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3dvcmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
                 "name": "Сипар аз сеҳру ҷоду, чашм ва ҳасад",
                 "texts": [
@@ -2277,9 +2287,9 @@
                 ]
             },
             {
-                "id": 10,
+                "id": 95,
                 "listimage": "https://www.teahub.io/photos/full/28-284391_vampire-wallpapers-hd-backgrounds-images-pics-photos-dark.jpg",
-                "name": "Зикре, ки худо инсонро бо он аз даҷҷол ҳифз мекунад",
+                "name": "Зикре, ки Аллоҳ инсонро бо он аз даҷҷол ҳифз мекунад",
                 "texts": [
                     {
                         "id": "Дцои 1",
@@ -2296,13 +2306,84 @@
         "image": "images/family.png",
         "chapters": [
             {
-                "id": 0,
+                "id": 56,
+                "listimage": "https://quran-sunna.ru/wp-content/uploads/2017/12/pervaya-brachnaya-noch.jpg",
+                "name": "Дуо барои касе, ки издивоҷ кардааст",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Боракаллоҳу лак ва борака ъалайк ва ҷамаъа байнакумо фи хайрин»",
+                        "arabic": "بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
+                        "translation": "Аллоҳ барои ту баракат диҳад ва баракат диҳад ба ту ва шуморо ба некӣ гирд оварад."
+                    }
+                ]
+            },
+            {
+                "id": 57,
+                "listimage": "https://thumbs.dreamstime.com/b/%D0%BC%D1%83%D1%81%D1%83%D0%BB%D1%8C%D0%BC%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B5-%D0%BC%D0%BE%D0%BB%D1%8F-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA-%D0%B8-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0-%D0%B2-%D0%BC%D0%B5%D1%87%D0%B5%D1%82%D0%B8-126864460.jpg",
+                "name": "Дуои шаҳ барои арӯс ва дуои хариди чаҳорпои саворӣ",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "Ҳар гоҳ яке аз шумо бо зане издивоҷ кунад ва ё хидматгореро харидорӣ намояд, дасташро бар пешонааш гузошта бигуяд: «Аллоҳумма иннӣ асъалука хайраҳо ва хайра мо ҷабалтаҳо ъалайҳи ва аъӯзу бика мин шарриҳо ва шарри мо ҷабалтаҳо ъалайҳи»",
+                        "arabic": "بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
+                        "translation": "Илоҳо, ман аз Ту мехоҳам хайрашро ва хайри он чи ӯро бар он сиришт додӣ ва паноҳ мебарам ба Ту аз шарраш ва шарри он чи ӯро бар он сиришт додӣ."
+                    }
+                ]
+            },
+            {
+                "id": 58,
+                "listimage": "https://images.unsplash.com/photo-1567899482751-c8647fda8155?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                "name": "Дуои қабл аз наздики кардан бо зан",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Бисмиллаҳ, Аллоҳумма ҷаннибнаш-шайтон ва ҷанибби-ш-шайтона мо разақтано».",
+                        "arabic": "بِسْمِ اللَّهِ، اللَّهُمَّ جَنِّبْنَا الشَّيْطَانَ، وَجَنِّبِ الشَّيْطَانَ مَا رَزَقْتَنَا",
+                        "translation": "Ба номи Аллоҳ, Илоҳо, моро аз шайтон дур дор ва шайтонро аз он чизе ки насиби мо мекуни, дур дор."
+                    }
+                ]
+            },
+            {
+                "id": 59,
+                "listimage": "https://images.unsplash.com/photo-1493836512294-502baa1986e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1067&q=80",
+                "name": "Дуои ҳангоми хашм",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Аъузу биллаҳи минаш-шайтонир-раҷим».",
+                        "arabic": "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+                        "translation": "Паноҳ мебарам ба Худо аз шайтони рондашуда."
+                    },
+                    {
+                        "id": "Ҳадис",
+                        "text": "«Аз Сулаймон Ибни Сард ривоят аст, ки гуфт: Рӯзе назди паёмбари Аллоҳ (ﷺ) нишаста будам, он замон ду марде бо ҳам ҷанҷол мекарданд ва чеҳраи яке аз онҳо (аз хашми зиёд) сурх ва рагҳои гарданаш варам карда буд, сипас паёмбар Аллоҳ  (ﷺ) гуфт: «Ҳароина ман як калимаеро медонам, агар онро мегуфт, аз ӯ ҳамон ошуфтагиаш дур мешуд, агар ӯ «Аъузубиллаҳи минаш-шайтонир-раҷим» мегуфт, ошуфтагиаш аз ӯ дур мешуд». (Ривояти Бухори 3108)».",
+                        "arabic": "عن سليمان بن صُرَد قال: كنت جالساً مع النبي ﷺ ورجلان يستبّان، وأحدهما قد احمر وجهه، وانتفخت أوداجه، فقال رسول الله ﷺ: إني لأعلم كلمة لو قالها لذهب عنه ما يجد، لو قال: أعوذ بالله من الشيطان الرجيم ذهب عنه ما يجد. أخرجه البخاري، كتاب بدء الخلق، باب صفة إبليس وجنوده (3/ 1195)، رقم: (3108)",
+                        "translation": "Паноҳ мебарам ба Худо аз шайтони рондашуда."
+                    }
+                ]
+            },
+            {
+                "id": 98,
+                "listimage": "https://data.1freewallpapers.com/download/blue-heart-love.jpg",
+                "name": "Он чиро зани мусалмон ба шавҳараш мегӯяд, чун ӯро ба хашм ора",
+                "texts": [
+                    {
+                        "id": "Ҳадис",
+                        "text": "Паёмбари Аллоҳ (ﷺ) гуфта аст: «Оё шуморо аз занҳои шумо, ки аз аҳли ҷаннат ҳастанд хабар надиҳам? Ҳар зани меҳрубону зоянда, чун хашмгин шавад ё бо ӯ муомилаи нохуш карда шавад ва шавҳарашро ба ғазаб орад, (ба ӯ) мегӯяд: Ин дастам болои дастат, чашмам хобро набинад то замонеки аз ман розӣ нашави».\n(Ривояти Насоӣ дар Кубро 5/361 ва Табаронӣ дар Кабир 19/14 ва Ал-Австат 6/301 ва Абу Нуайм дар китоби Ҳиля (4/303) бо исноди саҳеҳ)",
+                        "arabic": "َلَاْ أُخبِرُكُم بِنِسَائِكُم فِي الجَنَّةِ؟! كُلُّ وَدُودٍ وَلُودٍ ، إِذَا غَضِبَت أَو أُسِيءَ إِلَيهَا أَو غَضِبَ زَوجُهَا ، قَالَت : هَذِه يَدِي فِي يَدِكَ ، لَاْ أَكْتَحِلُ بِغُمضٍ َحتَّى تَرضَى ) أخرجها النسائي في الكبرى (5/361) والطبراني في الكبير (19/14) والأوسط (6/301) (2/242) وأبو نعيم في الحلية (4/303) وقال الشيخ الألباني : إسناد رجاله ثقات رجال مسلم",
+                        "translation": "................"
+                    }
+                ]
+            },
+            {
+                "id": 96,
                 "listimage": "https://cdnimg.rg.ru/img/content/180/71/63/iStock-1132264405_d_850.jpg",
                 "name": "Чи гуна табрик гуфтан ба касе, ки фарзанде барояш рӯзӣ шуда бошад",
                 "texts": [
                     {
                         "id": "Дуои 1",
-                        "text": "Боракаллоҳу лака филмавҳӯби лака вашакарталвоҳиба ва балаға ашуддаҳу ва рузиқта бирраҳ.",
+                        "text": "«Боракаллоҳу лака филмавҳӯби лака вашакарталвоҳиба ва балаға ашуддаҳу ва рузиқта бирраҳ».",
                         "arabic": "بَارَكَ اللَّهُ لَكَ فِي الْمَوْهُوبِ لَكَ، وَشَكَرْتَ الْوَاهِبَ، وَبَلَغَ أَشُدَّهُ، وَرُزِقْتَ بِرَّهُ",
                         "translation": "Бигзор Аллоҳ бароят дар он чи ба Ту додашуда баракат диҳад ва (Аллоҳи) Бахшандаро шукргузор боши ва навзод ба камоли қудрат расад ва рӯзият шавад накӯии Ӯ."
                     },
@@ -2314,31 +2395,162 @@
                     },
                     {
                         "id": "Дуои 3",
-                        "text": "ҶаъалаҳуЛлоҳу мобракан ъалайк ва аъло уммати Муҳаммад (ﷺ). Агар навзод духтар бошад бигӯяд: ҶаъалҳалЛоҳу муборан аълайк...",
+                        "text": "«ҶаъалаҳуЛлоҳу мобракан ъалайк ва аъло уммати Муҳаммад (ﷺ)». Агар навзод духтар бошад бигӯяд: ҶаъалҳалЛоҳу муборан аълайк...",
                         "arabic": "بَارَكَ اللَّهُ",
                         "translation": "Аллоҳ бароят баракат диҳад."
                     }
                 ]
             },
             {
-                "id": 1,
+                "id": 97,
                 "listimage": "https://shabiba.eu-central-1.linodeobjects.com/2019/08/18/1049743.jpg",
                 "name": "Ҳифзи фарзандон аз чашм",
                 "texts": [
                     {
                         "id": "Дуои 1",
-                        "text": "Расули Худо (ﷺ) Ҳасан ва Ҳусайнроҳифз мекард: Уъизукумо бикалимотиллоҳит-томмати мин кулли шайтонин ва ҳомматин вамин кулли айнин ломмаҳ.",
-                        "arabic": "كَانَ رَسُولُ اللَّهِ - صلى الله عليه وسلم - يُعَوِّذُ الحَسَنَ وَالحُسَينَ ((أُعِيذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لاَمَّةٍ",
+                        "text": "Расули Худо (ﷺ) Ҳасан ва Ҳусайнроҳифз мекард: «Уъизукумо бикалимотиллоҳит-томмати мин кулли шайтонин ва ҳомматин вамин кулли айнин ломмаҳ».",
+                        "arabic": "كَانَ رَسُولُ اللَّهِ - صلى الله عليه وسلم - يُعَوِّذُ الحَسَنَ وَالحُسَينَ أُعِيذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لاَمَّةٍ",
                         "translation": "Паноҳ медиҳам шумо ду нафарро (Ҳасан ва Ҳусайн) ба калимоти комили Аллоҳ аз ҳар шайтоне ва ҷонвари заҳрдоре ва аз ҳар чашми азиятдиҳанда."
                     },
                     {
                         "id": "Дуои 2",
-                        "text": "Асъалуллоҳал ъазима раббал ъаршилъазими айяшфика. (Ҳафт бор)",
+                        "text": "«Асъалуллоҳал ъазима раббал ъаршилъазими айяшфика». (Ҳафт бор)",
                         "arabic": "أَسْأَلُ اللَّهَ الْعَظيمَ رَبَّ الْعَرْشِ الْعَظِيمِ أَنْ يَشْفيَكَ (سبع مرات)",
                         "translation": "Аз Аллоҳи бузургвор, парвардигори арши бузург пурсонам, ки шифоят диҳад."
                     }
                 ]
+            },
+            {
+                "id": 98,
+                "listimage": "https://images.unsplash.com/flagged/photo-1550489518-40f49ba4bf20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80",
+                "name": "Дуои ҳангоми савор шудан бар ҳайвон ва ё монанди он (васоили нақлиёт)",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Бисмилаҳи, алҳамду лиллоаҳ (субҳаналлазӣ саххара лано ҳаза ва ма кунна лаҳу муқринин ва инна ило раббино ламунқалибун, Алҳамду лиллаҳ, Алҳамду лиллаҳ, Алҳамду лиллаҳ, Аллоҳу акбар, Аллоҳу акбар, Аллоҳу акбар, субҳанакаллоҳума иннӣ заламту нафсӣ фағфир лӣ фаиннаҳу ла яғфируззуннуба илла ант».",
+                        "arabic": "شَهدتُ عليًّا رضِيَ اللَّهُ عنهُ وأُتِيَ بدابَّةٍ ليَرْكبَها فلمَّا وضعَ رِجلَه في الرِّكابِ قالَ بسمِ اللَّهِ فلمَّا استوى على ظَهرِها قالَ الحمدُ للَّه ثمَّ قالَ {سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبونَ} ثمَّ قالَ الحمدُ للَّهِ - ثلاثَ مرَّاتٍ - ثمَّ قالَ اللَّهُ أَكبرُ - ثلاثَ مرَّاتٍ - ثمَّ قالَ سبحانَك إنِّي ظلمتُ نفسِي فاغفِر لي فإنَّهُ لا يغفِرُ الذُّنوبَ إلَّا أنتَ ثمَّ ضحِك فقيلَ يا أميرَ المؤمنينَ من أيِّ شيءٍ ضحِكتَ قالَ رأيتُ النَّبيَّ صلَّى اللَّهُ عليهِ وسلَّمَ فعلَ كما فعَلتُ ثمَّ ضحِك فقلتُ يا رسولَ اللَّهِ من أيِّ شيءٍ ضحِكتَ قالَ إنَّ ربَّكَ يعجَبُ من عبدِه إذا قالَ اغفِر لي ذنوبي يعلَمُ أنَّهُ لا يغفرُ الذُّنوبَ غيري صحيح أبي داود الرقم: 2602",
+                        "translation": "Ба номи Аллоҳ, ситоиш аз они Аллоҳ аст, пок аст он, ки барои мо ин маркабро мусаххар сохт ва (агар Аллоҳ инро бароямон мусаххар намекард, тавоноии тасхири онро надоштем ва ҳароина мо ба сӯи Парвардигори хеш боз мегардем.) Ситоиш аз они Аллоҳ аст, ситоиш аз они Аллох аст. Аллоҳ бузург аст, Аллоҳ бузург аст, Аллоҳ бузург аст, Ту покӣ, эй Худо ҳар оина ман зулм кардаам ба худ, пас маро биёмурз. Ба рости, ки ҷуз Ту касе гуноҳонро намеомурзад."
+                    }
+                ]
+            },
+            {
+                "id": 99,
+                "listimage": "https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                "name": "Дуои мусофир ҳангоми сафар",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Аллоҳу акбар, Аллоҳу акбар, Аллоҳу акбар. Субҳонал-лазӣ саххара лано ҳозо ва мокунно лаҳу муқринин ва инно ило раббино ла-мунқалибуна. Аллоҳумма инно насъалука фи сафарино ҳозо албирра ваттақво ва минал ъамали мо тарзо. Аллоҳумма ҳаввин ъалайно сафарано ҳозо ватви ъанно буъдаҳy, Аллоҳумма антас-соҳибу фис-сафари валхалифату фил аҳли, Аллоҳумма иннӣ аъузу бика мин ваъсоис-сафари ва каобатил манзари ва сӯил мунқалаби фил моли вал аҳли». Ҳангоми бозгашт дуои мазкурро бихонад\n«Оибун, тойибун, обидун лираббино ҳомидун» яъне, мо руҷӯъкунон, тавбакунон ,ибодаткунону ситоишкунон барои Парвардигорамон бозмегардем.",
+                        "arabic": "اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، {سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ * وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ}((اللَّهُمَّ إِنّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا البِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى، اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَذَا وَاطْوِ عَنَّا بُعْدَهُ، اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ، وَالْخَليفَةُ فِي الْأَهْلِ، اللَّهُمَّ  إِنِّي أَعُوذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ، وَكَآبَةِ الْمَنْظَرِ، وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالْأَهْلِ))، وإذا رَجَعَ قَالَهُنَّ وَزَادَ فِيهِنَّ: آيِبُونَ، تائِبُونَ، عَابِدُونَ، لِرَبِّنَا حَامِدُونَ",
+                        "translation": "Аллоҳ бузург аст, Аллоҳ бузург аст, Аллоҳ бузург аст. Пок аст он ки бароямон ин маркӯбро мусаххар сохт ва мо тавоноии тасхири онро надоштем ва ҳароина моба сӯи Парвардигори хеш бозмегардем. Бор,Илоҳо, ҳар оина мо дар ин сафарамон хоҳонем некӯӣ ва парҳезгориро ва аз кирдор он чи мояи хушнудии Ту аст. Илоҳо, бар мо ин сафарамон-ро осон гардону дурияшро бар мо кӯтоҳ соз. Илоҳо, Ту ҳамроҳ дар сафар ва сарпараст дар хонаводаӣ. Илоҳо, ман ба Ту паноҳ мебарам аз сахтии сафар ва аз манзари ғамангез ва аз бозгашти бад ба сӯи дороӣ ва хонавода."
+                    },
+                    {
+                        "id": "Дуои 2",
+                        "text": "«Самиъа сомиъун биҳамдиллаҳи ва ҳусни балаиҳи ъалайна. Раббано соҳибно ва афзил ъалайно ъоизан биллаҳи минан-нор».",
+                        "arabic":"عن أبي هريرةأنَّ النبيَّ صَلَّى اللَّهُ عليه وَسَلَّمَ كانَ إذَا كانَ في سَفَرٍ وَأَسْحَرَ يقولُ: سَمِعَ سَامِعٌ بحَمْدِ اللهِ وَحُسْنِ بَلَائِهِ عَلَيْنَا، رَبَّنَا صَاحِبْنَا وَأَفْضِلْ عَلَيْنَا، عَائِذًا باللَّهِ مِنَ النَّارِ",
+                        "translation": "Бошад, ки шаҳодат диҳад шоҳиде ситоишамон Аллоҳро бар хубии неъматаш бар мо, эй Парвардигори мо, ҳамроҳи мо бош ва эҳсонкун бар мо (ва ман ин дуъоро мехонам) дарҳоле, ки паноҳ мебарам ба Аллоҳ аз дӯзах."
+                    }
+                ]
+            },
+            {
+                "id": 100,
+                "listimage": "https://images.unsplash.com/photo-1602904831880-9f91c1af358c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80",
+                "name": "Дуои мусофир барои муқим",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Аставдиъукумуллоҳал-лазӣ ло тазиъу вадоиъуҳу».",
+                        "arabic": "أَسْتَوْدِعُكُمُ اللَّهَ الَّذِي لاَ تَضِيعُ وَدَائِعُهُ",
+                        "translation": "Шуморо месупорам ба Аллоҳ, ки зоеъ намешавад супурдае назди Вай."
+                    },
+                    {
+                        "id": "Дуои 2",
+                        "text": "«Заввадакаллоҳут-тақво ва ғафара занбака ва яссара лака хайра ҳайсу мо кунта».",
+                        "arabic": "عن أنس بن مالك قال جاءَ رجُلٌ إلى النَّبِيِّ صلَّى اللَّهُ عليهِ وسلَّمَ فقالَ يا رسولَ اللَّهِ إنِّي أريدُ سفرًا فزوِّدني. قالَ زوَّدَك اللَّهُ التَّقوى قالَ زِدني. قالَ وغفرَ ذنبَك قالَ زدني بأبي أنتَ وأمِّي. قالَ ويسَّرَ لَك الخيرَ حيثُما كنتَ صحيح الترمذي الرقم: 3444 خلاصة حكم المحدث : حسن صحيح",
+                        "translation": "Аллоҳ Туро бо тӯшаи тақво муҷаҳҳаз кунад ва гуноҳонатро биёмурзад ва осон фармояд бароят некӯиро ҳар ҷо, ки набоши."
+                    }
+                ]
+            },
+            {
+                "id": 101,
+                "listimage": "https://almaty.tv/news_photo/1566196756_news_b.jpeg",
+                "name": "Такбир ва тасбеҳ гуфтан ҳангоми сафар",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Аллоҳу Акбар, Субҳоналлоҳ».",
+                        "arabic": "قَالَ جَابِرٌ رضي الله عنه : كُنَّا إِذَا صَعَدْنَا كَبَّرْنَا، وَإِذَا نَزَلْنَا سَبَّحْنَا",
+                        "translation": "Ҷобир мегӯяд: Ҳангоми сафар чун (бар маконе) баланд мешудем такбир (Аллоҳу акбар) мегуфтем ва ҳангоми пойин омадан тасбеҳ (Субҳоналлоҳи) мегуфтем."
+                    }
+                ]
+            },
+            {
+                "id": 102,
+                "listimage": "https://images.unsplash.com/photo-1480498073050-4c6abeee90c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+                "name": "Дуои ҳангоми даромадан ба деҳа, ё шаҳр",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Аллоҳумма раббас-самовотис-сабъи вамо азлална ва раббул арзӣнас-сабъи ва мо ақлална ва раббуш-шаётина ва мо азлална ва раббур-риёҳи ва мо зарайна асъалука хайра ҳозиҳил қaряти ва хайра мо фиҳо ва аъузубика мин шарриҳо ва шарри аҳлиҳо ва шарри мо фиҳо».",
+                        "arabic": "صهيب رضي الله عنه ، أَنَّ النَّبِىَّ صلى الله عليه وسلم لَمْ يَرَ قَرْيَةً يُرِيدُ دُخُولَهَا إِلاَّ قَالَ حِينَ يَرَاهَا :(اللَّهُمَّ رَبَّ السَّمَوَاتِ السَّبْعِ وَمَا أَظْلَلْنَ ، وَرَبَّ الأَرَضِينِ السَّبْعِ وَمَا أَقْلَلْنَ ، وَرَبَّ الشَّيَاطِينِ وَمَا أَضْلَلْنَ ، وَرَبَّ الرِّيَاحِ وَمَا ذَرَيْنَ ، فَإِنَّا نَسْأَلُكَ خَيْرَ هَذِهِ الْقَرْيَةِ وَخَيْرَ أَهْلِهَا ، وَنَعُوذُ بِكَ مِنْ شَرِّهَا وَشَرِّ أَهْلِهَا وَشَرِّ مَا فِيهَا ) رواه النسائي في السنن الكبرى (5/256) والحاكم في المستدرك (1/614) وقال : هذا حديث صحيح الإسناد ولم يخرجاه ، وابن خزيمة في صحيحه (4/150) ، وابن حبان في صحيحه (6/426) ، وحسنه الحافظ ابن حجر كما ذكره ابن علان في الفتوحات الربانية (5/145) ، وقال الهيثمي في مجمع الزوائد : (10/137) : رواه الطبراني في الأوسط وإسناده حسن . وحسنه الشيخ ابن باز في مجموع الفتاوى (26/46) ، وصححه الألباني في السلسلة الصحيحة (رقم/2759)",
+                        "translation": "Илоҳо, эй Парвардигори осмонҳои ҳафтгона ва он чи осмонҳо бар он соя афкандааст ва эй Парвардигори заминҳои ҳафтгона ва ончи заминҳо ҳомили онанд ва эй Парвардигори бодҳо ва он чи бодҳо онро пароканда кардаанд, аз Ту мехоҳам хайри ин ободӣ ва хайри сокинони он ва хайри он чи дар ин ободист ва паноҳ мебарам ба Ту аз шарри ин ободӣ ва шарри сокинони он ва шарри он чи дар ин ободист."
+                    }
+                ]
+            },
+            {
+                "id": 103,
+                "listimage": "https://images.unsplash.com/photo-1519302959554-a75be0afc82a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+                "name": "Зикри ҳангоми манзил кардан дар ҷое аснои сафар ва ғайра",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Аъузу бикалиматиллаҳи томмати мин шарри мо халақ».",
+                        "arabic": "عن خولة بنت حكيم السُّلمية -رضي الله عنها- قالت: سمعتُ رسول الله ﷺ يقول:مَن نزل منزلًا ثم قال: أعوذ بكلمات الله التَّامات من شرِّ ما خلق؛ لم يضرّه شيءٌ حتى يرتحل من منزله ذلك. رواه مسلم",
+                        "translation": "Паноҳ мебарам ба каломи комили Аллоҳ аз шарри он чи офаридааст."
+                    }
+                ]
+            },
+            {
+                "id": 103,
+                "listimage": "https://m.media-amazon.com/images/I/71yMn02LMOL._AC_SY355_.jpg",
+                "name": "Зикри ҳангоми бозгашт аз сафар",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "Ҳангоми боло шудан ба ҳар баландӣ се бор такбир бигӯяд сипас ин зикрро бихонад: «Ла илаҳа иллаллоҳу ваҳдаҳу ла шарика лаҳ, лаҳулмулку ва лаҳулҳамду ва ҳува ъало кулли шайин қадир, оибун, тоибун, ъобидун лираббино ҳомидун. Садақаллоҳу ваъдаҳ ва насара ъабдаҳ ва ҳазамал аҳзоба ваҳдаҳ».",
+                        "arabic": "عَنْ عَبْدِ اللَّهِ بْنِ عُمَرَ ، أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ كَانَ إِذَا قَفَلَ (أي رجع) مِنْ غَزْوٍ أَوْ حَجٍّ أَوْ عُمْرَةٍ يُكَبِّرُ عَلَى كُلِّ شَرَفٍ مِنَ الْأَرْضِ ثَلَاثَ تَكْبِيرَاتٍ، وَيَقُولُ :  لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، آيِبُونَ ، تَائِبُونَ، عَابِدُونَ، سَاجِدُونَ، لِرَبِّنَا حَامِدُونَ، صَدَقَ اللَّهُ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزَابَ وَحْدَهُ رواه البخاري ومسلم",
+                        "translation": "Нест маъбуди барҳақ, ба ҷуз Аллоҳ, ягона аст ва шарику ҳамтое надорад. Аз они Ӯст ҳастӣ ва аз они Ӯст ситоиш ва ӯ ба ҳар чиз қодиру тавоност. Мо руҷӯъкунон, тавбакунон, ъибодаткунону ситоишкунон барои Парвардигорамон бозмегардем. Аллоҳ ба ваъдааш вафокард ва бандаашро нусрат дод ва аҳзобро Ӯ ягона дарҳам шикаст."
+                    }
+                ]
+            },
+            {
+                "id": 102,
+                "listimage": "https://img2.akspic.ru/originals/7/0/8/1/6/161807-stambul-bazar-turizm-dostoprimechatelnost-osveshhenie-1536x2048.jpg",
+                "name": "Дуои ҳангоми даромадан ба бозор",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Ла илаҳа иллаллоҳу ваҳдаҳу ло шарика лаҳ, лаҳулмулку ва лаҳулҳамду юҳий ва юмит ва ҳува ҳайюн ла ямут, биядиҳил хайр ва ҳува ъало кулли шайин қадир».",
+                        "arabic": "عن عمر بن الخطاب  رضي الله عنه  أن رسول الله صلى الله عليه  وسلم قال: من دخل السوق فقال لا إله إلا الله وحده لا شريك له له الملك وله الحمد يحيي ويميت وهو حي لا يموت بيده الخير وهو على كل شيء قدير كتب الله له ألف ألف حسنة ومحا عنه ألف ألف سيئة ورفع له ألف ألف درجة.\n وقال الترمذي: حديث غريب ـ وقد اختلف في صحته كما ذكرت في السؤال فممن صححه الحاكم وقال على شرط الشيخين، والمنذري. قال في الترغيب: وإسناده متصل حسن",
+                        "translation": "Нест маъбуди барҳақ ба ҷуз Аллоҳ, ягона аст ва шарику анбозе барои Ӯ нест. Аз они Ӯст ҳастӣ ва аз они Ӯст ситоиш. Зинда мекунад ва мемиронад ва ӯ зинда аст ва намемирад, ба дасти Ӯст некӯӣ ва Ӯ бар ҳар чиз тавоно аст."
+                    }
+                ]
+            },
+            {
+                "id": 103,
+                "listimage": "https://www.1zoom.me/big2/939/295766-werecat.jpg",
+                "name": "Дуои ҳангоми лағжидани маркаби саворӣ",
+                "texts": [
+                    {
+                        "id": "Дуои 1",
+                        "text": "«Бисмиллаҳ».",
+                        "arabic": "كنتُ رديفَ النبيِّ صلى الله عليه وسلم فعثرت دابةٌ, فقلتُ: تَعِسَ الشيطانُ ,فقال: لا تقل تَعِسَ الشيطانُ؛ فإنك إذا قلتَ ذلك تعاظمَ حتى يكونَ مثلَ البيتِ ، ويقولُ: بقوتي، ولكن قل: بسمِ اللهِ؛ فإنك إذا قلتَ ذلك ، تصاغرَ حتى يكونَ مثلَ الذبابِ صحيح أبي داود الرقم: 4982",
+                        "translation": "Ба номи Аллоҳ"
+                    }
+                ]
             }
+
+          
         ]
     }
 ]

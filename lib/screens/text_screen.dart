@@ -17,6 +17,9 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
+  // bool? _loading;
+  // double? _progressLoading;
+
   AnimateIconController _controller = AnimateIconController();
 
   // @override
@@ -28,6 +31,7 @@ class _TextScreenState extends State<TextScreen> {
   @override
   void initState() {
     _controller = AnimateIconController();
+
     super.initState();
   }
 
@@ -158,6 +162,16 @@ class _TextScreenState extends State<TextScreen> {
     return DefaultTabController(
       length: widget.texts!.length,
       child: Scaffold(
+        // floatingActionButton: FloatingActionButton(
+        //   backgroundColor: Colors.greenAccent,
+        //   child: const Icon(FontAwesomeIcons.download),
+        //   onPressed: () {
+        //     setState(() {
+        //       _loading = !_loading!;
+        //       _updateProgress();
+        //     });
+        //   },
+        // ),
         appBar: AppBar(
           elevation: 0.0,
           title: const Text('Талаффузи дуо'),
@@ -201,4 +215,19 @@ class _TextScreenState extends State<TextScreen> {
       ),
     );
   }
+
+  // _updateProgress() {
+  //   const oneSec = Duration(seconds: 1);
+  //   Timer.periodic(oneSec, (Timer t) {
+  //     setState(() {
+  //       _progressLoading = 0.20;
+  //       if (_progressLoading!.toStringAsFixed(1) == '1.00') {
+  //         _loading = false;
+  //         t.cancel();
+  //         _progressLoading = 0.0;
+  //         return;
+  //       }
+  //     });
+  //   });
+  // }
 }

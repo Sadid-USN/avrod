@@ -1,17 +1,17 @@
 class Book {
   String ?name;
   String ?image;
-  List<Chapter> ?chapter;
+  List<Chapter> ?chapters;
 
-  Book({this.name, this.image, this.chapter});
+  Book({this.name, this.image, this.chapters});
 
   Book.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     image = json['image'];
     if (json['chapters'] != null) {
-      chapter = [];
+      chapters = [];
       json['chapters'].forEach((v) {
-        chapter!.add( Chapter.fromJson(v));
+        chapters!.add( Chapter.fromJson(v));
       });
     }
   }
@@ -20,7 +20,7 @@ class Book {
     final Map<String, dynamic> data =  <String, dynamic>{};
     data['name'] = name;
     data['image'] = image;
-    data['chapters'] = chapter!.map((v) => v.toJson()).toList();
+    data['chapters'] = chapters!.map((v) => v.toJson()).toList();
     return data;
   }
 }
@@ -71,7 +71,7 @@ class Texts {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['text'] = text;
     data['arabic'] = arabic;

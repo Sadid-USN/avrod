@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              textTheme: GoogleFonts.ptSerifCaptionTextTheme(
+              textTheme: GoogleFonts.ptSerifTextTheme(
                   Theme.of(context).textTheme),
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),

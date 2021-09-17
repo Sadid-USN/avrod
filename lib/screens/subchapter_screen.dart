@@ -1,4 +1,6 @@
 import 'package:avrod/colors/colors.dart';
+import 'package:avrod/main.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:sizer/sizer.dart';
@@ -9,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
 // ignore: constant_identifier_names
-const String LIKES_BOX = 'lekes_box';
 
 class SubchapterScreen extends StatefulWidget {
   const SubchapterScreen(this.bookIndex, {Key? key}) : super(key: key);
@@ -21,21 +22,23 @@ class SubchapterScreen extends StatefulWidget {
 
 class _SubchapterScreenState extends State<SubchapterScreen> {
   Box? likesBox;
-
+ 
+  
   @override
   void initState() {
-    super.initState();
-
     initHive();
+  
+    super.initState();
   }
 
   void initHive() async {
-    likesBox = await Hive.openBox(LIKES_BOX);
+    likesBox = await Hive.openBox(FAVORITES_BOX);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: gradientStartColor,
@@ -61,9 +64,9 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
         child: FutureBuilder<List<Book>>(
           future: BookMap.getBookLocally(context),
           builder: (contex, snapshot) {
-            final books = snapshot.data;
+            final book = snapshot.data;
             if (snapshot.hasData) {
-              return buildBook(books![widget.bookIndex]);
+              return buildBook(book![widget.bookIndex]);
             } else if (snapshot.hasError) {
               return const Center(
                 child: Text('Some erro occured'),
@@ -77,7 +80,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
     );
   }
 
-  Widget buildBook(Book books) {
+  Widget buildBook(Book book) {
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 1 / 1.4,
@@ -88,9 +91,9 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
         scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(top: 5),
         physics: const BouncingScrollPhysics(),
-        itemCount: books.chapter?.length ?? 0,
+        itemCount: book.chapters?.length ?? 0,
         itemBuilder: (context, index) {
-          final Chapter chapter = books.chapter![index];
+          final Chapter chapter = book.chapters![index];
 
           // ignore: sized_box_for_whitespace
           return Padding(
@@ -128,8 +131,6 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
                                   color: Colors.black26,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(16.0))),
-                              height: 31.h,
-                              width: 44.w,
                             ),
                           ),
                           ListTile(
@@ -172,12 +173,17 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
   }
 
   Future<bool> setLike(int chapterID, bool isLiked) async {
-    await likesBox!.put(chapterID, (!isLiked).toString());
+    if (!isLiked) {
+      await likesBox!.put(chapterID, (true).toString());
+    } else {
+      await likesBox!.delete(chapterID);
+    }
+
     return !isLiked;
   }
 
   bool isChapterLiked(int chapterID) {
-    bool isLiked = likesBox!.get(chapterID) == "true";
+    bool isLiked = likesBox!.containsKey(chapterID);
     return isLiked;
   }
 }

@@ -15,7 +15,7 @@ class BookMap {
     int book,
   ) async {
     final List<Book> books = await getBookLocally(context);
-    return books[book].chapter!;
+    return books[book].chapters!;
   }
 
   static Future<List<Texts>> getTextsLocally(
