@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.avrod">
+    package="com.darulasar.avrod">
    <application
         android:label="avrod"
         android:icon="@mipmap/ic_launcher">

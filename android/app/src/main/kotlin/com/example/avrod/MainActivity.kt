@@ -1,4 +1,4 @@
-package com.example.avrod
+package com.darulasar.avrod
 
 import io.flutter.embedding.android.FlutterActivity
 

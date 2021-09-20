@@ -1,9 +1,10 @@
+
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/main.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:hive/hive.dart';
 import 'package:avrod/data/book_class.dart';
-import 'package:sizer/sizer.dart';
+
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,7 +22,7 @@ class SubchapterScreen extends StatefulWidget {
 }
 
 class _SubchapterScreenState extends State<SubchapterScreen> {
-  Box? likesBox;
+  Box ?likesBox;
  
   
   @override
