@@ -19,7 +19,7 @@ class _HijriPickerScreenState extends State<HijriPickerScreen> {
         appBar: AppBar(
           elevation: 1,
           backgroundColor: gradientStartColor,
-          title: const Text('Тақвими ҳиҷрӣ'),
+          title: const Text('Тақвими ҳиҷрӣ', style: TextStyle(fontSize: 25)),
           centerTitle: true,
         ),
         // ignore: avoid_unnecessary_containers, sized_box_for_whitespace

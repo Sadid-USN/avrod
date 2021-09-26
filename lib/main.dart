@@ -27,13 +27,14 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-        //    localizationsDelegates: const [
-        //    //GlobalMaterialLocalizations.delegate,
-        //   // GlobalWidgetsLocalizations.delegate,
-        //  ],
-        //    supportedLocales: const [
-        //    Locale('ru', 'RU'),
-        //  ],
+           localizationsDelegates: const [
+           GlobalMaterialLocalizations.delegate,
+          // GlobalWidgetsLocalizations.delegate,
+         ],
+           supportedLocales: const [
+           Locale('ru', 'RU'),
+           Locale('ar', 'SA'),
+         ],
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               textTheme:
