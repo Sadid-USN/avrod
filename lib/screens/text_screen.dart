@@ -1,7 +1,6 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/data/book_class.dart';
-
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -162,16 +161,6 @@ class _TextScreenState extends State<TextScreen> {
     return DefaultTabController(
       length: widget.texts!.length,
       child: Scaffold(
-        // floatingActionButton: FloatingActionButton(
-        //   backgroundColor: Colors.greenAccent,
-        //   child: const Icon(FontAwesomeIcons.download),
-        //   onPressed: () {
-        //     setState(() {
-        //       _loading = !_loading!;
-        //       _updateProgress();
-        //     });
-        //   },
-        // ),
         appBar: AppBar(
           elevation: 0.0,
           title: const Text('Талаффузи дуо'),

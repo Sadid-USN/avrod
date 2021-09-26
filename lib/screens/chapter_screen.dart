@@ -1,34 +1,32 @@
-
+// @dart=2.9
 import 'package:avrod/colors/colors.dart';
-import 'package:avrod/main.dart';
-
 import 'package:hive/hive.dart';
 import 'package:avrod/data/book_class.dart';
-
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
+import '../main.dart';
+
 // ignore: constant_identifier_names
 
-class SubchapterScreen extends StatefulWidget {
-  const SubchapterScreen(this.bookIndex, {Key? key}) : super(key: key);
+class ChapterScreen extends StatefulWidget {
+  const ChapterScreen(this.bookIndex, {Key key}) : super(key: key);
   final int bookIndex;
 
   @override
-  State<SubchapterScreen> createState() => _SubchapterScreenState();
+  State<ChapterScreen> createState() => _ChapterScreenState();
 }
 
-class _SubchapterScreenState extends State<SubchapterScreen> {
-  Box ?likesBox;
- 
-  
+class _ChapterScreenState extends State<ChapterScreen> {
+  Box likesBox;
+
   @override
   void initState() {
     initHive();
-  
+
     super.initState();
   }
 
@@ -39,7 +37,6 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: gradientStartColor,
@@ -67,7 +64,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
           builder: (contex, snapshot) {
             final book = snapshot.data;
             if (snapshot.hasData) {
-              return buildBook(book![widget.bookIndex]);
+              return buildBook(book[widget.bookIndex]);
             } else if (snapshot.hasError) {
               return const Center(
                 child: Text('Some erro occured'),
@@ -94,7 +91,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
         physics: const BouncingScrollPhysics(),
         itemCount: book.chapters?.length ?? 0,
         itemBuilder: (context, index) {
-          final Chapter chapter = book.chapters![index];
+          final Chapter chapter = book.chapters[index];
 
           // ignore: sized_box_for_whitespace
           return Padding(
@@ -106,7 +103,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
                 }));
               },
               child: CachedNetworkImage(
-                  imageUrl: chapter.listimage!,
+                  imageUrl: chapter.listimage,
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       decoration: BoxDecoration(
@@ -137,7 +134,7 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
                           ListTile(
                             title: Center(
                               child: Text(
-                                chapter.name!,
+                                chapter.name,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     fontSize: 22.0,
@@ -150,9 +147,9 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
                             top: 15,
                             right: 10,
                             child: LikeButton(
-                              isLiked: isChapterLiked(chapter.id!),
+                              isLiked: isChapterLiked(chapter.id),
                               onTap: (isLiked) async {
-                                return setLike(chapter.id!, isLiked);
+                                return setLike(chapter.id, isLiked);
                               },
                               size: 40,
                               circleColor: const CircleColor(
@@ -175,16 +172,16 @@ class _SubchapterScreenState extends State<SubchapterScreen> {
 
   Future<bool> setLike(int chapterID, bool isLiked) async {
     if (!isLiked) {
-      await likesBox!.put(chapterID, (true).toString());
+      await likesBox.put(chapterID, (true).toString());
     } else {
-      await likesBox!.delete(chapterID);
+      await likesBox.delete(chapterID);
     }
 
     return !isLiked;
   }
 
   bool isChapterLiked(int chapterID) {
-    bool isLiked = likesBox!.containsKey(chapterID);
+    bool isLiked = likesBox.containsKey(chapterID);
     return isLiked;
   }
 }

@@ -1,25 +1,25 @@
+// @dart=2.9
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/main.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'text_screen.dart';
 
-class FavoriteChapterSceen extends StatefulWidget {
-  const FavoriteChapterSceen({Key? key, this.chapter}) : super(key: key);
-  final Chapter? chapter;
+class FavoriteChaptersSceen extends StatefulWidget {
+  const FavoriteChaptersSceen({Key key, this.chapter}) : super(key: key);
+  final Chapter chapter;
 
   @override
-  State<FavoriteChapterSceen> createState() => _FavoriteChapterSceenState();
+  State<FavoriteChaptersSceen> createState() => _FavoriteChaptersSceenState();
 }
 
-class _FavoriteChapterSceenState extends State<FavoriteChapterSceen> {
+class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
 
-    Book ? book ;
+    Book  book ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,8 +42,8 @@ class _FavoriteChapterSceenState extends State<FavoriteChapterSceen> {
           builder: (context, snapShot) {
             if (snapShot.hasData) {
               List<Chapter> chapters = [];
-              for (Book book in snapShot.data!) {
-                chapters.addAll(book.chapters!);
+              for (Book book in snapShot.data) {
+                chapters.addAll(book.chapters);
               }
 
               return ValueListenableBuilder(
@@ -90,7 +90,7 @@ class _FavoriteChapterSceenState extends State<FavoriteChapterSceen> {
                                     ],
                                     image: DecorationImage(
                                         image: NetworkImage(
-                                          likedChapters[position].listimage!),
+                                          likedChapters[position].listimage),
                                         fit: BoxFit.cover)),
                                 child: Container(
                                   decoration: const BoxDecoration(
@@ -103,7 +103,7 @@ class _FavoriteChapterSceenState extends State<FavoriteChapterSceen> {
                                     padding: const EdgeInsets.all(10.0),
                                     child: Center(
                                       child: Text(
-                                        likedChapters[position].name!,
+                                        likedChapters[position].name,
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
                                             fontSize: 18.0,
