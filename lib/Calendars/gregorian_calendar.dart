@@ -20,7 +20,7 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
       appBar: AppBar(
         elevation: 1,
        backgroundColor: gradientStartColor,
-        title: const Text('Тақвими мелодӣ', style: TextStyle(fontSize: 25)),
+        title: const Text('Тақвими мелодӣ', style: TextStyle(fontSize: 22)),
         centerTitle: true,
       ),
       body: TableCalendar(

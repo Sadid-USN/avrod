@@ -8,6 +8,8 @@ import 'package:sizer/sizer.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'models/my_theme.dart';
+
 // ignore: constant_identifier_names
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
@@ -19,9 +21,14 @@ Future main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Sizer(
@@ -36,7 +43,9 @@ class MyApp extends StatelessWidget {
            Locale('ar', 'SA'),
          ],
             debugShowCheckedModeBanner: false,
+           
             theme: ThemeData(
+
               textTheme:
                   GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
               visualDensity: VisualDensity.adaptivePlatformDensity,

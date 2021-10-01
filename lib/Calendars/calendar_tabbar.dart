@@ -1,5 +1,5 @@
 import 'package:avrod/colors/colors.dart';
-import 'package:avrod/screens/gregorian_calendar.dart';
+import 'package:avrod/Calendars/gregorian_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 

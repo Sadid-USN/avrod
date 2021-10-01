@@ -40,7 +40,10 @@ class _ChapterScreenState extends State<ChapterScreen> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: gradientStartColor,
-        title: const Text('Рӯйхати фаслҳо'),
+        title: const Text(
+          'Рӯйхати фаслҳо',
+          style: TextStyle(fontSize: 22),
+        ),
         centerTitle: true,
         flexibleSpace: Container(
           decoration: const BoxDecoration(

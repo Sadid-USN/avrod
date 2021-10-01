@@ -8,8 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 class TextScreen extends StatefulWidget {
   final List<Texts>? texts;
   final Chapter? chapter;
+  final Book? book;
+  final List<Chapter>? chapters;
 
-  const TextScreen({Key? key, this.texts, this.chapter}) : super(key: key);
+
+  const TextScreen({Key? key, this.texts, this.chapter, this.chapters, this.book}) : super(key: key);
 
   @override
   _TextScreenState createState() => _TextScreenState();
@@ -163,7 +166,7 @@ class _TextScreenState extends State<TextScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          title: const Text('Талаффузи дуо'),
+          title: const Text('Талаффузи дуо',  style: TextStyle(fontSize: 22)),
           centerTitle: true,
           flexibleSpace: Container(
             decoration: const BoxDecoration(
@@ -176,6 +179,7 @@ class _TextScreenState extends State<TextScreen> {
             ),
           ),
           bottom: TabBar(
+            indicatorColor: Colors.blueAccent,
             isScrollable: true,
             tabs: widget.texts!
                 .map(
@@ -185,6 +189,7 @@ class _TextScreenState extends State<TextScreen> {
           ),
         ),
         body: TabBarView(
+
           children: widget.texts!
               .map(
                 (e) => Container(

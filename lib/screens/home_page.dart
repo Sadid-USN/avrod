@@ -4,8 +4,10 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
+import 'package:avrod/models/drawer_model.dart';
+import 'package:avrod/screens/books_online_screen.dart';
 
-import 'package:avrod/screens/calendar_tabbar.dart';
+import 'package:avrod/Calendars/calendar_tabbar.dart';
 import 'package:avrod/screens/search_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -45,9 +47,9 @@ class _HomePageState extends State<HomePage> {
   final navItems = [
     const Icon(Icons.search, color: Colors.blueGrey, size: 30),
     const Icon(
-      Icons.settings,
+      FontAwesomeIcons.book,
       color: Colors.blueGrey,
-      size: 30,
+      size: 26,
     ),
     const Icon(Icons.favorite, color: Colors.red, size: 30),
     const Icon(Icons.date_range, color: Colors.blueGrey, size: 30),
@@ -67,6 +69,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, top: 50),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  DrawerModel()
+                  
+                  ]),
+          ),
+        ),
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          title: AnimatedTextKit(
+            totalRepeatCount: 2,
+            animatedTexts: [
+              ColorizeAnimatedText('Авроди субҳу шом',
+                  textStyle: colorizeTextStyle, colors: colorizeColors),
+            ],
+          ),
+          centerTitle: true,
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+        ),
         backgroundColor: gradientEndColor,
         body: Container(
           height: double.maxFinite,
@@ -86,23 +112,6 @@ class _HomePageState extends State<HomePage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        // ignore: avoid_unnecessary_containers
-                        SizedBox(
-                          child: AnimatedTextKit(
-                            totalRepeatCount: 2,
-                            animatedTexts: [
-                              ColorizeAnimatedText('Авроди субҳу шом',
-                                  textStyle: colorizeTextStyle,
-                                  colors: colorizeColors),
-                            ],
-                          ),
-                        ),
-
-                        // ignore: avoid_unnecessary_containers
-
                         Container(
                           padding: const EdgeInsets.only(left: 32, top: 60),
                           height: 70.h,
@@ -259,6 +268,10 @@ class _HomePageState extends State<HomePage> {
               if (index == 0) {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return const SearcScreen();
+                }));
+              } else if (index == 1) {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const BooksFromNet();
                 }));
               } else if (index == 2) {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
