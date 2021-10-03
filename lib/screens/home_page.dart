@@ -62,10 +62,11 @@ class _HomePageState extends State<HomePage> {
     Colors.blue,
     Colors.indigo,
     Colors.blueGrey,
+    Colors.deepOrange,
   ];
 
   final colorizeTextStyle =
-      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w900);
+      TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w900);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

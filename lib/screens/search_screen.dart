@@ -38,6 +38,7 @@ class _SearcScreenState extends State<SearcScreen> {
         ),
         // ignore: avoid_unnecessary_containers
         body: Container(
+          color: Colors.white,
           child: FutureBuilder<List<Book>>(
             future: BookMap.getBookLocally(context),
             builder: (contex, snapshot) {
@@ -79,27 +80,27 @@ Widget buildBook(Book book) {
                 children: [
                   // ignore: sized_box_for_whitespace
                   Container(
-                    height: 14.h,
-                    child: Card(
-                        child: Center(
-                      child: ListTile(
-                        title: Center(
-                          child: Text(
-                            chapter.name!,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.blueGrey),
+                      
+                      height: 14.h,
+                      child: Center(
+                        child: ListTile(
+                          title: Center(
+                            child: Text(
+                              chapter.name!,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          leading: Padding(
+                            padding: const EdgeInsets.only(right: 15),
+                            child: Text(chapter.id.toString(),
+                                style: const TextStyle(color: Colors.white)),
                           ),
                         ),
-                        leading: Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: Text(chapter.id.toString()),
-                        ),
-                      ),
-                    )),
-                  ),
+                      )),
                 ],
               )),
         );

@@ -34,18 +34,16 @@ class _MyAppState extends State<MyApp> {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-           localizationsDelegates: const [
-           GlobalMaterialLocalizations.delegate,
-          // GlobalWidgetsLocalizations.delegate,
-         ],
-           supportedLocales: const [
-           Locale('ru', 'RU'),
-           Locale('ar', 'SA'),
-         ],
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              // GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('ru', 'RU'),
+              Locale('ar', 'SA'),
+            ],
             debugShowCheckedModeBanner: false,
-           
             theme: ThemeData(
-
               textTheme:
                   GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
               visualDensity: VisualDensity.adaptivePlatformDensity,
