@@ -1,4 +1,5 @@
 import 'package:avrod/colors/colors.dart';
+import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/screens/text_screen.dart';
@@ -22,13 +23,9 @@ class _SearcScreenState extends State<SearcScreen> {
     return Scaffold(
         backgroundColor: gradientStartColor,
         appBar: AppBar(
+          elevation: 0.0,
           flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [gradientStartColor, gradientEndColor],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    stops: [0.3, 0.7])),
+            decoration: favoriteGradient,
           ),
           title: const Text(
             'Саҳифаи ҷустуҷӯ',
@@ -38,7 +35,7 @@ class _SearcScreenState extends State<SearcScreen> {
         ),
         // ignore: avoid_unnecessary_containers
         body: Container(
-          color: Colors.white,
+          decoration: favoriteGradient,
           child: FutureBuilder<List<Book>>(
             future: BookMap.getBookLocally(context),
             builder: (contex, snapshot) {
@@ -69,40 +66,45 @@ Widget buildBook(Book book) {
 
         // ignore: sized_box_for_whitespace
         return Padding(
-          padding: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(5),
           child: InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TextScreen(texts: chapter.texts);
-                }));
-              },
-              child: Column(
-                children: [
-                  // ignore: sized_box_for_whitespace
-                  Container(
-                      
-                      height: 14.h,
-                      child: Center(
-                        child: ListTile(
-                          title: Center(
-                            child: Text(
-                              chapter.name!,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
-                            ),
-                          ),
-                          leading: Padding(
-                            padding: const EdgeInsets.only(right: 15),
-                            child: Text(chapter.id.toString(),
-                                style: const TextStyle(color: Colors.white)),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return TextScreen(texts: chapter.texts);
+              }));
+            },
+            child:
+
+                // ignore: sized_box_for_whitespace
+                Container(
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        gradient: LinearGradient(
+                            colors: [Colors.grey, Colors.blueGrey],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                           )),
+                    height: 14.h,
+                    child: Center(
+                      child: ListTile(
+                        title: Center(
+                          child: Text(
+                            chapter.name!,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
                           ),
                         ),
-                      )),
-                ],
-              )),
+                        // leading: Padding(
+                        //   padding: const EdgeInsets.only(right: 15),
+                        //   child: Text(chapter.id.toString(),
+                        //       style: const TextStyle(color: Colors.white)),
+                        // ),
+                      ),
+                    )),
+          ),
         );
       });
 }

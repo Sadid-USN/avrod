@@ -17,15 +17,38 @@ class _HijriPickerScreenState extends State<HijriPickerScreen> {
     return Scaffold(
         backgroundColor: Colors.white70,
         appBar: AppBar(
-          elevation: 1,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+            begin:  Alignment.topRight,
+            end: Alignment.topLeft,
+              colors: [
+                Colors.blue,
+                Colors.red,
+              ],
+            )),
+          ),
+          elevation: 0.0,
           backgroundColor: gradientStartColor,
           title: const Text('Тақвими ҳиҷрӣ', style: TextStyle(fontSize: 22)),
           centerTitle: true,
         ),
         // ignore: avoid_unnecessary_containers, sized_box_for_whitespace
         body: Container(
+          height: double.infinity,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            begin:  Alignment.topRight,
+            end: Alignment.topLeft,
+            colors: [
+              Colors.blue,
+              Colors.red,
+            ],
+          )),
           width: double.infinity,
           child: HijriMonthPicker(
+
+
             lastDate: HijriCalendar()
               ..hYear = 1445
               ..hMonth = 9

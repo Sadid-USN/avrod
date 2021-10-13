@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:avrod/colors/colors.dart';
+import 'package:avrod/colors/gradient_class.dart';
 import 'package:hive/hive.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
@@ -39,29 +40,19 @@ class _ChapterScreenState extends State<ChapterScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: gradientStartColor,
+        
         title: const Text(
           'Рӯйхати фаслҳо',
           style: TextStyle(fontSize: 22),
         ),
         centerTitle: true,
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [gradientStartColor, gradientEndColor],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0.3, 0.7])),
+          decoration: favoriteGradient),
         ),
-      ),
+     
       // ignore: avoid_unnecessary_containers
       body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [gradientStartColor, gradientEndColor],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.3, 0.7])),
+        decoration: favoriteGradient,
         child: FutureBuilder<List<Book>>(
           future: BookMap.getBookLocally(context),
           builder: (contex, snapshot) {

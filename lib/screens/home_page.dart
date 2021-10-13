@@ -2,6 +2,7 @@
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avrod/colors/colors.dart';
+import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/models/drawer_model.dart';
@@ -67,18 +68,17 @@ class _HomePageState extends State<HomePage> {
 
   final colorizeTextStyle =
       TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w900);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
+          backgroundColor: Colors.black54,
           child: Padding(
             padding: const EdgeInsets.only(left: 15, top: 50),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  DrawerModel()
-                  
-                  ]),
+                children: const [DrawerModel()]),
           ),
         ),
         extendBodyBehindAppBar: true,
@@ -97,12 +97,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: gradientEndColor,
         body: Container(
           height: double.maxFinite,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [gradientStartColor, gradientEndColor],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.3, 0.7])),
+          decoration: mygGradient,
           child: FutureBuilder<List<Book>>(
             future: BookMap.getBookLocally(context),
             builder: (contex, snapshot) {
@@ -260,7 +255,7 @@ class _HomePageState extends State<HomePage> {
           buttonBackgroundColor: Colors.white,
           height: 60,
           index: selectedIndex,
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color(0xff00B8EA),
           items: navItems,
           onTap: (index) {
             //Handle button tap

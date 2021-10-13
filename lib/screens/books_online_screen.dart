@@ -1,4 +1,5 @@
 import 'package:avrod/colors/colors.dart';
+import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter/material.dart';
 
 class BooksFromNet extends StatefulWidget {
@@ -13,10 +14,15 @@ class _BooksFromNetState extends State<BooksFromNet> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: gradientStartColor,
+        elevation: 0.0,
+        flexibleSpace: Container(
+          decoration: favoriteGradient,
+        ),
+        
         title: const Text('Китобхона', style: TextStyle(fontSize: 22)),
         centerTitle: true,
       ),
+body: Container(decoration: favoriteGradient,),
     );
   }
 }

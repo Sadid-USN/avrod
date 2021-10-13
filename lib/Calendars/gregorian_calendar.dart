@@ -1,4 +1,5 @@
 import 'package:avrod/colors/colors.dart';
+import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -18,39 +19,46 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
     return Scaffold(
       backgroundColor: Colors.yellow[200],
       appBar: AppBar(
-        elevation: 1,
-       backgroundColor: gradientStartColor,
+        flexibleSpace: Container(
+          decoration: favoriteGradient,
+        ),
+        elevation: 0.0,
+        
         title: const Text('Тақвими мелодӣ', style: TextStyle(fontSize: 22)),
         centerTitle: true,
       ),
-      body: TableCalendar(
-        calendarStyle: const CalendarStyle(
-            todayDecoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.blueAccent),
-            isTodayHighlighted: true,
-            selectedDecoration: BoxDecoration(
-                shape: BoxShape.circle, color: Colors.purpleAccent),
-            selectedTextStyle: TextStyle(color: Colors.white)),
-        daysOfWeekVisible: true,
-        onDaySelected: (DateTime selecteDay, DateTime focuseDay) {
-          setState(() {
-            selectedDay = selecteDay;
-            focusedDay = focuseDay;
-          });
-        },
-        selectedDayPredicate: (DateTime date) {
-          return isSameDay(selectedDay, date);
-        },
-        startingDayOfWeek: StartingDayOfWeek.monday,
-        calendarFormat: format,
-        focusedDay: selectedDay,
-        firstDay: DateTime(1988),
-        lastDay: DateTime(2050),
-        onFormatChanged: (CalendarFormat _format) {
-          setState(() {
-            format = _format;
-          });
-        },
+      body: Container(
+         decoration: favoriteGradient,
+        child: TableCalendar(
+          calendarStyle: const CalendarStyle(
+            
+              todayDecoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.blueAccent),
+              isTodayHighlighted: true,
+              selectedDecoration: BoxDecoration(
+                  shape: BoxShape.circle, color: Colors.purpleAccent),
+              selectedTextStyle: TextStyle(color: Colors.white)),
+          daysOfWeekVisible: true,
+          onDaySelected: (DateTime selecteDay, DateTime focuseDay) {
+            setState(() {
+              selectedDay = selecteDay;
+              focusedDay = focuseDay;
+            });
+          },
+          selectedDayPredicate: (DateTime date) {
+            return isSameDay(selectedDay, date);
+          },
+          startingDayOfWeek: StartingDayOfWeek.monday,
+          calendarFormat: format,
+          focusedDay: selectedDay,
+          firstDay: DateTime(1988),
+          lastDay: DateTime(2050),
+          onFormatChanged: (CalendarFormat _format) {
+            setState(() {
+              format = _format;
+            });
+          },
+        ),
       ),
     );
   }
