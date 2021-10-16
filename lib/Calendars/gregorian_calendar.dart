@@ -20,7 +20,7 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
       backgroundColor: Colors.yellow[200],
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: favoriteGradient,
+          decoration: favoriteGradient ,
         ),
         elevation: 0.0,
         
@@ -28,7 +28,7 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
         centerTitle: true,
       ),
       body: Container(
-         decoration: favoriteGradient,
+         decoration: mygGradient,
         child: TableCalendar(
           calendarStyle: const CalendarStyle(
             

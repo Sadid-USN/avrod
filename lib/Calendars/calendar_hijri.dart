@@ -1,4 +1,5 @@
 import 'package:avrod/colors/colors.dart';
+import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:hijri_picker/hijri_picker.dart';
@@ -18,15 +19,7 @@ class _HijriPickerScreenState extends State<HijriPickerScreen> {
         backgroundColor: Colors.white70,
         appBar: AppBar(
           flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-            begin:  Alignment.topRight,
-            end: Alignment.topLeft,
-              colors: [
-                Colors.blue,
-                Colors.red,
-              ],
-            )),
+            decoration: favoriteGradient,
           ),
           elevation: 0.0,
           backgroundColor: gradientStartColor,
@@ -36,15 +29,7 @@ class _HijriPickerScreenState extends State<HijriPickerScreen> {
         // ignore: avoid_unnecessary_containers, sized_box_for_whitespace
         body: Container(
           height: double.infinity,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            begin:  Alignment.topRight,
-            end: Alignment.topLeft,
-            colors: [
-              Colors.blue,
-              Colors.red,
-            ],
-          )),
+          decoration: favoriteGradient,
           width: double.infinity,
           child: HijriMonthPicker(
 

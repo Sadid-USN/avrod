@@ -48,7 +48,9 @@ class _MyAppState extends State<MyApp> {
                   GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-            home: const HomePage());
+            home: const HomePage()
+            
+            );
       },
     );
   }

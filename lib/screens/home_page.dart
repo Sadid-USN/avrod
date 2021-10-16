@@ -189,19 +189,19 @@ class _HomePageState extends State<HomePage> {
                                                             style: TextStyle(
                                                                 color:
                                                                     primaryTextColor,
-                                                                fontSize: 13.sp,
+                                                                fontSize: 14.sp,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500),
                                                           ),
-                                                          const SizedBox(
-                                                            width: 4,
+                                                           SizedBox(
+                                                            width: 1.w,
                                                           ),
                                                           // ignore: sized_box_for_whitespace
-                                                          const Icon(
+                                                           Icon(
                                                             FontAwesomeIcons
                                                                 .arrowRight,
-                                                            size: 16,
+                                                            size: 14.sp,
                                                             color:
                                                                 Colors.blueGrey,
                                                           ),
@@ -240,8 +240,8 @@ class _HomePageState extends State<HomePage> {
                   duration: const Duration(seconds: 2),
                   child: FadingText(
                     'Боргузорӣ...',
-                    style: const TextStyle(
-                        fontSize: 21.0,
+                    style:  TextStyle(
+                        fontSize: 21.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.w600),
                   ),
@@ -253,7 +253,7 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: CurvedNavigationBar(
           color: Colors.white,
           buttonBackgroundColor: Colors.white,
-          height: 60,
+          height: 60.0,
           index: selectedIndex,
           backgroundColor: const Color(0xff00B8EA),
           items: navItems,

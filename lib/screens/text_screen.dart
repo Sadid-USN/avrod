@@ -1,34 +1,36 @@
 import 'package:animate_icons/animate_icons.dart';
-import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
+import 'package:sizer/sizer.dart';
 
 class TextScreen extends StatefulWidget {
   final List<Texts>? texts;
   final Chapter? chapter;
-  final Book? book;
-  final List<Chapter>? chapters;
 
-  const TextScreen(
-      {Key? key, this.texts, this.chapter, this.chapters, this.book})
-      : super(key: key);
+  const TextScreen({
+    Key? key,
+    this.texts,
+    this.chapter,
+  }) : super(key: key);
 
   @override
   _TextScreenState createState() => _TextScreenState();
 }
 
 class _TextScreenState extends State<TextScreen> {
+  int? index;
+  late List<Book> book;
+  late Chapter chapter;
   AnimateIconController _controller = AnimateIconController();
 
   // @override
   // void dispose() {
-  //     _controller.dispose();
+  //   _controller = AnimateIconController();
   //   super.dispose();
-
   // }
 
   @override
@@ -38,7 +40,11 @@ class _TextScreenState extends State<TextScreen> {
     super.initState();
   }
 
-  Widget _contenAllTexts(String text, String arabic, String translation) {
+  Widget _contenAllTexts(
+    String text,
+    String arabic,
+    String translation,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -54,18 +60,19 @@ class _TextScreenState extends State<TextScreen> {
           children: [
             AnimateIcons(
               startIcon: Icons.copy,
-              endIcon: Icons.check,
+              endIcon: Icons.check_circle_outline,
               controller: _controller,
               size: 35.0,
               onStartIconPress: () {
-                FlutterClipboard.copy(text);
+                FlutterClipboard.copy(
+                    '${chapter.name} $text\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nБо воситаи барномаи *Avrod* насх шуд\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
 
                 return true;
               },
               onEndIconPress: () {
                 return false;
               },
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 200),
               startIconColor: Colors.white,
               endIconColor: Colors.white,
               clockwise: false,
@@ -73,7 +80,7 @@ class _TextScreenState extends State<TextScreen> {
             IconButton(
                 onPressed: () {
                   Share.share(
-                      'Таллафузи дуо\n$text\n$arabic\n$translation\nБо воситаи барномаи «Avrod» ирсол шуд.\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                      'Таллафузи дуо\n$text\n$arabic\n$translation\nБо воситаи барномаи *Avrod* ирсол шуд.\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                 },
                 icon: const Icon(Icons.share, size: 35.0, color: Colors.white))
           ],
@@ -83,9 +90,9 @@ class _TextScreenState extends State<TextScreen> {
           child: Center(
             child: SelectableText(
               text,
-              style: const TextStyle(
+              style:  TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 24.0,
+                fontSize: 18.sp,
                 color: Colors.white,
               ),
             ),
@@ -122,7 +129,7 @@ class _TextScreenState extends State<TextScreen> {
                   style: GoogleFonts.amaticSc(
                     //wordSpacing: 1.0,
                     color: Colors.white,
-                    fontSize: 25.0,
+                    fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -141,9 +148,9 @@ class _TextScreenState extends State<TextScreen> {
             child: Center(
                 child: SelectableText(
               translation,
-              style: const TextStyle(
+              style:  TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 24.0,
+                fontSize: 18.sp,
                 color: Colors.white,
               ),
             ))),
@@ -151,12 +158,14 @@ class _TextScreenState extends State<TextScreen> {
     );
   }
 
-  Widget buildBook(Texts text) {
+  Widget buildBook(
+    Texts text,
+  ) {
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
-        const SizedBox(
-          height: 20.0,
+         SizedBox(
+          height: 2.h,
         ),
         _contenAllTexts(text.text!, text.arabic!, text.translation!),
       ],
@@ -186,7 +195,6 @@ class _TextScreenState extends State<TextScreen> {
           ),
         ),
         body: TabBarView(
-
           children: widget.texts!
               .map(
                 (e) => Container(

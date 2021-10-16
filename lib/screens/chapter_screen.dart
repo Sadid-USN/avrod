@@ -8,6 +8,7 @@ import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:sizer/sizer.dart';
 
 import '../main.dart';
 
@@ -40,16 +41,14 @@ class _ChapterScreenState extends State<ChapterScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        
-        title: const Text(
+        title: Text(
           'Рӯйхати фаслҳо',
-          style: TextStyle(fontSize: 22),
+          style: TextStyle(fontSize: 20.sp),
         ),
         centerTitle: true,
-        flexibleSpace: Container(
-          decoration: favoriteGradient),
-        ),
-     
+        flexibleSpace: Container(decoration: favoriteGradient),
+      ),
+
       // ignore: avoid_unnecessary_containers
       body: Container(
         decoration: favoriteGradient,
@@ -74,8 +73,8 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   Widget buildBook(Book book) {
     return GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 1 / 1.4,
+        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: 1 / 0.2.h,
           crossAxisSpacing: 3,
           mainAxisSpacing: 3,
           crossAxisCount: 2,
@@ -130,8 +129,8 @@ class _ChapterScreenState extends State<ChapterScreen> {
                               child: Text(
                                 chapter.name,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 22.0,
+                                style: TextStyle(
+                                    fontSize: 18.sp,
                                     fontWeight: FontWeight.w600,
                                     color: titleTextColor),
                               ),
@@ -145,7 +144,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
                               onTap: (isLiked) async {
                                 return setLike(chapter.id, isLiked);
                               },
-                              size: 40,
+                              size: 30.sp,
                               circleColor: const CircleColor(
                                   start: Color(0xffFF0000),
                                   end: Color(0xffFF0000)),
