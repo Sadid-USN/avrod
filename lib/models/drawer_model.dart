@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
-
+import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerModel extends StatefulWidget {
   const DrawerModel({Key? key}) : super(key: key);
@@ -10,13 +12,19 @@ class DrawerModel extends StatefulWidget {
 }
 
 class _DrawerModelState extends State<DrawerModel> {
-  
-
-  // final bool _switch = false;
-  // final ThemeData _dark = ThemeData(brightness: Brightness.dark);
-  // final ThemeData _light = ThemeData(brightness: Brightness.light);
-
- 
+  final String _lounchUrl =
+      'https://accounts.google.com/signout/chrome/landing?continue=https://mail.google.com&oc=https://mail.google.com&hl=en';
+  final String _linkInstagramm = 'https://instagram.com/darul_asar?utm_medium=copy_link';
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url,
+          forceSafariVC: false,
+          forceWebView: false,
+          headers: <String, String>{'header_key': 'header_value'});
+    } else {
+      throw 'Пайванд кушода нашуд $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +34,13 @@ class _DrawerModelState extends State<DrawerModel> {
           children: [
             IconButton(
                 onPressed: () {
-                  Share.share('Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                  Share.share(
+                      'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                 },
-                icon: const Icon(
+                icon:  Icon(
                   Icons.share,
                   color: Colors.blueGrey,
-                  size: 25,
+                  size: 20.sp,
                 )),
             const SizedBox(
               width: 5,
@@ -48,10 +57,10 @@ class _DrawerModelState extends State<DrawerModel> {
                 onPressed: () {
                   setState(() {});
                 },
-                icon: const Icon(
+                icon:  Icon(
                   Icons.language,
                   color: Colors.blueGrey,
-                  size: 25,
+                  size: 20.sp,
                 )),
             const SizedBox(
               width: 5,
@@ -65,17 +74,39 @@ class _DrawerModelState extends State<DrawerModel> {
         Row(
           children: [
             IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.mail,
+                onPressed: () {
+                  _launchInBrowser(_lounchUrl);
+                },
+                icon:  Icon(
+                  FontAwesomeIcons.envelope,
                   color: Colors.blueGrey,
-                  size: 25,
+                  size: 18.sp,
                 )),
             const SizedBox(
               width: 5,
             ),
             const Text(
               'Бо мо тамос гиред',
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            )
+          ],
+        ),
+        Row(
+          children: [
+            IconButton(
+                onPressed: () {
+                  _launchInBrowser(_linkInstagramm);
+                },
+                icon:  Icon(
+                  FontAwesomeIcons.instagram,
+                  color: Colors.pinkAccent,
+                  size: 21.sp,
+                )),
+            const SizedBox(
+              width: 5,
+            ),
+            const Text(
+              'Instagram',
               style: TextStyle(fontSize: 16, color: Colors.white),
             )
           ],

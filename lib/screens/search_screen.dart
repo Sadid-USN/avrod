@@ -27,9 +27,9 @@ class _SearcScreenState extends State<SearcScreen> {
           flexibleSpace: Container(
             decoration: favoriteGradient,
           ),
-          title: const Text(
+          title:  Text(
             'Саҳифаи ҷустуҷӯ',
-            style: TextStyle(fontSize: 22),
+            style: TextStyle(fontSize: 18.sp),
           ),
           centerTitle: true,
         ),
@@ -77,13 +77,7 @@ Widget buildBook(Book book) {
 
                 // ignore: sized_box_for_whitespace
                 Container(
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                        gradient: LinearGradient(
-                            colors: [Colors.grey, Colors.blueGrey],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                           )),
+                    decoration: searchScreenGradient,
                     height: 14.h,
                     child: Center(
                       child: ListTile(
@@ -91,8 +85,8 @@ Widget buildBook(Book book) {
                           child: Text(
                             chapter.name!,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                fontSize: 20.0,
+                            style:  TextStyle(
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white),
                           ),

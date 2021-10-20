@@ -64,15 +64,16 @@ class _TextScreenState extends State<TextScreen> {
               controller: _controller,
               size: 35.0,
               onStartIconPress: () {
+                
                 FlutterClipboard.copy(
-                    '${chapter.name} $text\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nБо воситаи барномаи *Avrod* насх шуд\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                    ' $text\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nБо воситаи барномаи *Avrod* насх шуд\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
 
                 return true;
               },
               onEndIconPress: () {
                 return false;
               },
-              duration: const Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 250),
               startIconColor: Colors.white,
               endIconColor: Colors.white,
               clockwise: false,
@@ -90,7 +91,7 @@ class _TextScreenState extends State<TextScreen> {
           child: Center(
             child: SelectableText(
               text,
-              style:  TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 18.sp,
                 color: Colors.white,
@@ -148,7 +149,7 @@ class _TextScreenState extends State<TextScreen> {
             child: Center(
                 child: SelectableText(
               translation,
-              style:  TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 18.sp,
                 color: Colors.white,
@@ -164,7 +165,7 @@ class _TextScreenState extends State<TextScreen> {
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
-         SizedBox(
+        SizedBox(
           height: 2.h,
         ),
         _contenAllTexts(text.text!, text.arabic!, text.translation!),

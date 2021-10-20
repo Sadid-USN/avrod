@@ -1,6 +1,7 @@
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class GregorianCalendar extends StatefulWidget {
@@ -17,18 +18,18 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[200],
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: favoriteGradient ,
         ),
         elevation: 0.0,
         
-        title: const Text('Тақвими мелодӣ', style: TextStyle(fontSize: 22)),
+        title:  Text('Тақвими мелодӣ', style: TextStyle(fontSize: 18.sp)),
         centerTitle: true,
       ),
       body: Container(
-         decoration: mygGradient,
+         decoration: calendarGradient,
         child: TableCalendar(
           calendarStyle: const CalendarStyle(
             
@@ -36,7 +37,7 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
                   BoxDecoration(shape: BoxShape.circle, color: Colors.blueAccent),
               isTodayHighlighted: true,
               selectedDecoration: BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.purpleAccent),
+                  shape: BoxShape.circle, color: Colors.green),
               selectedTextStyle: TextStyle(color: Colors.white)),
           daysOfWeekVisible: true,
           onDaySelected: (DateTime selecteDay, DateTime focuseDay) {

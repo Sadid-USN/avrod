@@ -43,7 +43,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
         elevation: 0.0,
         title: Text(
           'Рӯйхати фаслҳо',
-          style: TextStyle(fontSize: 20.sp),
+          style: TextStyle(fontSize: 18.sp),
         ),
         centerTitle: true,
         flexibleSpace: Container(decoration: favoriteGradient),
@@ -92,72 +92,75 @@ class _ChapterScreenState extends State<ChapterScreen> {
             child: InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return TextScreen(texts: chapter.texts);
+                  return TextScreen(texts: chapter.texts,);
                 }));
               },
-              child: CachedNetworkImage(
-                  imageUrl: chapter.listimage,
-                  imageBuilder: (context, imageProvider) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black38,
-                                offset: Offset(0.0, 2.0),
-                                blurRadius: 6.0)
-                          ],
-                          gradient: const LinearGradient(
-                              colors: [Colors.white54, secondaryTextColor],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(16.0))),
-                      child: Stack(
-                        children: [
-                          Center(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  color: Colors.black26,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(16.0))),
+              child:  CachedNetworkImage(
+                      imageUrl: chapter.listimage,
+                      imageBuilder: (context, imageProvider) {
+                        return  Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black38,
+                                      offset: Offset(0.0, 2.0),
+                                      blurRadius: 6.0)
+                                ],
+                                gradient: const LinearGradient(
+                                    colors: [Colors.white54, secondaryTextColor],
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(16.0))),
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                        color: Colors.black26,
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(16.0))),
+                                  ),
+                                ),
+                                ListTile(
+                                  title: Center(
+                                    child: Text(
+                                      chapter.name,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.w600,
+                                          color: titleTextColor),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 15,
+                                  right: 10,
+                                  child: LikeButton(
+                                    isLiked: isChapterLiked(chapter.id),
+                                    onTap: (isLiked) async {
+                                      return setLike(chapter.id, isLiked);
+                                    },
+                                    size: 30.sp,
+                                    circleColor: const CircleColor(
+                                        start: Color(0xffFF0000),
+                                        end: Color(0xffFF0000)),
+                                    bubblesColor: const BubblesColor(
+                                      dotPrimaryColor: Color(0xffffffff),
+                                      dotSecondaryColor: Color(0xffBF40BF),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          ),
-                          ListTile(
-                            title: Center(
-                              child: Text(
-                                chapter.name,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: titleTextColor),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 15,
-                            right: 10,
-                            child: LikeButton(
-                              isLiked: isChapterLiked(chapter.id),
-                              onTap: (isLiked) async {
-                                return setLike(chapter.id, isLiked);
-                              },
-                              size: 30.sp,
-                              circleColor: const CircleColor(
-                                  start: Color(0xffFF0000),
-                                  end: Color(0xffFF0000)),
-                              bubblesColor: const BubblesColor(
-                                dotPrimaryColor: Color(0xffffffff),
-                                dotSecondaryColor: Color(0xffBF40BF),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    );
-                  }),
+                          );
+                       
+                      }),
+              
+             
             ),
           );
         });

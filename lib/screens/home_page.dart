@@ -6,7 +6,7 @@ import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/models/drawer_model.dart';
-import 'package:avrod/screens/books_online_screen.dart';
+import 'package:avrod/screens/library_screen.dart';
 
 import 'package:avrod/Calendars/calendar_tabbar.dart';
 import 'package:avrod/screens/search_screen.dart';
@@ -50,10 +50,10 @@ class _HomePageState extends State<HomePage> {
     const Icon(
       FontAwesomeIcons.book,
       color: Colors.blueGrey,
-      size: 26,
+      size: 25,
     ),
     const Icon(Icons.favorite, color: Colors.red, size: 30),
-    const Icon(Icons.date_range, color: Colors.blueGrey, size: 30),
+    const Icon(FontAwesomeIcons.calendarAlt, color: Colors.blueGrey, size: 25),
     const Icon(Icons.star, color: Colors.blueGrey, size: 30),
   ];
   int yourActiveIndex;
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: gradientEndColor,
         body: Container(
           height: double.maxFinite,
-          decoration: mygGradient,
+          decoration: mainScreenGradient,
           child: FutureBuilder<List<Book>>(
             future: BookMap.getBookLocally(context),
             builder: (contex, snapshot) {
@@ -194,11 +194,11 @@ class _HomePageState extends State<HomePage> {
                                                                     FontWeight
                                                                         .w500),
                                                           ),
-                                                           SizedBox(
+                                                          SizedBox(
                                                             width: 1.w,
                                                           ),
                                                           // ignore: sized_box_for_whitespace
-                                                           Icon(
+                                                          Icon(
                                                             FontAwesomeIcons
                                                                 .arrowRight,
                                                             size: 14.sp,
@@ -216,10 +216,11 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ],
                                     ),
-                                    Image.asset(
-                                      books[index].image,
-                                      height: 35.h,
-                                    ),
+                                  Image.asset(
+                                        books[index].image,
+                                        height: 35.h,
+                                      ),
+                                    
                                   ],
                                 ),
                               );
@@ -240,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                   duration: const Duration(seconds: 2),
                   child: FadingText(
                     'Боргузорӣ...',
-                    style:  TextStyle(
+                    style: TextStyle(
                         fontSize: 21.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.w600),
@@ -255,7 +256,7 @@ class _HomePageState extends State<HomePage> {
           buttonBackgroundColor: Colors.white,
           height: 60.0,
           index: selectedIndex,
-          backgroundColor: const Color(0xff00B8EA),
+          backgroundColor: const Color(0xff00CCCC),
           items: navItems,
           onTap: (index) {
             //Handle button tap
@@ -267,7 +268,7 @@ class _HomePageState extends State<HomePage> {
                 }));
               } else if (index == 1) {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const BooksFromNet();
+                  return const LibraryFromNet();
                 }));
               } else if (index == 2) {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {

@@ -1,5 +1,4 @@
 // @dart=2.9
-
 import 'package:avrod/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,7 +7,6 @@ import 'package:sizer/sizer.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'models/my_theme.dart';
 
 // ignore: constant_identifier_names
 const String FAVORITES_BOX = 'favorites_box';

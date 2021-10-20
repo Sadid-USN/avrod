@@ -7,6 +7,7 @@ import 'package:avrod/main.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 import 'text_screen.dart';
 
@@ -30,7 +31,7 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
             decoration: favoriteGradient,
           ),
           centerTitle: true,
-          title: const Text('Фаслҳои маҳбуб'),
+          title:  Text('Фаслҳои маҳбуб', style: TextStyle(fontSize: 18.sp),),
         ),
         // ignore: avoid_unnecessary_containers
         body: Container(
