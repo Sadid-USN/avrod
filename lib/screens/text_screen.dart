@@ -1,4 +1,5 @@
 import 'package:animate_icons/animate_icons.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:clipboard/clipboard.dart';
@@ -22,9 +23,10 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
+  String ? creepingLine;
+   
   int? index;
-  late List<Book> book;
-  late Chapter chapter;
+
   AnimateIconController _controller = AnimateIconController();
 
   // @override
@@ -64,9 +66,8 @@ class _TextScreenState extends State<TextScreen> {
               controller: _controller,
               size: 35.0,
               onStartIconPress: () {
-                
                 FlutterClipboard.copy(
-                    ' $text\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nБо воситаи барномаи *Avrod* насх шуд\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                    '*${widget.chapter?.name}*\n$text\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nБо воситаи барномаи *Avrod* насх шуд\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
 
                 return true;
               },
@@ -180,7 +181,26 @@ class _TextScreenState extends State<TextScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          title: const Text('Талаффузи дуо', style: TextStyle(fontSize: 22)),
+          title: Column(
+          
+            children: [
+              // ignore: sized_box_for_whitespace
+              Container(
+                padding: const EdgeInsets.only(top: 5),
+                height: 40.0,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Text('${widget.chapter?.name}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontWeight: FontWeight.bold))
+                  ],
+                ),
+              ),
+            ],
+          ),
+  
           centerTitle: true,
           flexibleSpace: Container(
             decoration: favoriteGradient,

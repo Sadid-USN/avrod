@@ -65,7 +65,7 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return TextScreen(
-                                  texts: likedChapters[position].texts);
+                                  texts: likedChapters[position].texts, chapter: likedChapters[position],);
                             }));
                           },
                           child: ListTile(

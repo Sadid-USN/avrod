@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                             duration: 300,
                             curve: Curves.linearToEaseOut,
                             scrollDirection: Axis.horizontal,
-                            autoplayDisableOnInteraction: true,
+                            autoplayDisableOnInteraction: false,
                             itemCount: books.length,
                             itemWidth: 66.w,
                             layout: SwiperLayout.STACK,
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
-                                                          fontSize: 20.sp,
+                                                          fontSize: 19.sp,
                                                           color:
                                                               primaryTextColor,
                                                           fontWeight:
@@ -219,6 +219,7 @@ class _HomePageState extends State<HomePage> {
                                   Image.asset(
                                         books[index].image,
                                         height: 35.h,
+                                        width: 85.w,
                                       ),
                                     
                                   ],
@@ -256,7 +257,7 @@ class _HomePageState extends State<HomePage> {
           buttonBackgroundColor: Colors.white,
           height: 60.0,
           index: selectedIndex,
-          backgroundColor: const Color(0xff00CCCC),
+          backgroundColor:  Colors.cyan,
           items: navItems,
           onTap: (index) {
             //Handle button tap

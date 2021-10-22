@@ -14,7 +14,8 @@ class DrawerModel extends StatefulWidget {
 class _DrawerModelState extends State<DrawerModel> {
   final String _lounchUrl =
       'https://accounts.google.com/signout/chrome/landing?continue=https://mail.google.com&oc=https://mail.google.com&hl=en';
-  final String _linkInstagramm = 'https://instagram.com/darul_asar?utm_medium=copy_link';
+  final String _linkInstagramm =
+      'https://instagram.com/darul_asar?utm_medium=copy_link';
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {
       await launch(url,
@@ -37,7 +38,7 @@ class _DrawerModelState extends State<DrawerModel> {
                   Share.share(
                       'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                 },
-                icon:  Icon(
+                icon: Icon(
                   Icons.share,
                   color: Colors.blueGrey,
                   size: 20.sp,
@@ -57,7 +58,7 @@ class _DrawerModelState extends State<DrawerModel> {
                 onPressed: () {
                   setState(() {});
                 },
-                icon:  Icon(
+                icon: Icon(
                   Icons.language,
                   color: Colors.blueGrey,
                   size: 20.sp,
@@ -77,7 +78,7 @@ class _DrawerModelState extends State<DrawerModel> {
                 onPressed: () {
                   _launchInBrowser(_lounchUrl);
                 },
-                icon:  Icon(
+                icon: Icon(
                   FontAwesomeIcons.envelope,
                   color: Colors.blueGrey,
                   size: 18.sp,
@@ -97,7 +98,7 @@ class _DrawerModelState extends State<DrawerModel> {
                 onPressed: () {
                   _launchInBrowser(_linkInstagramm);
                 },
-                icon:  Icon(
+                icon: Icon(
                   FontAwesomeIcons.instagram,
                   color: Colors.pinkAccent,
                   size: 21.sp,
