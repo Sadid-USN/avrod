@@ -1,5 +1,4 @@
 import 'package:animate_icons/animate_icons.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_class.dart';
 import 'package:clipboard/clipboard.dart';
@@ -115,7 +114,7 @@ class _TextScreenState extends State<TextScreen> {
                 decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.white10,
+                          color: Colors.black26,
                           offset: Offset(0.0, 2.0),
                           blurRadius: 6.0)
                     ],
@@ -127,11 +126,11 @@ class _TextScreenState extends State<TextScreen> {
                 padding: const EdgeInsets.all(30.0),
                 child: SelectableText(
                   arabic,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.right,
                   style: GoogleFonts.amaticSc(
                     //wordSpacing: 1.0,
                     color: Colors.white,
-                    fontSize: 22.sp,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

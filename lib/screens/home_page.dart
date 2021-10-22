@@ -122,9 +122,9 @@ class _HomePageState extends State<HomePage> {
                             pagination: const SwiperPagination(
                               margin: EdgeInsets.only(top: 20),
                               builder: DotSwiperPaginationBuilder(
-                                  activeColor: Colors.cyanAccent,
-                                  activeSize: 15,
-                                  space: 6),
+                                  activeColor: Colors.deepOrange,
+                                  activeSize: 14,
+                                  space: 5),
                             ),
                             itemBuilder: (context, index) {
                               return InkWell(
@@ -216,12 +216,11 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ],
                                     ),
-                                  Image.asset(
-                                        books[index].image,
-                                        height: 35.h,
-                                        width: 85.w,
-                                      ),
-                                    
+                                    Image.asset(
+                                      books[index].image,
+                                      height: 35.h,
+                                      width: 85.w,
+                                    ),
                                   ],
                                 ),
                               );
@@ -257,7 +256,7 @@ class _HomePageState extends State<HomePage> {
           buttonBackgroundColor: Colors.white,
           height: 60.0,
           index: selectedIndex,
-          backgroundColor:  Colors.cyan,
+          backgroundColor: Colors.cyan,
           items: navItems,
           onTap: (index) {
             //Handle button tap
