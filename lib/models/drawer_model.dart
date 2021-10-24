@@ -12,7 +12,7 @@ class DrawerModel extends StatefulWidget {
 }
 
 class _DrawerModelState extends State<DrawerModel> {
-  final String _lounchUrl =
+  final String _lounchUrlGmail =
       'https://accounts.google.com/signout/chrome/landing?continue=https://mail.google.com&oc=https://mail.google.com&hl=en';
   final String _linkInstagramm =
       'https://instagram.com/darul_asar?utm_medium=copy_link';
@@ -64,7 +64,7 @@ class _DrawerModelState extends State<DrawerModel> {
                     },
                     icon: Icon(
                       Icons.language,
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                       size: 20.sp,
                     )),
                 const SizedBox(
@@ -80,7 +80,7 @@ class _DrawerModelState extends State<DrawerModel> {
               children: [
                 IconButton(
                     onPressed: () {
-                      _launchInBrowser(_lounchUrl);
+                      _launchInBrowser(_lounchUrlGmail);
                     },
                     icon: Icon(
                       FontAwesomeIcons.envelope,
