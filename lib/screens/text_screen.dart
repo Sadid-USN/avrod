@@ -81,7 +81,7 @@ class _TextScreenState extends State<TextScreen> {
             IconButton(
                 onPressed: () {
                   Share.share(
-                      'Таллафузи дуо\n$text\n$arabic\n$translation\nБо воситаи барномаи *Avrod* ирсол шуд.\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                      '*${widget.chapter?.name}*\n$text\n$arabic\n$translation\nБо воситаи барномаи *Avrod* ирсол шуд.\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                 },
                 icon: const Icon(Icons.share, size: 35.0, color: Colors.white))
           ],
