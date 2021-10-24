@@ -9,7 +9,11 @@ import 'package:sizer/sizer.dart';
 
 class SearcScreen extends StatefulWidget {
   final int? bookIndex;
-  const SearcScreen({Key? key, this.bookIndex}) : super(key: key);
+
+  const SearcScreen({
+    Key? key,
+    this.bookIndex,
+  }) : super(key: key);
 
   @override
   State<SearcScreen> createState() => _SearcScreenState();
@@ -66,11 +70,14 @@ Widget buildBook(Book book) {
 
         // ignore: sized_box_for_whitespace
         return Padding(
-          padding: const EdgeInsets.all(0),
+          padding: const EdgeInsets.all(5),
           child: InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return TextScreen(texts: chapter.texts);
+                return TextScreen(
+                  texts: chapter.texts,
+                  chapter: chapter,
+                );
               }));
             },
             child:

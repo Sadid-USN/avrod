@@ -33,7 +33,7 @@ class _MyFabCircularMenuState extends State<MyFabCircularMenu> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 75),
+      padding: const EdgeInsets.only(top: 86),
       child: FabCircularMenu(
         animationDuration: const Duration(milliseconds: 800),
         fabOpenIcon: const Icon(
