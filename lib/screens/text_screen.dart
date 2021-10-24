@@ -123,12 +123,13 @@ class _TextScreenState extends State<TextScreen> {
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight),
                     borderRadius: BorderRadius.all(Radius.circular(6.0))),
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.all(35),
                 child: SelectableText(
                   arabic,
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.justify,
                   style: GoogleFonts.amaticSc(
-                    //wordSpacing: 1.0,
+                    textBaseline: TextBaseline.ideographic,
+                    wordSpacing: 0.5,
                     color: Colors.white,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.bold,

@@ -27,7 +27,7 @@ class _SearcScreenState extends State<SearcScreen> {
           flexibleSpace: Container(
             decoration: favoriteGradient,
           ),
-          title:  Text(
+          title: Text(
             'Саҳифаи ҷустуҷӯ',
             style: TextStyle(fontSize: 18.sp),
           ),
@@ -58,7 +58,7 @@ class _SearcScreenState extends State<SearcScreen> {
 Widget buildBook(Book book) {
   return ListView.builder(
       scrollDirection: Axis.vertical,
-      padding: const EdgeInsets.only(top: 5),
+      padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
       physics: const BouncingScrollPhysics(),
       itemCount: book.chapters!.length,
       itemBuilder: (context, index) {
@@ -66,7 +66,7 @@ Widget buildBook(Book book) {
 
         // ignore: sized_box_for_whitespace
         return Padding(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.all(0),
           child: InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -85,7 +85,7 @@ Widget buildBook(Book book) {
                           child: Text(
                             chapter.name!,
                             textAlign: TextAlign.center,
-                            style:  TextStyle(
+                            style: TextStyle(
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white),

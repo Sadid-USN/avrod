@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  final controller = PageController(viewportFraction: 12.0, keepPage: true);
+  // final controller = PageController(viewportFraction: 12.0, keepPage: true);
   int selectedIndex = 2;
   final navItems = [
     const Icon(Icons.search, color: Colors.blueGrey, size: 30),
@@ -67,20 +67,12 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final colorizeTextStyle =
-      TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w900);
+      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w900);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          backgroundColor: Colors.black54,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, top: 50),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [DrawerModel()]),
-          ),
-        ),
+        drawer: const DrawerModel(),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: AnimatedTextKit(
@@ -91,7 +83,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           centerTitle: true,
-          elevation: 0.0,
+          elevation: 0.1,
           backgroundColor: Colors.transparent,
         ),
         backgroundColor: gradientEndColor,

@@ -29,90 +29,96 @@ class _DrawerModelState extends State<DrawerModel> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
+    return Drawer(
+       backgroundColor: Colors.black45,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 5, top: 50),
+        child: Column(
           children: [
-            IconButton(
-                onPressed: () {
-                  Share.share(
-                      'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-                },
-                icon: Icon(
-                  Icons.share,
-                  color: Colors.blueGrey,
-                  size: 20.sp,
-                )),
-            const SizedBox(
-              width: 5,
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Share.share(
+                          'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                    },
+                    icon: Icon(
+                      Icons.share,
+                      color: Colors.blueGrey,
+                      size: 20.sp,
+                    )),
+                 SizedBox(
+                  width: 1.w,
+                ),
+                const Text(
+                  'Ба дигарон ирсол кунед',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ],
             ),
-            const Text(
-              'Ба дигарон ирсол кунед',
-              style: TextStyle(fontSize: 16, color: Colors.white),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    icon: Icon(
+                      Icons.language,
+                      color: Colors.blueGrey,
+                      size: 20.sp,
+                    )),
+                const SizedBox(
+                  width: 5,
+                ),
+                const Text(
+                  'Забонҳо',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      _launchInBrowser(_lounchUrl);
+                    },
+                    icon: Icon(
+                      FontAwesomeIcons.envelope,
+                      color: Colors.blueGrey,
+                      size: 18.sp,
+                    )),
+                const SizedBox(
+                  width: 5,
+                ),
+                const Text(
+                  'Бо мо тамос гиред',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      _launchInBrowser(_linkInstagramm);
+                    },
+                    icon: Icon(
+                      FontAwesomeIcons.instagram,
+                      color: Colors.pinkAccent,
+                      size: 21.sp,
+                    )),
+                const SizedBox(
+                  width: 5,
+                ),
+                const Text(
+                  'Instagram',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                )
+              ],
             ),
           ],
         ),
-        Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                icon: Icon(
-                  Icons.language,
-                  color: Colors.blueGrey,
-                  size: 20.sp,
-                )),
-            const SizedBox(
-              width: 5,
-            ),
-            const Text(
-              'Забонҳо',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  _launchInBrowser(_lounchUrl);
-                },
-                icon: Icon(
-                  FontAwesomeIcons.envelope,
-                  color: Colors.blueGrey,
-                  size: 18.sp,
-                )),
-            const SizedBox(
-              width: 5,
-            ),
-            const Text(
-              'Бо мо тамос гиред',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  _launchInBrowser(_linkInstagramm);
-                },
-                icon: Icon(
-                  FontAwesomeIcons.instagram,
-                  color: Colors.pinkAccent,
-                  size: 21.sp,
-                )),
-            const SizedBox(
-              width: 5,
-            ),
-            const Text(
-              'Instagram',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            )
-          ],
-        ),
-      ],
+      ),
     );
   }
 }
