@@ -1,7 +1,9 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_class.dart';
+import 'package:avrod/style/my_text_style.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
@@ -22,8 +24,8 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
-  String ? creepingLine;
-   
+  String? creepingLine;
+
   int? index;
 
   AnimateIconController _controller = AnimateIconController();
@@ -49,13 +51,6 @@ class _TextScreenState extends State<TextScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Text(
-            'Тоҷики:',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -63,7 +58,7 @@ class _TextScreenState extends State<TextScreen> {
               startIcon: Icons.copy,
               endIcon: Icons.check_circle_outline,
               controller: _controller,
-              size: 35.0,
+              size: 33.0,
               onStartIconPress: () {
                 FlutterClipboard.copy(
                     '*${widget.chapter?.name}*\n$text\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nБо воситаи барномаи *Avrod* насх шуд\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
@@ -83,13 +78,18 @@ class _TextScreenState extends State<TextScreen> {
                   Share.share(
                       '*${widget.chapter?.name}*\n$text\n$arabic\n$translation\nБо воситаи барномаи *Avrod* ирсол шуд.\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                 },
-                icon: const Icon(Icons.share, size: 35.0, color: Colors.white))
+                icon: const Icon(Icons.share, size: 33.0, color: Colors.white))
           ],
         ),
         Container(
           padding: const EdgeInsets.all(8),
-          child: Center(
-            child: SelectableText(
+          child: ExpandablePanel(
+            header: Text(
+              "Тоҷики:",
+              textAlign: TextAlign.start,
+              style: expandableTextStyle,
+            ),
+            collapsed: SelectableText(
               text,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
@@ -97,65 +97,98 @@ class _TextScreenState extends State<TextScreen> {
                 color: Colors.white,
               ),
             ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Text(
-            'Араби:',
-            style: TextStyle(color: Colors.white),
+            expanded: SelectableText(
+              text,
+              maxLines: 1,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.sp,
+                  color: Colors.white,
+                  overflow: TextOverflow.ellipsis),
+            ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(5.0),
           child: Column(
             children: [
               Container(
                 decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(0.0, 2.0),
-                          blurRadius: 6.0)
-                    ],
-                    gradient: LinearGradient(
-                        colors: [Colors.white24, Colors.white38],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight),
-                    borderRadius: BorderRadius.all(Radius.circular(6.0))),
-                padding: const EdgeInsets.all(35),
-                child: SelectableText(
-                  arabic,
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.amaticSc(
-                    textBaseline: TextBaseline.ideographic,
-                    wordSpacing: 0.5,
-                    color: Colors.white,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
+                    color: Colors.black26,
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //       color: Colors.black26,
+                    //       offset: Offset(0.0, 2.0),
+                    //       blurRadius: 6.0)
+                    // ],
+                    // gradient: LinearGradient(
+                    //     colors: [Colors.white24, Colors.white38],
+                    //     begin: Alignment.centerLeft,
+                    //     end: Alignment.centerRight),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                padding: const EdgeInsets.all(30),
+                child: ExpandablePanel(
+                  header: Text(
+                    "Араби:",
+                    textAlign: TextAlign.start,
+                    style: expandableTextStyle,
+                  ),
+                  collapsed: SelectableText(
+                    arabic,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.amiri(
+                      textBaseline: TextBaseline.ideographic,
+                      wordSpacing: 0.5,
+                      color: Colors.white,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  expanded: SelectableText(
+                    arabic,
+                    maxLines: 1,
+                    textAlign: TextAlign.justify,
+                    style: GoogleFonts.amaticSc(
+                      textBaseline: TextBaseline.ideographic,
+                      wordSpacing: 0.5,
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ],
           ),
         ),
-        const Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Text(
-              'Тарҷума:',
-              style: TextStyle(color: Colors.white),
-            )),
         Container(
             padding: const EdgeInsets.all(8),
             child: Center(
-                child: SelectableText(
-              translation,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 18.sp,
-                color: Colors.white,
+              child: ExpandablePanel(
+                header: Text(
+                  "Тарҷума:",
+                  textAlign: TextAlign.start,
+                  style: expandableTextStyle,
+                ),
+                collapsed: SelectableText(
+                  translation,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18.sp,
+                    color: Colors.white,
+                  ),
+                ),
+                expanded: SelectableText(
+                  translation,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.sp,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            ))),
+            )),
       ],
     );
   }
@@ -182,7 +215,6 @@ class _TextScreenState extends State<TextScreen> {
         appBar: AppBar(
           elevation: 0.0,
           title: Column(
-          
             children: [
               // ignore: sized_box_for_whitespace
               Container(
@@ -200,7 +232,6 @@ class _TextScreenState extends State<TextScreen> {
               ),
             ],
           ),
-  
           centerTitle: true,
           flexibleSpace: Container(
             decoration: favoriteGradient,

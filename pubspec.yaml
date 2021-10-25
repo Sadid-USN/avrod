@@ -50,7 +50,7 @@ dependencies:
   google_fonts_arabic: ^1.1.7
   sizer: ^2.0.13
   animate_icons: ^2.0.0
-  smooth_page_indicator: ^1.0.0+2
+  expandable: ^5.0.1
   carousel_slider: ^4.0.0
   curved_navigation_bar: ^1.0.1
   intl: ^0.17.0
