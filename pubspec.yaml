@@ -32,6 +32,8 @@ dependencies:
   flutter_localizations: # Add this line
     sdk: flutter         # Add this line
   google_fonts: ^2.0.0
+  flutter_staggered_animations: ^1.0.0
+  image_picker: ^0.8.4+3
   fab_circular_menu: ^1.0.2
   provider: ^6.0.1
   font_awesome_flutter: ^9.2.0
@@ -41,7 +43,6 @@ dependencies:
   liquid_swipe: ^2.1.1
   google_nav_bar: ^5.0.5
   progress_indicators: ^1.0.0
-  http: ^0.13.3
   like_button: ^2.0.3
   cached_network_image: ^3.1.0
   hive: ^2.0.4
@@ -58,8 +59,14 @@ dependencies:
   hijri_picker: ^3.0.0
   table_calendar: ^3.0.2
   url_launcher: ^6.0.12
+  path: ^1.8.0
+  # firebase
   share: ^2.0.4
   simple_animations: ^4.0.1
+  http: ^0.13.4
+  shared_preferences: ^2.0.8
+  firebase_core: ^1.7.0
+  firebase_storage: ^10.0.5
   
 
 

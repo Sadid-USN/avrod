@@ -26,6 +26,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Chapter chapter;
   final String _lounchGooglePlay =
       'https://play.google.com/store/apps/details?id=com.darulasar.avrod';
   Future<void> _launchInBrowser(String url) async {
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () {
                                   Navigator.push(context, PageRouteBuilder(
                                       pageBuilder: (context, a, b) {
-                                    return ChapterScreen(index);
+                                    return ChapterScreen(index, chapter, books);
                                   }));
                                 },
                                 child: Stack(

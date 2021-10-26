@@ -114,29 +114,31 @@ class _TextScreenState extends State<TextScreen> {
             children: [
               Container(
                 decoration: const BoxDecoration(
-                    color: Colors.black26,
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //       color: Colors.black26,
-                    //       offset: Offset(0.0, 2.0),
-                    //       blurRadius: 6.0)
-                    // ],
-                    // gradient: LinearGradient(
-                    //     colors: [Colors.white24, Colors.white38],
-                    //     begin: Alignment.centerLeft,
-                    //     end: Alignment.centerRight),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0.0, 2.0),
+                          blurRadius: 6.0)
+                    ],
+                    gradient: LinearGradient(
+                        colors: [Colors.white24, Colors.white38],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight),
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                padding: const EdgeInsets.all(30),
+                padding: const EdgeInsets.all(35),
                 child: ExpandablePanel(
-                  header: Text(
-                    "Араби:",
-                    textAlign: TextAlign.start,
-                    style: expandableTextStyle,
+                  header: Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Text(
+                      "Араби:",
+                      textAlign: TextAlign.start,
+                      style: expandableTextStyle,
+                    ),
                   ),
                   collapsed: SelectableText(
                     arabic,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.amiri(
+                    textAlign: TextAlign.justify,
+                    style: GoogleFonts.amaticSc(
                       textBaseline: TextBaseline.ideographic,
                       wordSpacing: 0.5,
                       color: Colors.white,

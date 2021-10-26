@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "150846456276",
+    "project_id": "avrod-a2224",
+    "storage_bucket": "avrod-a2224.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150846456276:android:7f2a905a82b57d6dcd9641",
+        "android_client_info": {
+          "package_name": "com.darulasar.avrod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150846456276-hs56pqgs6nmv3qg84k0m41gtapvfk8ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darulasar.avrod",
+            "certificate_hash": "3738c3250ee5323d8d322d792149a3b2a69949db"
+          }
+        },
+        {
+          "client_id": "150846456276-12fa379vkdn581l5e0u9h1ppu3k2adin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSMaHBd2G424PBTKIDHl4_ELpb7Oy47Vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150846456276-12fa379vkdn581l5e0u9h1ppu3k2adin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
