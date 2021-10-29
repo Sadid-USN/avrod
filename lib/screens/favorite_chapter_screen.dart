@@ -1,10 +1,11 @@
 // @dart=2.9
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
-import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
+import 'package:avrod/data/book_functions.dart';
 import 'package:avrod/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
@@ -37,7 +38,7 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
         body: Container(
           decoration: favoriteGradient,
           child: FutureBuilder<List<Book>>(
-            future: BookMap.getBookLocally(context),
+            future: BookFunctions.getBookLocally(context),
             builder: (context, snapShot) {
               if (snapShot.hasData) {
                 List<Chapter> chapters = [];
@@ -56,68 +57,77 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
                         .toList();
 
                     // ignore: avoid_unnecessary_containers
-                    return ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: likedChapters.length,
-                      itemBuilder: (context, position) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return TextScreen(
-                                  texts: likedChapters[position].texts, chapter: likedChapters[position],);
-                            }));
-                          },
-                          child: ListTile(
-
-                              // ignore: avoid_unnecessary_containers
-                              title: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(12.0)),
-                                      boxShadow: const [
-                                        BoxShadow(
+                    return AnimationLimiter(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: likedChapters.length,
+                        itemBuilder: (context, position) {
+                          return AnimationConfiguration.staggeredList(
+                            position: position,
+                            duration: const Duration(milliseconds: 500),
+                            child: ScaleAnimation(
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return TextScreen(
+                                        texts: likedChapters[position].texts, chapter: likedChapters[position],);
+                                  }));
+                                },
+                                child: ListTile(
+                                                
+                                    // ignore: avoid_unnecessary_containers
+                                    title: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5.0),
+                                      child: Container(
+                                        height: 100,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(12.0)),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                  color: Colors.black26,
+                                                  offset: Offset(0.0, 2.0),
+                                                  blurRadius: 6.0)
+                                            ],
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    likedChapters[position].listimage),
+                                                fit: BoxFit.cover)),
+                                        child: Container(
+                                          decoration: const BoxDecoration(
                                             color: Colors.black26,
-                                            offset: Offset(0.0, 2.0),
-                                            blurRadius: 6.0)
-                                      ],
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              likedChapters[position].listimage),
-                                          fit: BoxFit.cover)),
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      color: Colors.black26,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(12.0)),
-                                    ),
-                                    height: 80,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Center(
-                                        child: Text(
-                                          likedChapters[position].name,
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.white),
+                                            borderRadius:
+                                                BorderRadius.all(Radius.circular(12.0)),
+                                          ),
+                                          height: 80,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Center(
+                                              child: Text(
+                                                likedChapters[position].name,
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    fontSize: 18.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ],
+                                )
                                 ),
                               ),
-                            ],
-                          )),
-                        );
-                      },
+                            ),
+                          );
+                        },
+                      ),
                     );
                   },
                 );

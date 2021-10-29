@@ -1,6 +1,6 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:avrod/colors/gradient_class.dart';
-import 'package:avrod/data/book_class.dart';
+import 'package:avrod/data/book_map.dart';
 import 'package:avrod/style/my_text_style.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:expandable/expandable.dart';
@@ -125,7 +125,7 @@ class _TextScreenState extends State<TextScreen> {
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight),
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                padding: const EdgeInsets.all(35),
+                padding: const EdgeInsets.all(40),
                 child: ExpandablePanel(
                   header: Padding(
                     padding: const EdgeInsets.only(right: 20),
@@ -137,12 +137,12 @@ class _TextScreenState extends State<TextScreen> {
                   ),
                   collapsed: SelectableText(
                     arabic,
-                    textAlign: TextAlign.justify,
-                    style: GoogleFonts.amaticSc(
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.amiri(
                       textBaseline: TextBaseline.ideographic,
                       wordSpacing: 0.5,
                       color: Colors.white,
-                      fontSize: 18.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

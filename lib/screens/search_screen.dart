@@ -1,10 +1,11 @@
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
-import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
+import 'package:avrod/data/book_functions.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sizer/sizer.dart';
 
 class SearcScreen extends StatefulWidget {
@@ -41,7 +42,7 @@ class _SearcScreenState extends State<SearcScreen> {
         body: Container(
           decoration: favoriteGradient,
           child: FutureBuilder<List<Book>>(
-            future: BookMap.getBookLocally(context),
+            future: BookFunctions.getBookLocally(context),
             builder: (contex, snapshot) {
               final book = snapshot.data;
               if (snapshot.hasData) {
@@ -60,52 +61,62 @@ class _SearcScreenState extends State<SearcScreen> {
 }
 
 Widget buildBook(Book book) {
-  return ListView.builder(
-      scrollDirection: Axis.vertical,
-      padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
-      physics: const BouncingScrollPhysics(),
-      itemCount: book.chapters!.length,
-      itemBuilder: (context, index) {
-        final Chapter chapter = book.chapters![index];
+  return AnimationLimiter(
+    child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
+        physics: const BouncingScrollPhysics(),
+        itemCount: book.chapters!.length,
+        itemBuilder: (context, index) {
+          final Chapter chapter = book.chapters![index];
+  
+          // ignore: sized_box_for_whitespace
+          return AnimationConfiguration.staggeredGrid(
+            position: index,
+            duration:  const Duration(milliseconds: 600),
+            columnCount: book.chapters!.length,
+            child: ScaleAnimation(
 
-        // ignore: sized_box_for_whitespace
-        return Padding(
-          padding: const EdgeInsets.all(5),
-          child: InkWell(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return TextScreen(
-                  texts: chapter.texts,
-                  chapter: chapter,
-                );
-              }));
-            },
-            child:
-
-                // ignore: sized_box_for_whitespace
-                Container(
-                    decoration: searchScreenGradient,
-                    height: 14.h,
-                    child: Center(
-                      child: ListTile(
-                        title: Center(
-                          child: Text(
-                            chapter.name!,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                        ),
-                        // leading: Padding(
-                        //   padding: const EdgeInsets.only(right: 15),
-                        //   child: Text(chapter.id.toString(),
-                        //       style: const TextStyle(color: Colors.white)),
-                        // ),
-                      ),
-                    )),
-          ),
-        );
-      });
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return TextScreen(
+                        texts: chapter.texts,
+                        chapter: chapter,
+                      );
+                    }));
+                  },
+                  child:
+              
+                      // ignore: sized_box_for_whitespace
+                      Container(
+                          decoration: searchScreenGradient,
+                          height: 12.h,
+                          child: Center(
+                            child: ListTile(
+                              title: Center(
+                                child: Text(
+                                  chapter.name!,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
+                              ),
+                              // leading: Padding(
+                              //   padding: const EdgeInsets.only(right: 15),
+                              //   child: Text(chapter.id.toString(),
+                              //       style: const TextStyle(color: Colors.white)),
+                              // ),
+                            ),
+                          )),
+                ),
+              ),
+            ),
+          );
+        }),
+  );
 }

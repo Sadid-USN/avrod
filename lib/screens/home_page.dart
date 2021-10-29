@@ -1,13 +1,15 @@
 // @dart=2.9
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
-import 'package:avrod/data/book_class.dart';
 import 'package:avrod/data/book_map.dart';
-import 'package:avrod/models/my_fab_menu.dart';
-import 'package:avrod/screens/library_screen.dart';
+import 'package:avrod/data/book_functions.dart';
+
+import 'package:avrod/screens/library_book_list_screen.dart';
 import 'package:avrod/Calendars/calendar_tabbar.dart';
 import 'package:avrod/screens/search_screen.dart';
+import 'package:avrod/widgets/my_fab_menu.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -26,6 +28,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool gowColors = false;
   Chapter chapter;
   final String _lounchGooglePlay =
       'https://play.google.com/store/apps/details?id=com.darulasar.avrod';
@@ -88,7 +91,7 @@ class _HomePageState extends State<HomePage> {
           height: double.maxFinite,
           decoration: mainScreenGradient,
           child: FutureBuilder<List<Book>>(
-            future: BookMap.getBookLocally(context),
+            future: BookFunctions.getBookLocally(context),
             builder: (contex, snapshot) {
               final books = snapshot.data;
               if (snapshot.hasData) {
@@ -205,10 +208,25 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ],
                                     ),
-                                    Image.asset(
-                                      books[index].image,
-                                      height: 35.h,
-                                      width: 85.w,
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 20, top: 20),
+                                      child: AvatarGlow(
+                                        shape: BoxShape.circle,
+                                        glowColor: Colors.blue,
+                                        endRadius: 120,
+                                        duration:
+                                            const Duration(milliseconds: 1500),
+                                        repeat: true,
+                                        showTwoGlows: true,
+                                        repeatPauseDuration:
+                                            const Duration(milliseconds: 1000),
+                                        child: Image.asset(
+                                          books[index].image,
+                                          height: 35.h,
+                                          width: 80.w,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

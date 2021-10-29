@@ -1,29 +1,81 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'book_class.dart';
+class Book {
+  String ?name;
+  String ?image;
+  List<Chapter> ?chapters;
 
-class BookMap {
-  static Future<List<Book>> getBookLocally(BuildContext context) async {
-    final assetBundle = DefaultAssetBundle.of(context);
-    final data = await assetBundle.loadString('lib/data/book.json');
-    final List<dynamic> body = json.decode(data);
-    return body.map((e) => Book.fromJson(e)).toList();
+  Book({this.name, this.image, this.chapters});
+
+  Book.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    image = json['image'];
+    if (json['chapters'] != null) {
+      chapters = [];
+      json['chapters'].forEach((v) {
+        chapters!.add( Chapter.fromJson(v));
+      });
+    }
   }
 
-  static Future<List<Chapter>> getSubchaptersLocally(
-    BuildContext context,
-    int book,
-  ) async {
-    final List<Book> books = await getBookLocally(context);
-    return books[book].chapters!;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['name'] = name;
+    data['image'] = image;
+    data['chapters'] = chapters!.map((v) => v.toJson()).toList();
+    return data;
+  }
+}
+
+class Chapter {
+  int? id;
+  String ?listimage;
+  String ?name;
+  List<Texts> ?texts;
+
+  Chapter({this.id, this.listimage, this.name, this.texts});
+
+  Chapter.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    listimage = json['listimage'];
+    name = json['name'];
+    if (json['texts'] != null) {
+      texts = [];
+      json['texts'].forEach((v) {
+        texts!.add( Texts.fromJson(v));
+      });
+    }
   }
 
-  static Future<List<Texts>> getTextsLocally(
-    BuildContext context,
-    int book,
-    int chapter,
-  ) async {
-    List<Chapter> chapters = await getSubchaptersLocally(context, book);
-    return chapters[chapter].texts!;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['id'] = id;
+    data['listimage'] = listimage;
+    data['name'] = name;
+    data['texts'] = texts!.map((v) => v.toJson()).toList();
+    return data;
+  }
+}
+
+class Texts {
+  String? id;
+  String? text;
+  String? arabic;
+  String? translation;
+
+  Texts({this.id, this.text, this.arabic, this.translation});
+
+  Texts.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    text = json['text'];
+    arabic = json['arabic'];
+    translation = json['translation'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['text'] = text;
+    data['arabic'] = arabic;
+    data['translation'] = translation;
+    return data;
   }
 }
