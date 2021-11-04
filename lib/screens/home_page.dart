@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                 }));
               } else if (index == 1) {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const LibraryFromNet();
+                  return const LibraryBookList();
                 }));
               } else if (index == 2) {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {

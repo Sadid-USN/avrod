@@ -10,7 +10,7 @@ class BookFunctions {
     return body.map((e) => Book.fromJson(e)).toList();
   }
 
-  static Future<List<Chapter>> getSubchaptersLocally(
+  static Future<List<Chapter>> getChaptersLocally(
     BuildContext context,
     int book,
   ) async {
@@ -23,7 +23,7 @@ class BookFunctions {
     int book,
     int chapter,
   ) async {
-    List<Chapter> chapters = await getSubchaptersLocally(context, book);
+    List<Chapter> chapters = await getChaptersLocally(context, book);
     return chapters[chapter].texts!;
   }
 }

@@ -1,15 +1,17 @@
+import 'package:avrod/widgets/title_and_path_of_books.dart';
 import 'package:flutter/material.dart';
+
 
 BoxDecoration mainScreenGradient = const BoxDecoration(
     //borderRadius: BorderRadius.all(Radius.circular(16.0)),
     gradient: LinearGradient(
-      begin: Alignment.topRight,
-      end: Alignment.bottomLeft,
-      colors: [
-        Colors.green,
-        Colors.cyan,
-      ],
-    ));
+  begin: Alignment.topRight,
+  end: Alignment.bottomLeft,
+  colors: [
+    Colors.green,
+    Colors.cyan,
+  ],
+));
 
 BoxDecoration favoriteGradient = const BoxDecoration(
     gradient: LinearGradient(
@@ -20,8 +22,8 @@ BoxDecoration favoriteGradient = const BoxDecoration(
       Colors.cyan,
     ]));
 
-BoxDecoration searchScreenGradient =   const BoxDecoration(
-    boxShadow:  [
+BoxDecoration searchScreenGradient = const BoxDecoration(
+    boxShadow: [
       BoxShadow(
           color: Colors.black38, offset: Offset(0.0, 2.0), blurRadius: 6.0)
     ],
@@ -36,8 +38,9 @@ BoxDecoration searchScreenGradient =   const BoxDecoration(
     ));
 
 
-BoxDecoration calendarGradient =   const BoxDecoration(
-    boxShadow:  [
+
+BoxDecoration calendarGradient = const BoxDecoration(
+    boxShadow: [
       BoxShadow(
           color: Colors.black38, offset: Offset(0.0, 2.0), blurRadius: 6.0)
     ],

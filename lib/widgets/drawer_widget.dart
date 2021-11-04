@@ -30,7 +30,7 @@ class _DrawerModelState extends State<DrawerModel> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-       backgroundColor: Colors.black45,
+      // backgroundColor: Colors.black45,
       child: Padding(
         padding: const EdgeInsets.only(left: 5, top: 50),
         child: Column(
@@ -47,7 +47,7 @@ class _DrawerModelState extends State<DrawerModel> {
                       color: Colors.blueGrey,
                       size: 20.sp,
                     )),
-                 SizedBox(
+                SizedBox(
                   width: 1.w,
                 ),
                 const Text(

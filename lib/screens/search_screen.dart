@@ -66,22 +66,22 @@ Widget buildBook(Book book) {
         scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
         physics: const BouncingScrollPhysics(),
-        itemCount: book.chapters!.length,
+        itemCount: book.chapters?.length ?? 0,
         itemBuilder: (context, index) {
           final Chapter chapter = book.chapters![index];
-  
+
           // ignore: sized_box_for_whitespace
           return AnimationConfiguration.staggeredGrid(
             position: index,
-            duration:  const Duration(milliseconds: 600),
+            duration: const Duration(milliseconds: 600),
             columnCount: book.chapters!.length,
             child: ScaleAnimation(
-
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return TextScreen(
                         texts: chapter.texts,
                         chapter: chapter,
@@ -89,7 +89,7 @@ Widget buildBook(Book book) {
                     }));
                   },
                   child:
-              
+
                       // ignore: sized_box_for_whitespace
                       Container(
                           decoration: searchScreenGradient,
@@ -98,7 +98,7 @@ Widget buildBook(Book book) {
                             child: ListTile(
                               title: Center(
                                 child: Text(
-                                  chapter.name!,
+                                  chapter.name ?? '',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 16.sp,
