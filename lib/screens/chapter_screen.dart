@@ -9,6 +9,7 @@ import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../main.dart';
@@ -42,6 +43,8 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final books = Provider.of<List<Book>>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,

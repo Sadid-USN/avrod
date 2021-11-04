@@ -17,7 +17,7 @@ import 'data/book_map.dart';
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   await Hive.initFlutter();
   await Hive.openBox(FAVORITES_BOX);
 
@@ -34,41 +34,29 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    print('build');
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return Provider(
-          create: (_) => FutureBuilder<List<Book>>(
-            future: BookFunctions.getBookLocally(context),
-            builder: (contex, snapshot) {
-              final book = snapshot.data;
-             if (snapshot.hasData) {
-                return buildBook(book[widget.bookIndex]);
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Some erro occured'),
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
-          ),
+        return FutureProvider<List<Book>>(
+          initialData: [],
+          create: (_) async => await BookFunctions.getBookLocally(context),
           child: MaterialApp(
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                // GlobalWidgetsLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('ru', 'RU'),
-                Locale('ar', 'SA'),
-              ],
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                textTheme:
-                    GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-              ),
-              home: const HomePage()
-              ),
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              // GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('ru', 'RU'),
+              Locale('ar', 'SA'),
+            ],
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              textTheme:
+                  GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            home: HomePage(),
+          ),
         );
       },
     );

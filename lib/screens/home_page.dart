@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:progress_indicators/progress_indicators.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'favorite_chapter_screen.dart';
@@ -71,6 +72,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final books = Provider.of<List<Book>>(context);
+
     return Scaffold(
         floatingActionButton: const MyFabCircularMenu(),
         extendBodyBehindAppBar: true,
@@ -90,172 +93,139 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           height: double.maxFinite,
           decoration: mainScreenGradient,
-          child: FutureBuilder<List<Book>>(
-            future: BookFunctions.getBookLocally(context),
-            builder: (contex, snapshot) {
-              final books = snapshot.data;
-              if (snapshot.hasData) {
-                return ListView(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(left: 32, top: 60),
-                          height: 70.h,
-                          child: Swiper(
-                            duration: 300,
-                            curve: Curves.linearToEaseOut,
-                            scrollDirection: Axis.horizontal,
-                            autoplayDisableOnInteraction: false,
-                            itemCount: books.length,
-                            itemWidth: 66.w,
-                            layout: SwiperLayout.STACK,
-                            pagination: const SwiperPagination(
-                              margin: EdgeInsets.only(top: 20),
-                              builder: DotSwiperPaginationBuilder(
-                                  activeColor: Colors.deepOrange,
-                                  activeSize: 14,
-                                  space: 5),
-                            ),
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  Navigator.push(context, PageRouteBuilder(
-                                      pageBuilder: (context, a, b) {
-                                    return ChapterScreen(index, chapter, books);
-                                  }));
-                                },
-                                child: Stack(
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 100,
-                                        ),
-                                        // ignore: sized_box_for_whitespace
-                                        Container(
-                                          height: 40.h,
-                                          width: 40.h,
-                                          child: Card(
-                                            elevation: 8,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(25.0),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Center(
-                                                    child: Text(
-                                                      books[index].name,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontSize: 19.sp,
-                                                          color:
-                                                              primaryTextColor,
-                                                          fontWeight:
-                                                              FontWeight.w900),
-                                                    ),
-                                                  ),
-                                                  Column(
-                                                    children: [
-                                                      const SizedBox(
-                                                        height: 30,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Text(
-                                                            'Маълумоти бештар',
-                                                            style: TextStyle(
-                                                                color:
-                                                                    primaryTextColor,
-                                                                fontSize: 14.sp,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
-                                                          SizedBox(
-                                                            width: 1.w,
-                                                          ),
-                                                          // ignore: sized_box_for_whitespace
-                                                          Icon(
-                                                            FontAwesomeIcons
-                                                                .arrowRight,
-                                                            size: 14.sp,
-                                                            color:
-                                                                Colors.blueGrey,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+          child: ListView(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 32, top: 60),
+                    height: 70.h,
+                    child: Swiper(
+                      duration: 300,
+                      curve: Curves.linearToEaseOut,
+                      scrollDirection: Axis.horizontal,
+                      autoplayDisableOnInteraction: false,
+                      itemCount: books.length,
+                      itemWidth: 66.w,
+                      layout: SwiperLayout.STACK,
+                      pagination: const SwiperPagination(
+                        margin: EdgeInsets.only(top: 20),
+                        builder: DotSwiperPaginationBuilder(
+                            activeColor: Colors.deepOrange,
+                            activeSize: 14,
+                            space: 5),
+                      ),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                PageRouteBuilder(pageBuilder: (context, a, b) {
+                              return ChapterScreen(index, chapter, books);
+                            }));
+                          },
+                          child: Stack(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    height: 100,
+                                  ),
+                                  // ignore: sized_box_for_whitespace
+                                  Container(
+                                    height: 40.h,
+                                    width: 40.h,
+                                    child: Card(
+                                      elevation: 8,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(25)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(25.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Center(
+                                              child: Text(
+                                                books[index].name,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 19.sp,
+                                                    color: primaryTextColor,
+                                                    fontWeight:
+                                                        FontWeight.w900),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 20, top: 20),
-                                      child: AvatarGlow(
-                                        shape: BoxShape.circle,
-                                        glowColor: Colors.blue,
-                                        endRadius: 120,
-                                        duration:
-                                            const Duration(milliseconds: 1500),
-                                        repeat: true,
-                                        showTwoGlows: true,
-                                        repeatPauseDuration:
-                                            const Duration(milliseconds: 1000),
-                                        child: Image.asset(
-                                          books[index].image,
-                                          height: 35.h,
-                                          width: 80.w,
+                                            Column(
+                                              children: [
+                                                const SizedBox(
+                                                  height: 30,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'Маълумоти бештар',
+                                                      style: TextStyle(
+                                                          color:
+                                                              primaryTextColor,
+                                                          fontSize: 14.sp,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 1.w,
+                                                    ),
+                                                    // ignore: sized_box_for_whitespace
+                                                    Icon(
+                                                      FontAwesomeIcons
+                                                          .arrowRight,
+                                                      size: 14.sp,
+                                                      color: Colors.blueGrey,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  ],
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 20, top: 20),
+                                child: AvatarGlow(
+                                  shape: BoxShape.circle,
+                                  glowColor: Colors.blue,
+                                  endRadius: 120,
+                                  duration: const Duration(milliseconds: 1500),
+                                  repeat: true,
+                                  showTwoGlows: true,
+                                  repeatPauseDuration:
+                                      const Duration(milliseconds: 1000),
+                                  child: Image.asset(
+                                    books[index].image,
+                                    height: 35.h,
+                                    width: 80.w,
+                                  ),
                                 ),
-                              );
-                            },
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    )
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Some erro occured'),
-                );
-              } else {
-                return Center(
-                    child: GlowingProgressIndicator(
-                  duration: const Duration(seconds: 2),
-                  child: FadingText(
-                    'Боргузорӣ...',
-                    style: TextStyle(
-                        fontSize: 21.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600),
+                        );
+                      },
+                    ),
                   ),
-                ));
-              }
-            },
+                ],
+              )
+            ],
           ),
         ),
         bottomNavigationBar: CurvedNavigationBar(
