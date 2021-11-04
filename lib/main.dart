@@ -36,40 +36,22 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return Provider(
-          create: (_) => FutureBuilder<List<Book>>(
-            future: BookFunctions.getBookLocally(context),
-            builder: (contex, snapshot) {
-              final book = snapshot.data;
-             if (snapshot.hasData) {
-                return buildBook(book[widget.bookIndex]);
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Some erro occured'),
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
-          ),
-          child: MaterialApp(
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                // GlobalWidgetsLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('ru', 'RU'),
-                Locale('ar', 'SA'),
-              ],
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                textTheme:
-                    GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-              ),
-              home: const HomePage()
-              ),
-        );
+        return MaterialApp(
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              // GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('ru', 'RU'),
+              Locale('ar', 'SA'),
+            ],
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              textTheme:
+                  GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            home: const HomePage());
       },
     );
   }
