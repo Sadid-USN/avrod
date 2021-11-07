@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'text_screen.dart';
@@ -24,6 +25,7 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
   Book book;
   @override
   Widget build(BuildContext context) {
+    final books = Provider.of<List<Book>>(context);
     return Scaffold(
      
         appBar: AppBar(
@@ -37,18 +39,13 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
         // ignore: avoid_unnecessary_containers
         body: Container(
           decoration: favoriteGradient,
-          child: FutureBuilder<List<Book>>(
-            future: BookFunctions.getBookLocally(context),
-            builder: (context, snapShot) {
-              if (snapShot.hasData) {
-                List<Chapter> chapters = [];
-                for (Book book in snapShot.data) {
-                  chapters.addAll(book.chapters);
-                }
-
-                return ValueListenableBuilder(
+          child:  ValueListenableBuilder(
                   valueListenable: Hive.box(FAVORITES_BOX).listenable(),
                   builder: (context, Box box, child) {
+                     List<Chapter> chapters = [];
+                for (Book book in books) {
+                  chapters.addAll(book.chapters);
+                }
                     final List<dynamic> likedChapterIds = box.keys.toList();
 
                     final likedChapters = chapters
@@ -130,12 +127,8 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
                       ),
                     );
                   },
-                );
-              } else {
-                return const Offstage();
-              }
-            },
-          ),
+                ),
+             
         ));
   }
 }
