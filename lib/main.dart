@@ -62,8 +62,7 @@ class _MyAppState extends State<MyApp> {
                   GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-            home: snapshot.data == null ?  Scaffold(body: Center(child:  JumpingDotsProgressIndicator(
-              fontSize: 40, dotSpacing: 2, color: Colors.green, ),),) : const HomePage(),
+            home: snapshot.data == null ?  Scaffold(body: Center(child:  JumpingText( '...', style: const TextStyle(fontSize: 40, color: Colors.green),)),) : const HomePage(),
           ),
             );
           },

@@ -1,4 +1,6 @@
 // @dart=2.9
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -102,11 +104,15 @@ class _ChapterScreenState extends State<ChapterScreen> {
                     },
                     child: CachedNetworkImage(
                         imageUrl: chapter.listimage,
-                        placeholder: (context, imageProvider) => Center(
-                                child: JumpingDotsProgressIndicator(
-                              fontSize: 50,
-                              color: Colors.white,
-                            )),
+                        placeholder: (context, imageProvider) {
+                          return Center(
+                            child: JumpingText(
+                              
+                              '...', style: const TextStyle(fontSize: 40, color: Colors.white),
+                                
+                              ),
+                          );
+                        },
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             decoration: BoxDecoration(
