@@ -4,8 +4,6 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_map.dart';
-import 'package:avrod/data/book_functions.dart';
-
 import 'package:avrod/screens/library_book_list_screen.dart';
 import 'package:avrod/Calendars/calendar_tabbar.dart';
 import 'package:avrod/screens/search_screen.dart';
@@ -14,7 +12,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:progress_indicators/progress_indicators.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -4,7 +4,6 @@ import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hive/hive.dart';
 import 'package:avrod/data/book_map.dart';
-
 import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -102,8 +101,8 @@ class _ChapterScreenState extends State<ChapterScreen> {
                       }));
                     },
                     child: CachedNetworkImage(
-                        imageUrl: chapter.listimage ?? '',
-                        placeholder: (context, listimage) => Center(
+                        imageUrl: chapter.listimage,
+                        placeholder: (context, imageProvider) => Center(
                                 child: JumpingDotsProgressIndicator(
                               fontSize: 50,
                               color: Colors.white,
