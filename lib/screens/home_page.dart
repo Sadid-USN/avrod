@@ -4,8 +4,6 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_map.dart';
-import 'package:avrod/data/book_functions.dart';
-
 import 'package:avrod/screens/library_book_list_screen.dart';
 import 'package:avrod/Calendars/calendar_tabbar.dart';
 import 'package:avrod/screens/search_screen.dart';
@@ -14,7 +12,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:progress_indicators/progress_indicators.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'favorite_chapter_screen.dart';
@@ -71,6 +69,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final books = Provider.of<List<Book>>(context);
     return Scaffold(
         floatingActionButton: const MyFabCircularMenu(),
         extendBodyBehindAppBar: true,
@@ -90,12 +89,7 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           height: double.maxFinite,
           decoration: mainScreenGradient,
-          child: FutureBuilder<List<Book>>(
-            future: BookFunctions.getBookLocally(context),
-            builder: (contex, snapshot) {
-              final books = snapshot.data;
-              if (snapshot.hasData) {
-                return ListView(
+          child:  ListView(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () {
                                   Navigator.push(context, PageRouteBuilder(
                                       pageBuilder: (context, a, b) {
-                                    return ChapterScreen(index, chapter, books);
+                                    return ChapterScreen(index, chapter,);
                                   }));
                                 },
                                 child: Stack(
@@ -237,26 +231,8 @@ class _HomePageState extends State<HomePage> {
                       ],
                     )
                   ],
-                );
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Some erro occured'),
-                );
-              } else {
-                return Center(
-                    child: GlowingProgressIndicator(
-                  duration: const Duration(seconds: 2),
-                  child: FadingText(
-                    'Боргузорӣ...',
-                    style: TextStyle(
-                        fontSize: 21.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ));
-              }
-            },
-          ),
+                ),
+            
         ),
         bottomNavigationBar: CurvedNavigationBar(
           color: Colors.white,

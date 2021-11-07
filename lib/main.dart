@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:hive/hive.dart';
@@ -17,7 +18,7 @@ import 'data/book_map.dart';
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   await Hive.initFlutter();
   await Hive.openBox(FAVORITES_BOX);
 
@@ -25,8 +26,10 @@ Future main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key key, this.bookIndex}) : super(key: key);
-  final int bookIndex;
+  const MyApp({
+    Key key,
+  }) : super(key: key);
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -34,41 +37,37 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return Provider(
-          create: (_) => FutureBuilder<List<Book>>(
-            future: BookFunctions.getBookLocally(context),
-            builder: (contex, snapshot) {
-              final book = snapshot.data;
-             if (snapshot.hasData) {
-                return buildBook(book[widget.bookIndex]);
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Some erro occured'),
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
+        return FutureBuilder<List<Book>>(
+          future: BookFunctions.getBookLocally(context),
+          builder: (context, snapshot) {
+            return Provider<List<Book>>(
+              create: (_) {
+                return snapshot.data;
+              },
+              child: MaterialApp(
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              // GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('ru', 'RU'),
+              Locale('ar', 'SA'),
+            ],
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              textTheme:
+                  GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            home: snapshot.data == null ?  Scaffold(body: Center(child:  JumpingDotsProgressIndicator(
+              fontSize: 40, dotSpacing: 2, color: Colors.green, ),),) : const HomePage(),
           ),
-          child: MaterialApp(
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                // GlobalWidgetsLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('ru', 'RU'),
-                Locale('ar', 'SA'),
-              ],
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                textTheme:
-                    GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-              ),
-              home: const HomePage()
-              ),
+            );
+          },
+          
         );
       },
     );

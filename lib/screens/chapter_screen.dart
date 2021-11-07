@@ -4,11 +4,12 @@ import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hive/hive.dart';
 import 'package:avrod/data/book_map.dart';
-import 'package:avrod/data/book_functions.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:progress_indicators/progress_indicators.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../main.dart';
@@ -16,11 +17,11 @@ import '../main.dart';
 // ignore: constant_identifier_names
 
 class ChapterScreen extends StatefulWidget {
-  const ChapterScreen(this.bookIndex, this.chapter, this.books, {Key key})
+  const ChapterScreen(this.bookIndex, this.chapter, {Key key})
       : super(key: key);
   final int bookIndex;
   final Chapter chapter;
-  final List<Book> books;
+  // final List<Book> books;
 
   @override
   State<ChapterScreen> createState() => _ChapterScreenState();
@@ -42,6 +43,8 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final books = Provider.of<List<Book>>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -58,21 +61,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
       // ignore: avoid_unnecessary_containers
       body: Container(
         decoration: favoriteGradient,
-        child: FutureBuilder<List<Book>>(
-          future: BookFunctions.getBookLocally(context),
-          builder: (contex, snapshot) {
-            final book = snapshot.data;
-            if (snapshot.hasData) {
-              return buildBook(book[widget.bookIndex]);
-            } else if (snapshot.hasError) {
-              return const Center(
-                child: Text('Some erro occured'),
-              );
-            } else {
-              return const CircularProgressIndicator();
-            }
-          },
-        ),
+        child: buildBook(books[widget.bookIndex]),
       ),
     );
   }
@@ -113,11 +102,22 @@ class _ChapterScreenState extends State<ChapterScreen> {
                     },
                     child: CachedNetworkImage(
                         imageUrl: chapter.listimage,
+                        placeholder: (context, imageProvider) => Center(
+                                child: JumpingDotsProgressIndicator(
+                              fontSize: 50,
+                              color: Colors.white,
+                            )),
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: imageProvider, fit: BoxFit.cover),
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                  colorFilter: const ColorFilter.mode(
+                                    Colors.black26,
+                                    BlendMode.srcOver,
+                                  ),
+                                ),
                                 boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black38,
@@ -135,14 +135,6 @@ class _ChapterScreenState extends State<ChapterScreen> {
                                     Radius.circular(16.0))),
                             child: Stack(
                               children: [
-                                Center(
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                        color: Colors.black26,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(16.0))),
-                                  ),
-                                ),
                                 ListTile(
                                   title: Center(
                                     child: Text(
@@ -159,9 +151,9 @@ class _ChapterScreenState extends State<ChapterScreen> {
                                   top: 15,
                                   right: 10,
                                   child: LikeButton(
-                                    isLiked: isChapterLiked(chapter.id),
+                                    isLiked: isChapterLiked(chapter.id ?? 0),
                                     onTap: (isLiked) async {
-                                      return setLike(chapter.id, isLiked);
+                                      return setLike(chapter.id ?? 0, isLiked);
                                     },
                                     size: 30.sp,
                                     circleColor: const CircleColor(
@@ -196,7 +188,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
   }
 
   bool isChapterLiked(int chapterID) {
-    bool isLiked = likesBox.containsKey(chapterID);
+    bool isLiked = likesBox.containsKey(chapterID) ?? 0;
     return isLiked;
   }
 }
