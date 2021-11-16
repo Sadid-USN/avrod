@@ -1469,7 +1469,7 @@
         "image": "images/hajj.png",
         "chapters": [
             {
-                "id": 54,
+                "id": 55,
                 "listimage": "https://inspiration.rehlat.com/wp-content/uploads/2018/07/Hajj-Pilgrimage.jpg",
                 "name": "Чи гуна лаббайк гуфтани касе, ки дар ҳоли иҳром аст, ҳангоми ҳаҷ, ё умра",
                 "texts": [
@@ -1482,7 +1482,7 @@
                 ]
             },
             {
-                "id": 55,
+                "id": 56,
                 "listimage": "https://i.pinimg.com/originals/81/65/8d/81658d2abae692a60428b5288fece35a.jpg",
                 "name": "Такбир гуфтан ҳангоми расидан ба ҳаҷаруласвад",
                 "texts": [
@@ -1495,7 +1495,7 @@
                 ]
             },
             {
-                "id": 56,
+                "id": 57,
                 "listimage": "https://i.pinimg.com/736x/05/43/b1/0543b1b0ac7fdc183bfaea1fc231adab--madina-mecca.jpg",
                 "name": "Дуоеки байни рукни ямони ва ҳаҷарул асвад хонда мешавад",
                 "texts": [
@@ -1508,7 +1508,7 @@
                 ]
             },
             {
-                "id": 57,
+                "id": 58,
                 "listimage": "https://upload.wikimedia.org/wikipedia/commons/2/22/Sa%27yee_To_Go_Safa_start.jpg",
                 "name": "Дуои ҳангоми истодан бар сафо ва марво",
                 "texts": [
@@ -1521,7 +1521,7 @@
                 ]
             },
             {
-                "id": 58,
+                "id": 59,
                 "listimage": "https://english.alaraby.co.uk/sites/default/files/media/images/E1BA5715-10BD-4B2F-B53F-308838FF9BC5.jpg",
                 "name": "Дуои рӯзи арафа",
                 "texts": [
@@ -1534,7 +1534,7 @@
                 ]
             },
             {
-                "id": 59,
+                "id": 60,
                 "listimage": "https://www.almowaten.net/wp-content/uploads/2021/07/%D9%85%D8%B3%D8%AC%D8%AF-%D8%A7%D9%84%D9%85%D8%B4%D8%B9%D8%B1-%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D9%85.jpg",
                 "name": "Зикри назди машъарул-ҳаром",
                 "texts": [
@@ -1547,7 +1547,7 @@
                 ]
             },
             {
-                "id": 60,
+                "id": 61,
                 "listimage": "https://www.albayan.ae/polopoly_fs/1.2714204.1475750449!/image/image.jpg",
                 "name": "Такбир гуфтан ҳангоми санг задан (рамйи ҷамарот) бо ҳар сангреза",
                 "texts": [
@@ -1566,7 +1566,7 @@
         "image": "images/shakinghands.png",
         "chapters": [
             {
-                "id": 61,
+                "id": 62,
                 "listimage": "https://media.istockphoto.com/photos/chained-picture-id182459301?k=20&m=182459301&s=612x612&w=0&h=iNcJ3767Snzb7K_KYE3kXait43LCYNPfsobWvgidi1k=",
                 "name": "Дуо ҳангоми нотавон мондан аз пардохтани қарз",
                 "texts": [
@@ -1585,7 +1585,7 @@
                 ]
             },
             {
-                "id": 62,
+                "id": 63,
                 "listimage": "https://astroarinashirokova.com/wp-content/uploads/2020/10/231454678798645.jpg",
                 "name": "Дуои мушкил шуморидани коре",
                 "texts": [
@@ -1598,7 +1598,7 @@
                 ]
             },
             {
-                "id": 63,
+                "id": 64,
                 "listimage": "https://avatars.mds.yandex.net/get-zen_doc/1781308/pub_5d38d9541ee34f00ae6700e2_5d38ec29d4f07a00af1aaabc/scale_1200",
                 "name": "Дуои баъд аз атса задан",
                 "texts": [
@@ -1611,7 +1611,7 @@
                 ]
             },
             {
-                "id": 64,
+                "id": 65,
                 "listimage": "https://health.mail.ru/pic/news/2020/06/29/46/0f/460f79151d3e3f676eaf15dbef4c3496.jpg",
                 "name": "Агар ғайри мусалмон баъд аз атса «Алҳамдулиллоҳ» гӯяд чигуна бояд ҷавоб дод?",
                 "texts": [
@@ -1624,7 +1624,7 @@
                 ]
             },
             {
-                "id": 65,
+                "id": 66,
                 "listimage": "https://t4.ftcdn.net/jpg/02/67/70/73/360_F_267707327_VDhLdCr0gOMgX8xAqMFl3zFkxVvX6xyR.jpg",
                 "name": "Дуои ҳангоми дидани касе, ки ба бало ва мусибат афтода бошад",
                 "texts": [
@@ -1637,7 +1637,7 @@
                 ]
             },
             {
-                "id": 66,
+                "id": 67,
                 "listimage": "https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80",
                 "name": "Он чи дар ҷамъомад ва ҳар маҷлис гуфта мешавад",
                 "texts": [
@@ -1650,7 +1650,7 @@
                 ]
             },
             {
-                "id": 67,
+                "id": 68,
                 "listimage": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
                 "name": "Кафораи маҷлисеки бе зикри Аллоҳ гузаронида шуд",
                 "texts": [
@@ -1663,7 +1663,7 @@
                 ]
             },
             {
-                "id": 68,
+                "id": 69,
                 "listimage": "https://images.unsplash.com/photo-1526035266069-fc237c5baddd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80",
                 "name": "Дуои барои касеки бигӯяд «Ғафара-\nллоҳу лак»",
                 "texts": [
@@ -1682,7 +1682,7 @@
                 ]
             },
             {
-                "id": 69,
+                "id": 70,
                 "listimage": "https://pbs.twimg.com/media/CYXx2dEVAAAvE8B.jpg",
                 "name": "Дуо барои касе ки нисбат ба ту некӣ кардааст",
                 "texts": [
@@ -1701,7 +1701,7 @@
                 ]
             },
             {
-                "id": 70,
+                "id": 71,
                 "listimage": "https://img3.akspic.ru/previews/9/8/1/3/3/133189/133189-rozovyj-psihologiya-drevesina-medalon-schaste-500x.jpg",
                 "name": "Дуо бар касе ки, бигӯяд: «Боракаллоҳу фик»",
                 "texts": [
@@ -1714,7 +1714,7 @@
                 ]
             },
             {
-                "id": 71,
+                "id": 72,
                 "listimage": "https://stihi.ru/pics/2015/11/04/11474.jpg",
                 "name": "Дуо барои касе ки бигӯяд: «Иннӣ уҳиббука филлаҳ»",
                 "texts": [
@@ -1727,7 +1727,7 @@
                 ]
             },
             {
-                "id": 72,
+                "id": 73,
                 "listimage": "https://icdn.lenta.ru/images/2020/02/17/20/20200217201646338/square_320_9b19459c73ae29c1acd5b69ae0d6cafc.jpg",
                 "name": "Дуо барои касе ки, молашро ба мо пешниҳод кунад",
                 "texts": [
@@ -1740,7 +1740,7 @@
                 ]
             },
             {
-                "id": 73,
+                "id": 74,
                 "listimage": "https://vawilon.ru/wp-content/uploads/2018/02/otdat-dengi-brokeru.jpg",
                 "name": "Дуои\nқарздор ба қарздиҳанда пас аз пардохти қарз",
                 "texts": [
@@ -1753,7 +1753,7 @@
                 ]
             },
             {
-                "id": 74,
+                "id": 75,
                 "listimage": "https://cdn22.img.ria.ru/images/148762/47/1487624751_184:0:5433:3937_1920x0_80_0_0_3ff09409e172c0626327b4eba667f161.jpg",
                 "name": "Ошкор намудани салом",
                 "texts": [
@@ -1772,7 +1772,7 @@
                 ]
             },
             {
-                "id": 75,
+                "id": 76,
                 "listimage": "https://st4.depositphotos.com/12985848/22758/i/600/depositphotos_227589592-stock-photo-arabian-businessman-looking-at-laptop.jpg",
                 "name": "Чигуна ба саломи ғайри мусалмон бояд ҷавоб дод?",
                 "texts": [
@@ -1791,7 +1791,7 @@
                 ]
             },
             {
-                "id": 76,
+                "id": 77,
                 "listimage": "https://i.pinimg.com/originals/fc/31/64/fc316491338f4c6e978647aede457559.jpg",
                 "name": "Дуо барои касе, ки дашномаш додаӣ",
                 "texts": [
@@ -1810,7 +1810,7 @@
                 ]
             },
             {
-                "id": 77,
+                "id": 78,
                 "listimage": "https://pravlife.org/sites/default/files/field/image/54798655468976557jpg.jpg",
                 "name": "Он чи ҳангоми мадҳи шахси мусалмон бояд гуфт",
                 "texts": [
@@ -1823,7 +1823,7 @@
                 ]
             },
             {
-                "id": 78,
+                "id": 79,
                 "listimage": "https://99px.ru/sstorage/53/2016/06/tmb_170283_2498.jpg",
                 "name": "Он чи мусалмон ҳангомеки мадҳ мешавад, шоиста аст бигӯяд",
                 "texts": [
@@ -1842,7 +1842,7 @@
         "image": "images/storm.png",
         "chapters": [
             {
-                "id": 79,
+                "id": 80,
                 "listimage": "https://images.unsplash.com/photo-1505672678657-cc7037095e60?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои ҳангоми вазидани бод",
                 "texts": [
@@ -1855,7 +1855,7 @@
                 ]
             },
             {
-                "id": 80,
+                "id": 81,
                 "listimage": "https://wallpaperaccess.com/full/3250.jpg",
                 "name": "Дуои ҳангоми шунидани раъду барқ",
                 "texts": [
@@ -1868,7 +1868,7 @@
                 ]
             },
             {
-                "id": 81,
+                "id": 82,
                 "listimage": "https://images.unsplash.com/photo-1508556919487-845f191e5742?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHJhaW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
                 "name": "Дуоҳои талаби борон",
                 "texts": [
@@ -1893,7 +1893,7 @@
                 ]
             },
             {
-                "id": 82,
+                "id": 83,
                 "listimage": "https://images.unsplash.com/photo-1533167649158-6d508895b680?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80",
                 "name": "Дуои ҳангоми боридани борон",
                 "texts": [
@@ -1906,7 +1906,7 @@
                 ]
             },
             {
-                "id": 83,
+                "id": 84,
                 "listimage": "https://images.unsplash.com/photo-1591925323320-f2246a3cfd36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80",
                 "name": "Дуои баъд аз поёни борон",
                 "texts": [
@@ -1919,7 +1919,7 @@
                 ]
             },
             {
-                "id": 84,
+                "id": 85,
                 "listimage": "https://images.unsplash.com/photo-1436891620584-47fd0e565afb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHNreXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
                 "name": "Дуои талаби соф шудани ҳаво",
                 "texts": [
@@ -1932,7 +1932,7 @@
                 ]
             },
             {
-                "id": 85,
+                "id": 86,
                 "listimage": "https://images.unsplash.com/photo-1514897575457-c4db467cf78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои ҳангоми дидани моҳи нав",
                 "texts": [
@@ -1945,7 +1945,7 @@
                 ]
             },
             {
-                "id": 86,
+                "id": 87,
                 "listimage": "https://images.unsplash.com/photo-1508116916455-2857e44c161e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
                 "name": "Дуои ҳангоми дидани самараи наврас",
                 "texts": [
@@ -1958,7 +1958,7 @@
                 ]
             },
             {
-                "id": 87,
+                "id": 88,
                 "listimage": "https://coolwallpapers.me/picsup/5492530-rooster-wallpapers.jpg",
                 "name": "Дуои ҳангоми шунидани бонги хурӯс ва ё садои хар",
                 "texts": [
@@ -1971,7 +1971,7 @@
                 ]
             },
             {
-                "id": 88,
+                "id": 89,
                 "listimage": "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/black-dog-jody-trappe-photography.jpg",
                 "name": "Дуои ҳангоми шунидани ҷакидани саг дар шаб",
                 "texts": [
@@ -1990,7 +1990,7 @@
         "image": "images/sick.png",
         "chapters": [
             {
-                "id": 89,
+                "id": 90,
                 "listimage": "http://ekladata.com/T2TxSABF2FzqyRb2Bp7ZC-yiEes.jpg",
                 "name": "Фазлу савобӣ хабар гирифтани бемор",
                 "texts": [
@@ -2003,7 +2003,7 @@
                 ]
             },
             {
-                "id": 90,
+                "id": 91,
                 "listimage": "https://selforganization.ru/wp-content/uploads/2017/07/motiv-1.jpg",
                 "name": "Дуои беморе, ки аз зиндагии худ маъюс шуда бошад",
                 "texts": [
@@ -2028,7 +2028,7 @@
                 ]
             },
             {
-                "id": 91,
+                "id": 92,
                 "listimage": "https://ilifes.ru/wp-content/uploads/2019/12/tsitaty-i-aforizmy-ob-ispytaniyah-v-zhizni-e1576249703485.jpg",
                 "name": "Талқини шахсе, ки дар бистари марг аст",
                 "texts": [
@@ -2047,7 +2047,7 @@
                 ]
             },
             {
-                "id": 92,
+                "id": 93,
                 "listimage": "https://images.unsplash.com/photo-1516822671976-480ad5131e92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои шахсе, ки бар ӯ мусибате расида бошад",
                 "texts": [
@@ -2060,7 +2060,7 @@
                 ]
             },
             {
-                "id": 93,
+                "id": 94,
                 "listimage": "https://images.unsplash.com/photo-1419833173245-f59e1b93f9ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
                 "name": "Дуои ҳангоми бастани чашми майит (мурда)",
                 "texts": [
@@ -2073,7 +2073,7 @@
                 ]
             },
             {
-                "id": 94,
+                "id": 95,
                 "listimage": "https://2dbdd5116ffa30a49aa8-c03f075f8191fb4e60e74b907071aee8.ssl.cf1.rackcdn.com/16877258_14822037750_r.jpg",
                 "name": "Дуоҳои намози ҷаноза",
                 "texts": [
@@ -2140,7 +2140,7 @@
                 ]
             },
             {
-                "id": 95,
+                "id": 96,
                 "listimage": "https://images.unsplash.com/photo-1580341999466-e05436b9dc86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
                 "name": "Дуои таслият (ҳамдарди) гуфтан",
                 "texts": [
@@ -2165,7 +2165,7 @@
                 ]
             },
             {
-                "id": 96,
+                "id": 97,
                 "listimage": "https://www.islam21c.com/wp-content/uploads/grave2.png",
                 "name": "Дуои ниҳодани майит дар қабр",
                 "texts": [
@@ -2184,7 +2184,7 @@
                 ]
             },
             {
-                "id": 97,
+                "id": 98,
                 "listimage": "http://www.albiladdailyeng.com/wp-content/uploads/2017/10/64_big.jpg",
                 "name": "Дуои баъд аз хоксупории майит",
                 "texts": [
@@ -2197,7 +2197,7 @@
                 ]
             },
             {
-                "id": 98,
+                "id": 99,
                 "listimage": "https://s0.rbk.ru/v6_top_pics/ampresize/media/img/7/16/754220330793167.jpg",
                 "name": "Дуои зиёрати қабристон",
                 "texts": [
@@ -2216,7 +2216,7 @@
         "image": "images/ruqya.png",
         "chapters": [
             {
-                "id": 99,
+                "id": 100,
                 "listimage": "https://azislam.com/wp-content/uploads/2020/05/Duas-from-Protection-from-Shirk-1280x720.jpg",
                 "name": "Дуо ҳангоми тарс аз ширк",
                 "texts": [
@@ -2229,7 +2229,7 @@
                 ]
             },
             {
-                "id": 100,
+                "id": 101,
                 "listimage": "https://im.vsco.co/1/5850672deebe426526320/5852b014368dad16e1000004/c7dddc5c-3680-42c7-90e0-6a4a68133ead-1547732477.jpg?w=480",
                 "name": "Дуои касе, ки битарсад аз ин, ки касеро и чизеро чашм кунад",
                 "texts": [
@@ -2242,7 +2242,7 @@
                 ]
             },
             {
-                "id": 101,
+                "id": 102,
                 "listimage": "https://static.turbosquid.com/Preview/2014/05/19__13_28_44/fallcity1200_001.jpga3fede5e-e2ed-4001-af31-edc31e63e8e3Large.jpg",
                 "name": "Дуои он касе, ки дар имон дучори шакку тардид шуда бошад",
                 "texts": [
@@ -2267,7 +2267,7 @@
                 ]
             },
             {
-                "id": 102,
+                "id": 103,
                 "listimage": "https://www.belta.by/images/storage/news/with_archive/2017/000026_1507538274_big.jpg",
                 "name": "Дуо ҳангоми фоли бад задан ба чизе",
                 "texts": [
@@ -2286,7 +2286,7 @@
                 ]
             },
             {
-                "id": 103,
+                "id": 104,
                 "listimage": "https://www.paraklit.org/wp-content/uploads/derevenskoaya_magiya.jpg",
                 "name": "Оятҳои сураи Бақара зиди сеҳр",
                 "texts": [
@@ -2317,7 +2317,7 @@
                 ]
             },
             {
-                "id": 104,
+                "id": 105,
                 "listimage": "https://i.pinimg.com/originals/68/1b/22/681b2224cad0da46f7c422864bcf1385.jpg",
                 "name": "Чаҳор сура",
                 "texts": [
@@ -2348,7 +2348,7 @@
                 ]
             },
             {
-                "id": 105,
+                "id": 106,
                 "listimage": "https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png",
                 "name": "Ду ояти охирини сураи Бақара",
                 "texts": [
@@ -2367,7 +2367,7 @@
                 ]
             },
             {
-                "id": 106,
+                "id": 107,
                 "listimage": "https://p4.wallpaperbetter.com/wallpaper/651/692/851/light-holy-book-god-quran-hd-wallpaper-preview.jpg",
                 "name": "1-Бархе аз оятҳои Қуръони зиди сеҳр",
                 "texts": [
@@ -2410,7 +2410,7 @@
                 ]
             },
             {
-                "id": 107,
+                "id": 108,
                 "listimage": "http://islamwallpapers.com/wp-content/uploads/2019/10/Calligraphy-Art-Amoled-Islamic-Wallpaper-473x1024.jpg",
                 "name": "2-Бархе аз оятҳои Қуръони зиди сеҳр",
                 "texts": [
@@ -2453,7 +2453,7 @@
                 ]
             },
             {
-                "id": 108,
+                "id": 109,
                 "listimage": "https://i.pinimg.com/originals/46/b3/a7/46b3a71972767fe8c49cb693f54c4049.png",
                 "name": "3-Бархе аз оятҳои Қуръони зиди сеҳр",
                 "texts": [
@@ -2508,7 +2508,7 @@
                 ]
             },
             {
-                "id": 109,
+                "id": 110,
                 "listimage": "https://p4.wallpaperbetter.com/wallpaper/71/282/336/islam-arabic-hd-wallpaper-preview.jpg",
                 "name": "1-Руқяи Набавӣ",
                 "texts": [
@@ -2539,7 +2539,7 @@
                 ]
             },
             {
-                "id": 110,
+                "id": 111,
                 "listimage": "https://rukminim1.flixcart.com/image/416/416/khqllzk0-0/regionalbooks/m/v/b/sahih-bukhari-6-volume-original-imafxzgyxgchhyzx.jpeg?q=70",
                 "name": "2-Руқяи Набавӣ",
                 "texts": [
@@ -2576,7 +2576,7 @@
                 ]
             },
             {
-                "id": 111,
+                "id": 112,
                 "listimage": "https://images.unsplash.com/photo-1541543975512-86aad5d2cf93?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3dvcmR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
                 "name": "Сипар аз сеҳру ҷоду, чашм ва ҳасад",
                 "texts": [
@@ -2601,7 +2601,7 @@
                 ]
             },
             {
-                "id": 112,
+                "id": 113,
                 "listimage": "https://www.teahub.io/photos/full/28-284391_vampire-wallpapers-hd-backgrounds-images-pics-photos-dark.jpg",
                 "name": "Зикре, ки Аллоҳ инсонро бо он аз даҷҷол ҳифз мекунад",
                 "texts": [
@@ -2620,7 +2620,7 @@
         "image": "images/family.png",
         "chapters": [
             {
-                "id": 113,
+                "id": 114,
                 "listimage": "https://img2.akspic.ru/originals/7/0/8/1/6/161807-stambul-bazar-turizm-dostoprimechatelnost-osveshhenie-1536x2048.jpg",
                 "name": "Дуои ҳангоми даромадан ба бозор",
                 "texts": [
@@ -2633,7 +2633,7 @@
                 ]
             },
             {
-                "id": 114,
+                "id": 115,
                 "listimage": "https://quran-sunna.ru/wp-content/uploads/2017/12/pervaya-brachnaya-noch.jpg",
                 "name": "Дуо барои касе, ки издивоҷ кардааст",
                 "texts": [
@@ -2646,7 +2646,7 @@
                 ]
             },
             {
-                "id": 115,
+                "id": 116,
                 "listimage": "https://thumbs.dreamstime.com/b/%D0%BC%D1%83%D1%81%D1%83%D0%BB%D1%8C%D0%BC%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B5-%D0%BC%D0%BE%D0%BB%D1%8F-%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA-%D0%B8-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0-%D0%B2-%D0%BC%D0%B5%D1%87%D0%B5%D1%82%D0%B8-126864460.jpg",
                 "name": "Дуои шаҳ барои арӯс ва дуои хариди чаҳорпои саворӣ",
                 "texts": [
@@ -2659,7 +2659,7 @@
                 ]
             },
             {
-                "id": 116,
+                "id": 117,
                 "listimage": "https://images.unsplash.com/photo-1567899482751-c8647fda8155?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
                 "name": "Дуои қабл аз наздики кардан бо зан",
                 "texts": [
@@ -2672,7 +2672,7 @@
                 ]
             },
             {
-                "id": 117,
+                "id": 118,
                 "listimage": "https://images.unsplash.com/photo-1493836512294-502baa1986e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1067&q=80",
                 "name": "Дуои ҳангоми хашм",
                 "texts": [
@@ -2691,7 +2691,7 @@
                 ]
             },
             {
-                "id": 118,
+                "id": 119,
                 "listimage": "https://www.rnz.co.nz/assets/news_crops/78131/eight_col_81127667_lBW.jpg?1555024918",
                 "name": "Он чиро зани мусалмон ба шавҳараш мегӯяд, чун ӯро ба хашм орад",
                 "texts": [
@@ -2704,7 +2704,7 @@
                 ]
             },
             {
-                "id": 119,
+                "id": 120,
                 "listimage": "https://cdnimg.rg.ru/img/content/180/71/63/iStock-1132264405_d_850.jpg",
                 "name": "Чи гуна табрик гуфтан ба касе, ки фарзанде барояш рӯзӣ шуда бошад",
                 "texts": [
@@ -2729,7 +2729,7 @@
                 ]
             },
             {
-                "id": 120,
+                "id": 121,
                 "listimage": "https://shabiba.eu-central-1.linodeobjects.com/2019/08/18/1049743.jpg",
                 "name": "Ҳифзи фарзандон аз чашм",
                 "texts": [
@@ -2748,7 +2748,7 @@
                 ]
             },
             {
-                "id": 121,
+                "id": 122,
                 "listimage": "https://images.unsplash.com/flagged/photo-1550489518-40f49ba4bf20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80",
                 "name": "Дуои ҳангоми савор шудан бар ҳайвон ва ё монанди он (васоили нақлиёт)",
                 "texts": [
@@ -2761,7 +2761,7 @@
                 ]
             },
             {
-                "id": 122,
+                "id": 123,
                 "listimage": "https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
                 "name": "Дуои мусофир ҳангоми сафар",
                 "texts": [
@@ -2780,7 +2780,7 @@
                 ]
             },
             {
-                "id": 123,
+                "id": 124,
                 "listimage": "https://images.unsplash.com/photo-1602904831880-9f91c1af358c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80",
                 "name": "Дуои мусофир барои муқим",
                 "texts": [
@@ -2793,7 +2793,7 @@
                 ]
             },
             {
-                "id": 124,
+                "id": 125,
                 "listimage": "https://images.unsplash.com/photo-1612981056273-9c17831c8ed3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=663&q=80",
                 "name": "Дуои муқим барои мусофир",
                 "texts": [
@@ -2818,7 +2818,7 @@
                 ]
             },
             {
-                "id": 125,
+                "id": 126,
                 "listimage": "https://almaty.tv/news_photo/1566196756_news_b.jpeg",
                 "name": "Такбир ва тасбеҳ гуфтан ҳангоми сафар",
                 "texts": [
@@ -2831,7 +2831,7 @@
                 ]
             },
             {
-                "id": 126,
+                "id": 127,
                 "listimage": "https://images.unsplash.com/photo-1480498073050-4c6abeee90c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
                 "name": "Дуои ҳангоми даромадан ба деҳа, ё шаҳр",
                 "texts": [
@@ -2844,7 +2844,7 @@
                 ]
             },
             {
-                "id": 127,
+                "id": 128,
                 "listimage": "https://images.unsplash.com/photo-1519302959554-a75be0afc82a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
                 "name": "Зикри ҳангоми манзил кардан дар ҷое аснои сафар ва ғайра",
                 "texts": [
@@ -2857,7 +2857,7 @@
                 ]
             },
             {
-                "id": 128,
+                "id": 129,
                 "listimage": "https://m.media-amazon.com/images/I/71yMn02LMOL._AC_SY355_.jpg",
                 "name": "Зикри ҳангоми бозгашт аз сафар",
                 "texts": [
@@ -2870,7 +2870,7 @@
                 ]
             },
             {
-                "id": 129,
+                "id": 130,
                 "listimage": "https://www.1zoom.me/big2/939/295766-werecat.jpg",
                 "name": "Дуои ҳангоми лағжидани маркаби саворӣ",
                 "texts": [
@@ -2889,7 +2889,7 @@
         "image": "images/adha.png",
         "chapters": [
             {
-                "id": 130,
+                "id": 131,
                 "listimage": "https://zahrafoundation.ca/wp-content/uploads/2021/06/3-1-1024x576.jpg",
                 "name": "Ҳафт шарти қурбони, ки бидуни он қурбони раво намешавад",
                 "texts": [
@@ -2938,7 +2938,7 @@
                 ]
             },
             {
-                "id": 131,
+                "id": 132,
                 "listimage": "https://img4.goodfon.ru/wallpaper/nbig/d/85/ovtsy-pole-tuman-1.jpg",
                 "name": "Он чи ҳангоми забҳ (куштани чорво) гуфта мешавад",
                 "texts": [

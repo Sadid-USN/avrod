@@ -1,15 +1,12 @@
 // @dart=2.9
 import 'package:avrod/data/book_functions.dart';
 import 'package:avrod/screens/home_page.dart';
-import 'package:avrod/screens/search_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'data/book_map.dart';
@@ -37,7 +34,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-
     return Sizer(
       builder: (context, orientation, deviceType) {
         return FutureBuilder<List<Book>>(
@@ -48,25 +44,48 @@ class _MyAppState extends State<MyApp> {
                 return snapshot.data;
               },
               child: MaterialApp(
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              // GlobalWidgetsLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('ru', 'RU'),
-              Locale('ar', 'SA'),
-            ],
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              textTheme:
-                  GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-            ),
-            home: snapshot.data == null ?  Scaffold(body: Center(child:  JumpingText( '...', style: const TextStyle(fontSize: 40, color: Colors.green),)),) : const HomePage(),
-          ),
+                localizationsDelegates: const [
+            
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: const [
+                  Locale('en', ''),
+                  Locale('ar', ''),
+                ],
+                localeResolutionCallback: (
+                  currentLang,
+                  supportLang,
+                ) {
+                  if (currentLang != null) {
+                    for (Locale locale in supportLang) {
+                      if (locale.languageCode == currentLang.languageCode) {
+                        return currentLang;
+                      }
+                    }
+                  }
+                  return supportLang.first;
+                },
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                  textTheme:
+                      GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                ),
+                home: snapshot.data == null
+                    ? Scaffold(
+                        body: Center(
+                            child: JumpingText(
+                          '...',
+                          style: const TextStyle(
+                              fontSize: 40, color: Colors.green),
+                        )),
+                      )
+                    : const HomePage(),
+              ),
             );
           },
-          
         );
       },
     );

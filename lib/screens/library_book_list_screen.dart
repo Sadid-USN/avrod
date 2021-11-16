@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:avrod/colors/gradient_class.dart';
 
 import 'package:avrod/screens/pdf_api_class.dart';
-import 'package:avrod/widgets/title_and_path_of_books.dart';
+import 'package:avrod/widgets/title_and_path.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';

@@ -10,32 +10,29 @@ class MyFabCircularMenu extends StatefulWidget {
 
   @override
   State<MyFabCircularMenu> createState() => _MyFabCircularMenuState();
-  
-    
 }
+
 const String _lounchUrlGmail =
-      'https://accounts.google.com/signout/chrome/landing?continue=https://mail.google.com&oc=https://mail.google.com&hl=en';
-  const String _linkInstagramm =
-      'https://instagram.com/darul_asar?utm_medium=copy_link';
- Future<void> _launchInBrowser(String url) async {
-   
-    if (await canLaunch(url)) {
-      await launch(url,
-          forceSafariVC: false,
-          forceWebView: false,
-          headers: <String, String>{'header_key': 'header_value'});
-    } else {
-      throw 'Пайванд кушода нашуд $url';
-    }
+    'https://accounts.google.com/signout/chrome/landing?continue=https://mail.google.com&oc=https://mail.google.com&hl=en';
+const String _linkInstagramm =
+    'https://instagram.com/darul_asar?utm_medium=copy_link';
+Future<void> _launchInBrowser(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'header_key': 'header_value'});
+  } else {
+    throw 'Пайванд кушода нашуд $url';
   }
+}
+
 class _MyFabCircularMenuState extends State<MyFabCircularMenu> {
-  
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 86),
       child: FabCircularMenu(
-       
         animationDuration: const Duration(milliseconds: 800),
         fabOpenIcon: const Icon(
           Icons.menu,
@@ -60,7 +57,15 @@ class _MyFabCircularMenuState extends State<MyFabCircularMenu> {
           ),
           IconButton(
               onPressed: () {
-                setState(() {});
+                DropdownButton<String>(
+                  items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (_) {},
+                );
               },
               icon: Icon(
                 Icons.language,

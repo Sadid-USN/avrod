@@ -30,59 +30,63 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_localizations: # Add this line
-    sdk: flutter   
+    sdk: flutter  
+  flutter_locales: ^2.0.0 
   #dio: ^4.0.1
   #Google 
-  google_nav_bar: ^5.0.5
-  google_fonts_arabic: ^1.1.7
-  google_fonts: ^2.0.0
+  google_nav_bar: 
+  google_fonts_arabic: 
+  google_fonts: 
   # File
-  file_picker: ^4.1.6
-  open_file: ^3.2.1
-  epub_viewer: any
-  flutter_pdfview: ^1.2.1
+  file_picker: 
+  open_file: 
+  flutter_pdfview: 
+
+  #get:
+  #get_cli: 
   
-  flutter_staggered_animations: ^1.0.0
-  image_picker: ^0.8.4+3
-  fab_circular_menu: ^1.0.2
-  provider: ^6.0.1
-  font_awesome_flutter: ^9.2.0
-  flutter_launcher_icons: ^0.9.2
-  animated_text_kit: ^4.2.1
-  flutter_swiper: ^1.1.6
-  liquid_swipe: ^2.1.1
-  progress_indicators: ^1.0.0
-  like_button: ^2.0.3
-  cached_network_image: ^3.1.0+1
-  hive: ^2.0.4
-  hive_flutter: ^1.1.0
-  clipboard: ^0.1.3
-  json_serializable: ^6.0.1
   
-  sizer: ^2.0.13
-  animate_icons: ^2.0.0
-  expandable: ^5.0.1
-  carousel_slider: ^4.0.0
-  curved_navigation_bar: ^1.0.1
-  intl: ^0.17.0
-  hijri: ^3.0.0
-  hijri_picker: ^3.0.0
-  table_calendar: ^3.0.2
-  url_launcher: ^6.0.12
-  path: ^1.8.0
-  avatar_glow: ^2.0.1
-  path_provider: ^2.0.5
+  flutter_staggered_animations: 
+  image_picker:
+  fab_circular_menu: 
+  provider: 
+  font_awesome_flutter: 
+  flutter_launcher_icons: 
+  animated_text_kit:
+  flutter_swiper: 
+  liquid_swipe: 
+  progress_indicators: 
+  like_button: 
+  cached_network_image: 
+  hive: 
+  hive_flutter: 
+  clipboard: 
+  #json_serializable: ^6.0.1
+  
+  sizer: 
+  animate_icons: 
+  expandable: 
+  carousel_slider: 
+  curved_navigation_bar: 
+  intl: 
+  hijri: 
+  hijri_picker: 
+  table_calendar:
+  url_launcher: 
+  path: 
+  avatar_glow: 
+  path_provider: 
   
   dependencies:
   #flutter_cached_pdfview: ^0.4.0-nullsafety
   # firebase
-  share: ^2.0.4
-  simple_animations: ^4.0.1
-  http: ^0.13.4
-  shared_preferences: ^2.0.8
-  firebase_core: ^1.7.0
-  firebase_storage: ^10.0.5
-  vertical_card_pager: ^1.0.0
+  share: 
+  simple_animations: 
+  http: 
+  #shared_preferences: ^2.0.8
+  #firebase_core: ^1.7.0
+  #firebase_storage: ^10.0.5
+  #vertical_card_pager: ^1.0.0
 
  
   
@@ -96,6 +100,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  
 
 dev_dependencies:
   flutter_test:
@@ -103,7 +108,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter_icons:
-  image_path: "icons/avrods_icon.png"
+  image_path: "icons/iconavrod.png"
   android: true
   ios: true
     
@@ -122,7 +127,7 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
-
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -132,6 +137,8 @@ flutter:
   assets:
     - lib/data/book.json
     - images/
+    - lib/assets/en.json
+    - lib/assets/ru.json
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

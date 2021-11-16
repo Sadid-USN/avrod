@@ -3,6 +3,7 @@
 
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
+import 'package:avrod/data/book_functions.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hive/hive.dart';
 import 'package:avrod/data/book_map.dart';
@@ -23,7 +24,7 @@ class ChapterScreen extends StatefulWidget {
       : super(key: key);
   final int bookIndex;
   final Chapter chapter;
-  // final List<Book> books;
+  //final List<Book> books;
 
   @override
   State<ChapterScreen> createState() => _ChapterScreenState();
@@ -31,7 +32,7 @@ class ChapterScreen extends StatefulWidget {
 
 class _ChapterScreenState extends State<ChapterScreen> {
   Box likesBox;
-
+ 
   @override
   void initState() {
     initHive();
@@ -45,7 +46,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final books = Provider.of<List<Book>>(context);
+    // final books = Provider.of<List<Book>>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -61,10 +62,22 @@ class _ChapterScreenState extends State<ChapterScreen> {
       ),
 
       // ignore: avoid_unnecessary_containers
-      body: Container(
-        decoration: favoriteGradient,
-        child: buildBook(books[widget.bookIndex]),
-      ),
+      body: FutureBuilder<List<Book>>(
+          future: BookFunctions.getBookLocally(context),
+          builder: (context, snapshot) {
+            final books = snapshot.data;
+            if (snapshot.hasData) {
+              return Container(
+                decoration: favoriteGradient,
+                child: buildBook(books[widget.bookIndex]),
+              );
+            }
+            return Center(
+                child: JumpingText(
+              '...',
+              style: const TextStyle(fontSize: 40, color: Colors.green),
+            ));
+          }),
     );
   }
 
@@ -84,11 +97,10 @@ class _ChapterScreenState extends State<ChapterScreen> {
           itemBuilder: (context, index) {
             final Chapter chapter = book.chapters[index];
 
-            // ignore: sized_box_for_whitespace
             return AnimationConfiguration.staggeredGrid(
               position: index,
               duration: const Duration(milliseconds: 500),
-              columnCount: book.chapters?.length ?? 0,
+              columnCount: chapter.listimage.length,
               child: ScaleAnimation(
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
@@ -103,14 +115,15 @@ class _ChapterScreenState extends State<ChapterScreen> {
                       }));
                     },
                     child: CachedNetworkImage(
-                        imageUrl: chapter.listimage,
+                        imageUrl: chapter.listimage ?? '',
                         placeholder: (context, imageProvider) {
                           return Center(
                             child: JumpingText(
-                              
-                              '...', style: const TextStyle(fontSize: 40, color: Colors.white),
-                                
-                              ),
+                              '...',
+                              end: const Offset(0.0, -0.5),
+                              style: const TextStyle(
+                                  fontSize: 40, color: Colors.white),
+                            ),
                           );
                         },
                         imageBuilder: (context, imageProvider) {
@@ -157,7 +170,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
                                   top: 15,
                                   right: 10,
                                   child: LikeButton(
-                                    isLiked: isChapterLiked(chapter.id ?? 0),
+                                    isLiked: isChapterLiked(chapter.id),
                                     onTap: (isLiked) async {
                                       return setLike(chapter.id ?? 0, isLiked);
                                     },
@@ -185,7 +198,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   Future<bool> setLike(int chapterID, bool isLiked) async {
     if (!isLiked) {
-      await likesBox.put(chapterID, (true).toString());
+      await likesBox.put(chapterID, (false).toString());
     } else {
       await likesBox.delete(chapterID);
     }
@@ -194,7 +207,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
   }
 
   bool isChapterLiked(int chapterID) {
-    bool isLiked = likesBox.containsKey(chapterID) ?? 0;
-    return isLiked;
+    bool isLiked = likesBox?.containsKey(chapterID) ?? 0;
+    return  isLiked;
   }
 }
