@@ -84,8 +84,8 @@ dependencies:
   simple_animations: 
   http: 
   #shared_preferences: ^2.0.8
-  #firebase_core: ^1.7.0
-  #firebase_storage: ^10.0.5
+  firebase_core: ^1.7.0
+  firebase_storage: ^10.0.5
   #vertical_card_pager: ^1.0.0
 
  
