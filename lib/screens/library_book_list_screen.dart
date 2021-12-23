@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:avrod/colors/gradient_class.dart';
 
@@ -13,8 +12,7 @@ import 'reading_books_labrary_screen.dart';
 class LibraryBookList extends StatefulWidget {
   final int? bookIndex;
 
-  const LibraryBookList({Key? key, this.bookIndex})
-      : super(key: key);
+  const LibraryBookList({Key? key, this.bookIndex}) : super(key: key);
 
   @override
   _LibraryBookListState createState() => _LibraryBookListState();
@@ -27,15 +25,14 @@ class _LibraryBookListState extends State<LibraryBookList> {
             'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         path:
             'http://aqeedeh.com/book_files/pdf/fa/qoran-ra-chegune-bekhanim-PDF.pdf',
-     
         name: 'قرآن را چگونه بخوانیم؟'),
-          TiitleAndPath(
+    TiitleAndPath(
         imgUrl:
             'https://images.unsplash.com/photo-1627337840960-d55af60bf8e3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
         path:
             'http://aqeedeh.com/book_files/pdf/fa/lahazatee-ba-sokhanan-delnasheen-payambar-PDF.pdf',
         name: ' (ﷺ) لحظاتی باسخنان دلنشین پیامبر '),
-     TiitleAndPath(
+    TiitleAndPath(
         imgUrl:
             'https://images.unsplash.com/photo-1464798429116-8e26f96b2e60?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80',
         path:
@@ -53,13 +50,12 @@ class _LibraryBookListState extends State<LibraryBookList> {
             'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/32_kalimatu_tauhid.pdf',
         imgUrl:
             'https://images.unsplash.com/photo-1575645513913-c002ea3b2e01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80'),
-       TiitleAndPath(
+    TiitleAndPath(
         imgUrl:
             'https://toislam.ws/wp-content/uploads/2013/05/vera_up_down-830x402.jpg',
         name: 'Причины увеличения и уменьшения веры',
         path:
             'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/04_prichini_uvelicheniya_i_umensheniya_imana.pdf'),
-   
     TiitleAndPath(
         imgUrl:
             'https://images.unsplash.com/photo-1614989799749-6c1e704dca56?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
@@ -72,8 +68,7 @@ class _LibraryBookListState extends State<LibraryBookList> {
         name: 'О вхождении джинов в тело человека',
         path:
             'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/21_o_vhojdenii_djinov.pdf'),
-  
-      TiitleAndPath(
+    TiitleAndPath(
         imgUrl:
             'https://images.unsplash.com/photo-1501862700950-18382cd41497?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=819&q=80',
         name: 'Доказательства единобожия',
@@ -85,8 +80,6 @@ class _LibraryBookListState extends State<LibraryBookList> {
         name: 'С кем будет женщина в Раю?',
         path:
             'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/14_s_kem_jenshina_v_rayu.pdf')
-  
-  
   ];
 
   bool iosBookPath = false;
@@ -94,6 +87,11 @@ class _LibraryBookListState extends State<LibraryBookList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
         elevation: 0.0,
         flexibleSpace: Container(
           decoration: mainScreenGradient,

@@ -32,7 +32,7 @@ class ChapterScreen extends StatefulWidget {
 
 class _ChapterScreenState extends State<ChapterScreen> {
   Box likesBox;
- 
+
   @override
   void initState() {
     initHive();
@@ -50,6 +50,11 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
         elevation: 0.0,
         title: Text(
           'Рӯйхати фаслҳо',
@@ -208,6 +213,6 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   bool isChapterLiked(int chapterID) {
     bool isLiked = likesBox?.containsKey(chapterID) ?? 0;
-    return  isLiked;
+    return isLiked;
   }
 }
