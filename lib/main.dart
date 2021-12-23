@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:avrod/data/book_functions.dart';
 import 'package:avrod/screens/home_page.dart';
+import 'package:avrod/widgets/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,13 +11,14 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
 import 'data/book_map.dart';
 
 // ignore: constant_identifier_names
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  NotificationService().initNotification();
   await Firebase.initializeApp();
   await Hive.initFlutter();
   await Hive.openBox(FAVORITES_BOX);
@@ -47,14 +49,13 @@ class _MyAppState extends State<MyApp> {
               },
               child: MaterialApp(
                 localizationsDelegates: const [
-            
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: const [
-                  Locale('en', ''),
-                  Locale('ar', ''),
+                  Locale('tag', ''),
+                  Locale('ru', ''),
                 ],
                 localeResolutionCallback: (
                   currentLang,

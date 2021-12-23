@@ -9,6 +9,7 @@ import 'package:avrod/screens/library_book_list_screen.dart';
 import 'package:avrod/Calendars/calendar_tabbar.dart';
 import 'package:avrod/screens/search_screen.dart';
 import 'package:avrod/widgets/my_fab_menu.dart';
+import 'package:avrod/widgets/notification.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -18,7 +19,8 @@ import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'favorite_chapter_screen.dart';
 import 'chapter_screen.dart';
-
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -41,6 +43,13 @@ class _HomePageState extends State<HomePage> {
     } else {
       throw 'Пайванд кушода нашуд $url';
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+   
+    tz.initializeTimeZones();
   }
 
   // final controller = PageController(viewportFraction: 12.0, keepPage: true);
@@ -71,7 +80,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-   final books = Provider.of<List<Book>>(context);
+    final books = Provider.of<List<Book>>(context);
     return Scaffold(
         floatingActionButton: const MyFabCircularMenu(),
         extendBodyBehindAppBar: true,
@@ -118,9 +127,12 @@ class _HomePageState extends State<HomePage> {
                         return InkWell(
                           onTap: () {
                             // Get.toNamed('/chapterscreen');
-                            Navigator.push(context, PageRouteBuilder(
-                                pageBuilder: (context, a, b) {
-                              return ChapterScreen( index, chapter,);
+                            Navigator.push(context,
+                                PageRouteBuilder(pageBuilder: (context, a, b) {
+                              return ChapterScreen(
+                                index,
+                                chapter,
+                              );
                             }));
                           },
                           child: Stack(
@@ -255,7 +267,9 @@ class _HomePageState extends State<HomePage> {
                   return const CalendarTabBarView();
                 }));
               } else if (index == 4) {
-                _launchInBrowser(_lounchGooglePlay);
+                 NotificationService().showNotification(1, "Дуо сипари мусалмон аст", "Парвардигоратон фармуд: «Маро бихонед, то [дуои] шуморо иҷобат кунам» (Ғофир 60)", 1);
+                // _launchInBrowser(_lounchGooglePlay);
+                
               }
             });
           },

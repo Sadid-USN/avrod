@@ -19,12 +19,17 @@ class _HijriPickerScreenState extends State<HijriPickerScreen> {
     return Scaffold(
         backgroundColor: Colors.white70,
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios)),
           flexibleSpace: Container(
             decoration: favoriteGradient,
           ),
           elevation: 0.0,
           backgroundColor: gradientStartColor,
-          title:  Text('Тақвими ҳиҷрӣ', style: TextStyle(fontSize: 18.sp)),
+          title: Text('Тақвими ҳиҷрӣ', style: TextStyle(fontSize: 18.sp)),
           centerTitle: true,
         ),
         // ignore: avoid_unnecessary_containers, sized_box_for_whitespace
@@ -33,8 +38,6 @@ class _HijriPickerScreenState extends State<HijriPickerScreen> {
           decoration: favoriteGradient,
           width: double.infinity,
           child: HijriMonthPicker(
-
-          
             lastDate: HijriCalendar()
               ..hYear = 1445
               ..hMonth = 9
