@@ -20,24 +20,27 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
         flexibleSpace: Container(
-          decoration: favoriteGradient ,
+          decoration: favoriteGradient,
         ),
         elevation: 0.0,
-        
-        title:  Text('Тақвими мелодӣ', style: TextStyle(fontSize: 18.sp)),
+        title: Text('Тақвими мелодӣ', style: TextStyle(fontSize: 18.sp)),
         centerTitle: true,
       ),
       body: Container(
-         decoration: calendarGradient,
+        decoration: calendarGradient,
         child: TableCalendar(
           calendarStyle: const CalendarStyle(
-            
-              todayDecoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.blueAccent),
+              todayDecoration: BoxDecoration(
+                  shape: BoxShape.circle, color: Colors.blueAccent),
               isTodayHighlighted: true,
-              selectedDecoration: BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.green),
+              selectedDecoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.green),
               selectedTextStyle: TextStyle(color: Colors.white)),
           daysOfWeekVisible: true,
           onDaySelected: (DateTime selecteDay, DateTime focuseDay) {

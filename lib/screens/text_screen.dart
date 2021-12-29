@@ -1,6 +1,7 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_map.dart';
+import 'package:avrod/models/scrolling_text.dart';
 import 'package:avrod/style/my_text_style.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:expandable/expandable.dart';
@@ -24,6 +25,8 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
+  double _fontSize = 18.sp;
+
   String? creepingLine;
 
   int? index;
@@ -78,7 +81,19 @@ class _TextScreenState extends State<TextScreen> {
                   Share.share(
                       '*${widget.chapter?.name}*\n$text\n$arabic\n$translation\nБо воситаи барномаи *Avrod* ирсол шуд.\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                 },
-                icon: const Icon(Icons.share, size: 33.0, color: Colors.white))
+                icon: const Icon(Icons.share, size: 33.0, color: Colors.white)),
+            Slider(
+              activeColor: Colors.white,
+              inactiveColor: Colors.blueGrey,
+              value: _fontSize,
+              onChanged: (double newSize) {
+                setState(() {
+                  _fontSize = newSize;
+                });
+              },
+              min: 18.sp,
+              max: 50,
+            )
           ],
         ),
         Container(
@@ -93,7 +108,7 @@ class _TextScreenState extends State<TextScreen> {
               text,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 18.sp,
+                fontSize: _fontSize,
                 color: Colors.white,
               ),
             ),
@@ -102,7 +117,7 @@ class _TextScreenState extends State<TextScreen> {
               maxLines: 1,
               style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 16.sp,
+                  fontSize: _fontSize,
                   color: Colors.white,
                   overflow: TextOverflow.ellipsis),
             ),
@@ -142,7 +157,7 @@ class _TextScreenState extends State<TextScreen> {
                       textBaseline: TextBaseline.ideographic,
                       wordSpacing: 0.5,
                       color: Colors.white,
-                      fontSize: 16.sp,
+                      fontSize: _fontSize,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -154,7 +169,7 @@ class _TextScreenState extends State<TextScreen> {
                       textBaseline: TextBaseline.ideographic,
                       wordSpacing: 0.5,
                       color: Colors.white,
-                      fontSize: 16.sp,
+                      fontSize: _fontSize,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -176,7 +191,7 @@ class _TextScreenState extends State<TextScreen> {
                   translation,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.sp,
+                    fontSize: _fontSize,
                     color: Colors.white,
                   ),
                 ),
@@ -185,7 +200,7 @@ class _TextScreenState extends State<TextScreen> {
                   maxLines: 1,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
+                    fontSize: _fontSize,
                     color: Colors.white,
                   ),
                 ),
@@ -209,27 +224,33 @@ class _TextScreenState extends State<TextScreen> {
     );
   }
 
+  final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: widget.texts!.length,
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
           elevation: 0.0,
           title: Column(
             children: [
               // ignore: sized_box_for_whitespace
               Container(
+                key: _key,
                 padding: const EdgeInsets.only(top: 5),
                 height: 40.0,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Text('${widget.chapter?.name}',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 16.sp, fontWeight: FontWeight.bold))
-                  ],
+                child: ScrollingText(
+                  text: '${widget.chapter?.name}',
+                  textStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -241,11 +262,7 @@ class _TextScreenState extends State<TextScreen> {
           bottom: TabBar(
             indicatorColor: Colors.white,
             isScrollable: true,
-            tabs: widget.texts!
-                .map(
-                  (Texts e) => Tab(text: e.id),
-                )
-                .toList(),
+            tabs: widget.texts!.map((Texts e) => Tab(text: e.id)).toList(),
           ),
         ),
         body: TabBarView(

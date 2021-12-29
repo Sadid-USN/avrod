@@ -30,78 +30,75 @@ Future<void> _launchInBrowser(String url) async {
 class _MyFabCircularMenuState extends State<MyFabCircularMenu> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 86),
-      child: FabCircularMenu(
-        animationDuration: const Duration(milliseconds: 800),
-        fabOpenIcon: const Icon(
-          Icons.menu,
-          color: Colors.white,
-        ),
-        ringDiameter: 350,
-        ringWidth: 70,
-        ringColor: Colors.black38,
-        fabCloseColor: Colors.transparent,
-        fabColor: Colors.transparent,
-        fabCloseIcon: const Icon(
-          Icons.close,
-          color: Colors.white,
-        ),
-        fabElevation: 0.0,
-        animationCurve: Curves.bounceIn,
-        alignment: Alignment.topLeft,
-        fabSize: 45,
-        children: [
-          const SizedBox(
-            height: 1,
-          ),
-          IconButton(
-              onPressed: () {
-                DropdownButton<String>(
-                  items: <String>['A', 'B', 'C', 'D'].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (_) {},
-                );
-              },
-              icon: Icon(
-                Icons.language,
-                color: Colors.white,
-                size: 20.sp,
-              )),
-          IconButton(
-              onPressed: () {
-                Share.share(
-                    'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-              },
-              icon: Icon(
-                Icons.share,
-                color: Colors.white,
-                size: 20.sp,
-              )),
-          IconButton(
-              onPressed: () {
-                _launchInBrowser(_lounchUrlGmail);
-              },
-              icon: Icon(
-                FontAwesomeIcons.envelope,
-                color: Colors.white,
-                size: 18.sp,
-              )),
-          IconButton(
-              onPressed: () {
-                _launchInBrowser(_linkInstagramm);
-              },
-              icon: Icon(
-                FontAwesomeIcons.instagram,
-                color: Colors.pinkAccent,
-                size: 21.sp,
-              )),
-        ],
+    return FabCircularMenu(
+      animationDuration: const Duration(milliseconds: 800),
+      fabOpenIcon: const Icon(
+        Icons.menu,
+        color: Colors.white,
       ),
+      ringDiameter: 350,
+      ringWidth: 70,
+      ringColor: Colors.black38,
+      fabCloseColor: Colors.transparent,
+      fabColor: Colors.transparent,
+      fabCloseIcon: const Icon(
+        Icons.close,
+        color: Colors.white,
+      ),
+      fabElevation: 0.0,
+      animationCurve: Curves.bounceIn,
+      alignment: Alignment.topLeft,
+      fabSize: 45,
+      children: [
+        const SizedBox(
+          height: 1,
+        ),
+        IconButton(
+            onPressed: () {
+              DropdownButton<String>(
+                items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (_) {},
+              );
+            },
+            icon: Icon(
+              Icons.language,
+              color: Colors.white,
+              size: 20.sp,
+            )),
+        IconButton(
+            onPressed: () {
+              Share.share(
+                  'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+            },
+            icon: Icon(
+              Icons.share,
+              color: Colors.white,
+              size: 20.sp,
+            )),
+        IconButton(
+            onPressed: () {
+              _launchInBrowser(_lounchUrlGmail);
+            },
+            icon: Icon(
+              FontAwesomeIcons.envelope,
+              color: Colors.white,
+              size: 18.sp,
+            )),
+        IconButton(
+            onPressed: () {
+              _launchInBrowser(_linkInstagramm);
+            },
+            icon: Icon(
+              FontAwesomeIcons.instagram,
+              color: Colors.pinkAccent,
+              size: 21.sp,
+            )),
+      ],
     );
   }
 }

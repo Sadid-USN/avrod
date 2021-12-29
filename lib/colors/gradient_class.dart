@@ -2,14 +2,16 @@
 import 'package:flutter/material.dart';
 
 
-BoxDecoration mainScreenGradient = const BoxDecoration(
+BoxDecoration mainScreenGradient =  BoxDecoration(
     //borderRadius: BorderRadius.all(Radius.circular(16.0)),
     gradient: LinearGradient(
-  begin: Alignment.topRight,
+  begin: Alignment. topLeft,
   end: Alignment.bottomLeft,
   colors: [
-    Colors.green,
-    Colors.cyan,
+    Colors.green.shade500,
+    Colors.indigo.shade400,
+    
+    
   ],
 ));
 

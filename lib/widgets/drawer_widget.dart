@@ -16,6 +16,8 @@ class _DrawerModelState extends State<DrawerModel> {
       'https://accounts.google.com/signout/chrome/landing?continue=https://mail.google.com&oc=https://mail.google.com&hl=en';
   final String _linkInstagramm =
       'https://instagram.com/darul_asar?utm_medium=copy_link';
+  final String _youTubeLink =
+      'https://www.youtube.com/channel/UCR2bhAQKRXDmE4v_rDVNOrA';
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {
       await launch(url,
@@ -30,91 +32,88 @@ class _DrawerModelState extends State<DrawerModel> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      // backgroundColor: Colors.black45,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 5, top: 50),
+      backgroundColor: Colors.black26,
+      child: SafeArea(
         child: Column(
           children: [
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Share.share(
-                          'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-                    },
-                    icon: Icon(
-                      Icons.share,
-                      color: Colors.blueGrey,
-                      size: 20.sp,
-                    )),
-                SizedBox(
-                  width: 1.w,
-                ),
-                const Text(
-                  'Ба дигарон ирсол кунед',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                ),
-              ],
+            const SizedBox(
+              height: 30,
             ),
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      setState(() {});
-                    },
-                    icon: Icon(
-                      Icons.language,
-                      color: Colors.white,
-                      size: 20.sp,
-                    )),
-                const SizedBox(
-                  width: 5,
-                ),
-                const Text(
-                  'Забонҳо',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                )
-              ],
+            ListTile(
+              title: const Text(
+                'Ба дигарон ирсол кунед',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+              leading: IconButton(
+                  onPressed: () {
+                    Share.share(
+                        'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                  },
+                  icon: Icon(
+                    Icons.share,
+                    color: Colors.blueGrey,
+                    size: 20.sp,
+                  )),
             ),
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      _launchInBrowser(_lounchUrlGmail);
-                    },
-                    icon: Icon(
-                      FontAwesomeIcons.envelope,
-                      color: Colors.blueGrey,
-                      size: 18.sp,
-                    )),
-                const SizedBox(
-                  width: 5,
-                ),
-                const Text(
-                  'Бо мо тамос гиред',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                )
-              ],
+            ListTile(
+              title: const Text(
+                'Забонҳо',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+              leading: IconButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  icon: Icon(
+                    Icons.language,
+                    color: Colors.blueGrey,
+                    size: 20.sp,
+                  )),
             ),
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      _launchInBrowser(_linkInstagramm);
-                    },
-                    icon: Icon(
-                      FontAwesomeIcons.instagram,
-                      color: Colors.pinkAccent,
-                      size: 21.sp,
-                    )),
-                const SizedBox(
-                  width: 5,
-                ),
-                const Text(
-                  'Instagram',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                )
-              ],
+            ListTile(
+              title: const Text(
+                'ulamuyaman@gmail.com',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+              leading: IconButton(
+                  onPressed: () {
+                    _launchInBrowser(_lounchUrlGmail);
+                  },
+                  icon: Icon(
+                    FontAwesomeIcons.envelope,
+                    color: Colors.blueGrey,
+                    size: 18.sp,
+                  )),
+            ),
+            ListTile(
+              title: const Text(
+                '@darul_asar',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+              leading: IconButton(
+                  onPressed: () {
+                    _launchInBrowser(_linkInstagramm);
+                  },
+                  icon: Icon(
+                    FontAwesomeIcons.instagram,
+                    color: Colors.pinkAccent,
+                    size: 21.sp,
+                  )),
+            ),
+            ListTile(
+              title: const Text(
+                'Darul-asar',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+              leading: IconButton(
+                  onPressed: () {
+                    _launchInBrowser(_youTubeLink);
+                  },
+                  icon: Icon(
+                    FontAwesomeIcons.youtube,
+                    color: Colors.red,
+                    size: 21.sp,
+                  )),
             ),
           ],
         ),

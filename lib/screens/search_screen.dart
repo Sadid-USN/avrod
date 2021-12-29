@@ -1,19 +1,24 @@
+import 'dart:convert';
+
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/data/book_functions.dart';
 import 'package:avrod/screens/text_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 class SearcScreen extends StatefulWidget {
   final int? bookIndex;
+  final List<Book>? books;
 
   const SearcScreen({
     Key? key,
     this.bookIndex,
+    this.books,
   }) : super(key: key);
 
   @override
@@ -21,23 +26,49 @@ class SearcScreen extends StatefulWidget {
 }
 
 class _SearcScreenState extends State<SearcScreen> {
-  _SearcScreenState();
+  // var listSearch = [];
+  // Future getData() async {
+  //   var url = 'https://jsonplaceholder.typicode.com/users';
+  //   var response = await http.get(Uri.parse(url));
+  //   var responseBody = jsonDecode(response.body);
+  //   for (int i = 0; i < responseBody.length; i++) {
+  //     listSearch.add(responseBody[i]);
+  //   }
+
+  //   print(listSearch.toList());
+  // }
+
+  // @override
+  // void initState() {
+  //   getData();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
+     final books = Provider.of<List<Book>>(context);
     return Scaffold(
         backgroundColor: gradientStartColor,
         appBar: AppBar(
-          elevation: 0.0,
-          flexibleSpace: Container(
-            decoration: favoriteGradient,
-          ),
-          title: Text(
-            'Саҳифаи ҷустуҷӯ',
-            style: TextStyle(fontSize: 18.sp),
-          ),
-          centerTitle: true,
-        ),
+            elevation: 0.0,
+            flexibleSpace: Container(
+              decoration: favoriteGradient,
+            ),
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back_ios)),
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    showSearch(
+                        context: context,
+                        delegate: SearchBar(list: widget.books ?? []));
+                  },
+                  icon: const Icon(Icons.search)),
+            ]),
+
         // ignore: avoid_unnecessary_containers
         body: Container(
           decoration: favoriteGradient,
@@ -61,6 +92,7 @@ class _SearcScreenState extends State<SearcScreen> {
 }
 
 Widget buildBook(Book book) {
+
   return AnimationLimiter(
     child: ListView.builder(
         scrollDirection: Axis.vertical,
@@ -98,7 +130,7 @@ Widget buildBook(Book book) {
                             child: ListTile(
                               title: Center(
                                 child: Text(
-                                  chapter.name ?? '',
+                                  book.chapters![index].name!,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 16.sp,
@@ -119,4 +151,46 @@ Widget buildBook(Book book) {
           );
         }),
   );
+}
+
+class SearchBar extends SearchDelegate<String> {
+  List<Book>? list;
+  SearchBar({this.list});
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.clear,
+          ))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(
+          Icons.arrow_back_ios,
+          size: 22,
+        ));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    return Container();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return ListView.builder(
+        itemCount: list!.length,
+        itemBuilder: (context, index) {
+          return Text(list![index].chapters![index].name ?? '');
+        });
+  }
 }

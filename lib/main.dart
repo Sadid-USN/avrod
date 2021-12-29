@@ -1,6 +1,10 @@
 // @dart=2.9
 import 'package:avrod/data/book_functions.dart';
 import 'package:avrod/screens/home_page.dart';
+import 'package:avrod/widgets/notification.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,11 +19,14 @@ import 'data/book_map.dart';
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+
+  NotificationService().initNotification();
+  await Firebase.initializeApp();
   await Hive.initFlutter();
   await Hive.openBox(FAVORITES_BOX);
 
-  runApp(const MyApp());
+  runApp(DevicePreview(
+      enabled: !kReleaseMode, builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -44,33 +51,10 @@ class _MyAppState extends State<MyApp> {
                 return snapshot.data;
               },
               child: MaterialApp(
-                localizationsDelegates: const [
-            
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: const [
-                  Locale('en', ''),
-                  Locale('ar', ''),
-                ],
-                localeResolutionCallback: (
-                  currentLang,
-                  supportLang,
-                ) {
-                  if (currentLang != null) {
-                    for (Locale locale in supportLang) {
-                      if (locale.languageCode == currentLang.languageCode) {
-                        return currentLang;
-                      }
-                    }
-                  }
-                  return supportLang.first;
-                },
                 debugShowCheckedModeBanner: false,
                 theme: ThemeData(
-                  textTheme:
-                      GoogleFonts.ptSerifTextTheme(Theme.of(context).textTheme),
+                  textTheme: GoogleFonts.ptSerifCaptionTextTheme(
+                      Theme.of(context).textTheme),
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                 ),
                 home: snapshot.data == null
