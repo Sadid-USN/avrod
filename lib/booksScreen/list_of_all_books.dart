@@ -8,32 +8,25 @@ import 'package:avrod/widgets/books_ditails.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:sizer/sizer.dart';
 import '../screens/reading_books_labrary_screen.dart';
 
 class ListOfAllBooks extends StatefulWidget {
   final int? bookIndex;
 
-  const ListOfAllBooks({Key? key, this.bookIndex}) : super(key: key);
+  const ListOfAllBooks({
+    Key? key,
+    this.bookIndex,
+  }) : super(key: key);
 
   @override
   _ListOfAllBooksState createState() => _ListOfAllBooksState();
 }
 
 class _ListOfAllBooksState extends State<ListOfAllBooks> {
-  final allBooks = AllBooks(
-    allBooks: [
-      'Книги на русском',
-      'كتاب هاى فارسى',
-    ],
-  );
+  
 
-  final List<String> images = [
-    'https://images.unsplash.com/photo-1614989799749-6c1e704dca56?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
-    'https://images.unsplash.com/photo-1500835176302-48dbd01f6437?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
-  ];
-
-  bool iosBookPath = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +54,7 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
                 crossAxisCount: 2),
             itemCount: allBooks.allBooks.length,
             itemBuilder: (context, index) {
+            
               return AnimationConfiguration.staggeredList(
                 position: index,
                 duration: const Duration(milliseconds: 500),
@@ -69,45 +63,40 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
                     onTap: () async {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return SelectedBooks();
+                        return    SelectedBooks(
+                       
+                        );
                       }));
                     },
                     child: ListTile(
 
                         // ignore: avoid_unnecessary_containers
-                        title: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: CachedNetworkImage(
-                            imageUrl: images[index],
-                            imageBuilder: (context, imageProvider) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: imageProvider, fit: BoxFit.cover),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(16.0)),
-                                ),
-                                height: 12.h,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Center(
-                                    child: Text(
-                                      allBooks.allBooks[index],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
+                        title: CachedNetworkImage(
+                      imageUrl: images[index],
+                      imageBuilder: (context, imageProvider) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: imageProvider, fit: BoxFit.cover),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(16.0)),
                           ),
-                        ),
-                      ],
+                          height: 14.h,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Center(
+                              child: Text(
+                                allBooks.allBooks[index],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     )),
                   ),
                 ),

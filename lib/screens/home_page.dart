@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     // var bottomNavBar = Provider.of<BottomAppBar>(context);
     tz.initializeTimeZones();
     NotificationService().dailyAtNotification(
-        0,
+        1,
         "Дуо сипари мусалмон аст",
         "Парвардигоратон фармуд: «Маро бихонед, то [дуои] шуморо иҷобат кунам» (Ғофир 60)",
         2);

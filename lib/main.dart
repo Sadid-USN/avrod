@@ -2,7 +2,6 @@
 import 'package:avrod/data/book_functions.dart';
 import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/widgets/notification.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +24,7 @@ Future main() async {
   await Hive.initFlutter();
   await Hive.openBox(FAVORITES_BOX);
 
-  runApp(DevicePreview(
-      enabled: !kReleaseMode, builder: (context) => const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {

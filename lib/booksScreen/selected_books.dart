@@ -9,70 +9,14 @@ import '../widgets/books_ditails.dart';
 import 'list_of_all_books.dart';
 
 class SelectedBooks extends StatelessWidget {
-  final BooksInRussian ? booksInRussian;
-  SelectedBooks({Key? key, this.booksInRussian}) : super(key: key);
-  final List<BooksInRussian> books = [
-    BooksInRussian(
-        imgUrl:
-            'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        path:
-            'http://aqeedeh.com/book_files/pdf/fa/qoran-ra-chegune-bekhanim-PDF.pdf',
-        name: 'قرآن را چگونه بخوانیم؟'),
-    BooksInRussian(
-        imgUrl:
-            'https://images.unsplash.com/photo-1627337840960-d55af60bf8e3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80',
-        path:
-            'http://aqeedeh.com/book_files/pdf/fa/lahazatee-ba-sokhanan-delnasheen-payambar-PDF.pdf',
-        name: ' (ﷺ) لحظاتی باسخنان دلنشین پیامبر '),
-    BooksInRussian(
-        imgUrl:
-            'https://images.unsplash.com/photo-1464798429116-8e26f96b2e60?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80',
-        path:
-            'http://aqeedeh.com/book_files/pdf/fa/semay-sorat-va-seerat-zan-dar-islam-PDF.pdf',
-        name: 'سیمای صورت و سیرت زن در اسلام'),
-    BooksInRussian(
-        imgUrl:
-            'https://images.unsplash.com/photo-1594047543253-43f56592fe1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
-        path:
-            'http://aqeedeh.com/book_files/pdf/fa/seerat-akhlaqi-payambar-PDF.pdf',
-        name: 'سیرت اخلاقی رسول گرامی (ﷺ) '),
-    BooksInRussian(
-        name: 'Слова Единобожия «ля иляха илля Ллах»',
-        path:
-            'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/32_kalimatu_tauhid.pdf',
-        imgUrl:
-            'https://images.unsplash.com/photo-1575645513913-c002ea3b2e01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80'),
-    BooksInRussian(
-        imgUrl:
-            'https://toislam.ws/wp-content/uploads/2013/05/vera_up_down-830x402.jpg',
-        name: 'Причины увеличения и уменьшения веры',
-        path:
-            'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/04_prichini_uvelicheniya_i_umensheniya_imana.pdf'),
-    BooksInRussian(
-        imgUrl:
-            'https://images.unsplash.com/photo-1614989799749-6c1e704dca56?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
-        name: 'Ангелы с точки зрения Ислама',
-        path:
-            'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/25_angeli.pdf'),
-    BooksInRussian(
-        imgUrl:
-            'https://images.unsplash.com/photo-1535923890939-666b60f4d20c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=765&q=80',
-        name: 'О вхождении джинов в тело человека',
-        path:
-            'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/21_o_vhojdenii_djinov.pdf'),
-    BooksInRussian(
-        imgUrl:
-            'https://images.unsplash.com/photo-1501862700950-18382cd41497?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=819&q=80',
-        name: 'Доказательства единобожия',
-        path:
-            'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/03_dokazat_edinobojiya.pdf'),
-    BooksInRussian(
-        imgUrl:
-            'https://toislam.ws/wp-content/uploads/2013/05/jenshina_v_rau-520x292.jpg',
-        name: 'С кем будет женщина в Раю?',
-        path:
-            'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/14_s_kem_jenshina_v_rayu.pdf')
-  ];
+  const SelectedBooks({
+    Key? key,
+  }) : super(key: key);
+  
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -87,14 +31,14 @@ class SelectedBooks extends StatelessWidget {
         flexibleSpace: Container(
           decoration: favoriteGradient,
         ),
-        title: Text('Китобхона', style: TextStyle(fontSize: 18.sp)),
+        title: Text('Книги на русском', style: TextStyle(fontSize: 18.sp)),
         centerTitle: true,
       ),
       body: Container(
         decoration: favoriteGradient,
         child: AnimationLimiter(
           child: ListView.builder(
-            itemCount: books.length,
+            itemCount: booksRu.name!.length,
             itemBuilder: (context, index) {
               return AnimationConfiguration.staggeredList(
                 position: index,
@@ -102,7 +46,8 @@ class SelectedBooks extends StatelessWidget {
                 child: ScaleAnimation(
                   child: InkWell(
                     onTap: () async {
-                      final file = await PDFApi.loadNetwork(books[index].path!);
+                      final file =
+                          await PDFApi.loadNetwork(booksRu.path![index]);
                       openPDF(context, file);
                     },
                     child: ListTile(
@@ -113,7 +58,7 @@ class SelectedBooks extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: CachedNetworkImage(
-                            imageUrl: books[index].imgUrl!,
+                            imageUrl: booksRu.urlImage!,
                             imageBuilder: (context, imageProvider) {
                               return Container(
                                 decoration: BoxDecoration(
@@ -127,7 +72,7 @@ class SelectedBooks extends StatelessWidget {
                                   padding: const EdgeInsets.all(10.0),
                                   child: Center(
                                     child: Text(
-                                      books[index].name ?? '',
+                                      booksRu.name![index],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 16.sp,
