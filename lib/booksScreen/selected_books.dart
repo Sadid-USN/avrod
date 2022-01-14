@@ -17,6 +17,7 @@ class SelectedBooks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -26,7 +27,7 @@ class SelectedBooks extends StatelessWidget {
         flexibleSpace: Container(
           decoration: favoriteGradient,
         ),
-        title: Text('Книги на русском', style: TextStyle(fontSize: 18.sp)),
+         title: Text('Китобхона', style: TextStyle(fontSize: 18.sp)),
         centerTitle: true,
       ),
       body: Container(
@@ -53,7 +54,7 @@ class SelectedBooks extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: CachedNetworkImage(
-                            imageUrl: booksRu.urlImage!,
+                            imageUrl: booksRu.urlImage![index],
                             imageBuilder: (context, imageProvider) {
                               return Container(
                                 decoration: BoxDecoration(

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sizer/sizer.dart';
 import '../screens/reading_books_labrary_screen.dart';
+import '../widgets/books_ditails.dart';
 
 class ListOfAllBooks extends StatefulWidget {
   final int? bookIndex;
@@ -46,7 +47,7 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
                 crossAxisSpacing: 2,
                 mainAxisSpacing: 5,
                 crossAxisCount: 1),
-            itemCount: allBooks.allBooks!.length,
+            itemCount: booksRu.name!.length,
             itemBuilder: (context, index) {
               return AnimationConfiguration.staggeredList(
                 position: index,
@@ -54,7 +55,7 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
                 child: ScaleAnimation(
                   child: InkWell(
                     onTap: () async {
-                      Navigator.push(context,
+                        Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return const SelectedBooks();
                       }));

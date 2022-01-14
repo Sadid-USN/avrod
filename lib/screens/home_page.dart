@@ -1,16 +1,10 @@
 // @dart=2.9
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avatar_glow/avatar_glow.dart';
-
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
-
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/models/bottom_nav_bar.dart';
-import 'package:avrod/booksScreen/list_of_all_books.dart';
-import 'package:avrod/Calendars/calendar_tabbar.dart';
-import 'package:avrod/screens/search_screen.dart';
-import 'package:avrod/widgets/my_fab_menu.dart';
 import 'package:avrod/widgets/notification.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +12,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../widgets/drawer_widget.dart';
-import 'favorite_chapter_screen.dart';
 import 'chapter_screen.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 class HomePage extends StatefulWidget {
@@ -40,6 +31,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     // var bottomNavBar = Provider.of<BottomAppBar>(context);
     tz.initializeTimeZones();
+     NotificationService().showNotification(1, 'hi', 'hi', 10);
     NotificationService().dailyAtNotification(
         1,
         "Дуо сипари мусалмон аст",
@@ -57,7 +49,8 @@ class _HomePageState extends State<HomePage> {
       size: 22.sp,
     ),
     Icon(Icons.favorite, color: Colors.red, size: 22.sp),
-    Icon(FontAwesomeIcons.calendarAlt, color: Colors.indigo.shade400, size: 22.sp),
+    Icon(FontAwesomeIcons.calendarAlt,
+        color: Colors.indigo.shade400, size: 22.sp),
     Icon(Icons.star, color: Colors.indigo.shade400, size: 22.sp),
   ];
 
