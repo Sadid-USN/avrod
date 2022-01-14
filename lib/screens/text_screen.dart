@@ -1,8 +1,10 @@
 import 'package:animate_icons/animate_icons.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/data/book_map.dart';
 import 'package:avrod/models/scrolling_text.dart';
 import 'package:avrod/style/my_text_style.dart';
+import 'package:clay_containers/widgets/clay_container.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -25,19 +27,69 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
-  double _fontSize = 18.sp;
+  // Audioplayer+
+  AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
 
+  bool isPlaying = false;
+
+  void stopPlaying(String url) async {
+    if (isPlaying) {
+      var reslult = await audioPlayer.pause();
+      if (reslult == 1) {
+        setState(() {
+          isPlaying = false;
+        });
+      }
+    }
+  }
+
+  void playSound(String url) async {
+    // ignore: unrelated_type_equality_checks
+    if (isPlaying) {
+      var result = await audioPlayer.pause();
+
+      if (result == 1) {
+        setState(() {
+          isPlaying = false;
+        });
+      }
+    } else if (!isPlaying) {
+      var result = await audioPlayer.play(url);
+      if (result == 1) {
+        setState(() {
+          isPlaying = true;
+        });
+      }
+    }
+    audioPlayer.onDurationChanged.listen((event) {
+      setState(() {
+        duration = event;
+      });
+    });
+    audioPlayer.onAudioPositionChanged.listen((event) {
+      setState(() {
+        position = event;
+      });
+    });
+  }
+
+  double _fontSize = 16.sp;
   String? creepingLine;
-
-  int? index;
+  IconData btnIcon = Icons.play_arrow;
 
   AnimateIconController _controller = AnimateIconController();
+  AnimateIconController _buttonController = AnimateIconController();
+  Duration duration = const Duration();
+  Duration position = const Duration();
+  double sliderPosition = 0.0;
 
-  // @override
-  // void dispose() {
-  //   _controller = AnimateIconController();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _controller = AnimateIconController();
+    _buttonController = AnimateIconController();
+    audioPlayer.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -46,83 +98,153 @@ class _TextScreenState extends State<TextScreen> {
     super.initState();
   }
 
+  Color clayColor = Colors.green.shade600;
+
   Widget _contenAllTexts(
     String text,
     String arabic,
     String translation,
+    String url,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            AnimateIcons(
-              startIcon: Icons.copy,
-              endIcon: Icons.check_circle_outline,
-              controller: _controller,
-              size: 33.0,
-              onStartIconPress: () {
-                FlutterClipboard.copy(
-                    '*${widget.chapter?.name}*\n$text\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nБо воситаи барномаи *Avrod* насх шуд\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-
-                return true;
-              },
-              onEndIconPress: () {
-                return false;
-              },
-              duration: const Duration(milliseconds: 250),
-              startIconColor: Colors.white,
-              endIconColor: Colors.white,
-              clockwise: false,
-            ),
-            IconButton(
-                onPressed: () {
-                  Share.share(
-                      '*${widget.chapter?.name}*\n$text\n$arabic\n$translation\nБо воситаи барномаи *Avrod* ирсол шуд.\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-                },
-                icon: const Icon(Icons.share, size: 33.0, color: Colors.white)),
-            Slider(
-              activeColor: Colors.white,
-              inactiveColor: Colors.blueGrey,
-              value: _fontSize,
-              onChanged: (double newSize) {
-                setState(() {
-                  _fontSize = newSize;
-                });
-              },
-              min: 18.sp,
-              max: 50,
-            )
-          ],
+        const SizedBox(
+          height: 15,
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: ExpandablePanel(
-            header: Text(
-              "Тоҷики:",
-              textAlign: TextAlign.start,
-              style: expandableTextStyle,
-            ),
-            collapsed: SelectableText(
-              text,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: _fontSize,
-                color: Colors.white,
-              ),
-            ),
-            expanded: SelectableText(
-              text,
-              maxLines: 1,
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: _fontSize,
-                  color: Colors.white,
-                  overflow: TextOverflow.ellipsis),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: ClayContainer(
+            depth: 40,
+            customBorderRadius: const BorderRadius.only(
+                topLeft: Radius.elliptical(12, 12),
+                bottomRight: Radius.circular(0),
+                topRight: Radius.elliptical(12, 12),
+                bottomLeft: Radius.circular(12)),
+            color: clayColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AnimateIcons(
+                  startIcon: Icons.play_circle,
+                  endIcon: Icons.pause,
+                  controller: _buttonController,
+                  size: 40.0,
+                  onStartIconPress: () {
+                    playSound(url);
+
+                    return true;
+                  },
+                  onEndIconPress: () {
+                    playSound(url);
+                    return true;
+                  },
+                  duration: const Duration(milliseconds: 250),
+                  startIconColor: Colors.white,
+                  endIconColor: Colors.white,
+                  clockwise: false,
+                ),
+                // AnimateIcons(
+                //   startIconColor: Colors.white,
+                //   endIconColor: Colors.white,
+                //   endIcon: Icons.stop_outlined,
+                //   startIcon: Icons.stop,
+                //   controller: _buttonController,
+                //   size: 40.0,
+                //   onStartIconPress: () {
+                //     stopPlaying(url);
+
+                //     return true;
+                //   },
+                //   onEndIconPress: () {
+                //     stopPlaying(url);
+                //     return true;
+                //   },
+                // ),
+                Slider(
+                    activeColor: Colors.white,
+                    inactiveColor: Colors.blueGrey,
+                    min: 0.0,
+                    max: duration.inSeconds.toDouble(),
+                    value: position.inSeconds.toDouble(),
+                    onChanged: (double newPosition) {
+                      setState(() {});
+                    }),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AnimateIcons(
+                      startIcon: Icons.copy,
+                      endIcon: Icons.check_circle_outline,
+                      controller: _controller,
+                      size: 33.0,
+                      onStartIconPress: () {
+                        FlutterClipboard.copy(
+                            '*${widget.chapter?.name}*\n$text\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nСкачать приложкние *Avrod* для iPhone\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+
+                        return true;
+                      },
+                      onEndIconPress: () {
+                        return false;
+                      },
+                      duration: const Duration(milliseconds: 250),
+                      startIconColor: Colors.white,
+                      endIconColor: Colors.white,
+                      clockwise: false,
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          Share.share(
+                              '*${widget.chapter?.name}*\n$text\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n$arabic\n$translation\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nСкачать приложкние *Avrod* для iPhone\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                        },
+                        icon: const Icon(Icons.share,
+                            size: 33.0, color: Colors.white)),
+                    const SizedBox(
+                      width: 5,
+                    )
+                  ],
+                )
+              ],
             ),
           ),
         ),
+        const SizedBox(
+          height: 10.0,
+        ),
+        Slider(
+          activeColor: Colors.white,
+          inactiveColor: Colors.blueGrey,
+          value: _fontSize,
+          onChanged: (double newSize) {
+            setState(() {
+              _fontSize = newSize;
+            });
+          },
+          max: 30.sp,
+          min: 16.sp,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            "Произношение:",
+            textAlign: TextAlign.start,
+            style: expandableTextStyle,
+          ),
+        ),
+        Container(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: [
+                SelectableText(
+                  text,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: _fontSize,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            )),
         Padding(
           padding: const EdgeInsets.all(5.0),
           child: Column(
@@ -145,7 +267,7 @@ class _TextScreenState extends State<TextScreen> {
                   header: Padding(
                     padding: const EdgeInsets.only(right: 20),
                     child: Text(
-                      "Араби:",
+                      "Арабский:",
                       textAlign: TextAlign.start,
                       style: expandableTextStyle,
                     ),
@@ -183,7 +305,7 @@ class _TextScreenState extends State<TextScreen> {
             child: Center(
               child: ExpandablePanel(
                 header: Text(
-                  "Тарҷума:",
+                  "Перевод:",
                   textAlign: TextAlign.start,
                   style: expandableTextStyle,
                 ),
@@ -216,10 +338,7 @@ class _TextScreenState extends State<TextScreen> {
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
-        SizedBox(
-          height: 2.h,
-        ),
-        _contenAllTexts(text.text!, text.arabic!, text.translation!),
+        _contenAllTexts(text.text!, text.arabic!, text.translation!, text.url!),
       ],
     );
   }
@@ -280,19 +399,4 @@ class _TextScreenState extends State<TextScreen> {
       ),
     );
   }
-
-  // _updateProgress() {
-  //   const oneSec = Duration(seconds: 1);
-  //   Timer.periodic(oneSec, (Timer t) {
-  //     setState(() {
-  //       _progressLoading = 0.20;
-  //       if (_progressLoading!.toStringAsFixed(1) == '1.00') {
-  //         _loading = false;
-  //         t.cancel();
-  //         _progressLoading = 0.0;
-  //         return;
-  //       }
-  //     });
-  //   });
-  // }
 }

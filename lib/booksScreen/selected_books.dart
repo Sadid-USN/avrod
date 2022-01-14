@@ -12,11 +12,6 @@ class SelectedBooks extends StatelessWidget {
   const SelectedBooks({
     Key? key,
   }) : super(key: key);
-  
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +70,7 @@ class SelectedBooks extends StatelessWidget {
                                       booksRu.name![index],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          fontSize: 16.sp,
+                                          fontSize: 14.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white),
                                     ),

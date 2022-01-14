@@ -14,9 +14,9 @@ class BooksInPersian {
   BooksInPersian({this.name, this.path, this.imgUrl, this.booksPer});
 }
 
+
 final booksRu = BooksRu(
   name: [
-   
     'Причины увеличения и уменьшения веры',
     'Ангелы с точки зрения Ислама',
     'О вхождении джинов в тело человека',
@@ -24,14 +24,14 @@ final booksRu = BooksRu(
     'С кем будет женщина в Раю?',
   ],
   path: [
-
-        'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/04_prichini_uvelicheniya_i_umensheniya_imana.pdf',
+    "https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/04_prichini_uvelicheniya_i_umensheniya_imana.pdf",
     'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/25_angeli.pdf',
     'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/21_o_vhojdenii_djinov.pdf',
     'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/03_dokazat_edinobojiya.pdf',
+    'https://static.toislam.ws/files/biblioteka/biblioteka_pdf/01_aqida/14_s_kem_jenshina_v_rayu.pdf'
   ],
   urlImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeeldMy09D3Gu3cFubGwHDS-I5KlGkbm-O6g&usqp=CAU',
+      'https://cdn.statically.io/img/i.pinimg.com/originals/f3/7d/c5/f37dc5e4ea716ad61962daf36a070c0d.jpg',
 );
 
 class BooksPer {

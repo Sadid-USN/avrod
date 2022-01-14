@@ -1,14 +1,10 @@
 import 'dart:io';
 import 'package:avrod/booksScreen/selected_books.dart';
 import 'package:avrod/colors/gradient_class.dart';
-
-import 'package:avrod/screens/pdf_api_class.dart';
 import 'package:avrod/widgets/all_book.dart';
-import 'package:avrod/widgets/books_ditails.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:sizer/sizer.dart';
 import '../screens/reading_books_labrary_screen.dart';
 
@@ -25,8 +21,6 @@ class ListOfAllBooks extends StatefulWidget {
 }
 
 class _ListOfAllBooksState extends State<ListOfAllBooks> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,13 +42,12 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
         child: AnimationLimiter(
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 2 / 1,
-                crossAxisSpacing: 1,
+                childAspectRatio: 2 / 0.6,
+                crossAxisSpacing: 2,
                 mainAxisSpacing: 5,
-                crossAxisCount: 2),
-            itemCount: allBooks.allBooks.length,
+                crossAxisCount: 1),
+            itemCount: allBooks.allBooks!.length,
             itemBuilder: (context, index) {
-            
               return AnimationConfiguration.staggeredList(
                 position: index,
                 duration: const Duration(milliseconds: 500),
@@ -63,21 +56,25 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
                     onTap: () async {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return    SelectedBooks(
-                       
-                        );
+                        return const SelectedBooks();
                       }));
                     },
                     child: ListTile(
 
                         // ignore: avoid_unnecessary_containers
                         title: CachedNetworkImage(
-                      imageUrl: images[index],
+                      imageUrl: image.image!,
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: imageProvider, fit: BoxFit.cover),
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.black26,
+                                BlendMode.srcOver,
+                              ),
+                            ),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(16.0)),
                           ),
@@ -86,7 +83,7 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
                             padding: const EdgeInsets.all(10.0),
                             child: Center(
                               child: Text(
-                                allBooks.allBooks[index],
+                                allBooks.allBooks![index],
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 16.sp,
