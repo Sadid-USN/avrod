@@ -29,9 +29,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // var bottomNavBar = Provider.of<BottomAppBar>(context);
+  
     tz.initializeTimeZones();
-     NotificationService().showNotification(1, 'hi', 'hi', 10);
+   // NotificationService().showNotification(1, 'hi', 'hi', 10);
     NotificationService().dailyAtNotification(
         1,
         "Дуо сипари мусалмон аст",
