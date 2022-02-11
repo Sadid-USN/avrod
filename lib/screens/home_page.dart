@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
     _initBannerAd();
     tz.initializeTimeZones();
 
@@ -47,18 +48,19 @@ class _HomePageState extends State<HomePage> {
       size: AdSize.banner,
       adUnitId: 'ca-app-pub-6636812855826330/7135204661',
       listener: BannerAdListener(
-        onAdLoaded: (ad) {
+        onAdLoaded: (_) {
           setState(() {
             isAdLoaded = true;
           });
         },
         onAdFailedToLoad: (ad, error) {
-          // print(error);
+          print('This is error message ->>>>> ${error.message}');
+          isAdLoaded = false;
+          ad.dispose();
         },
       ),
       request: const AdRequest(),
-    );
-    _bannerAd.load();
+    )..load();
   }
 
   // final controller = PageController(viewportFraction: 12.0, keepPage: true);

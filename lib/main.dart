@@ -19,8 +19,8 @@ import 'data/book_map.dart';
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  NotificationService().initNotification();
   MobileAds.instance.initialize();
+  NotificationService().initNotification();
   await Firebase.initializeApp();
   await Hive.initFlutter();
   await Hive.openBox(FAVORITES_BOX);

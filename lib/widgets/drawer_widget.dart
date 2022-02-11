@@ -12,6 +12,8 @@ class DrawerModel extends StatefulWidget {
 }
 
 class _DrawerModelState extends State<DrawerModel> {
+  final String _azkarRuAppLink =
+      'https://play.google.com/store/apps/details?id=com.darulasar.Azkar';
   final String _lounchUrlGmail =
       'https://accounts.google.com/signout/chrome/landing?continue=https://mail.google.com&oc=https://mail.google.com&hl=en';
   final String _linkInstagramm =
@@ -56,19 +58,17 @@ class _DrawerModelState extends State<DrawerModel> {
                   )),
             ),
             ListTile(
+              contentPadding: const EdgeInsets.only(left: 14),
               title: const Text(
-                'Забонҳо',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                'Avrod на таджиксом',
+                style: TextStyle(fontSize: 14, color: Colors.white),
               ),
-              leading: IconButton(
-                  onPressed: () {
-                    setState(() {});
-                  },
-                  icon: Icon(
-                    Icons.language,
-                    color: Colors.blueGrey,
-                    size: 20.sp,
-                  )),
+              leading: const CircleAvatar(
+                  radius: 15,
+                  backgroundImage: AssetImage('icons/iconavrod.png')),
+              onTap: () {
+                _launchInBrowser(_azkarRuAppLink);
+              },
             ),
             ListTile(
               title: const Text(
