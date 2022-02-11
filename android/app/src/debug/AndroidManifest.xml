@@ -4,6 +4,7 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <application android:usesCleartextTraffic="true">
+
   <!-- possibly other elements -->
 </application>
     <uses-permission android:name="android.permission.CAMERA" />

@@ -10,6 +10,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../widgets/drawer_widget.dart';
@@ -24,19 +25,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  BannerAd _bannerAd;
+  bool isAdLoaded = false;
   Chapter chapter;
 
   @override
   void initState() {
     super.initState();
-  
+    _initBannerAd();
     tz.initializeTimeZones();
-   // NotificationService().showNotification(1, 'hi', 'hi', 10);
+
     NotificationService().dailyAtNotification(
         1,
         "Дуо сипари мусалмон аст",
         "Парвардигоратон фармуд: «Маро бихонед, то [дуои] шуморо иҷобат кунам» (Ғофир 60)",
         2);
+  }
+
+  _initBannerAd() {
+    _bannerAd = BannerAd(
+      size: AdSize.banner,
+      adUnitId: 'ca-app-pub-6636812855826330/7135204661',
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            isAdLoaded = true;
+          });
+        },
+        onAdFailedToLoad: (ad, error) {
+          // print(error);
+        },
+      ),
+      request: const AdRequest(),
+    );
+    _bannerAd.load();
   }
 
   // final controller = PageController(viewportFraction: 12.0, keepPage: true);
@@ -223,6 +245,14 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
+                                isAdLoaded
+                                    ? Container(
+                                        height:
+                                            _bannerAd.size.height.toDouble(),
+                                        width: _bannerAd.size.width.toDouble(),
+                                        child: AdWidget(ad: _bannerAd),
+                                      )
+                                    : const SizedBox(),
                               ],
                             ),
                           );

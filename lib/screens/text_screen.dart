@@ -75,6 +75,10 @@ class _TextScreenState extends State<TextScreen> {
     });
   }
 
+  void seekAudio(Duration durationToSeek) {
+    audioPlayer.seek(durationToSeek);
+  }
+
   double _fontSize = 16.sp;
   String? creepingLine;
   IconData btnIcon = Icons.play_arrow;
@@ -282,32 +286,29 @@ class _TextScreenState extends State<TextScreen> {
                 endIconColor: Colors.white,
                 clockwise: false,
               ),
-              // AnimateIcons(
-              //   startIconColor: Colors.white,
-              //   endIconColor: Colors.white,
-              //   endIcon: Icons.stop_outlined,
-              //   startIcon: Icons.stop,
-              //   controller: _buttonController,
-              //   size: 40.0,
-              //   onStartIconPress: () {
-              //     stopPlaying(url);
-
-              //     return true;
-              //   },
-              //   onEndIconPress: () {
-              //     stopPlaying(url);
-              //     return true;
-              //   },
-              // ),
-              Slider(
-                  activeColor: Colors.white,
-                  inactiveColor: Colors.blueGrey,
-                  min: 0.0,
-                  max: duration.inSeconds.toDouble(),
-                  value: position.inSeconds.toDouble(),
-                  onChanged: (double newPosition) {
-                    setState(() {});
-                  }),
+              Expanded(
+                child: Row(
+                  children: [
+                    Slider(
+                        onChangeEnd: ((value) {
+                          seekAudio(Duration(seconds: value.toInt()));
+                        }),
+                        activeColor: Colors.white,
+                        inactiveColor: Colors.blueGrey,
+                        min: 0.0,
+                        max: duration.inSeconds.toDouble(),
+                        value: position.inSeconds.toDouble(),
+                        onChanged: (double newPosition) {
+                          setState(() {});
+                        }),
+                    Expanded(
+                        child: Text(
+                      position.toString().split('.').first,
+                      style: const TextStyle(fontSize: 10, color: Colors.white),
+                    )),
+                  ],
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -318,7 +319,7 @@ class _TextScreenState extends State<TextScreen> {
                     size: 33.0,
                     onStartIconPress: () {
                       FlutterClipboard.copy(
-                          '*${widget.chapter?.name}*\n${widget.texts![index ?? 0].text!}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n${widget.texts![index ?? 0].arabic!}\n${widget.texts![index ?? 0].translation!}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nСкачать приложкние *Avrod* в Playsore\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                          '**${widget.chapter?.name}*\n${widget.texts![index ?? 0].text}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\n${widget.texts![index ?? 0].arabic}\n\n${widget.texts![index ?? 0].translation}\n\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\nБарномаи *Avrod* дар Playsore\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
 
                       return true;
                     },
@@ -333,7 +334,7 @@ class _TextScreenState extends State<TextScreen> {
                   IconButton(
                       onPressed: () {
                         Share.share(
-                            '*${widget.chapter?.name}*\n${widget.texts![1].text}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n${widget.texts![2].arabic}\n${widget.texts![3].translation}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\nСкачать приложкние *Avrod*  в Playsore\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                            '*${widget.chapter?.name}*\n${widget.texts![index ?? 0].text}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\n${widget.texts![index ?? 0].arabic}\n\n${widget.texts![index ?? 0].translation}\n\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\nБарномаи *Avrod* дар Playsore\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                       },
                       icon: const Icon(Icons.share,
                           size: 33.0, color: Colors.white)),
