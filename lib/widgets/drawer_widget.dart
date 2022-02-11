@@ -60,7 +60,7 @@ class _DrawerModelState extends State<DrawerModel> {
             ListTile(
               contentPadding: const EdgeInsets.only(left: 14),
               title: const Text(
-                'Avrod на таджиксом',
+                'Azkar бо забони русӣ',
                 style: TextStyle(fontSize: 14, color: Colors.white),
               ),
               leading: const CircleAvatar(
