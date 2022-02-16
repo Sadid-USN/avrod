@@ -26,14 +26,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   BannerAd _bannerAd;
+  // NativeAd _nativeAd;
   bool isAdLoaded = false;
   Chapter chapter;
 
   @override
   void initState() {
+    _initBannerAd();
+    //_initNativeAd();
+
     super.initState();
 
-    _initBannerAd();
     tz.initializeTimeZones();
 
     NotificationService().dailyAtNotification(
@@ -46,7 +49,7 @@ class _HomePageState extends State<HomePage> {
   _initBannerAd() {
     _bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: 'ca-app-pub-6636812855826330/7135204661',
+      adUnitId: 'ca-app-pub-6143129378445620/5225466438',
       listener: BannerAdListener(
         onAdLoaded: (_) {
           setState(() {
@@ -63,6 +66,21 @@ class _HomePageState extends State<HomePage> {
     )..load();
   }
 
+  // _initNativeAd() {
+  //   _nativeAd = NativeAd(
+  //     adUnitId: 'ca-app-pub-6636812855826330/7135204661',
+  //     factoryId: 'ListTile',
+  //     listener: NativeAdListener(onAdLoaded: (ad) {
+  //       setState(() {
+  //         isAdLoaded = true;
+  //       });
+  //     }, onAdFailedToLoad: (ad, error) {
+  //       ad.dispose();
+  //       print('failed to load the ad ${error.message}');
+  //     }),
+  //     request: const AdRequest(),
+  //   )..load();
+  // }
   // final controller = PageController(viewportFraction: 12.0, keepPage: true);
 
   final navItems = [
@@ -248,11 +266,11 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 isAdLoaded
-                                    ? Container(
+                                    ? SizedBox(
                                         height:
                                             _bannerAd.size.height.toDouble(),
                                         width: _bannerAd.size.width.toDouble(),
-                                        child: AdWidget(ad: _bannerAd),
+                                        child: AdWidget(ad: _initBannerAd()),
                                       )
                                     : const SizedBox(),
                               ],

@@ -58,14 +58,14 @@ class _DrawerModelState extends State<DrawerModel> {
                   )),
             ),
             ListTile(
-              contentPadding: const EdgeInsets.only(left: 14),
+              contentPadding: const EdgeInsets.only(left: 25),
               title: const Text(
                 'Azkar бо забони русӣ',
                 style: TextStyle(fontSize: 14, color: Colors.white),
               ),
               leading: const CircleAvatar(
                   radius: 15,
-                  backgroundImage: AssetImage('icons/iconavrod.png')),
+                  backgroundImage: AssetImage('images/iconavrod.png')),
               onTap: () {
                 _launchInBrowser(_azkarRuAppLink);
               },
