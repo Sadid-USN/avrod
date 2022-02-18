@@ -38,13 +38,11 @@ class _DrawerModelState extends State<DrawerModel> {
       child: SafeArea(
         child: Column(
           children: [
-            const SizedBox(
-              height: 30,
-            ),
+            _header(context),
             ListTile(
               title: const Text(
                 'Ба дигарон ирсол кунед',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 14, color: Colors.white),
               ),
               leading: IconButton(
                   onPressed: () {
@@ -72,23 +70,8 @@ class _DrawerModelState extends State<DrawerModel> {
             ),
             ListTile(
               title: const Text(
-                'ulamuyaman@gmail.com',
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-              leading: IconButton(
-                  onPressed: () {
-                    _launchInBrowser(_lounchUrlGmail);
-                  },
-                  icon: Icon(
-                    FontAwesomeIcons.envelope,
-                    color: Colors.blueGrey,
-                    size: 18.sp,
-                  )),
-            ),
-            ListTile(
-              title: const Text(
                 '@darul_asar',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 14, color: Colors.white),
               ),
               leading: IconButton(
                   onPressed: () {
@@ -103,7 +86,7 @@ class _DrawerModelState extends State<DrawerModel> {
             ListTile(
               title: const Text(
                 'Darul-asar',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 14, color: Colors.white),
               ),
               leading: IconButton(
                   onPressed: () {
@@ -120,4 +103,21 @@ class _DrawerModelState extends State<DrawerModel> {
       ),
     );
   }
+}
+
+Widget _header(BuildContext context) {
+  return Material(
+    color: Colors.transparent,
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.only(
+          top: 22 + MediaQuery.of(context).padding.top, bottom: 25),
+      child: Column(
+        children: const [
+          CircleAvatar(
+              radius: 72, backgroundImage: AssetImage('images/iconavrod.png'))
+        ],
+      ),
+    ),
+  );
 }

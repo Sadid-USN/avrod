@@ -1,6 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
 
 class NotificationService {
   static final NotificationService _notificationService =
@@ -64,16 +63,14 @@ class NotificationService {
 
   Future<void> dailyAtNotification(
       int id, String title, String body, int time) async {
-  //   var time = const Time(19, 25, 0);
+    //   var time = const Time(19, 25, 0);
     await flutterLocalNotificationsPlugin.zonedSchedule(
         id,
         title,
         body,
-        tz.TZDateTime.local(1).add( const Duration(days: 1)),
+        tz.TZDateTime.local(1).add(const Duration(days: 1)),
         const NotificationDetails(
-          android: AndroidNotificationDetails(
-            'channel id', 
-            'channel name',
+          android: AndroidNotificationDetails('channel id', 'channel name',
               channelDescription: 'Main channel notifications',
               sound: RawResourceAndroidNotificationSound('notification_sound'),
               playSound: true,
@@ -86,18 +83,41 @@ class NotificationService {
             presentBadge: true,
             presentSound: true,
           ),
-        ), 
-         uiLocalNotificationDateInterpretation:
+        ),
+        uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
         androidAllowWhileIdle: true,
-        matchDateTimeComponents: DateTimeComponents.time
-        
-        );
+        matchDateTimeComponents: DateTimeComponents.time);
 
-      
-    
     // Future<void> cancelAllNotifications() async {
     //   await flutterLocalNotificationsPlugin.cancelAll();
     // }
   }
 }
+
+class ListNotiece {
+  List<String>? title;
+  List<String>? notiece;
+
+  ListNotiece({
+    this.notiece,
+    this.title,
+  });
+}
+
+final listnotiece = ListNotiece(
+    title: [
+      "Дуо сипари мусалмон аст",
+      "Паёмбар (ﷺ) гуфтааст:",
+      "Дуои Закариё (ﷺ)",
+      "Аллоҳ таъоло мефармояд:",
+      "Аз дуоҳои паёмбар (ﷺ)",
+    ].toList(),
+    notiece: [
+      "Парвардигоратон фармуд: «Маро бихонед, то [дуои] шуморо иҷобат кунам» (Ғофир 60)",
+      "«Ҳарки аз Аллоҳ пурсишу дархост намекунад, бар ӯ ғазаб хоҳад кард. (Тирмизӣ 3373)",
+      "«Эй Парвардигорам, [ҳаргиз] дар дуои ту [аз иҷобат] бебаҳра набудаам». (Марям 4)",
+      "«Ман наздикам ва дуои дуокунандаро – чун маро бихонад – иҷобат мекунам».(Бақара 186)",
+      "Илоҳо, аз ту дархост мекунам, ки диламро сиҳату солим гардони",
+      "",
+    ].toList());

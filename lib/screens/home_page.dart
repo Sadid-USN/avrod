@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:avrod/colors/colors.dart';
@@ -18,32 +17,29 @@ import 'chapter_screen.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  BannerAd _bannerAd;
+  BannerAd? _bannerAd;
   // NativeAd _nativeAd;
   bool isAdLoaded = false;
-  Chapter chapter;
-
+  Chapter? chapter;
+  int? index;
   @override
   void initState() {
-    _initBannerAd();
     //_initNativeAd();
 
     super.initState();
+    _initBannerAd();
 
     tz.initializeTimeZones();
 
     NotificationService().dailyAtNotification(
-        1,
-        "Дуо сипари мусалмон аст",
-        "Парвардигоратон фармуд: «Маро бихонед, то [дуои] шуморо иҷобат кунам» (Ғофир 60)",
-        2);
+        1, listnotiece.title![3], listnotiece.notiece![3], 2);
   }
 
   _initBannerAd() {
@@ -195,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                                             children: [
                                               Center(
                                                 child: Text(
-                                                  books[index].name,
+                                                  books[index].name!,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       fontSize: 19.sp,
@@ -259,7 +255,7 @@ class _HomePageState extends State<HomePage> {
                                     repeatPauseDuration:
                                         const Duration(milliseconds: 1000),
                                     child: Image.asset(
-                                      books[index].image,
+                                      books[index].image!,
                                       height: 35.h,
                                       width: 80.w,
                                     ),
@@ -268,8 +264,8 @@ class _HomePageState extends State<HomePage> {
                                 isAdLoaded
                                     ? SizedBox(
                                         height:
-                                            _bannerAd.size.height.toDouble(),
-                                        width: _bannerAd.size.width.toDouble(),
+                                            _bannerAd!.size.height.toDouble(),
+                                        width: _bannerAd!.size.width.toDouble(),
                                         child: AdWidget(ad: _initBannerAd()),
                                       )
                                     : const SizedBox(),
