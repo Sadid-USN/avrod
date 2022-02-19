@@ -32,7 +32,7 @@ class _TextScreenState extends State<TextScreen> {
 
   bool isPlaying = false;
 
-  get index => null;
+  int? index;
 
   void stopPlaying(String url) async {
     if (isPlaying) {
@@ -254,7 +254,6 @@ class _TextScreenState extends State<TextScreen> {
   final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    int? index;
     return DefaultTabController(
       length: widget.texts!.length,
       child: Scaffold(
@@ -273,7 +272,7 @@ class _TextScreenState extends State<TextScreen> {
                 controller: _buttonController,
                 size: 40.0,
                 onStartIconPress: () {
-                  playSound(widget.texts![index ?? 0].url!);
+                  playSound(widget.chapter!.texts![0].url!);
 
                   return true;
                 },

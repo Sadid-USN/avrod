@@ -33,8 +33,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     //_initNativeAd();
 
+    //_initBannerAd();
     super.initState();
-    _initBannerAd();
 
     tz.initializeTimeZones();
 
@@ -42,42 +42,45 @@ class _HomePageState extends State<HomePage> {
         1, listnotiece.title![3], listnotiece.notiece![3], 2);
   }
 
-  _initBannerAd() {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _bannerAd = BannerAd(
-      size: AdSize.banner,
-      adUnitId: 'ca-app-pub-6143129378445620/5225466438',
-      listener: BannerAdListener(
-        onAdLoaded: (_) {
+        size: AdSize.banner,
+        adUnitId: 'ca-app-pub-6143129378445620/5225466438',
+        listener: BannerAdListener(onAdLoaded: (ad) {
           setState(() {
             isAdLoaded = true;
           });
-        },
-        onAdFailedToLoad: (ad, error) {
-          print('This is error message ->>>>> ${error.message}');
-          isAdLoaded = false;
+          print('<<<<Banner Ad Loaded>>>');
+        }, onAdFailedToLoad: (ad, error) {
           ad.dispose();
-        },
-      ),
-      request: const AdRequest(),
-    )..load();
+          print(error.message);
+        }),
+        request: const AdRequest());
+    _bannerAd!.load();
   }
 
-  // _initNativeAd() {
-  //   _nativeAd = NativeAd(
-  //     adUnitId: 'ca-app-pub-6636812855826330/7135204661',
-  //     factoryId: 'ListTile',
-  //     listener: NativeAdListener(onAdLoaded: (ad) {
-  //       setState(() {
-  //         isAdLoaded = true;
-  //       });
-  //     }, onAdFailedToLoad: (ad, error) {
-  //       ad.dispose();
-  //       print('failed to load the ad ${error.message}');
-  //     }),
+  // _initBannerAd() {
+  //   _bannerAd = BannerAd(
+  //     size: AdSize.banner,
+  // test adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+  //      adUnitId: 'ca-app-pub-6143129378445620/5225466438',
+  //     listener: BannerAdListener(
+  //       onAdLoaded: (_) {
+  //         setState(() {
+  //           isAdLoaded = true;
+  //         });
+  //       },
+  //       onAdFailedToLoad: (ad, error) {
+  //         print('This is error message ->>>>> ${error.message}');
+  //         isAdLoaded = false;
+  //         ad.dispose();
+  //       },
+  //     ),
   //     request: const AdRequest(),
   //   )..load();
   // }
-  // final controller = PageController(viewportFraction: 12.0, keepPage: true);
 
   final navItems = [
     Icon(FontAwesomeIcons.search, color: Colors.indigo.shade400, size: 22.sp),
@@ -132,6 +135,14 @@ class _HomePageState extends State<HomePage> {
             decoration: mainScreenGradient,
             child: ListView(
               children: [
+                // const Spacer(),
+                isAdLoaded
+                    ? Container(
+                        height: _bannerAd!.size.height.toDouble(),
+                        width: _bannerAd!.size.width.toDouble(),
+                        child: AdWidget(ad: _bannerAd!),
+                      )
+                    : const SizedBox(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -261,14 +272,14 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                                isAdLoaded
-                                    ? SizedBox(
-                                        height:
-                                            _bannerAd!.size.height.toDouble(),
-                                        width: _bannerAd!.size.width.toDouble(),
-                                        child: AdWidget(ad: _initBannerAd()),
-                                      )
-                                    : const SizedBox(),
+                                // isAdLoaded
+                                //     ? SizedBox(
+                                //         height:
+                                //             _bannerAd!.size.height.toDouble(),
+                                //         width: _bannerAd!.size.width.toDouble(),
+                                //         child: AdWidget(ad: _initBannerAd()),
+                                //       )
+                                //     : const SizedBox(),
                               ],
                             ),
                           );
