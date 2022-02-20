@@ -17,7 +17,6 @@ class SelectedBooks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -27,7 +26,7 @@ class SelectedBooks extends StatelessWidget {
         flexibleSpace: Container(
           decoration: favoriteGradient,
         ),
-         title: Text('Китобхона', style: TextStyle(fontSize: 18.sp)),
+        title: Text('Китобхона', style: TextStyle(fontSize: 18.sp)),
         centerTitle: true,
       ),
       body: Container(
@@ -46,13 +45,11 @@ class SelectedBooks extends StatelessWidget {
                           await PDFApi.loadNetwork(booksRu.path![index]);
                       openPDF(context, file);
                     },
-                    child: ListTile(
-
-                        // ignore: avoid_unnecessary_containers
-                        title: Column(
+                    child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
                           child: CachedNetworkImage(
                             imageUrl: booksRu.urlImage![index],
                             imageBuilder: (context, imageProvider) {
@@ -63,7 +60,7 @@ class SelectedBooks extends StatelessWidget {
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(16.0)),
                                 ),
-                                height: 12.h,
+                                height: 50.h,
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Center(
@@ -71,7 +68,7 @@ class SelectedBooks extends StatelessWidget {
                                       booksRu.name![index],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          fontSize: 14.sp,
+                                          fontSize: 16.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white),
                                     ),
@@ -82,7 +79,7 @@ class SelectedBooks extends StatelessWidget {
                           ),
                         ),
                       ],
-                    )),
+                    ),
                   ),
                 ),
               );

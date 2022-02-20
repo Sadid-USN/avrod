@@ -20,11 +20,12 @@ class _ReadingBooksOnlineState extends State<ReadingBooksOnline> {
   Widget build(BuildContext context) {
     final name = basename(widget.file!.path);
     return Scaffold(
-      
-      appBar: AppBar(title:  Text(name),),
+      backgroundColor: Colors.green,
+      appBar: AppBar(
+        title: Text(name),
+      ),
       body: PDFView(
-        filePath: widget.file!.path ,
-        
+        filePath: widget.file!.path,
       ),
     );
   }

@@ -55,7 +55,7 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
                 child: ScaleAnimation(
                   child: InkWell(
                     onTap: () async {
-                        Navigator.push(context,
+                      Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return const SelectedBooks();
                       }));
@@ -112,7 +112,7 @@ void openPDF(BuildContext context, File file) =>
         builder: (context) => ReadingBooksOnline(
               file: file,
             )));
- 
+
 
 
 
