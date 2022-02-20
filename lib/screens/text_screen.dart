@@ -32,8 +32,6 @@ class _TextScreenState extends State<TextScreen> {
 
   bool isPlaying = false;
 
-  int? index;
-
   void stopPlaying(String url) async {
     if (isPlaying) {
       var reslult = await audioPlayer.pause();
@@ -46,7 +44,6 @@ class _TextScreenState extends State<TextScreen> {
   }
 
   void playSound(String url) async {
-    // ignore: unrelated_type_equality_checks
     if (isPlaying) {
       var result = await audioPlayer.pause();
 
@@ -277,7 +274,7 @@ class _TextScreenState extends State<TextScreen> {
                   return true;
                 },
                 onEndIconPress: () {
-                  playSound(widget.texts![index ?? 0].url!);
+                  playSound(widget.texts![0].url!);
                   return true;
                 },
                 duration: const Duration(milliseconds: 250),
@@ -318,7 +315,7 @@ class _TextScreenState extends State<TextScreen> {
                     size: 33.0,
                     onStartIconPress: () {
                       FlutterClipboard.copy(
-                          '**${widget.chapter?.name}*\n${widget.texts![index ?? 0].text}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\n${widget.texts![index ?? 0].arabic}\n\n${widget.texts![index ?? 0].translation}\n\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\nБарномаи *Avrod* дар Playsore\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                          '**${widget.chapter?.name}*\n${widget.texts![0].text}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\n${widget.texts![0].arabic}\n\n${widget.texts![0].translation}\n\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\nБарномаи *Avrod* дар Playsore\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
 
                       return true;
                     },
@@ -333,7 +330,7 @@ class _TextScreenState extends State<TextScreen> {
                   IconButton(
                       onPressed: () {
                         Share.share(
-                            '*${widget.chapter?.name}*\n${widget.texts![index ?? 0].text}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\n${widget.texts![index ?? 0].arabic}\n\n${widget.texts![index ?? 0].translation}\n\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\nБарномаи *Avrod* дар Playsore\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                            '*${widget.chapter?.name}*\n${widget.texts![0].text}\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\n${widget.texts![0].arabic}\n\n${widget.texts![0].translation}\n\n☘️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️☘️\n\nБарномаи *Avrod* дар Playsore\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                       },
                       icon: const Icon(Icons.share,
                           size: 33.0, color: Colors.white)),
