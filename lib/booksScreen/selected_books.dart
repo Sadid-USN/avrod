@@ -32,7 +32,11 @@ class SelectedBooks extends StatelessWidget {
       body: Container(
         decoration: favoriteGradient,
         child: AnimationLimiter(
-          child: ListView.builder(
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 2 / 3.0,
+            ),
             itemCount: booksRu.name!.length,
             itemBuilder: (context, index) {
               return AnimationConfiguration.staggeredList(
@@ -60,7 +64,7 @@ class SelectedBooks extends StatelessWidget {
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(16.0)),
                                 ),
-                                height: 50.h,
+                                height: 20.h,
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Center(
@@ -68,7 +72,7 @@ class SelectedBooks extends StatelessWidget {
                                       booksRu.name![index],
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          fontSize: 16.sp,
+                                          fontSize: 12.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white),
                                     ),
