@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
     _bannerAd = BannerAd(
         size: AdSize.banner,
-        adUnitId: 'ca-app-pub-6143129378445620/5225466438',
+        adUnitId: 'ca-app-pub-6636812855826330/4617524983',
         listener: BannerAdListener(onAdLoaded: (ad) {
           setState(() {
             isAdLoaded = true;
