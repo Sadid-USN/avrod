@@ -27,7 +27,8 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
-  // Audioplayer+
+  int currentIndex = 0;
+
   AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
 
   bool isPlaying = false;
@@ -239,7 +240,9 @@ class _TextScreenState extends State<TextScreen> {
 
   Widget buildBook(
     Texts text,
+    int index,
   ) {
+    currentIndex = index;
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
@@ -269,12 +272,11 @@ class _TextScreenState extends State<TextScreen> {
                 controller: _buttonController,
                 size: 40.0,
                 onStartIconPress: () {
-                  playSound(widget.chapter!.texts![0].url!);
+                  playSound(widget.texts![currentIndex].url!);
 
                   return true;
                 },
                 onEndIconPress: () {
-                  playSound(widget.texts![0].url!);
                   return true;
                 },
                 duration: const Duration(milliseconds: 250),
@@ -383,7 +385,7 @@ class _TextScreenState extends State<TextScreen> {
                 (e) => Container(
                   decoration: favoriteGradient,
                   child: Builder(builder: (context) {
-                    return buildBook(e);
+                    return buildBook(e, widget.texts!.indexOf(e));
                   }),
                 ),
               )

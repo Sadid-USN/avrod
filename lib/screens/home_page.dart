@@ -17,8 +17,9 @@ import 'chapter_screen.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -28,7 +29,13 @@ class _HomePageState extends State<HomePage> {
   // NativeAd _nativeAd;
   bool isAdLoaded = false;
   Chapter? chapter;
-  int? index;
+
+  @override
+  void dispose() {
+    _bannerAd!.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     //_initNativeAd();
@@ -39,7 +46,11 @@ class _HomePageState extends State<HomePage> {
     tz.initializeTimeZones();
 
     NotificationService().dailyAtNotification(
-        1, listnotiece.title![3], listnotiece.notiece![3], 2);
+      1,
+      listnotiece.title![0],
+      listnotiece.notiece![0],
+      2,
+    );
   }
 
   @override
