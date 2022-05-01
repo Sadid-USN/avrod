@@ -13,9 +13,7 @@ class ScrollingText extends StatefulWidget {
     this.textStyle,
     this.scrollAxis = Axis.horizontal,
     this.ratioOfBlankToScreen = 0.20,
-  }) : assert(
-          text != null,
-        );
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -38,7 +36,7 @@ class ScrollingTextState extends State<ScrollingText>
   void initState() {
     super.initState();
     scrollController = ScrollController();
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
+    WidgetsBinding.instance!.addPostFrameCallback((callback) {
       startTimer();
     });
   }

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../widgets/drawer_widget.dart';
@@ -127,6 +128,12 @@ class _HomePageState extends State<HomePage> {
           drawer: const DrawerModel(),
           extendBodyBehindAppBar: true,
           appBar: AppBar(
+            flexibleSpace: Lottie.network(
+              'https://assets7.lottiefiles.com/private_files/lf30_yeszgfau.json',
+              fit: BoxFit.cover,
+              height: 10,
+              width: MediaQuery.of(context).size.width,
+            ),
             title: ListTile(
               title: AnimatedTextKit(
                 totalRepeatCount: 2,
@@ -148,7 +155,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 // const Spacer(),
                 isAdLoaded
-                    ? Container(
+                    ? SizedBox(
                         height: _bannerAd!.size.height.toDouble(),
                         width: _bannerAd!.size.width.toDouble(),
                         child: AdWidget(ad: _bannerAd!),
@@ -283,14 +290,6 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                                // isAdLoaded
-                                //     ? SizedBox(
-                                //         height:
-                                //             _bannerAd!.size.height.toDouble(),
-                                //         width: _bannerAd!.size.width.toDouble(),
-                                //         child: AdWidget(ad: _initBannerAd()),
-                                //       )
-                                //     : const SizedBox(),
                               ],
                             ),
                           );

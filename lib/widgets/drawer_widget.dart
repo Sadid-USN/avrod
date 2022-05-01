@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:share/share.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,7 +35,7 @@ class _DrawerModelState extends State<DrawerModel> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black26,
+      backgroundColor: Colors.black12,
       child: SafeArea(
         child: Column(
           children: [
