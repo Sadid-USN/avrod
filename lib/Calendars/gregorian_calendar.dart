@@ -1,7 +1,6 @@
 import 'package:avrod/colors/colors.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class GregorianCalendar extends StatefulWidget {
@@ -29,11 +28,14 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
           decoration: favoriteGradient,
         ),
         elevation: 0.0,
-        title: Text('Тақвими мелодӣ', style: TextStyle(fontSize: 18.sp)),
+        title: Text(
+          'Тақвими мелодӣ',
+          style: TextStyle(fontSize: 18, color: calendarAppbar),
+        ),
         centerTitle: true,
       ),
       body: Container(
-        decoration: calendarGradient,
+        decoration: favoriteGradient,
         child: TableCalendar(
           calendarStyle: const CalendarStyle(
               todayDecoration: BoxDecoration(

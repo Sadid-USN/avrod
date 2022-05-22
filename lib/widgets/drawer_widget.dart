@@ -1,18 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:share/share.dart';
-import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DrawerModel extends StatefulWidget {
+class DrawerModel extends StatelessWidget {
   const DrawerModel({Key? key}) : super(key: key);
 
-  @override
-  State<DrawerModel> createState() => _DrawerModelState();
-}
-
-class _DrawerModelState extends State<DrawerModel> {
   final String _azkarRuAppLink =
       'https://play.google.com/store/apps/details?id=com.darulasar.Azkar';
   final String _lounchUrlGmail =
@@ -35,9 +31,11 @@ class _DrawerModelState extends State<DrawerModel> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      elevation: 30,
       backgroundColor: Colors.black12,
       child: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             _header(context),
             ListTile(
@@ -45,59 +43,56 @@ class _DrawerModelState extends State<DrawerModel> {
                 'Ба дигарон ирсол кунед',
                 style: TextStyle(fontSize: 14, color: Colors.white),
               ),
-              leading: IconButton(
-                  onPressed: () {
-                    Share.share(
-                        'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-                  },
-                  icon: Icon(
-                    Icons.share,
-                    color: Colors.blueGrey,
-                    size: 20.sp,
-                  )),
+              onTap: () {
+                Share.share(
+                    'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+              },
+              leading: const Icon(
+                Icons.share,
+                color: Colors.blueGrey,
+                size: 20,
+              ),
             ),
             ListTile(
-              contentPadding: const EdgeInsets.only(left: 25),
+                title: const Text(
+                  'Azkar бо забони русӣ',
+                  style: TextStyle(fontSize: 14, color: Colors.white),
+                ),
+                onTap: () {
+                  _launchInBrowser(_azkarRuAppLink);
+                },
+                leading: const CircleAvatar(
+                    radius: 12,
+                    backgroundImage: AssetImage(
+                      'images/iconavrod.png',
+                    ))),
+            ListTile(
               title: const Text(
-                'Azkar бо забони русӣ',
+                'Darul-asar',
                 style: TextStyle(fontSize: 14, color: Colors.white),
               ),
-              leading: const CircleAvatar(
-                  radius: 15,
-                  backgroundImage: AssetImage('images/iconavrod.png')),
               onTap: () {
-                _launchInBrowser(_azkarRuAppLink);
+                _launchInBrowser(_youTubeLink);
               },
+              leading: const Icon(
+                FontAwesomeIcons.youtube,
+                color: Colors.red,
+                size: 21,
+              ),
             ),
             ListTile(
               title: const Text(
                 '@darul_asar',
                 style: TextStyle(fontSize: 14, color: Colors.white),
               ),
-              leading: IconButton(
-                  onPressed: () {
-                    _launchInBrowser(_linkInstagramm);
-                  },
-                  icon: Icon(
-                    FontAwesomeIcons.instagram,
-                    color: Colors.pinkAccent,
-                    size: 21.sp,
-                  )),
-            ),
-            ListTile(
-              title: const Text(
-                'Darul-asar',
-                style: TextStyle(fontSize: 14, color: Colors.white),
+              onTap: () {
+                _launchInBrowser(_linkInstagramm);
+              },
+              leading: const Icon(
+                FontAwesomeIcons.instagram,
+                color: Colors.pinkAccent,
+                size: 21,
               ),
-              leading: IconButton(
-                  onPressed: () {
-                    _launchInBrowser(_youTubeLink);
-                  },
-                  icon: Icon(
-                    FontAwesomeIcons.youtube,
-                    color: Colors.red,
-                    size: 21.sp,
-                  )),
             ),
           ],
         ),

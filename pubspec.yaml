@@ -39,7 +39,8 @@ dependencies:
   expandable: ^5.0.1
   fab_circular_menu: ^1.0.2
   file_picker: ^4.3.1
-  firebase_core: ^1.11.0
+  firebase_core: ^1.17.0
+  firebase_database: ^9.0.12
   firebase_storage: ^10.2.5
   flutter:
     sdk: flutter
@@ -65,6 +66,7 @@ dependencies:
   image_picker: ^0.8.4+8
   intl: ^0.17.0
   like_button: ^2.0.4
+  link_text: ^0.2.0
   liquid_swipe: ^2.1.1
   lottie: ^1.3.0
   open_file: ^3.2.1
@@ -73,6 +75,7 @@ dependencies:
   progress_indicators: ^1.0.0
   provider: ^6.0.2
   share: ^2.0.4
+  shimmer: ^2.0.0
   simple_animations: ^4.0.1
   sizer: ^2.0.15
   sticky_and_expandable_list: ^1.0.3
@@ -96,7 +99,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  image_path: "images/"
+  image_path: "images/iconavrod.png"
   android: true
   ios: true
 
