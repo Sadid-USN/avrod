@@ -233,7 +233,7 @@ class _TextScreenState extends State<TextScreen> {
                     size: 25.0,
                     onStartIconPress: () {
                       FlutterClipboard.copy(
-                          '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![widget.textsIndex!]['text']}\n\nАраби:\n${widget.texts![widget.textsIndex!]['arabic']}\n\nТарҷума:\n${widget.texts![widget.textsIndex!]['translation']}\n\nСадо 🎵:\n${widget.texts![widget.textsIndex!]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                          '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
 
                       return true;
                     },
@@ -248,7 +248,7 @@ class _TextScreenState extends State<TextScreen> {
                   IconButton(
                       onPressed: () {
                         Share.share(
-                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![widget.textsIndex!]['text']}\n\nАраби:\n${widget.texts![widget.textsIndex!]['arabic']}\n\nТарҷума:\n${widget.texts![widget.textsIndex!]['translation']}\n\nСадо 🎵:\n${widget.texts![widget.textsIndex!]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
                       },
                       icon: const Icon(Icons.share,
                           size: 25.0, color: Colors.white)),

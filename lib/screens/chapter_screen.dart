@@ -112,6 +112,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
                             color: bgColor,
                             padding: const EdgeInsets.all(5.0),
                             child: ListTile(
+                              key: ValueKey(index),
                               onTap: () {
                                 Navigator.push(
                                   context,

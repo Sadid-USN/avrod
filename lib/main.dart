@@ -1,3 +1,4 @@
+import 'package:avrod/colors/colors.dart';
 import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/widgets/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,7 +9,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // MobileAds.instance.initialize();
+
   NotificationService().initNotification();
   await Firebase.initializeApp();
   await Hive.initFlutter();
@@ -32,7 +33,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.white,
+        primaryColor: bgColor,
         textTheme:
             GoogleFonts.ptSerifCaptionTextTheme(Theme.of(context).textTheme),
         visualDensity: VisualDensity.adaptivePlatformDensity,

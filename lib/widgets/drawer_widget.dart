@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:avrod/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -32,16 +33,17 @@ class DrawerModel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       elevation: 30,
-      backgroundColor: Colors.black12,
+      backgroundColor: bgColor,
       child: SafeArea(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             _header(context),
             ListTile(
-              title: const Text(
+              title: Text(
                 'Ба дигарон ирсол кунед',
-                style: TextStyle(fontSize: 14, color: Colors.white),
+                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
                 Share.share(
@@ -53,23 +55,23 @@ class DrawerModel extends StatelessWidget {
                 size: 20,
               ),
             ),
+            // ListTile(
+            //     title: const Text(
+            //       'Azkar бо забони русӣ',
+            //       style: TextStyle(fontSize: 14, color: Colors.white),
+            //     ),
+            //     onTap: () {
+            //       _launchInBrowser(_azkarRuAppLink);
+            //     },
+            //     leading: const CircleAvatar(
+            //         radius: 12,
+            //         backgroundImage: AssetImage(
+            //           'images/iconavrod.png',
+            //         ))),
             ListTile(
-                title: const Text(
-                  'Azkar бо забони русӣ',
-                  style: TextStyle(fontSize: 14, color: Colors.white),
-                ),
-                onTap: () {
-                  _launchInBrowser(_azkarRuAppLink);
-                },
-                leading: const CircleAvatar(
-                    radius: 12,
-                    backgroundImage: AssetImage(
-                      'images/iconavrod.png',
-                    ))),
-            ListTile(
-              title: const Text(
+              title: Text(
                 'Darul-asar',
-                style: TextStyle(fontSize: 14, color: Colors.white),
+                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
                 _launchInBrowser(_youTubeLink);
@@ -81,9 +83,9 @@ class DrawerModel extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: const Text(
+              title: Text(
                 '@darul_asar',
-                style: TextStyle(fontSize: 14, color: Colors.white),
+                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
                 _launchInBrowser(_linkInstagramm);
@@ -103,17 +105,49 @@ class DrawerModel extends StatelessWidget {
 
 Widget _header(BuildContext context) {
   return Material(
-    color: Colors.transparent,
-    child: Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.only(
-          top: 22 + MediaQuery.of(context).padding.top, bottom: 25),
-      child: Column(
-        children: const [
-          CircleAvatar(
-              radius: 72, backgroundImage: AssetImage('images/iconavrod.png'))
-        ],
+    color: bgColor,
+    child: Padding(
+      padding: const EdgeInsets.only(top: 70),
+      child: Container(
+        width: 170,
+        height: 170,
+        decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: const BorderRadius.all(Radius.circular(100)),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.shade400,
+                  offset: const Offset(4.0, 4.0),
+                  blurRadius: 3.0,
+                  spreadRadius: 1.0),
+              BoxShadow(
+                  color: Colors.grey[200]!,
+                  offset: const Offset(-2.0, -2.0),
+                  blurRadius: 3.0,
+                  spreadRadius: 1.0),
+            ]),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(100)),
+          child: Image.asset(
+            'images/iconavrod.png',
+            height: 190,
+            width: 190,
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     ),
+
+    // Container(
+    //   width: MediaQuery.of(context).size.width,
+    //   padding: EdgeInsets.only(
+    //       top: 22 + MediaQuery.of(context).padding.top, bottom: 25),
+    //   child: Column(
+    //     children: const [
+    //       CircleAvatar(
+    //           radius: 72, backgroundImage: AssetImage('images/iconavrod.png'))
+    //     ],
+    //   ),
+    // ),
   );
 }
