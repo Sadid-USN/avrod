@@ -17,6 +17,7 @@ import '../colors/colors.dart';
 import '../widgets/pathImages.dart';
 import '../widgets/drawer_widget.dart';
 import 'favorite_chapter_screen.dart';
+import 'dart:io' show Platform;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,6 +30,8 @@ class _HomePageState extends State<HomePage> {
 
   final String _lounchGooglePlay =
       'https://play.google.com/store/apps/details?id=com.darulasar.avrod';
+  final String _lounchAppStore =
+      'https://apps.apple.com/ru/app/avrod/id1626614344?l=en';
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {
       await launch(url,
@@ -216,7 +219,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         color: Colors.white,
         buttonBackgroundColor: Colors.white,
-        height: 50,
+        height: Platform.isIOS ? 65 : 50,
         index: selectedIndex,
         backgroundColor: const Color(0xffF2DFC7),
         items: navItems,
@@ -249,7 +252,13 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           } else if (index == 4) {
-            _launchInBrowser(_lounchGooglePlay);
+            if (Platform.isAndroid) {
+              _launchInBrowser(_lounchGooglePlay);
+              // Android-specific code
+            } else if (Platform.isIOS) {
+              _launchInBrowser(_lounchAppStore);
+              // iOS-specific code
+            }
           }
         },
       ),

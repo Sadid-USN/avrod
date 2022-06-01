@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animate_icons/animate_icons.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:clipboard/clipboard.dart';
@@ -110,7 +112,7 @@ class _TextScreenState extends State<TextScreen> {
   final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    print(widget.texts![0]);
+    // print(widget.texts![0]);
     return DefaultTabController(
       length: widget.texts!.length,
       child: Scaffold(
@@ -162,11 +164,12 @@ class _TextScreenState extends State<TextScreen> {
               .toList(),
         ),
         bottomSheet: Container(
-          height: 60,
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          height: Platform.isIOS ? 70 : 60,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(12),
-              topRight: Radius.circular(12),
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
             ),
             color: Colors.brown[700],
             boxShadow: const [
@@ -232,8 +235,13 @@ class _TextScreenState extends State<TextScreen> {
                     controller: _controller,
                     size: 25.0,
                     onStartIconPress: () {
-                      FlutterClipboard.copy(
-                          '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                      if (Platform.isIOS) {
+                        FlutterClipboard.copy(
+                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apps.apple.com/ru/app/avrod/id1626614344?l=en');
+                      } else {
+                        FlutterClipboard.copy(
+                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                      }
 
                       return true;
                     },
@@ -245,13 +253,19 @@ class _TextScreenState extends State<TextScreen> {
                     endIconColor: Colors.white,
                     clockwise: false,
                   ),
-                  IconButton(
-                      onPressed: () {
+                  GestureDetector(
+                    onTap: () {
+                      if (Platform.isIOS) {
+                        Share.share(
+                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://apps.apple.com/ru/app/avrod/id1626614344?l=en');
+                      } else {
                         Share.share(
                             '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-                      },
-                      icon: const Icon(Icons.share,
-                          size: 25.0, color: Colors.white)),
+                      }
+                    },
+                    child: const Icon(Icons.share,
+                        size: 25.0, color: Colors.white),
+                  ),
                   const SizedBox(
                     width: 5,
                   )

@@ -1,3 +1,4 @@
+import 'package:avrod/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 
@@ -12,6 +13,15 @@ class _SelectedBooksState extends State<SelectedBooks> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: const Text(
+            'Китобхона',
+            style: TextStyle(fontSize: 18, color: whiteColor),
+          ),
+          elevation: 0.0,
+        ),
         // backgroundColor: bgColor.withOpacity(0.0),
         // appBar: AppBar(
         //   elevation: 0.0,
@@ -35,12 +45,12 @@ class _SelectedBooksState extends State<SelectedBooks> {
           padding: const EdgeInsets.all(16.0),
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('images/lib.png'), fit: BoxFit.cover)),
+                  image: AssetImage('images/lib.png'), fit: BoxFit.fill)),
           child: Column(
             //  mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 40,
+                height: 80,
               ),
               const Text(
                 'Китобхона айни замон дар марҳилаи эҷод аст, агар шумо барои нусхабардории китобҳо ба мо кумаки худро расондани бошед, лутфан бо мо тамос гиред:\n',
@@ -53,9 +63,12 @@ class _SelectedBooksState extends State<SelectedBooks> {
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
-                        fontSize: 17),
+                        fontSize: 16),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 5,
               ),
               Row(
                 children: [
