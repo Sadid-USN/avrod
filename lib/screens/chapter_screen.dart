@@ -109,82 +109,105 @@ class _ChapterScreenState extends State<ChapterScreen> {
                           .length,
                       child: ScaleAnimation(
                         child: Container(
-                            color: bgColor,
-                            padding: const EdgeInsets.all(5.0),
-                            child: ListTile(
-                              key: ValueKey(index),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return TextScreen(
-                                        textsIndex: index,
-                                        texts: bookFromFB![widget.indexChapter]
-                                            ['chapters'][index]['texts'],
-                                        titleAbbar:
-                                            bookFromFB![widget.indexChapter]
-                                                ['chapters'][index]['name'],
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
-                              trailing: CircleAvatar(
-                                backgroundColor: bgColor,
-                                child: LikeButton(
-                                  isLiked: isChapterLiked(
-                                      bookFromFB![widget.indexChapter]
-                                          ['chapters'][index]['id']),
-                                  onTap: (isLiked) async {
-                                    return setLike(
-                                        "${widget.indexChapter}_$index",
-
-                                        // bookFromFB![widget.indexChapter]
-                                        //         ['chapters'][index]['id'] ??
-                                        //     0,
-                                        isLiked,
-                                        bookFromFB![widget.indexChapter]
-                                            ['chapters'][index]);
+                          color: bgColor,
+                          padding: const EdgeInsets.all(5.0),
+                          child: ListTile(
+                            //  key: ValueKey(index),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return TextScreen(
+                                      textsIndex: index,
+                                      texts: bookFromFB![widget.indexChapter]
+                                          ['chapters'][index]['texts'],
+                                      titleAbbar:
+                                          bookFromFB![widget.indexChapter]
+                                              ['chapters'][index]['name'],
+                                    );
                                   },
-                                  size: 25,
-                                  circleColor: const CircleColor(
-                                      start: Color(0xffFF0000),
-                                      end: Color(0xffFF0000)),
-                                  bubblesColor: const BubblesColor(
-                                    dotPrimaryColor: Color(0xffffffff),
-                                    dotSecondaryColor: Color(0xffBF40BF),
-                                  ),
+                                ),
+                              );
+                            },
+                            trailing: CircleAvatar(
+                              backgroundColor: bgColor,
+                              child: LikeButton(
+                                isLiked: isChapterLiked(
+                                    bookFromFB![widget.indexChapter]['chapters']
+                                        [index]['id']),
+                                onTap: (isLiked) async {
+                                  return setLike(
+                                      "${widget.indexChapter}_$index",
+
+                                      // bookFromFB![widget.indexChapter]
+                                      //         ['chapters'][index]['id'] ??
+                                      //     0,
+                                      isLiked,
+                                      bookFromFB![widget.indexChapter]
+                                          ['chapters'][index]);
+                                },
+                                size: 25,
+                                circleColor: const CircleColor(
+                                    start: Color(0xffFF0000),
+                                    end: Color(0xffFF0000)),
+                                bubblesColor: const BubblesColor(
+                                  dotPrimaryColor: Color(0xffffffff),
+                                  dotSecondaryColor: Color(0xffBF40BF),
                                 ),
                               ),
-                              leading: CachedNetworkImage(
-                                  imageUrl: bookFromFB![widget.indexChapter]
-                                      ['chapters'][index]['listimage'],
-                                  placeholder: (context, imageProvider) {
-                                    return JumpingText(
-                                      '❤️❤️❤️',
-                                      end: const Offset(0.0, -0.5),
-                                      style: const TextStyle(
-                                          fontSize: 8, color: Colors.white),
-                                    );
-                                  },
-                                  imageBuilder: (context, imageProvider) {
-                                    return CircleAvatar(
-                                      radius: 25,
-                                      backgroundImage: imageProvider,
-                                    );
-                                  }),
-                              title: Text(
-                                "${bookFromFB![widget.indexChapter]['chapters'][index]['name']}",
-                                maxLines: 2,
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    overflow: TextOverflow.ellipsis,
-                                    fontWeight: FontWeight.w600,
-                                    color: listTitleColor),
+                            ),
+                            leading: Container(
+                              height: 70,
+                              width: 70,
+                              child: Stack(
+                                children: [
+                                  CachedNetworkImage(
+                                      imageUrl: bookFromFB![widget.indexChapter]
+                                          ['chapters'][index]['listimage'],
+                                      placeholder: (context, imageProvider) {
+                                        return JumpingText(
+                                          '❤️❤️❤️',
+                                          end: const Offset(0.0, -0.5),
+                                          style: const TextStyle(
+                                              fontSize: 8, color: Colors.white),
+                                        );
+                                      },
+                                      imageBuilder: (context, imageProvider) {
+                                        return CircleAvatar(
+                                          radius: 25,
+                                          backgroundImage: imageProvider,
+                                        );
+                                      }),
+                                  Positioned(
+                                    bottom: 0,
+                                    right: 0,
+                                    child: Text(
+                                      "${bookFromFB![widget.indexChapter]['chapters'][index]['id'] + 1}",
+                                      maxLines: 2,
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontWeight: FontWeight.w600,
+                                          color: listTitleColor),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            )),
+                            ),
+                            title: Text(
+                              "${bookFromFB![widget.indexChapter]['chapters'][index]['name']}",
+                              maxLines: 2,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  overflow: TextOverflow.ellipsis,
+                                  fontWeight: FontWeight.w600,
+                                  color: listTitleColor),
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   }),

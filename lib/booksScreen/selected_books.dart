@@ -1,9 +1,11 @@
 import 'package:avrod/colors/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:progress_indicators/progress_indicators.dart';
+import 'package:lottie/lottie.dart';
 
 class SelectedBooks extends StatefulWidget {
-  const SelectedBooks({Key? key}) : super(key: key);
+  const SelectedBooks({
+    Key? key,
+  }) : super(key: key);
   @override
   State<SelectedBooks> createState() => _SelectedBooksState();
 }
@@ -13,14 +15,25 @@ class _SelectedBooksState extends State<SelectedBooks> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: bgColor,
+
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: const Text(
+          backgroundColor: bgColor,
+          title: Text(
             'Китобхона',
-            style: TextStyle(fontSize: 18, color: whiteColor),
+            style: TextStyle(fontSize: 18, color: Colors.blueGrey.shade800),
           ),
           elevation: 0.0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: listTitleColor,
+            ),
+          ),
         ),
         // backgroundColor: bgColor.withOpacity(0.0),
         // appBar: AppBar(
@@ -41,67 +54,60 @@ class _SelectedBooksState extends State<SelectedBooks> {
         //     ),
         //   ),
         // ),
-        body: Container(
-          padding: const EdgeInsets.all(16.0),
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('images/lib.png'), fit: BoxFit.fill)),
-          child: Column(
-            //  mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 80,
-              ),
-              const Text(
-                'Китобхона айни замон дар марҳилаи эҷод аст, агар шумо барои нусхабардории китобҳо ба мо кумаки худро расондани бошед, лутфан бо мо тамос гиред:\n',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-              Row(
-                children: const [
-                  SelectableText(
-                    '📨 tajikplus@gmail.com',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  Image.asset(
-                    'images/telegram.png',
-                    height: 20,
-                    width: 20,
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  const SelectableText(
-                    '@Official_najottv',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 70,
-              ),
-              Center(
-                child: GlowingProgressIndicator(
-                  duration: const Duration(seconds: 2),
-                  child: const Text(
-                    '🤝',
-                    style: TextStyle(fontSize: 100),
-                  ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              //  mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Китобхона айни замон дар марҳилаи эҷод аст, агар шумо барои нусхабардории китобҳо ба мо кумаки худро расондани бошед, лутфан бо мо тамос гиред:\n',
+                  style:
+                      TextStyle(color: Colors.blueGrey.shade800, fontSize: 16),
                 ),
-              ),
-            ],
+                Row(
+                  children: const [
+                    SelectableText(
+                      '📨 tajikplus@gmail.com',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Image.asset(
+                      'images/telegram.png',
+                      height: 20,
+                      width: 20,
+                    ),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    const SelectableText(
+                      '@Official_najottv',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Lottie.network(
+                      'https://assets7.lottiefiles.com/packages/lf20_yg29hewu.json',
+                      repeat: false),
+                ),
+                const SizedBox(
+                  height: 80,
+                ),
+              ],
+            ),
           ),
         ),
       ),

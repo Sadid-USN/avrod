@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:avrod/booksScreen/selected_books.dart';
 import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/widgets/all_book.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -55,10 +54,10 @@ class _ListOfAllBooksState extends State<ListOfAllBooks> {
                 child: ScaleAnimation(
                   child: InkWell(
                     onTap: () async {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const SelectedBooks();
-                      }));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) {
+                      //   return const SelectedBooks();
+                      // }));
                     },
                     child: ListTile(
 

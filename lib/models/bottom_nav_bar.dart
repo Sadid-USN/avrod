@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Calendars/calendar_tabbar.dart';
-import '../booksScreen/selected_books.dart';
 import '../screens/search_screen.dart';
 
 class BottomNavBar extends ChangeNotifier {
@@ -31,13 +30,13 @@ class BottomNavBar extends ChangeNotifier {
         return const SearchScreen();
       }));
     } else if (index == 1) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const SelectedBooks();
-      }));
+      // Navigator.push(context, MaterialPageRoute(builder: (context) {
+      //   return const SelectedBooks();
+      // }));
     } else if (index == 2) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const SelectedBooks();
-      }));
+      // Navigator.push(context, MaterialPageRoute(builder: (context) {
+      //   return const SelectedBooks();
+      // }));
     } else if (index == 3) {
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return const CalendarTabBarView();

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:avrod/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -39,7 +40,20 @@ class DrawerModel extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            _header(context),
+            // ignore: sized_box_for_whitespace
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Lottie.network(
+                  'https://assets9.lottiefiles.com/packages/lf20_bt5q6j0d.json',
+                  // fit: BoxFit.cover,
+
+                  width: MediaQuery.of(context).size.width,
+                ),
+                _header(context),
+              ],
+            ),
+
             ListTile(
               title: Text(
                 'Ба дигарон ирсол кунед',
@@ -55,19 +69,6 @@ class DrawerModel extends StatelessWidget {
                 size: 20,
               ),
             ),
-            // ListTile(
-            //     title: const Text(
-            //       'Azkar бо забони русӣ',
-            //       style: TextStyle(fontSize: 14, color: Colors.white),
-            //     ),
-            //     onTap: () {
-            //       _launchInBrowser(_azkarRuAppLink);
-            //     },
-            //     leading: const CircleAvatar(
-            //         radius: 12,
-            //         backgroundImage: AssetImage(
-            //           'images/iconavrod.png',
-            //         ))),
             ListTile(
               title: Text(
                 'Darul-asar',

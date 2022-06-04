@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Calendars/calendar_tabbar.dart';
 import '../booksScreen/selected_books.dart';
@@ -20,7 +19,8 @@ import 'favorite_chapter_screen.dart';
 import 'dart:io' show Platform;
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final int? indexChapter;
+  const HomePage({Key? key, this.indexChapter}) : super(key: key);
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
     Colors.indigo,
     Colors.deepOrange,
   ];
-  bool flag = false;
+
   final colorizeTextStyle =
       const TextStyle(fontSize: 16, fontWeight: FontWeight.w900);
   //Dcloration
@@ -72,7 +72,6 @@ class _HomePageState extends State<HomePage> {
   Timer? _timer;
   @override
   void initState() {
-    flag = true;
     // Subscribe to database, listen to "book"
     bookRef.onValue.listen((event) {
       setState(() {
@@ -151,71 +150,60 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: flag == false
-          ? Shimmer.fromColors(
-              period: const Duration(seconds: 2),
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Image.asset(
-                images[0].pathImages,
-                height: 110,
-                width: 110,
-              ),
-            )
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: AnimationLimiter(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 1 / 1.3,
-                    crossAxisSpacing: 1,
-                    mainAxisSpacing: 1,
-                    crossAxisCount: 3,
-                  ),
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: images.length,
-                  itemBuilder: (context, index) {
-                    return SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          AnimationConfiguration.staggeredGrid(
-                            position: index,
-                            duration: const Duration(milliseconds: 400),
-                            columnCount: images.length,
-                            child: FlipAnimation(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return ChapterScreen(
-                                      indexChapter: index,
-                                    );
-                                  }));
-                                },
-                                child: Image.asset(
-                                  images[index].pathImages,
-                                  height: 110,
-                                  width: 110,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            images[index].name,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.blueGrey[800],
-                                fontSize: 10,
-                                fontWeight: FontWeight.w900),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: AnimationLimiter(
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 1 / 1.3,
+              crossAxisSpacing: 1,
+              mainAxisSpacing: 1,
+              crossAxisCount: 3,
             ),
+            physics: const BouncingScrollPhysics(),
+            itemCount: images.length,
+            itemBuilder: (context, index) {
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AnimationConfiguration.staggeredGrid(
+                      position: index,
+                      duration: const Duration(milliseconds: 400),
+                      columnCount: images.length,
+                      child: FlipAnimation(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ChapterScreen(
+                                indexChapter: index,
+                              );
+                            }));
+                          },
+                          child: Image.asset(
+                            images[index].pathImages,
+                            height: 110,
+                            width: 110,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      images[index].name,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.blueGrey[800],
+                          fontSize: 10,
+                          fontWeight: FontWeight.w900),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ),
       bottomNavigationBar: CurvedNavigationBar(
         color: Colors.white,
         buttonBackgroundColor: Colors.white,
@@ -227,7 +215,7 @@ class _HomePageState extends State<HomePage> {
           selectedIndex = index;
           if (index == 0) {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const SearchScreen();
+              return SearchScreen(indexChapters: index);
             }));
           } else if (index == 1) {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -262,6 +250,17 @@ class _HomePageState extends State<HomePage> {
           }
         },
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.indigo.shade400,
+      //   onPressed: () {
+      //     //  Navigator.push(context, MaterialPageRoute(builder: (context) {
+      //     //     return SearchScreen(indexChapters: index);
+      //     //   }));
+      //   },
+      //   child: const Icon(
+      //     Icons.search,
+      //   ),
+      // ),
     );
   }
 }

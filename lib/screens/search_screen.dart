@@ -5,10 +5,12 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
-  final List<dynamic>? indexChapter;
+  final List<dynamic>? chapters;
+  final int? indexChapters;
   const SearchScreen({
     Key? key,
-    this.indexChapter,
+    this.chapters,
+    this.indexChapters,
   }) : super(key: key);
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -68,8 +70,9 @@ class _SearchScreenState extends State<SearchScreen> {
                       physics: const BouncingScrollPhysics(),
                       itemCount: bookFromFB!.length,
                       itemBuilder: (context, index) {
+                        final book = bookFromFB![index]['name'];
                         return ListTile(
-                          title: Text(bookFromFB![index]['name']),
+                          title: Text(book),
                         );
                       }),
                 ),

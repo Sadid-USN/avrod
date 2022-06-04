@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:like_button/like_button.dart';
+import 'package:lottie/lottie.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 
 class FavoriteChaptersSceen extends StatefulWidget {
@@ -54,6 +55,7 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
   Widget build(BuildContext context) {
     // final books = Provider.of<List<Book>>(context);
     return Scaffold(
+        backgroundColor: bgColor,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -73,18 +75,24 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
         ),
         // ignore: avoid_unnecessary_containers
         body: likesBox!.isEmpty
-            ? Container(
-                decoration: favoriteGradient,
-                child: Center(
-                  child: GlowingProgressIndicator(
-                    duration: const Duration(seconds: 1),
-                    child: const Text(
-                      '❤️',
-                      style: TextStyle(fontSize: 60),
-                    ),
-                  ),
-                ),
+            ? Center(
+                child: Lottie.network(
+                    'https://assets9.lottiefiles.com/packages/lf20_rxdviv9w.json',
+                    fit: BoxFit.cover,
+                    height: 100),
               )
+            // Container(
+            //     decoration: favoriteGradient,
+            //     child: Center(
+            //       child: GlowingProgressIndicator(
+            //         duration: const Duration(seconds: 1),
+            //         child: const Text(
+            //           '❤️',
+            //           style: TextStyle(fontSize: 60),
+            //         ),
+            //       ),
+            //     ),
+            //   )
             : Container(
                 decoration: favoriteGradient,
                 child: AnimationLimiter(
@@ -155,23 +163,48 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
                                       ),
                                     ),
                                   ),
-                                  leading: CachedNetworkImage(
-                                      imageUrl: likesBox!.values.toList()[index]
-                                          ['listimage'],
-                                      placeholder: (context, imageProvider) {
-                                        return JumpingText(
-                                          '❤️❤️❤️',
-                                          end: const Offset(0.0, -0.5),
-                                          style: const TextStyle(
-                                              fontSize: 8, color: Colors.white),
-                                        );
-                                      },
-                                      imageBuilder: (context, imageProvider) {
-                                        return CircleAvatar(
-                                          radius: 25,
-                                          backgroundImage: imageProvider,
-                                        );
-                                      }),
+                                  leading: SizedBox(
+                                    height: 70,
+                                    width: 70,
+                                    child: Stack(
+                                      children: [
+                                        CachedNetworkImage(
+                                            imageUrl: likesBox!.values
+                                                .toList()[index]['listimage'],
+                                            placeholder:
+                                                (context, imageProvider) {
+                                              return JumpingText(
+                                                '❤️❤️❤️',
+                                                end: const Offset(0.0, -0.5),
+                                                style: const TextStyle(
+                                                    fontSize: 8,
+                                                    color: Colors.white),
+                                              );
+                                            },
+                                            imageBuilder:
+                                                (context, imageProvider) {
+                                              return CircleAvatar(
+                                                radius: 25,
+                                                backgroundImage: imageProvider,
+                                              );
+                                            }),
+                                        Positioned(
+                                          bottom: 0,
+                                          right: 0,
+                                          child: Text(
+                                            "${likesBox!.values.toList()[index]['id'] + 1}",
+                                            maxLines: 2,
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontWeight: FontWeight.w600,
+                                                color: listTitleColor),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   title: Text(
                                     "${likesBox!.values.toList()[index]['name']}",
                                     maxLines: 2,

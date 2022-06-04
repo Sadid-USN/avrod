@@ -13,7 +13,7 @@ import '../style/my_text_style.dart';
 
 class TextScreen extends StatefulWidget {
   final String titleAbbar;
-  // final String? audio;
+
   final int? textsIndex;
 
   final List<dynamic>? texts;
@@ -22,7 +22,6 @@ class TextScreen extends StatefulWidget {
     Key? key,
     this.textsIndex,
     this.texts,
-    // this.audio,
     required this.titleAbbar,
   }) : super(key: key);
   @override
@@ -51,7 +50,7 @@ class _TextScreenState extends State<TextScreen> {
     }
   }
 
-  void playSound(String url) async {
+  playSound(String url) async {
     if (isPlaying) {
       var result = await audioPlayer.pause();
 
@@ -164,7 +163,7 @@ class _TextScreenState extends State<TextScreen> {
               .toList(),
         ),
         bottomSheet: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
+          // padding: const EdgeInsets.symmetric(horizontal: 5),
           height: Platform.isIOS ? 70 : 60,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -181,7 +180,7 @@ class _TextScreenState extends State<TextScreen> {
           ),
           width: MediaQuery.of(context).size.width,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               AnimateIcons(
                 startIcon: Icons.play_circle,
@@ -205,72 +204,70 @@ class _TextScreenState extends State<TextScreen> {
               Expanded(
                 child: Row(
                   children: [
-                    Slider(
-                      onChanged: (double newPosition) {
-                        setState(() {
-                          seekAudio(Duration(seconds: newPosition.round()));
-                        });
-                      },
-                      onChangeEnd: ((value) {}),
-                      activeColor: Colors.white,
-                      inactiveColor: Colors.blueGrey,
-                      min: 0.0,
-                      max: duration.inSeconds.toDouble(),
-                      value: position.inSeconds.toDouble(),
+                    SizedBox(
+                      width: 180.0,
+                      child: Slider(
+                        onChanged: (double newPosition) {
+                          setState(() {
+                            seekAudio(Duration(seconds: newPosition.round()));
+                          });
+                        },
+                        onChangeEnd: ((value) {}),
+                        activeColor: Colors.white,
+                        inactiveColor: Colors.blueGrey,
+                        min: 0.0,
+                        max: duration.inSeconds.toDouble(),
+                        value: position.inSeconds.toDouble(),
+                      ),
                     ),
                     Expanded(
                         child: Text(
                       position.toString().split('.').first,
                       style: const TextStyle(fontSize: 10, color: Colors.white),
                     )),
+                    AnimateIcons(
+                      startIcon: Icons.copy,
+                      endIcon: Icons.check_circle_outline,
+                      controller: _controller,
+                      size: 25.0,
+                      onStartIconPress: () {
+                        if (Platform.isIOS) {
+                          FlutterClipboard.copy(
+                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
+                        } else {
+                          FlutterClipboard.copy(
+                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
+                        }
+
+                        return true;
+                      },
+                      onEndIconPress: () {
+                        return true;
+                      },
+                      duration: const Duration(milliseconds: 250),
+                      startIconColor: Colors.white,
+                      endIconColor: Colors.white,
+                      clockwise: false,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if (Platform.isIOS) {
+                          Share.share(
+                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
+                        } else {
+                          Share.share(
+                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
+                        }
+                      },
+                      child: const Icon(Icons.share,
+                          size: 25.0, color: Colors.white),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    )
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  AnimateIcons(
-                    startIcon: Icons.copy,
-                    endIcon: Icons.check_circle_outline,
-                    controller: _controller,
-                    size: 25.0,
-                    onStartIconPress: () {
-                      if (Platform.isIOS) {
-                        FlutterClipboard.copy(
-                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apps.apple.com/ru/app/avrod/id1626614344?l=en');
-                      } else {
-                        FlutterClipboard.copy(
-                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-                      }
-
-                      return true;
-                    },
-                    onEndIconPress: () {
-                      return true;
-                    },
-                    duration: const Duration(milliseconds: 250),
-                    startIconColor: Colors.white,
-                    endIconColor: Colors.white,
-                    clockwise: false,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      if (Platform.isIOS) {
-                        Share.share(
-                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://apps.apple.com/ru/app/avrod/id1626614344?l=en');
-                      } else {
-                        Share.share(
-                            '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![0]['text']}\n\nАраби:\n${widget.texts![0]['arabic']}\n\nТарҷума:\n${widget.texts![0]['translation']}\n\nСадо 🎵:\n${widget.texts![0]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-                      }
-                    },
-                    child: const Icon(Icons.share,
-                        size: 25.0, color: Colors.white),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  )
-                ],
-              )
             ],
           ),
         ),
@@ -301,26 +298,31 @@ class _ContetAllTextsState extends State<ContetAllTexts> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        // ignore: sized_box_for_whitespace
         child: Column(
           children: [
             const SizedBox(
               height: 10,
             ),
-            Slider(
-              activeColor: Colors.white,
-              inactiveColor: Colors.blueGrey,
-              value: _fontSize,
-              label: _fontSize.round().toString(),
-              onChanged: (double newSize) {
-                setState(() {
-                  _fontSize = newSize;
-                });
-              },
-              max: 25,
-              min: 15,
+            SizedBox(
+              width: 200,
+              child: Slider(
+                activeColor: Colors.white,
+                inactiveColor: Colors.blueGrey,
+                value: _fontSize,
+                label: _fontSize.round().toString(),
+                onChanged: (double newSize) {
+                  setState(() {
+                    _fontSize = newSize;
+                  });
+                },
+                max: 25,
+                min: 15,
+              ),
             ),
             ExpandablePanel(
               header: Text(
