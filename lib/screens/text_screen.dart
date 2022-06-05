@@ -225,10 +225,10 @@ class _TextScreenState extends State<TextScreen> {
                       onStartIconPress: () {
                         if (Platform.isIOS) {
                           FlutterClipboard.copy(
-                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
+                              '**${widget.titleAbbar}**\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
                         } else {
                           FlutterClipboard.copy(
-                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
+                              '**${widget.titleAbbar}**\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
                         }
 
                         return true;
@@ -245,10 +245,10 @@ class _TextScreenState extends State<TextScreen> {
                       onTap: () {
                         if (Platform.isIOS) {
                           Share.share(
-                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
+                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nAudio 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
                         } else {
                           Share.share(
-                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nСадо 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
+                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nAudio 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
                         }
                       },
                       child: const Icon(Icons.share,
