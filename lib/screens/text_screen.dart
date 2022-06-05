@@ -115,6 +115,7 @@ class _TextScreenState extends State<TextScreen> {
     return DefaultTabController(
       length: widget.texts!.length,
       child: Scaffold(
+        // backgroundColor: Theme.of(context).primaryColor,
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Theme.of(context).primaryColor,
@@ -129,11 +130,6 @@ class _TextScreenState extends State<TextScreen> {
                   fontWeight: FontWeight.bold),
             ),
           ),
-
-          // Text(
-          //   widget.titleAbbar,
-          //   style: TextStyle(color: listTitleColor, fontSize: 16.0),
-          // ),
           centerTitle: true,
           leading: IconButton(
             onPressed: () {
@@ -165,17 +161,13 @@ class _TextScreenState extends State<TextScreen> {
         bottomSheet: Container(
           // padding: const EdgeInsets.symmetric(horizontal: 5),
           height: Platform.isIOS ? 70 : 60,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-            color: Colors.brown[700],
-            boxShadow: const [
+          decoration: const BoxDecoration(
+            color: audiplayerColor,
+            boxShadow: [
               BoxShadow(
-                  color: Colors.black26,
+                  color: Colors.black87,
                   offset: Offset(0.0, 2.0),
-                  blurRadius: 6.0)
+                  blurRadius: 6.0),
             ],
           ),
           width: MediaQuery.of(context).size.width,
