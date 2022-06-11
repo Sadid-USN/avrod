@@ -2,6 +2,8 @@ import 'package:avrod/colors/colors.dart';
 import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/widgets/notification.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -12,6 +14,7 @@ Future main() async {
 
   NotificationService().initNotification();
   await Firebase.initializeApp();
+  FirebaseDatabase.instance.setPersistenceEnabled(true);
   await Hive.initFlutter();
   await Hive.openBox(FAVORITES_BOX);
 

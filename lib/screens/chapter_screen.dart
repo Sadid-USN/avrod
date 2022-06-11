@@ -32,9 +32,11 @@ class ChapterScreen extends StatefulWidget {
 
 class _ChapterScreenState extends State<ChapterScreen> {
   //Dcloration
+
   String? data;
   List<dynamic>? bookFromFB;
   DatabaseReference bookRef = FirebaseDatabase.instance.ref('book');
+
   Box? likesBox;
 
   @override
@@ -61,8 +63,6 @@ class _ChapterScreenState extends State<ChapterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final books = Provider.of<List<Book>>(context);
-
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(
@@ -138,7 +138,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
                                         [index]['id']),
                                 onTap: (isLiked) async {
                                   return setLike(
-                                      "${widget.indexChapter}_$index",
+                                      "${widget.indexChapter} $index",
 
                                       // bookFromFB![widget.indexChapter]
                                       //         ['chapters'][index]['id'] ??
@@ -201,6 +201,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
                               maxLines: 2,
                               textAlign: TextAlign.start,
                               style: TextStyle(
+                                  letterSpacing: 0.7,
                                   fontSize: 12,
                                   overflow: TextOverflow.ellipsis,
                                   fontWeight: FontWeight.w600,

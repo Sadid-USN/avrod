@@ -20,4 +20,5 @@ List<PathOfImages> images = [
   PathOfImages(pathImages: 'images/ruqya.png', name: 'Руқя аз сеҳру\nҷоду'),
   PathOfImages(pathImages: 'images/family.png', name: 'Оила ва рузгор'),
   PathOfImages(pathImages: 'images/adha.png', name: 'Аҳкоми қурбони'),
+  PathOfImages(pathImages: 'images/duafromQuran.png', name: 'Дуоҳои Қуръон'),
 ];

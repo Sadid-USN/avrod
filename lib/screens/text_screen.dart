@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
 import '../colors/colors.dart';
-import '../models/scrolling_text.dart';
 import '../style/my_text_style.dart';
 
 class TextScreen extends StatefulWidget {
@@ -108,27 +107,26 @@ class _TextScreenState extends State<TextScreen> {
     super.dispose();
   }
 
-  final GlobalKey _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     // print(widget.texts![0]);
     return DefaultTabController(
       length: widget.texts!.length,
       child: Scaffold(
-        // backgroundColor: Theme.of(context).primaryColor,
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Theme.of(context).primaryColor,
           title: SizedBox(
-            key: _key,
             height: 40,
-            child: ScrollingText(
-              text: widget.titleAbbar,
-              textStyle: TextStyle(
-                  color: listTitleColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold),
-            ),
+            child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Text(
+                  widget.titleAbbar,
+                  style: TextStyle(
+                      color: listTitleColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold),
+                )),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -285,7 +283,7 @@ class ContetAllTexts extends StatefulWidget {
 }
 
 class _ContetAllTextsState extends State<ContetAllTexts> {
-  double _fontSize = 15;
+  double _fontSize = 16.0;
   int currentIndex = 0;
 
   @override
@@ -312,8 +310,8 @@ class _ContetAllTextsState extends State<ContetAllTexts> {
                     _fontSize = newSize;
                   });
                 },
-                max: 25,
-                min: 15,
+                max: 25.0,
+                min: 16.0,
               ),
             ),
             ExpandablePanel(
@@ -325,6 +323,7 @@ class _ContetAllTextsState extends State<ContetAllTexts> {
               collapsed: SelectableText(
                 widget.text,
                 style: TextStyle(
+                  letterSpacing: 1.2,
                   fontWeight: FontWeight.w600,
                   fontSize: _fontSize,
                   color: listTitleColor,
@@ -366,9 +365,9 @@ class _ContetAllTextsState extends State<ContetAllTexts> {
                   child: SelectableText(
                     widget.arabic,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.notoSansArabic(
+                    style: GoogleFonts.amiri(
                       textBaseline: TextBaseline.ideographic,
-                      wordSpacing: 0.5,
+                      wordSpacing: 0.6,
                       color: listTitleColor,
                       fontSize: _fontSize,
                       fontWeight: FontWeight.bold,
@@ -380,13 +379,14 @@ class _ContetAllTextsState extends State<ContetAllTexts> {
                   maxLines: 1,
                   textAlign: TextAlign.justify,
                   style: GoogleFonts.amaticSc(
-                      textBaseline: TextBaseline.ideographic,
-                      wordSpacing: 0.5,
-                      color: Colors.blueGrey,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      textStyle:
-                          const TextStyle(overflow: TextOverflow.ellipsis)),
+                    textBaseline: TextBaseline.ideographic,
+                    wordSpacing: 0.5,
+                    color: Colors.blueGrey,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    textStyle: const TextStyle(
+                        letterSpacing: 0.3, overflow: TextOverflow.ellipsis),
+                  ),
                 ),
               ),
             ),
@@ -405,6 +405,7 @@ class _ContetAllTextsState extends State<ContetAllTexts> {
                     collapsed: SelectableText(
                       widget.translation,
                       style: TextStyle(
+                        letterSpacing: 1.2,
                         fontWeight: FontWeight.w600,
                         fontSize: _fontSize,
                         color: listTitleColor,
