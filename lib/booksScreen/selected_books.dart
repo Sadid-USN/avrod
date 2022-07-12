@@ -1,6 +1,8 @@
-import 'package:avrod/colors/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:lottie/lottie.dart';
+
+import '../constant/colors/colors.dart';
 
 class SelectedBooks extends StatefulWidget {
   const SelectedBooks({
@@ -16,14 +18,17 @@ class _SelectedBooksState extends State<SelectedBooks> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: bgColor,
-
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: bgColor,
           title: Text(
-            'Китобхона',
-            style: TextStyle(fontSize: 18, color: Colors.blueGrey.shade800),
+            'library'.tr,
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.blueGrey.shade800,
+            ),
           ),
+          centerTitle: true,
           elevation: 0.0,
           leading: IconButton(
             onPressed: () {
@@ -82,7 +87,7 @@ class _SelectedBooksState extends State<SelectedBooks> {
                 Row(
                   children: [
                     Image.asset(
-                      'images/telegram.png',
+                      'assets/images/telegram.png',
                       height: 20,
                       width: 20,
                     ),
@@ -99,8 +104,7 @@ class _SelectedBooksState extends State<SelectedBooks> {
                   ],
                 ),
                 Expanded(
-                  child: Lottie.network(
-                      'https://assets7.lottiefiles.com/packages/lf20_yg29hewu.json',
+                  child: Lottie.asset('assets/animations/book-animation.json',
                       repeat: false),
                 ),
                 const SizedBox(

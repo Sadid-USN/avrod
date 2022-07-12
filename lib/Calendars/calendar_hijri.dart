@@ -1,8 +1,10 @@
-import 'package:avrod/colors/colors.dart';
-import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:hijri_picker/hijri_picker.dart';
+
+import '../constant/colors/colors.dart';
+import '../constant/colors/gradient_class.dart';
 
 class HijriPickerScreen extends StatefulWidget {
   const HijriPickerScreen({Key? key}) : super(key: key);
@@ -29,7 +31,7 @@ class _HijriPickerScreenState extends State<HijriPickerScreen> {
           elevation: 0.0,
           backgroundColor: gradientStartColor,
           title: Text(
-            'Тақвими ҳиҷрӣ',
+            'hijri'.tr,
             style: TextStyle(fontSize: 18, color: calendarAppbar),
           ),
           centerTitle: true,

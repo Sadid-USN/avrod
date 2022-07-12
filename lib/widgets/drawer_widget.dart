@@ -1,24 +1,34 @@
 import 'dart:async';
-
-import 'package:avrod/colors/colors.dart';
+import 'dart:io';
+import 'package:avrod/widgets/watch/watch.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:lottie/lottie.dart';
-
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../constant/colors/colors.dart';
 
-class DrawerModel extends StatelessWidget {
+class DrawerModel extends StatefulWidget {
   const DrawerModel({Key? key}) : super(key: key);
 
+  @override
+  State<DrawerModel> createState() => _DrawerModelState();
+}
+
+class _DrawerModelState extends State<DrawerModel> {
   final String _azkarRuAppLink =
       'https://play.google.com/store/apps/details?id=com.darulasar.Azkar';
+
   final String _lounchUrlGmail =
       'https://accounts.google.com/signout/chrome/landing?continue=https://mail.google.com&oc=https://mail.google.com&hl=en';
+
   final String _linkInstagramm =
       'https://instagram.com/darul_asar?utm_medium=copy_link';
+
   final String _youTubeLink =
       'https://www.youtube.com/channel/UCR2bhAQKRXDmE4v_rDVNOrA';
+
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {
       await launch(url,
@@ -29,6 +39,17 @@ class DrawerModel extends StatelessWidget {
       throw 'Пайванд кушода нашуд $url';
     }
   }
+
+  final bool _light = true;
+
+  final ThemeData _lightMode = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: bgColor,
+  );
+  final ThemeData _darktMode = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: const Color(0xff112435),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -42,26 +63,34 @@ class DrawerModel extends StatelessWidget {
           children: [
             // ignore: sized_box_for_whitespace
             Stack(
-              alignment: Alignment.center,
+              alignment: Alignment.topCenter,
               children: [
-                Lottie.network(
-                  'https://assets9.lottiefiles.com/packages/lf20_bt5q6j0d.json',
+                Lottie.asset(
+                  'assets/animations/shine.json',
                   // fit: BoxFit.cover,
 
                   width: MediaQuery.of(context).size.width,
                 ),
                 _header(context),
+                const Watch(
+                  fontSize: 20,
+                ),
               ],
             ),
 
             ListTile(
               title: Text(
-                'Ба дигарон ирсол кунед',
+                'share'.tr,
                 style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
-                Share.share(
-                    'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                if (Platform.isAndroid) {
+                  Share.share(
+                      'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                } else {
+                  Share.share(
+                      'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://apps.apple.com/ru/app/avrod/id1626614344?l=en');
+                }
               },
               leading: const Icon(
                 Icons.share,
@@ -97,6 +126,23 @@ class DrawerModel extends StatelessWidget {
                 size: 21,
               ),
             ),
+            // ListTile(
+            //   title: Text(
+            //     '',
+            //     style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
+            //   ),
+            //   onTap: () {
+            //     _launchInBrowser(_linkInstagramm);
+            //   },
+            //   leading: Switch(
+            //     value: _light,
+            //     onChanged: (state) {
+            //       setState(() {
+            //         _light = state;
+            //       });
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -110,8 +156,8 @@ Widget _header(BuildContext context) {
     child: Padding(
       padding: const EdgeInsets.only(top: 70),
       child: Container(
-        width: 170,
-        height: 170,
+        width: 180,
+        height: 180,
         decoration: BoxDecoration(
             color: Colors.grey[200],
             borderRadius: const BorderRadius.all(Radius.circular(100)),
@@ -130,7 +176,7 @@ Widget _header(BuildContext context) {
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(100)),
           child: Image.asset(
-            'images/iconavrod.png',
+            'assets/images/iconavrod.png',
             height: 190,
             width: 190,
             fit: BoxFit.cover,

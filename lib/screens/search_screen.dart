@@ -1,8 +1,9 @@
 import 'dart:convert';
-
-import 'package:avrod/colors/colors.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
+
+import '../constant/colors/colors.dart';
 
 class SearchScreen extends StatefulWidget {
   final List<dynamic>? chapters;
@@ -90,10 +91,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         // bookFromFB![0]['name'] = value;
                       }),
                       keyboardType: TextInputType.text,
-                      decoration: const InputDecoration(
-                          suffixIcon: Icon(Icons.search),
+                      decoration: InputDecoration(
+                          suffixIcon: const Icon(Icons.search),
                           border: InputBorder.none,
-                          hintText: 'Ҷустуҷӯ'),
+                          hintText: 'hintText'.tr),
                     ),
                   ),
                 ),

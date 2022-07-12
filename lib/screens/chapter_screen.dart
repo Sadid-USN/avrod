@@ -1,68 +1,24 @@
-// ignore_for_file: sized_box_for_whitespace
-
-import 'dart:convert';
-
+import 'package:avrod/constant/colors/colors.dart';
+import 'package:avrod/controller/chaptercontroller.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:hive/hive.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 
-import '../colors/colors.dart';
-import '../main.dart';
-
-// ignore: constant_identifier_names
-
-class ChapterScreen extends StatefulWidget {
+class ChapterScreen extends StatelessWidget {
   final int indexChapter;
   const ChapterScreen({
     Key? key,
     required this.indexChapter,
   }) : super(key: key);
 
-  // final Chapter chapter;
-  //final List<Book> books;
-
-  @override
-  State<ChapterScreen> createState() => _ChapterScreenState();
-}
-
-class _ChapterScreenState extends State<ChapterScreen> {
-  //Dcloration
-
-  String? data;
-  List<dynamic>? bookFromFB;
-  DatabaseReference bookRef = FirebaseDatabase.instance.ref('book');
-
-  Box? likesBox;
-
-  @override
-  void initState() {
-    initHive();
-    // Subscribe to database, listen to "book"
-    bookRef.onValue.listen((event) {
-      setState(() {
-        // convert object to JSON String
-        data = jsonEncode(event.snapshot.value);
-        // convert JSON into Map<String, dynamic>
-        bookFromFB = jsonDecode(data!);
-
-        // print(bookFromFB!);
-      });
-    });
-
-    super.initState();
-  }
-
-  void initHive() async {
-    likesBox = await Hive.openBox(FAVORITES_BOX);
-  }
-
   @override
   Widget build(BuildContext context) {
+    ChapterController controller = Get.put(ChapterController());
+
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(
@@ -82,9 +38,11 @@ class _ChapterScreenState extends State<ChapterScreen> {
           color: bgColor,
         ),
       ),
-      body: bookFromFB == null
-          ? const Center(
-              child: CircularProgressIndicator(),
+      body: controller.bookFromFB == null
+          ? Center(
+              child: CircularProgressIndicator(
+                color: listTitleColor,
+              ),
             )
           : AnimationLimiter(
               child: ListView.separated(
@@ -97,15 +55,14 @@ class _ChapterScreenState extends State<ChapterScreen> {
                   padding: const EdgeInsets.only(top: 5),
                   physics: const BouncingScrollPhysics(),
                   itemCount:
-                      bookFromFB![widget.indexChapter]['chapters'].length,
+                      controller.bookFromFB![indexChapter]['chapters'].length,
                   itemBuilder: (context, index) {
-                    //  final Chapter chapter = book.chapters[index];
-
                     return AnimationConfiguration.staggeredGrid(
                       position: index,
                       duration: const Duration(milliseconds: 500),
-                      columnCount: bookFromFB![widget.indexChapter]['chapters']
-                              [index]['listimage']
+                      columnCount: controller
+                          .bookFromFB![indexChapter]['chapters'][index]
+                              ['listimage']
                           .length,
                       child: ScaleAnimation(
                         child: Container(
@@ -120,10 +77,11 @@ class _ChapterScreenState extends State<ChapterScreen> {
                                   builder: (context) {
                                     return TextScreen(
                                       textsIndex: index,
-                                      texts: bookFromFB![widget.indexChapter]
-                                          ['chapters'][index]['texts'],
+                                      texts:
+                                          controller.bookFromFB![indexChapter]
+                                              ['chapters'][index]['texts'],
                                       titleAbbar:
-                                          bookFromFB![widget.indexChapter]
+                                          controller.bookFromFB![indexChapter]
                                               ['chapters'][index]['name'],
                                     );
                                   },
@@ -133,38 +91,35 @@ class _ChapterScreenState extends State<ChapterScreen> {
                             trailing: CircleAvatar(
                               backgroundColor: bgColor,
                               child: LikeButton(
-                                isLiked: isChapterLiked(
-                                    bookFromFB![widget.indexChapter]['chapters']
-                                        [index]['id']),
+                                isLiked: controller.isChapterLiked(
+                                    controller.bookFromFB![indexChapter]
+                                        ['chapters'][index]['id']),
                                 onTap: (isLiked) async {
-                                  return setLike(
-                                      "${widget.indexChapter} $index",
-
-                                      // bookFromFB![widget.indexChapter]
-                                      //         ['chapters'][index]['id'] ??
-                                      //     0,
+                                  return controller.setLike(
+                                      "$indexChapter $index",
                                       isLiked,
-                                      bookFromFB![widget.indexChapter]
+                                      controller.bookFromFB![indexChapter]
                                           ['chapters'][index]);
                                 },
                                 size: 25,
                                 circleColor: const CircleColor(
                                     start: Color(0xffFF0000),
-                                    end: Color(0xffFF0000)),
+                                    end: Color.fromARGB(255, 220, 46, 46)),
                                 bubblesColor: const BubblesColor(
                                   dotPrimaryColor: Color(0xffffffff),
                                   dotSecondaryColor: Color(0xffBF40BF),
                                 ),
                               ),
                             ),
-                            leading: Container(
+                            leading: SizedBox(
                               height: 70,
                               width: 70,
                               child: Stack(
                                 children: [
                                   CachedNetworkImage(
-                                      imageUrl: bookFromFB![widget.indexChapter]
-                                          ['chapters'][index]['listimage'],
+                                      imageUrl:
+                                          controller.bookFromFB![indexChapter]
+                                              ['chapters'][index]['listimage'],
                                       placeholder: (context, imageProvider) {
                                         return JumpingText(
                                           '❤️❤️❤️',
@@ -183,7 +138,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
                                     bottom: 0,
                                     right: 0,
                                     child: Text(
-                                      "${bookFromFB![widget.indexChapter]['chapters'][index]['id'] + 1}",
+                                      "${controller.bookFromFB![indexChapter]['chapters'][index]['id'] + 1}",
                                       maxLines: 2,
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
@@ -197,7 +152,7 @@ class _ChapterScreenState extends State<ChapterScreen> {
                               ),
                             ),
                             title: Text(
-                              "${bookFromFB![widget.indexChapter]['chapters'][index]['name']}",
+                              "${controller.bookFromFB![indexChapter]['chapters'][index]['name']}",
                               maxLines: 2,
                               textAlign: TextAlign.start,
                               style: TextStyle(
@@ -216,20 +171,20 @@ class _ChapterScreenState extends State<ChapterScreen> {
     );
   }
 
-  Future<bool> setLike(String chapterID, bool isLiked, Map content) async {
-    if (!isLiked) {
-      await likesBox!.put(chapterID, content);
-    } else {
-      await likesBox!.delete(chapterID);
-    }
+  // Future<bool> setLike(String chapterID, bool isLiked, Map content) async {
+  //   if (!isLiked) {
+  //     await likesBox!.put(chapterID, content);
+  //   } else {
+  //     await likesBox!.delete(chapterID);
+  //   }
 
-    return !isLiked;
-  }
+  //   return !isLiked;
+  // }
 
-  bool isChapterLiked(int chapterID) {
-    bool isLiked = likesBox!.containsKey(chapterID);
-    return isLiked;
-  }
+  // bool isChapterLiked(int chapterID) {
+  //   bool isLiked = likesBox!.containsKey(chapterID);
+  //   return isLiked;
+  // }
 }
 
   // Widget buildBook(Book book) {

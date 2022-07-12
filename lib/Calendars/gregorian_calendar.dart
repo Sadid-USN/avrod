@@ -1,7 +1,9 @@
-import 'package:avrod/colors/colors.dart';
-import 'package:avrod/colors/gradient_class.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import '../constant/colors/colors.dart';
+import '../constant/colors/gradient_class.dart';
 
 class GregorianCalendar extends StatefulWidget {
   const GregorianCalendar({Key? key}) : super(key: key);
@@ -29,7 +31,7 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
         ),
         elevation: 0.0,
         title: Text(
-          'Тақвими мелодӣ',
+          'calendar'.tr,
           style: TextStyle(fontSize: 18, color: calendarAppbar),
         ),
         centerTitle: true,

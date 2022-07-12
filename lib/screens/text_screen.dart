@@ -7,7 +7,7 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
-import '../colors/colors.dart';
+import '../constant/colors/colors.dart';
 import '../style/my_text_style.dart';
 
 class TextScreen extends StatefulWidget {
@@ -66,6 +66,12 @@ class _TextScreenState extends State<TextScreen> {
         });
       }
     }
+    // audioPlayer.onPlayerCompletion.listen((event) {
+    //   setState(() {
+    // duration = const Duration(seconds: 0);
+    //     isPlaying = false;
+    //   });
+    // });
     audioPlayer.onDurationChanged.listen((event) {
       setState(() {
         duration = event;
@@ -117,7 +123,7 @@ class _TextScreenState extends State<TextScreen> {
           elevation: 0.0,
           backgroundColor: Theme.of(context).primaryColor,
           title: SizedBox(
-            height: 40,
+            height: 20,
             child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Text(
@@ -243,10 +249,10 @@ class _TextScreenState extends State<TextScreen> {
                       onTap: () {
                         if (Platform.isIOS) {
                           Share.share(
-                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nAudio 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
+                              '**${widget.titleAbbar}**\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nAudio 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
                         } else {
                           Share.share(
-                              '*${widget.titleAbbar}*\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nAudio 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
+                              '**${widget.titleAbbar}**\n\nТалаффуз:\n${widget.texts![currentIndex]['text']}\n\nАраби:\n${widget.texts![currentIndex]['arabic']}\n\nТарҷума:\n${widget.texts![currentIndex]['translation']}\n\nAudio 🎵:\n${widget.texts![currentIndex]['url']}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
                         }
                       },
                       child: const Icon(Icons.share,

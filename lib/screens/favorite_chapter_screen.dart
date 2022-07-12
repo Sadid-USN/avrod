@@ -1,14 +1,16 @@
-import 'package:avrod/colors/colors.dart';
-import 'package:avrod/colors/gradient_class.dart';
 import 'package:avrod/main.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:like_button/like_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:progress_indicators/progress_indicators.dart';
+
+import '../constant/colors/colors.dart';
+import '../constant/colors/gradient_class.dart';
 
 class FavoriteChaptersSceen extends StatefulWidget {
   const FavoriteChaptersSceen({
@@ -69,18 +71,17 @@ class _FavoriteChaptersSceenState extends State<FavoriteChaptersSceen> {
           ),
           centerTitle: true,
           title: Text(
-            'Фаслҳои маҳбуб',
+            'favorite'.tr,
             style: TextStyle(fontSize: 18, color: calendarAppbar),
           ),
         ),
         // ignore: avoid_unnecessary_containers
         body: likesBox!.isEmpty
             ? Center(
-                child: Lottie.network(
-                    'https://assets9.lottiefiles.com/packages/lf20_rxdviv9w.json',
-                    fit: BoxFit.cover,
-                    height: 100),
+                child:
+                    Lottie.asset('assets/animations/heart.json', height: 200),
               )
+            //'https://assets9.lottiefiles.com/packages/lf20_rxdviv9w.json',
             // Container(
             //     decoration: favoriteGradient,
             //     child: Center(

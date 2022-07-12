@@ -1,150 +1,44 @@
-import 'dart:async';
-import 'dart:convert';
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:avrod/constant/animated_text.dart';
+import 'package:avrod/constant/colors/colors.dart';
+import 'package:avrod/constant/navigeton_items.dart';
+import 'package:avrod/controller/homepage_controller.dart';
 import 'package:avrod/screens/chapter_screen.dart';
-import 'package:avrod/screens/search_screen.dart';
+import 'package:avrod/widgets/drawer_widget.dart';
+import 'package:avrod/widgets/path_of_images.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../Calendars/calendar_tabbar.dart';
-import '../booksScreen/selected_books.dart';
-import '../colors/colors.dart';
-import '../widgets/pathImages.dart';
-import '../widgets/drawer_widget.dart';
-import 'favorite_chapter_screen.dart';
+import 'package:get/get.dart';
+
 import 'dart:io' show Platform;
 
-class HomePage extends StatefulWidget {
-  final int? indexChapter;
-  const HomePage({Key? key, this.indexChapter}) : super(key: key);
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int selectedIndex = 2;
-
-  final String _lounchGooglePlay =
-      'https://play.google.com/store/apps/details?id=com.darulasar.avrod';
-  final String _lounchAppStore =
-      'https://apps.apple.com/ru/app/avrod/id1626614344?l=en';
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url,
-          forceSafariVC: false,
-          forceWebView: false,
-          headers: <String, String>{'header_key': 'header_value'});
-    } else {
-      throw 'Пайванд кушода нашуд $url';
-    }
-  }
-
-  final navItems = [
-    Icon(FontAwesomeIcons.search, color: Colors.indigo.shade400, size: 22),
-    Icon(
-      FontAwesomeIcons.book,
-      color: Colors.indigo.shade400,
-      size: 22,
-    ),
-    const Icon(Icons.favorite, color: Colors.red, size: 22),
-    Icon(FontAwesomeIcons.calendarAlt, color: Colors.indigo.shade400, size: 22),
-    Icon(Icons.star, color: Colors.indigo.shade400, size: 22),
-  ];
-  final colorizeColors = [
-    Colors.blueGrey[800]!,
-    Colors.white,
-    Colors.orange,
-    Colors.blue,
-    Colors.indigo,
-    Colors.deepOrange,
-  ];
-
-  final colorizeTextStyle =
-      const TextStyle(fontSize: 16, fontWeight: FontWeight.w900);
-  //Dcloration
-  String? data;
-  List<dynamic>? book;
-  DatabaseReference bookRef = FirebaseDatabase.instance.ref('book');
-  Timer? _timer;
-  @override
-  void initState() {
-    // Subscribe to database, listen to "book"
-    bookRef.onValue.listen((event) {
-      setState(() {
-        // convert object to JSON String
-        data = jsonEncode(event.snapshot.value);
-        // convert JSON into Map<String, dynamic>
-        book = jsonDecode(data!);
-      });
-    });
-    _timer =
-        Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
-    super.initState();
-  }
-
-  String? _timeString;
-  void _getTime() {
-    final String formattedDateTime =
-        DateFormat('kk:mm:ss').format(DateTime.now()).toString();
-    setState(() {
-      _timeString = formattedDateTime;
-      // print(_timeString);
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer!.cancel();
-    super.dispose();
-  }
+class HomePage extends StatelessWidget {
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    HomePageController controller = Get.put(HomePageController());
     return Scaffold(
       drawer: const DrawerModel(),
-      backgroundColor: const Color(0xffF2DFC7),
+      backgroundColor: bgColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xffF2DFC7),
-        title: ListTile(
-          title: Padding(
-            padding: const EdgeInsets.only(left: 25),
-            child: AnimatedTextKit(
-              totalRepeatCount: 2,
-              animatedTexts: [
-                ColorizeAnimatedText(
-                  'Авроди субҳу шом',
-                  textStyle: colorizeTextStyle,
-                  colors: colorizeColors,
-                ),
-              ],
+        actions: [
+          IconButton(
+            onPressed: () {
+              controller.goToLangugePage();
+            },
+            icon: Icon(
+              Icons.language,
+              color: Colors.indigo.shade400,
             ),
           ),
-          trailing: Container(
-            padding: const EdgeInsets.all(4),
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black38,
-                    offset: Offset(0.0, 2.0),
-                    blurRadius: 6.0)
-              ],
-              color: bgColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(8),
-                bottomRight: Radius.circular(8),
-              ),
-            ),
-            child: Text(
-              _timeString.toString(),
-              style: const TextStyle(
-                fontSize: 10,
-                color: navigationColor,
-              ),
-            ),
+        ],
+        backgroundColor: const Color(0xffF2DFC7),
+        title: const ListTile(
+          title: Center(
+            child: MyanimetedText(),
           ),
         ),
         centerTitle: true,
@@ -190,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Text(
-                      images[index].name,
+                      images[index].name.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.blueGrey[800],
@@ -208,59 +102,13 @@ class _HomePageState extends State<HomePage> {
         color: Colors.white,
         buttonBackgroundColor: Colors.white,
         height: Platform.isIOS ? 65 : 50,
-        index: selectedIndex,
+        index: controller.currrentIndexTab,
         backgroundColor: const Color(0xffF2DFC7),
         items: navItems,
         onTap: (index) {
-          selectedIndex = index;
-          if (index == 0) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return SearchScreen(indexChapters: index);
-            }));
-          } else if (index == 1) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const SelectedBooks();
-            }));
-          } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const FavoriteChaptersSceen();
-                },
-              ),
-            );
-          } else if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const CalendarTabBarView();
-                },
-              ),
-            );
-          } else if (index == 4) {
-            if (Platform.isAndroid) {
-              _launchInBrowser(_lounchGooglePlay);
-              // Android-specific code
-            } else if (Platform.isIOS) {
-              _launchInBrowser(_lounchAppStore);
-              // iOS-specific code
-            }
-          }
+          controller.onTapCurvedNavigationBar(index);
         },
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.indigo.shade400,
-      //   onPressed: () {
-      //     //  Navigator.push(context, MaterialPageRoute(builder: (context) {
-      //     //     return SearchScreen(indexChapters: index);
-      //     //   }));
-      //   },
-      //   child: const Icon(
-      //     Icons.search,
-      //   ),
-      // ),
     );
   }
 }

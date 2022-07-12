@@ -13,3 +13,10 @@ const Color bgColor = Color(0xffF2DFC7);
 const Color audiplayerColor = Color.fromARGB(255, 226, 191, 145);
 Color listTitleColor = Colors.blueGrey[800]!;
 Color calendarAppbar = Colors.blueGrey[800]!;
+
+const Color bodyColor = Color.fromARGB(247, 56, 55, 55);
+const Color titleColor = Color(0xff282121);
+const Color skipColor = Color.fromARGB(255, 90, 84, 84);
+const Color priveryColor = Color(0xff5DB1DF);
+const Color signinButtonColor = Color(0xff00B2F3);
+const Color forgotPasswordColor = Color(0xff9E9E9E);
