@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:avrod/constant/routes/route_names.dart';
 import 'package:avrod/localization/local_controller.dart';
 import 'package:avrod/main.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -9,6 +10,8 @@ abstract class MyChapterController extends GetxController {
   initHive();
   setLike(String chapterID, bool isLiked, Map content);
   isChapterLiked(int chapterID);
+  goToHomePage();
+  goToTextSreen();
 }
 
 class ChapterController extends MyChapterController {
@@ -64,5 +67,15 @@ class ChapterController extends MyChapterController {
   bool isChapterLiked(int chapterID) {
     bool isLiked = likesBox!.containsKey(chapterID);
     return isLiked;
+  }
+
+  @override
+  goToHomePage() {
+    Get.offAllNamed(AppRouteNames.homepage);
+  }
+
+  @override
+  goToTextSreen() {
+    Get.offAllNamed(AppRouteNames.texts);
   }
 }

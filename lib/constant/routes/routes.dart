@@ -1,7 +1,10 @@
 import 'package:avrod/constant/routes/route_names.dart';
 import 'package:avrod/middleware/middleware.dart';
+import 'package:avrod/screens/favorite_chapter_screen.dart';
+
 import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/screens/languge.page.dart';
+import 'package:avrod/screens/text_screen.dart';
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -11,4 +14,7 @@ List<GetPage<dynamic>>? getPages = [
   ]),
   GetPage(name: AppRouteNames.languge, page: () => const LangugesPage()),
   GetPage(name: AppRouteNames.homepage, page: () => const HomePage()),
+  GetPage(name: AppRouteNames.texts, page: () => TextScreen()),
+  GetPage(
+      name: AppRouteNames.favorite, page: () => const FavoriteChaptersSceen()),
 ];

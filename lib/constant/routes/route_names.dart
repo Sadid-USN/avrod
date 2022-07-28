@@ -3,4 +3,5 @@ class AppRouteNames {
   static const String homepage = '/homepage';
   static const String chapters = '/chapters';
   static const String texts = '/texts';
+  static const String favorite = '/favorite';
 }

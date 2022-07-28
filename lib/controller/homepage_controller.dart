@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Calendars/calendar_tabbar.dart';
 import '../booksScreen/selected_books.dart';
-import '../screens/favorite_chapter_screen.dart';
 import '../screens/search_screen.dart';
 
 abstract class HomeController extends GetxController {
@@ -50,7 +49,7 @@ class HomePageController extends HomeController {
     } else if (index == 1) {
       Get.to(const SelectedBooks());
     } else if (index == 2) {
-      Get.to(const FavoriteChaptersSceen());
+      Get.offNamed(AppRouteNames.favorite);
     } else if (index == 3) {
       Get.to(const CalendarTabBarView());
     } else if (index == 4) {
