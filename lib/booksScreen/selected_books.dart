@@ -1,136 +1,148 @@
+import 'package:avrod/booksScreen/book_reading_screen.dart';
+import 'package:avrod/constant/routes/route_names.dart';
+import 'package:avrod/screens/home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:lottie/lottie.dart';
+import 'package:get/get.dart';
 
 import '../constant/colors/colors.dart';
 
-class SelectedBooks extends StatefulWidget {
+class SelectedBooks extends StatelessWidget {
   const SelectedBooks({
     Key? key,
   }) : super(key: key);
-  @override
-  State<SelectedBooks> createState() => _SelectedBooksState();
-}
 
-class _SelectedBooksState extends State<SelectedBooks> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    final Stream<QuerySnapshot> books =
+        FirebaseFirestore.instance.collection('books').snapshots();
+    return WillPopScope(
+      onWillPop: () async {
+        final shouldPop = await showDialog<bool>(
+            context: (context),
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Мехоҳед ба рӯйхати дуоҳо бозгардед?'),
+                actionsAlignment: MainAxisAlignment.spaceBetween,
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: ((context) {
+                        return const HomePage();
+                      })));
+                    },
+                    child: const Text('Бале'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context, false);
+                    },
+                    child: const Text('На'),
+                  ),
+                ],
+              );
+            });
+
+        return shouldPop!;
+      },
       child: Scaffold(
-        backgroundColor: bgColor,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
           backgroundColor: bgColor,
-          title: Text(
-            'library'.tr,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.blueGrey.shade800,
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: bgColor,
+            title: Text(
+              'library'.tr,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.blueGrey.shade800,
+              ),
+            ),
+            centerTitle: true,
+            elevation: 0.0,
+            leading: IconButton(
+              onPressed: () {
+                Get.offAllNamed(AppRouteNames.homepage);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: listTitleColor,
+              ),
             ),
           ),
-          centerTitle: true,
-          elevation: 0.0,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: listTitleColor,
-            ),
-          ),
-        ),
-        // backgroundColor: bgColor.withOpacity(0.0),
-        // appBar: AppBar(
-        //   elevation: 0.0,
-        //   backgroundColor: bgColor,
-        //   title: Text(
-        //     'Китобхона',
-        //     style: TextStyle(fontSize: 18, color: listTitleColor),
-        //   ),
-        //   centerTitle: true,
-        //   leading: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: Icon(
-        //       Icons.arrow_back_ios,
-        //       color: listTitleColor,
-        //     ),
-        //   ),
-        // ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              //  mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Китобхона айни замон дар марҳилаи эҷод аст, агар шумо барои нусхабардории китобҳо ба мо кумаки худро расондани бошед, лутфан бо мо тамос гиред:\n',
-                  style:
-                      TextStyle(color: Colors.blueGrey.shade800, fontSize: 16),
-                ),
-                Row(
-                  children: const [
-                    SelectableText(
-                      '📨 tajikplus@gmail.com',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/telegram.png',
-                      height: 20,
-                      width: 20,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    const SelectableText(
-                      '@Official_najottv',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Lottie.asset('assets/animations/book-animation.json',
-                      repeat: false),
-                ),
-                const SizedBox(
-                  height: 80,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+          body: StreamBuilder<QuerySnapshot>(
+            stream: books,
+            builder:
+                ((BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return const Center(child: Text('Somthing went wrong'));
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: Text('Loading...'));
+              }
+              final data = snapshot.requireData;
+              return GridView.builder(
+                  itemCount: data.size,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 2 / 2.7,
+                  ),
+                  itemBuilder: ((context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: ((context) {
+                          return BookReading(
+                            title: data.docs[index]['title'],
+                            author: data.docs[index]['author'],
+                            //source: data.docs[index]['source'],
+                          );
+                        })));
+                      },
+                      child: Container(
+                        margin:
+                            const EdgeInsets.only(left: 16, top: 10, right: 10),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(data.docs[index]['image']),
+                              fit: BoxFit.cover),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(16.0),
+                          ),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(4.0, 4.0),
+                                blurRadius: 6.0)
+                          ],
+                        ),
+                      ),
+                    );
+                  }));
+            }),
+          )),
     );
   }
 }
 
+class Skelton extends StatelessWidget {
+  const Skelton({Key? key, this.height, this.width}) : super(key: key);
+  final double? height, width;
 
-
-
-
-
-
-
-
-
-
-
-
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(4),
+      height: height,
+      width: width,
+      // margin: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        color: Colors.grey.withOpacity(0.3),
+      ),
+    );
+  }
+}
 // import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';

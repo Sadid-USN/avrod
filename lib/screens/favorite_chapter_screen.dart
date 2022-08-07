@@ -120,10 +120,6 @@ class FavoriteChaptersSceen extends StatelessWidget {
                                           controller.setLike(
                                               controller.likesBox!.keys
                                                   .toList()[index],
-
-                                              // bookFromFB![widget.indexChapter]
-                                              //         ['chapters'][index]['id'] ??
-                                              //     0,
                                               isLiked,
                                               controller.likesBox!.values
                                                   .toList()[index]);

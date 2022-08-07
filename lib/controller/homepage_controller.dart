@@ -7,8 +7,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Calendars/calendar_tabbar.dart';
-import '../booksScreen/selected_books.dart';
-import '../screens/search_screen.dart';
 
 abstract class HomeController extends GetxController {
   final String googlePlayLink =
@@ -43,11 +41,9 @@ class HomePageController extends HomeController {
   onTapCurvedNavigationBar(int index) {
     currrentIndexTab = index;
     if (index == 0) {
-      Get.to(SearchScreen(
-        indexChapters: index,
-      ));
+      Get.offNamed(AppRouteNames.searchScreen);
     } else if (index == 1) {
-      Get.to(const SelectedBooks());
+      Get.offNamed(AppRouteNames.selectedBooks);
     } else if (index == 2) {
       Get.offNamed(AppRouteNames.favorite);
     } else if (index == 3) {

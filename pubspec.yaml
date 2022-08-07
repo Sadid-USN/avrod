@@ -39,9 +39,11 @@ dependencies:
   expandable: ^5.0.1
   fab_circular_menu: ^1.0.2
   file_picker: ^4.3.1
-  firebase_core: ^1.17.0
-  firebase_database: ^9.0.12
-  firebase_storage: ^10.2.5
+  # Firebse
+  cloud_firestore: ^3.4.3
+  firebase_core: ^1.20.0
+  firebase_database: ^9.1.0
+  firebase_storage: ^10.3.4
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.9.2
@@ -49,12 +51,12 @@ dependencies:
   flutter_locales: ^2.0.2
   flutter_localizations:
     sdk: flutter
-  flutter_native_splash: ^1.3.2
+  flutter_native_splash: ^2.2.7
   flutter_pdfview: ^1.2.1
   flutter_staggered_animations: ^1.0.0
   flutter_swiper: ^1.1.6
-  font_awesome_flutter: ^9.2.0
-  google_fonts: ^2.2.0
+  font_awesome_flutter: ^10.1.0
+  google_fonts: ^3.0.1
   google_fonts_arabic: ^1.1.7
   #google_mobile_ads: ^1.3.0
   google_nav_bar: ^5.0.5
@@ -68,7 +70,7 @@ dependencies:
   intl: ^0.17.0
   like_button: ^2.0.4
   link_text: ^0.2.0
-  liquid_swipe: ^2.1.1
+  liquid_swipe: ^3.0.0
   lottie: ^1.3.0
   open_file: ^3.2.1
   path: ^1.8.0
@@ -84,7 +86,7 @@ dependencies:
   table_calendar: ^3.0.3
   timezone: ^0.8.0
   url_launcher: ^6.0.18
-  firebase_messaging: ^11.4.2
+  #firebase_messaging: ^12.0.1
 flutter_native_splash:
   color: '#ffffff'
   image: assets/images/splash1.png
@@ -97,7 +99,7 @@ flutter_native_splash:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
 
