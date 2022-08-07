@@ -94,8 +94,10 @@ class SelectedBooks extends StatelessWidget {
                         Navigator.push(context,
                             MaterialPageRoute(builder: ((context) {
                           return BookReading(
+                            data: data.docs.length,
                             title: data.docs[index]['title'],
                             author: data.docs[index]['author'],
+                            content: data.docs[index]['content'],
                             //source: data.docs[index]['source'],
                           );
                         })));
