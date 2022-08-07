@@ -1,105 +1,78 @@
-import 'dart:convert';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:avrod/controller/chaptercontroller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get/get.dart';
 
 import '../constant/colors/colors.dart';
 
-class SearchScreen extends StatefulWidget {
-  final List<dynamic>? chapters;
-  final int? indexChapters;
+class SearchScreen extends StatelessWidget {
   const SearchScreen({
     Key? key,
-    this.chapters,
-    this.indexChapters,
   }) : super(key: key);
-  @override
-  State<SearchScreen> createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
-  //Dcloration
-  String? data;
-  List<dynamic>? bookFromFB;
-  DatabaseReference bookRef = FirebaseDatabase.instance.ref('book');
-  @override
-  void initState() {
-    // Subscribe to database, listen to "book"
-    bookRef.onValue.listen((event) {
-      setState(() {
-        // convert object to JSON String
-        data = jsonEncode(event.snapshot.value);
-        // convert JSON into Map<String, dynamic>
-        bookFromFB = jsonDecode(data!);
-
-        // print(bookFromFB!);
-      });
-    });
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgColor,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-        elevation: 0.0,
+    ChapterController controller = Get.put(ChapterController());
+    return GetBuilder(
+      builder: (ChapterController controller) => Scaffold(
         backgroundColor: bgColor,
-        title: const Text(''),
-        centerTitle: true,
-      ),
-      body: bookFromFB == null
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
-              children: [
-                Expanded(
-                  child: ListView.separated(
-                      separatorBuilder: (context, index) {
-                        return Divider(
-                          color: Colors.blueGrey[800],
-                        );
-                      },
-                      scrollDirection: Axis.vertical,
-                      padding: const EdgeInsets.only(top: 5),
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: bookFromFB!.length,
-                      itemBuilder: (context, index) {
-                        final book = bookFromFB![index]['name'];
-                        return ListTile(
-                          title: Text(book),
-                        );
-                      }),
-                ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: TextFormField(
-                      onChanged: ((value) {
-                        // bookFromFB![0]['name'] = value;
-                      }),
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                          suffixIcon: const Icon(Icons.search),
-                          border: InputBorder.none,
-                          hintText: 'hintText'.tr),
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              controller.goToHomePage();
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
+          elevation: 0.0,
+          backgroundColor: bgColor,
+          title: const Text(''),
+          centerTitle: true,
+        ),
+        body: controller.bookFromFB == null
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+                children: [
+                  Expanded(
+                    child: ListView.separated(
+                        separatorBuilder: (context, index) {
+                          return Divider(
+                            color: Colors.blueGrey[800],
+                          );
+                        },
+                        scrollDirection: Axis.vertical,
+                        padding: const EdgeInsets.only(top: 5),
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: controller.bookFromFB!.length,
+                        itemBuilder: (context, index) {
+                          final book = controller.bookFromFB![index]['name'];
+                          return ListTile(
+                            title: Text(book),
+                          );
+                        }),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: TextFormField(
+                        onChanged: ((value) {
+                          // bookFromFB![0]['name'] = value;
+                        }),
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            suffixIcon: const Icon(Icons.search),
+                            border: InputBorder.none,
+                            hintText: 'hintText'.tr),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:avrod/constant/routes/route_names.dart';
 import 'package:avrod/localization/local_controller.dart';
 import 'package:avrod/main.dart';
+import 'package:avrod/services/services.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -16,11 +17,12 @@ abstract class MyChapterController extends GetxController {
 
 class ChapterController extends MyChapterController {
   LocalController localController = LocalController();
+  MyServices myServices = Get.find();
   String? data;
   List<dynamic>? bookFromFB;
 
   DatabaseReference bookRuRef = FirebaseDatabase.instance.ref('book');
-  // DatabaseReference bookEnRef = FirebaseDatabase.instance.ref('bookEn');
+  //DatabaseReference bookEnRef = FirebaseDatabase.instance.ref('bookEn');
 
   Box? likesBox;
 
@@ -36,14 +38,6 @@ class ChapterController extends MyChapterController {
       update();
     });
 
-    // bookEnRef.onValue.listen((event) {
-    //   // convert object to JSON String
-    //   data = jsonEncode(event.snapshot.value);
-    //   // convert JSON into Map<String, dynamic>
-    //   bookFromFB = jsonDecode(data!);
-    // });
-
-    update();
     super.onInit();
   }
 

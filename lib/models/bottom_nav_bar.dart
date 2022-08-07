@@ -27,7 +27,7 @@ class BottomNavBar extends ChangeNotifier {
     selectedIndex = index;
     if (index == 0) {
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const SearchScreen();
+        return SearchScreen();
       }));
     } else if (index == 1) {
       // Navigator.push(context, MaterialPageRoute(builder: (context) {
