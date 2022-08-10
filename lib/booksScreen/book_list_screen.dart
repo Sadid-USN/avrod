@@ -2,6 +2,7 @@ import 'package:avrod/booksScreen/book_list_controller.dart';
 import 'package:avrod/booksScreen/book_reading_screen.dart';
 
 import 'package:avrod/constant/routes/route_names.dart';
+import 'package:avrod/utility/skelton.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,105 +17,94 @@ class BookList extends StatelessWidget {
   Widget build(BuildContext context) {
     BookListController controller = Get.put(BookListController());
     return Scaffold(
+      backgroundColor: bgColor,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
         backgroundColor: bgColor,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: bgColor,
-          title: Text(
-            'library'.tr,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.blueGrey.shade800,
-            ),
-          ),
-          centerTitle: true,
-          elevation: 0.0,
-          leading: IconButton(
-            onPressed: () {
-              Get.offNamed(AppRouteNames.homepage);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: listTitleColor,
-            ),
+        title: Text(
+          'library'.tr,
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.blueGrey.shade800,
           ),
         ),
-        body: StreamBuilder<QuerySnapshot>(
-          stream: controller.books,
-          builder:
-              ((BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return const Center(child: Text('Somthing went wrong'));
-            }
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Skelton(
-                height: 70,
-                width: 65,
-              );
-            }
-            final data = snapshot.requireData;
+        centerTitle: true,
+        elevation: 0.0,
+        leading: IconButton(
+          onPressed: () {
+            Get.offNamed(AppRouteNames.homepage);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: listTitleColor,
+          ),
+        ),
+      ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: controller.books,
+        builder:
+            ((BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const Center(child: Text('Somthing went wrong'));
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return GridView.builder(
-                itemCount: data.size,
+                itemCount: 4,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   childAspectRatio: 2 / 2.7,
                 ),
                 itemBuilder: ((context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: ((context) {
-                        return BookReading(
-                          data: data.docs.length,
-                          title: data.docs[index]['title'],
-                          author: data.docs[index]['author'],
-                          content: data.docs[index]['content'],
-                          //source: data.docs[index]['source'],
-                        );
-                      })));
-                    },
-                    child: Container(
-                      margin:
-                          const EdgeInsets.only(left: 16, top: 10, right: 10),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(data.docs[index]['image']),
-                            fit: BoxFit.cover),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(16.0),
-                        ),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(4.0, 4.0),
-                              blurRadius: 6.0)
-                        ],
-                      ),
-                    ),
-                  );
+                  return const Skelton();
                 }));
-          }),
-        ));
-  }
-}
-
-class Skelton extends StatelessWidget {
-  const Skelton({Key? key, this.height, this.width}) : super(key: key);
-  final double? height, width;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(4),
-      height: height,
-      width: width,
-      // margin: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.3),
+          }
+          final data = snapshot.requireData;
+          return GridView.builder(
+              itemCount: data.size,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 2 / 2.7,
+              ),
+              itemBuilder: ((context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: ((context) {
+                      return BookReading(
+                        data: data.docs.length,
+                        title: data.docs[index]['title'],
+                        author: data.docs[index]['author'],
+                        content: data.docs[index]['content'],
+                        //source: data.docs[index]['source'],
+                      );
+                    })));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 16, top: 10, right: 10),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(data.docs[index]['image']),
+                          fit: BoxFit.cover),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(16.0),
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(4.0, 4.0),
+                            blurRadius: 6.0)
+                      ],
+                    ),
+                  ),
+                );
+              }));
+        }),
       ),
     );
   }
 }
+
+
 // import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
