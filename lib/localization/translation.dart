@@ -30,6 +30,8 @@ class MyTranslation extends Translations {
           "textConfirm": "Yes",
           "textCancel": "Return",
           "middleText": "Do you want to exit the application?",
+          "aboutapp": "about the App",
+          "support": "Support our project",
           // chapter titles
         },
         "ru": {
@@ -59,6 +61,8 @@ class MyTranslation extends Translations {
           "textConfirm": "Бале",
           "textCancel": "Бозгашт",
           "middleText": "Мехоҳед аз барнома берун шавед?",
+          "aboutapp": "Оиди барнома",
+          "support": "Кумаки моли",
           // chapter titles
         },
       };

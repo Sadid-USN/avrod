@@ -29,9 +29,9 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               controller.goToLangugePage();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.language,
-              color: Colors.indigo.shade400,
+              color: Color(0xff006064),
             ),
           ),
         ],
