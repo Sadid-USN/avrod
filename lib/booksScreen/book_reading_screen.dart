@@ -1,5 +1,4 @@
 import 'package:animate_icons/animate_icons.dart';
-import 'package:avrod/main.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import '../constant/colors/colors.dart';
@@ -31,19 +30,19 @@ class _BookReadingState extends State<BookReading> {
   Box? savePageBox;
 
   void initHive() async {
-    savePageBox = await Hive.openBox(FAVORITES_BOX);
+    savePageBox = await Hive.openBox('pageBox');
   }
 
   bool isOntap = false;
 
+  AnimateIconController controller = AnimateIconController();
   @override
   void initState() {
     initHive();
-
+    controller = AnimateIconController();
     super.initState();
   }
 
-  AnimateIconController controller = AnimateIconController();
   @override
   void dispose() {
     controller;
