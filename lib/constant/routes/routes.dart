@@ -1,5 +1,5 @@
-import 'package:avrod/booksScreen/selected_books.dart';
-import 'package:avrod/booksScreen/show_book_screen.dart';
+import 'package:avrod/Calendars/calendar_tabbar.dart';
+import 'package:avrod/booksScreen/book_list_screen.dart';
 import 'package:avrod/constant/routes/route_names.dart';
 import 'package:avrod/middleware/middleware.dart';
 import 'package:avrod/screens/favorite_chapter_screen.dart';
@@ -15,12 +15,21 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: '/', page: () => const LangugesPage(), middlewares: [
     MyMiddleware(),
   ]),
-  GetPage(name: AppRouteNames.languge, page: () => const LangugesPage()),
+  GetPage(
+    name: AppRouteNames.languge,
+    page: () => const LangugesPage(),
+  ),
   GetPage(name: AppRouteNames.homepage, page: () => const HomePage()),
   GetPage(name: AppRouteNames.texts, page: () => TextScreen()),
   GetPage(name: AppRouteNames.searchScreen, page: () => const SearchScreen()),
-  GetPage(name: AppRouteNames.selectedBooks, page: () => const SelectedBooks()),
-  GetPage(name: AppRouteNames.showbook, page: () => const ShowBook()),
+  GetPage(name: AppRouteNames.bookList, page: () => const BookList()),
+  GetPage(name: AppRouteNames.showbook, page: () => const BookList()),
   GetPage(
-      name: AppRouteNames.favorite, page: () => const FavoriteChaptersSceen()),
+    name: AppRouteNames.favorite,
+    page: () => const FavoriteChaptersSceen(),
+  ),
+  GetPage(
+    name: AppRouteNames.calendarTabBarView,
+    page: () => const CalendarTabBarView(),
+  ),
 ];

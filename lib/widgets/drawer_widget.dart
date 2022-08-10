@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:avrod/screens/aboutapp_screen.dart';
 import 'package:avrod/widgets/watch/watch.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -28,6 +29,7 @@ class _DrawerModelState extends State<DrawerModel> {
 
   final String _youTubeLink =
       'https://www.youtube.com/channel/UCR2bhAQKRXDmE4v_rDVNOrA';
+  final String _supportLink = 'https://taplink.cc/avrod';
 
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {
@@ -126,23 +128,38 @@ class _DrawerModelState extends State<DrawerModel> {
                 size: 21,
               ),
             ),
-            // ListTile(
-            //   title: Text(
-            //     '',
-            //     style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
-            //   ),
-            //   onTap: () {
-            //     _launchInBrowser(_linkInstagramm);
-            //   },
-            //   leading: Switch(
-            //     value: _light,
-            //     onChanged: (state) {
-            //       setState(() {
-            //         _light = state;
-            //       });
-            //     },
-            //   ),
-            // ),
+            ListTile(
+              title: Text(
+                'aboutapp'.tr,
+                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
+              ),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const AboutAppScreen();
+                }));
+              },
+              leading: const Icon(
+                Icons.description,
+                color: Colors.blueGrey,
+                size: 22,
+              ),
+            ),
+
+            ListTile(
+              title: Text(
+                'support'.tr,
+                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
+              ),
+              onTap: () {
+                _launchInBrowser(_supportLink);
+              },
+              leading: const Icon(
+                FontAwesomeIcons.donate,
+                color: Colors.blueGrey,
+                size: 22,
+              ),
+            ),
           ],
         ),
       ),

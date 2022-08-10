@@ -1,130 +1,100 @@
+import 'package:avrod/booksScreen/book_list_controller.dart';
 import 'package:avrod/booksScreen/book_reading_screen.dart';
-import 'package:avrod/constant/routes/route_names.dart';
-import 'package:avrod/screens/home_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:avrod/constant/routes/route_names.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../constant/colors/colors.dart';
 
-class SelectedBooks extends StatelessWidget {
-  const SelectedBooks({
+class BookList extends StatelessWidget {
+  const BookList({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> books =
-        FirebaseFirestore.instance.collection('books').snapshots();
-    return WillPopScope(
-      onWillPop: () async {
-        final shouldPop = await showDialog<bool>(
-            context: (context),
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: const Text('Мехоҳед ба рӯйхати дуоҳо бозгардед?'),
-                actionsAlignment: MainAxisAlignment.spaceBetween,
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: ((context) {
-                        return const HomePage();
-                      })));
-                    },
-                    child: const Text('Бале'),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context, false);
-                    },
-                    child: const Text('На'),
-                  ),
-                ],
-              );
-            });
-
-        return shouldPop!;
-      },
-      child: Scaffold(
+    BookListController controller = Get.put(BookListController());
+    return Scaffold(
+        backgroundColor: bgColor,
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
           backgroundColor: bgColor,
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            backgroundColor: bgColor,
-            title: Text(
-              'library'.tr,
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.blueGrey.shade800,
-              ),
-            ),
-            centerTitle: true,
-            elevation: 0.0,
-            leading: IconButton(
-              onPressed: () {
-                Get.offAllNamed(AppRouteNames.homepage);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: listTitleColor,
-              ),
+          title: Text(
+            'library'.tr,
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.blueGrey.shade800,
             ),
           ),
-          body: StreamBuilder<QuerySnapshot>(
-            stream: books,
-            builder:
-                ((BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return const Center(child: Text('Somthing went wrong'));
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: Text('Loading...'));
-              }
-              final data = snapshot.requireData;
-              return GridView.builder(
-                  itemCount: data.size,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 2 / 2.7,
-                  ),
-                  itemBuilder: ((context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: ((context) {
-                          return BookReading(
-                            data: data.docs.length,
-                            title: data.docs[index]['title'],
-                            author: data.docs[index]['author'],
-                            content: data.docs[index]['content'],
-                            //source: data.docs[index]['source'],
-                          );
-                        })));
-                      },
-                      child: Container(
-                        margin:
-                            const EdgeInsets.only(left: 16, top: 10, right: 10),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(data.docs[index]['image']),
-                              fit: BoxFit.cover),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(16.0),
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black26,
-                                offset: Offset(4.0, 4.0),
-                                blurRadius: 6.0)
-                          ],
+          centerTitle: true,
+          elevation: 0.0,
+          leading: IconButton(
+            onPressed: () {
+              Get.offNamed(AppRouteNames.homepage);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: listTitleColor,
+            ),
+          ),
+        ),
+        body: StreamBuilder<QuerySnapshot>(
+          stream: controller.books,
+          builder:
+              ((BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return const Center(child: Text('Somthing went wrong'));
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Skelton(
+                height: 70,
+                width: 65,
+              );
+            }
+            final data = snapshot.requireData;
+            return GridView.builder(
+                itemCount: data.size,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 2 / 2.7,
+                ),
+                itemBuilder: ((context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: ((context) {
+                        return BookReading(
+                          data: data.docs.length,
+                          title: data.docs[index]['title'],
+                          author: data.docs[index]['author'],
+                          content: data.docs[index]['content'],
+                          //source: data.docs[index]['source'],
+                        );
+                      })));
+                    },
+                    child: Container(
+                      margin:
+                          const EdgeInsets.only(left: 16, top: 10, right: 10),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(data.docs[index]['image']),
+                            fit: BoxFit.cover),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(16.0),
                         ),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26,
+                              offset: Offset(4.0, 4.0),
+                              blurRadius: 6.0)
+                        ],
                       ),
-                    );
-                  }));
-            }),
-          )),
-    );
+                    ),
+                  );
+                }));
+          }),
+        ));
   }
 }
 

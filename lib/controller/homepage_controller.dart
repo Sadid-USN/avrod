@@ -6,7 +6,6 @@ import 'package:firebase_database/firebase_database.dart';
 
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../Calendars/calendar_tabbar.dart';
 
 abstract class HomeController extends GetxController {
   final String googlePlayLink =
@@ -41,13 +40,13 @@ class HomePageController extends HomeController {
   onTapCurvedNavigationBar(int index) {
     currrentIndexTab = index;
     if (index == 0) {
-      Get.offNamed(AppRouteNames.searchScreen);
+      Get.toNamed(AppRouteNames.searchScreen);
     } else if (index == 1) {
-      Get.offNamed(AppRouteNames.selectedBooks);
+      Get.toNamed(AppRouteNames.bookList);
     } else if (index == 2) {
-      Get.offNamed(AppRouteNames.favorite);
+      Get.toNamed(AppRouteNames.favorite);
     } else if (index == 3) {
-      Get.to(const CalendarTabBarView());
+      Get.toNamed(AppRouteNames.calendarTabBarView);
     } else if (index == 4) {
       if (Platform.isAndroid) {
         launchInBrowser(googlePlayLink);
