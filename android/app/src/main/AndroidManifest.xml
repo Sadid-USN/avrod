@@ -11,6 +11,11 @@
     <action android:name="android.intent.action.VIEW" />
     <data android:scheme="https" />
   </intent>
+  <intent>
+   <!-- If your app checks for SMS support -->
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="sms" />
+  </intent>
   <!-- If your app makes calls -->
   <intent>
     <action android:name="android.intent.action.DIAL" />

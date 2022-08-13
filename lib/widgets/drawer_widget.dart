@@ -33,10 +33,12 @@ class _DrawerModelState extends State<DrawerModel> {
 
   Future<void> _launchInBrowser(String url) async {
     if (await canLaunch(url)) {
-      await launch(url,
-          forceSafariVC: false,
-          forceWebView: false,
-          headers: <String, String>{'header_key': 'header_value'});
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        // headers: <String, String>{'header_key': 'header_value'}
+      );
     } else {
       throw 'Пайванд кушода нашуд $url';
     }
