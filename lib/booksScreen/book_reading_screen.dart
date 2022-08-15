@@ -5,18 +5,21 @@ import '../constant/colors/colors.dart';
 
 class BookReading extends StatefulWidget {
   List<dynamic>? content;
-  final int? data;
-  final String? title;
-  final String? author;
+  final int data;
+  final String title;
+  final String author;
+  final String? image;
   // final String? source;
-  BookReading({
-    Key? key,
-    this.title,
-    this.author,
-    this.data,
-    this.content,
-    // this.source,
-  }) : super(
+  BookReading(
+      {Key? key,
+      required this.title,
+      required this.author,
+      required this.data,
+      this.content,
+      this.image
+      // this.source,
+      })
+      : super(
           key: key,
         );
 
@@ -53,7 +56,7 @@ class _BookReadingState extends State<BookReading> {
   nextPage() {
     currentPage++;
     if (currentPage > widget.content!.length - 1) {
-      // Get.offNamed(AppRouteNames.login);
+      savePageBox!.put(widget.data, widget.content);
     } else {
       pageController?.animateToPage(currentPage,
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
@@ -64,23 +67,16 @@ class _BookReadingState extends State<BookReading> {
     currentPage = index;
   }
 
-  Future<bool> saveLastVisitPage(bool onTap, int id, content) async {
-    if (!onTap) {
-      await savePageBox!.put(id, content);
-    } else {
-      await savePageBox!.delete(id);
-    }
-
-    return !onTap;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.title!,
-          style: TextStyle(color: listTitleColor, fontSize: 16.0),
+        title: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Text(
+            widget.title,
+            style: TextStyle(color: listTitleColor, fontSize: 16.0),
+          ),
         ),
         centerTitle: true,
         elevation: 0.5,
@@ -99,6 +95,9 @@ class _BookReadingState extends State<BookReading> {
             controller: controller,
             size: 25.0,
             onStartIconPress: () {
+              setState(() {
+                nextPage();
+              });
               return true;
             },
             onEndIconPress: () {
@@ -129,9 +128,13 @@ class _BookReadingState extends State<BookReading> {
         itemCount: widget.content!.length + 1,
         itemBuilder: (context, index) {
           if (index == 0) {
-            return AuthorInfo(
-              title: widget.title,
-              author: widget.author,
+            return Hero(
+              tag: widget.image!,
+              child: AuthorInfo(
+                title: widget.title,
+                author: widget.author,
+                image: widget.image,
+              ),
             );
           } else {
             return SafeArea(
@@ -153,17 +156,6 @@ class _BookReadingState extends State<BookReading> {
           }
         },
       ),
-      // floatingActionButton: FloatingActionButton(
-      //     backgroundColor: listTitleColor,
-      //     child: Icon(
-      //       isOntap ? Icons.book : Icons.book_outlined,
-      //       size: 25.0,
-      //     ),
-      //     onPressed: () {
-      //       setState(() {
-      //         isOntap = !isOntap;
-      //       });
-      //     }),
     );
   }
 }
@@ -171,10 +163,12 @@ class _BookReadingState extends State<BookReading> {
 class AuthorInfo extends StatelessWidget {
   final String? author;
   final String? title;
+  final String? image;
   const AuthorInfo({
     Key? key,
     this.author,
     this.title,
+    this.image,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -183,28 +177,53 @@ class AuthorInfo extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SelectableText(
-              title ?? '',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  letterSpacing: 1.5,
-                  color: Colors.black,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            SelectableText(
-              author ?? '',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                letterSpacing: 1.0,
-                color: Colors.black,
-                fontSize: 13.0,
-              ),
+            Column(
+              children: [
+                Container(
+                  height: 200.0,
+                  width: 150.0,
+                  decoration: BoxDecoration(
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(4.0, 4.0),
+                          blurRadius: 6.0)
+                    ],
+                    borderRadius: BorderRadius.circular(12.0),
+                    image: DecorationImage(
+                        colorFilter: ColorFilter.mode(
+                            Colors.black.withOpacity(1.0), BlendMode.dstATop),
+                        image: NetworkImage(image ?? ''),
+                        fit: BoxFit.cover),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                SelectableText(
+                  title ?? '',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      letterSpacing: 1.5,
+                      color: Colors.black,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                SelectableText(
+                  author ?? '',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    letterSpacing: 1.0,
+                    color: Colors.black,
+                    fontSize: 13.0,
+                  ),
+                )
+              ],
             )
           ],
         ),
@@ -218,23 +237,24 @@ class BookInfo extends StatelessWidget {
   final String? title;
   final String? subtitle;
   final String? text;
+
   final List<dynamic>? sources;
 
   final String? author;
   final Border? border;
   final double? height;
 
-  const BookInfo(
-      {Key? key,
-      this.title,
-      this.author,
-      this.border,
-      this.height,
-      this.subtitle,
-      this.id,
-      this.text,
-      this.sources})
-      : super(key: key);
+  const BookInfo({
+    Key? key,
+    this.title,
+    this.author,
+    this.border,
+    this.height,
+    this.subtitle,
+    this.id,
+    this.text,
+    this.sources,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

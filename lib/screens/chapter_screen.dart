@@ -1,6 +1,7 @@
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/chaptercontroller.dart';
 import 'package:avrod/screens/text_screen.dart';
+import 'package:avrod/widgets/path_of_images.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
@@ -29,9 +30,12 @@ class ChapterScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
         elevation: 0.0,
-        title: Text(
-          'Рӯйхати фаслҳо',
-          style: TextStyle(fontSize: 18, color: listTitleColor),
+        title: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Text(
+            images[indexChapter].name.tr,
+            style: TextStyle(fontSize: 16.0, color: listTitleColor),
+          ),
         ),
         centerTitle: true,
         flexibleSpace: Container(

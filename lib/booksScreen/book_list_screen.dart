@@ -63,7 +63,7 @@ class BookList extends StatelessWidget {
               itemCount: data.size,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                childAspectRatio: 2 / 2.7,
+                childAspectRatio: 2 / 2.8,
               ),
               itemBuilder: ((context, index) {
                 return GestureDetector(
@@ -75,25 +75,31 @@ class BookList extends StatelessWidget {
                         title: data.docs[index]['title'],
                         author: data.docs[index]['author'],
                         content: data.docs[index]['content'],
+                        image: data.docs[index]['image'],
+
                         //source: data.docs[index]['source'],
                       );
                     })));
                   },
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 16, top: 10, right: 10),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(data.docs[index]['image']),
-                          fit: BoxFit.cover),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(16.0),
+                  child: Hero(
+                    tag: data.docs[index]['image'],
+                    child: Container(
+                      margin:
+                          const EdgeInsets.only(left: 16, top: 10, right: 10),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(data.docs[index]['image']),
+                            fit: BoxFit.cover),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(16.0),
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black26,
+                              offset: Offset(4.0, 4.0),
+                              blurRadius: 6.0)
+                        ],
                       ),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(4.0, 4.0),
-                            blurRadius: 6.0)
-                      ],
                     ),
                   ),
                 );
