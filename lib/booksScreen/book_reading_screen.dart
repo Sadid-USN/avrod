@@ -30,7 +30,7 @@ class BookReading extends StatefulWidget {
 class _BookReadingState extends State<BookReading> {
   int currentPage = 0;
 
-  Box? savePageBox;
+  late Box savePageBox;
 
   void initHive() async {
     savePageBox = await Hive.openBox('pageBox');
@@ -43,12 +43,14 @@ class _BookReadingState extends State<BookReading> {
   void initState() {
     initHive();
     controller = AnimateIconController();
+
     super.initState();
   }
 
   @override
   void dispose() {
     controller;
+    savePageBox.put('content', currentPage);
     super.dispose();
   }
 
@@ -56,7 +58,6 @@ class _BookReadingState extends State<BookReading> {
   nextPage() {
     currentPage++;
     if (currentPage > widget.content!.length - 1) {
-      savePageBox!.put(widget.data, widget.content);
     } else {
       pageController?.animateToPage(currentPage,
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
@@ -95,9 +96,7 @@ class _BookReadingState extends State<BookReading> {
             controller: controller,
             size: 25.0,
             onStartIconPress: () {
-              setState(() {
-                nextPage();
-              });
+              setState(() {});
               return true;
             },
             onEndIconPress: () {
@@ -109,14 +108,6 @@ class _BookReadingState extends State<BookReading> {
             clockwise: false,
           ),
         ],
-        // leading: IconButton(
-        //     onPressed: () {
-        //  Get.toNamed(AppRouteNames.bookList);
-        //     },
-        //     icon: Icon(
-        //       Icons.arrow_back_ios,
-        //       color: listTitleColor,
-        //     )),
       ),
       backgroundColor: bgColor,
       extendBodyBehindAppBar: true,
@@ -174,58 +165,73 @@ class AuthorInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 215, 198, 176),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                Container(
-                  height: 200.0,
-                  width: 150.0,
-                  decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(4.0, 4.0),
-                          blurRadius: 6.0)
-                    ],
-                    borderRadius: BorderRadius.circular(12.0),
-                    image: DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(1.0), BlendMode.dstATop),
-                        image: NetworkImage(image ?? ''),
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                SelectableText(
-                  title ?? '',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      letterSpacing: 1.5,
-                      color: Colors.black,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                SelectableText(
-                  author ?? '',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    letterSpacing: 1.0,
-                    color: Colors.black,
-                    fontSize: 13.0,
-                  ),
-                )
-              ],
-            )
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+                color: Colors.black, offset: Offset(1.0, 1.0), blurRadius: 6.0)
           ],
+          borderRadius: BorderRadius.circular(12.0),
+          image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.4), BlendMode.dstATop),
+              image: NetworkImage(image ?? ''),
+              fit: BoxFit.cover),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SelectableText(
+                title ?? '',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  letterSpacing: 1.5,
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(2.0, 2.0),
+                      blurRadius: 3.0,
+                      color: Colors.black,
+                    ),
+                    Shadow(
+                      offset: Offset(2.0, 2.0),
+                      blurRadius: 8.0,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              SelectableText(
+                author ?? '',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  shadows: [
+                    Shadow(
+                      offset: Offset(2.0, 2.0),
+                      blurRadius: 3.0,
+                      color: Colors.black,
+                    ),
+                    Shadow(
+                      offset: Offset(2.0, 2.0),
+                      blurRadius: 8.0,
+                      color: Colors.white,
+                    ),
+                  ],
+                  letterSpacing: 1.0,
+                  color: Colors.white,
+                  fontSize: 13.0,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

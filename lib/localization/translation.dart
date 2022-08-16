@@ -27,9 +27,13 @@ class MyTranslation extends Translations {
           "favorite": "Favorite chapters",
           "hijri": "Hijri calendar",
           "calendar": "Calendar",
+          // defaultDialog
           "textConfirm": "Yes",
           "textCancel": "Return",
           "middleText": "Do you want to exit the application?",
+          "textConfirmTextScreen": "Yes",
+          "textCancelTextScreen": "Return",
+          "middleTextTextScreen": "Want to go to the chapters screen?",
           "aboutapp": "about the App",
           "support": "Support our project",
           // chapter titles
@@ -58,9 +62,13 @@ class MyTranslation extends Translations {
           "favorite": "Фаслҳои маҳбуб",
           "hijri": "Тақвими ҳиҷрӣ",
           "calendar": "Тақвими мелоди",
+          // defaultDialog
           "textConfirm": "Бале",
           "textCancel": "Бозгашт",
           "middleText": "Мехоҳед аз барнома берун шавед?",
+          "textConfirmTextScreen": "Бале",
+          "textCancelTextScreen": "Бозгашт",
+          "middleTextTextScreen": "Мехоҳед ба рӯйхати бобҳо бозгардед?",
           "aboutapp": "Оиди барнома",
           "support": "Кумаки моли",
           // chapter titles

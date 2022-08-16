@@ -68,12 +68,9 @@ class HomePage extends StatelessWidget {
                       child: FlipAnimation(
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return ChapterScreen(
-                                indexChapter: index,
-                              );
-                            }));
+                            Get.to(ChapterScreen(
+                              indexChapter: index,
+                            ));
                           },
                           child: Image.asset(
                             images[index].pathImages,

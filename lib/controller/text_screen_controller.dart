@@ -1,6 +1,8 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:avrod/constant/routes/route_names.dart';
+import 'package:avrod/screens/audioplayer.dart';
+import 'package:avrod/screens/content_alltext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +11,7 @@ class TextScreenController extends GetxController {
   int currentIndex = 0;
   double? newSize;
 
-  AnimateIconController controller = AnimateIconController();
+  AnimateIconController animateIconController = AnimateIconController();
   AnimateIconController buttonController = AnimateIconController();
   Duration duration = const Duration();
   Duration position = const Duration();
@@ -17,16 +19,16 @@ class TextScreenController extends GetxController {
   AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
   bool isPlaying = false;
 
-  void stopPlaying(String url) async {
-    if (isPlaying) {
-      var reslult = await audioPlayer.pause();
-      if (reslult == 1) {
-        isPlaying = false;
-        audioPlayer.stop();
-        update();
-      }
-    }
-  }
+  // void stopPlaying(String url) async {
+  //   if (isPlaying) {
+  //     var reslult = await audioPlayer.pause();
+  //     if (reslult == 1) {
+  //       isPlaying = false;
+  //       audioPlayer.stop();
+  //       update();
+  //     }
+  //   }
+  // }
 
   playSound(String url) async {
     if (isPlaying) {
@@ -59,6 +61,28 @@ class TextScreenController extends GetxController {
     update();
   }
 
+  @override
+  void dispose() {
+    //Get.delete<TextScreenController>();
+
+    audioPlayer.dispose();
+
+    super.dispose();
+    update();
+  }
+
+  Widget buildBook(
+    var text,
+    int index,
+  ) {
+    currentIndex = index;
+    return ContetAllTexts(
+      text: text['text'],
+      arabic: text['arabic'],
+      translation: text['translation'],
+    );
+  }
+
   Widget mySlider() {
     return SizedBox(
       width: 180.0,
@@ -85,12 +109,8 @@ class TextScreenController extends GetxController {
     ));
   }
 
-  @override
-  void dispose() {
-    controller = AnimateIconController();
-    buttonController = AnimateIconController();
-    audioPlayer.dispose();
-    super.dispose();
+  deletAllControllers() {
+    Get.delete<TextScreenController>();
   }
 
   onChangedSliderSize(double newSize) {
@@ -99,6 +119,13 @@ class TextScreenController extends GetxController {
   }
 
   goToChapterScreen() {
-    Get.offAllNamed(AppRouteNames.chapters);
+    Get.to(AppRouteNames.chapters);
+  }
+
+  myAudioPlayer(List<dynamic>? texts, String? titleAbbar) {
+    return Audiplayer(
+      titleAbbar: titleAbbar,
+      texts: texts,
+    );
   }
 }

@@ -70,6 +70,6 @@ class ChapterController extends MyChapterController {
 
   @override
   goToTextSreen() {
-    Get.offAllNamed(AppRouteNames.texts);
+    Get.offAllNamed(AppRouteNames.textsScreen);
   }
 }
