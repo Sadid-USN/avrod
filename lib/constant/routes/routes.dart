@@ -20,7 +20,7 @@ List<GetPage<dynamic>>? getPages = [
     page: () => const LangugesPage(),
   ),
   GetPage(name: AppRouteNames.homepage, page: () => const HomePage()),
-  GetPage(name: AppRouteNames.textsScreen, page: () => const TextScreen()),
+  GetPage(name: AppRouteNames.textsScreen, page: () => TextScreen()),
   GetPage(name: AppRouteNames.searchScreen, page: () => const SearchScreen()),
   GetPage(name: AppRouteNames.bookList, page: () => const BookList()),
   // GetPage(
