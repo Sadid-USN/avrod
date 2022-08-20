@@ -27,7 +27,7 @@ class ContetAllTexts extends StatelessWidget {
   Widget build(BuildContext context) {
     // TextScreenController controller = Get.put(TextScreenController());
     return GetBuilder<TextScreenController>(
-      dispose: (state) => Get.delete<TextScreenController>(),
+      // dispose: (state) => Get.delete<TextScreenController>(),
       builder: (controller) => ListView(
         physics: const BouncingScrollPhysics(),
         children: [

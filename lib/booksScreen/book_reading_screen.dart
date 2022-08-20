@@ -28,12 +28,13 @@ class BookReading extends StatefulWidget {
 }
 
 class _BookReadingState extends State<BookReading> {
-  int currentPage = 0;
+  late PageController pageController;
+  late int currentPage;
 
   late Box savePageBox;
 
-  void initHive() async {
-    savePageBox = await Hive.openBox('pageBox');
+  void initHive() {
+    savePageBox = Hive.box('pageBox');
   }
 
   bool isOntap = false;
@@ -42,8 +43,20 @@ class _BookReadingState extends State<BookReading> {
   @override
   void initState() {
     initHive();
-    controller = AnimateIconController();
 
+    int? lastReadedPage = savePageBox.get(
+      'content',
+    );
+    if (lastReadedPage != null) {
+      // print(lastReadedPage);
+      currentPage = lastReadedPage;
+      pageController = PageController(initialPage: lastReadedPage);
+    } else {
+      currentPage = 0;
+      pageController = PageController(initialPage: currentPage);
+    }
+    print(savePageBox);
+    controller = AnimateIconController();
     super.initState();
   }
 
@@ -54,12 +67,11 @@ class _BookReadingState extends State<BookReading> {
     super.dispose();
   }
 
-  PageController? pageController;
   nextPage() {
     currentPage++;
     if (currentPage > widget.content!.length - 1) {
     } else {
-      pageController?.animateToPage(currentPage,
+      pageController.animateToPage(currentPage,
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
     }
   }
@@ -112,7 +124,7 @@ class _BookReadingState extends State<BookReading> {
       backgroundColor: bgColor,
       extendBodyBehindAppBar: true,
       body: PageView.builder(
-        controller: nextPage(),
+        controller: pageController,
         onPageChanged: (index) {
           onPageChanged(index);
         },

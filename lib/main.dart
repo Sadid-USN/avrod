@@ -20,6 +20,7 @@ Future main() async {
   await Hive.initFlutter();
 
   await Hive.openBox(FAVORITES_BOX);
+  await Hive.openBox('pageBox');
 
   runApp(const MyApp());
 }
