@@ -22,7 +22,8 @@ class Audiplayer extends StatelessWidget {
       dispose: (state) => Get.delete<TextScreenController>(),
       builder: (controller) => Container(
         margin: const EdgeInsets.only(right: 10.0, left: 10.0, bottom: 8.0),
-        height: Platform.isIOS ? 70 : 60,
+        height: Platform.isIOS ? 70 : 65,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
@@ -31,9 +32,10 @@ class Audiplayer extends StatelessWidget {
           color: audiplayerColor,
           boxShadow: [
             BoxShadow(
-                color: Colors.black87,
-                offset: Offset(2.0, 3.0),
-                blurRadius: 3.0),
+              color: Colors.black,
+              offset: Offset(2.0, 3.0),
+              blurRadius: 5.0,
+            ),
             // BoxShadow(
             //   color: Colors.black87,
             //   offset: Offset(-2, -0),
@@ -41,7 +43,6 @@ class Audiplayer extends StatelessWidget {
             // ),
           ],
         ),
-        width: MediaQuery.of(context).size.width,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
