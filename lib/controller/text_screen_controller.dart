@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 
 class TextScreenController extends GetxController {
   double fontSize = 16.0;
+  double fontSizeIncrease = 25.0;
+
   int currentIndex = 0;
   double? newSize;
 
@@ -111,6 +113,21 @@ class TextScreenController extends GetxController {
 
   deletAllControllers() {
     Get.delete<TextScreenController>();
+  }
+
+  increaseSize() {
+    if (fontSize < 25.0) {
+      fontSize++;
+    }
+
+    update();
+  }
+
+  decreaseSize() {
+    if (fontSize > 16.0) {
+      fontSize--;
+    }
+    update();
   }
 
   onChangedSliderSize(double newSize) {
