@@ -23,13 +23,19 @@ class ChapterScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(
+        backgroundColor: appBabgColor,
+
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12))),
         leading: IconButton(
           onPressed: () {
             controller.goToHomePage();
           },
           icon: const Icon(Icons.arrow_back_ios),
         ),
-        elevation: 0.0,
+        elevation: 3.0,
         title: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Text(
@@ -38,9 +44,9 @@ class ChapterScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        flexibleSpace: Container(
-          color: bgColor,
-        ),
+        // flexibleSpace: Container(
+        //   color: appBabgColor,
+        // ),
       ),
       body: GetBuilder<ChapterController>(
         builder: (controller) => AnimationLimiter(
@@ -51,7 +57,7 @@ class ChapterScreen extends StatelessWidget {
                 );
               },
               scrollDirection: Axis.vertical,
-              padding: const EdgeInsets.only(top: 5),
+              padding: const EdgeInsets.only(top: 10.0),
               physics: const BouncingScrollPhysics(),
               itemCount: controller.bookFromFB == null
                   ? 0

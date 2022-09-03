@@ -16,15 +16,25 @@ class SearchScreen extends StatelessWidget {
       builder: (ChapterController controller) => Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
+          elevation: 3.0,
+          backgroundColor: appBabgColor,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12))),
           leading: IconButton(
             onPressed: () {
               controller.goToHomePage();
             },
             icon: const Icon(Icons.arrow_back_ios),
           ),
-          elevation: 0.0,
-          backgroundColor: bgColor,
-          title: const Text(''),
+          title: Text(
+            'hintText'.tr,
+            style: const TextStyle(
+              fontSize: 18,
+              color: titleColor,
+            ),
+          ),
           centerTitle: true,
         ),
         body: controller.bookFromFB == null

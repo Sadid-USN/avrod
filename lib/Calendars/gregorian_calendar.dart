@@ -3,7 +3,6 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../constant/colors/colors.dart';
-import '../constant/colors/gradient_class.dart';
 
 class GregorianCalendar extends StatefulWidget {
   const GregorianCalendar({Key? key}) : super(key: key);
@@ -19,17 +18,19 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: bgColor,
       appBar: AppBar(
+        elevation: 3.0,
+        backgroundColor: appBabgColor,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12))),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios)),
-        flexibleSpace: Container(
-          decoration: favoriteGradient,
-        ),
-        elevation: 0.0,
         title: Text(
           'calendar'.tr,
           style: TextStyle(fontSize: 18, color: calendarAppbar),
@@ -37,7 +38,6 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
         centerTitle: true,
       ),
       body: Container(
-        decoration: favoriteGradient,
         child: TableCalendar(
           calendarStyle: const CalendarStyle(
               todayDecoration: BoxDecoration(
@@ -61,9 +61,9 @@ class _GregorianCalendarState extends State<GregorianCalendar> {
           focusedDay: selectedDay,
           firstDay: DateTime(1988),
           lastDay: DateTime(2050),
-          onFormatChanged: (CalendarFormat _format) {
+          onFormatChanged: (CalendarFormat format) {
             setState(() {
-              format = _format;
+              format = format;
             });
           },
         ),

@@ -20,7 +20,12 @@ class BookList extends StatelessWidget {
       backgroundColor: bgColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: bgColor,
+        elevation: 3.0,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12))),
+        backgroundColor: appBabgColor,
         title: Text(
           'library'.tr,
           style: TextStyle(
@@ -29,14 +34,13 @@ class BookList extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        elevation: 0.0,
         leading: IconButton(
           onPressed: () {
             Get.offNamed(AppRouteNames.homepage);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
-            color: listTitleColor,
+            color: whiteColor,
           ),
         ),
       ),
@@ -66,39 +70,42 @@ class BookList extends StatelessWidget {
                 childAspectRatio: 2 / 2.8,
               ),
               itemBuilder: ((context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: ((context) {
-                      return BookReading(
-                        data: data.docs.length,
-                        title: data.docs[index]['title'],
-                        author: data.docs[index]['author'],
-                        content: data.docs[index]['content'],
-                        image: data.docs[index]['image'],
+                return Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: ((context) {
+                        return BookReading(
+                          data: data.docs.length,
+                          title: data.docs[index]['title'],
+                          author: data.docs[index]['author'],
+                          content: data.docs[index]['content'],
+                          image: data.docs[index]['image'],
 
-                        //source: data.docs[index]['source'],
-                      );
-                    })));
-                  },
-                  child: Hero(
-                    tag: data.docs[index]['image'],
-                    child: Container(
-                      margin:
-                          const EdgeInsets.only(left: 16, top: 10, right: 10),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(data.docs[index]['image']),
-                            fit: BoxFit.cover),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(16.0),
+                          //source: data.docs[index]['source'],
+                        );
+                      })));
+                    },
+                    child: Hero(
+                      tag: data.docs[index]['image'],
+                      child: Container(
+                        margin:
+                            const EdgeInsets.only(left: 16, top: 10, right: 10),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(data.docs[index]['image']),
+                              fit: BoxFit.cover),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(16.0),
+                          ),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(4.0, 4.0),
+                                blurRadius: 6.0)
+                          ],
                         ),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black26,
-                              offset: Offset(4.0, 4.0),
-                              blurRadius: 6.0)
-                        ],
                       ),
                     ),
                   ),
