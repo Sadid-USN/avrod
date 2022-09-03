@@ -70,13 +70,16 @@ class ChapterScreen extends StatelessWidget {
                       child: ListTile(
                         //  key: ValueKey(index),
                         onTap: () {
-                          Get.to(TextScreen(
-                            textsIndex: index,
-                            texts: controller.bookFromFB![indexChapter]
-                                ['chapters'][index]['texts'],
-                            titleAbbar: controller.bookFromFB![indexChapter]
-                                ['chapters'][index]['name'],
-                          ));
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: ((context) {
+                            return TextScreen(
+                              textsIndex: index,
+                              texts: controller.bookFromFB![indexChapter]
+                                  ['chapters'][index]['texts'],
+                              titleAbbar: controller.bookFromFB![indexChapter]
+                                  ['chapters'][index]['name'],
+                            );
+                          })));
                         },
                         trailing: CircleAvatar(
                           backgroundColor: bgColor,
