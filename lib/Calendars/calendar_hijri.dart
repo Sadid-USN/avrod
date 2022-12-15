@@ -18,18 +18,19 @@ class _HijriPickerScreenState extends State<HijriPickerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white70,
+        backgroundColor: bgColor,
         appBar: AppBar(
+          elevation: 3.0,
+          backgroundColor: appBabgColor,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12))),
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.arrow_back_ios)),
-          flexibleSpace: Container(
-            decoration: favoriteGradient,
-          ),
-          elevation: 0.0,
-          backgroundColor: gradientStartColor,
           title: Text(
             'hijri'.tr,
             style: TextStyle(fontSize: 18, color: calendarAppbar),

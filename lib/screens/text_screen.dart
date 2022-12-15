@@ -23,60 +23,57 @@ class TextScreen extends StatelessWidget {
         init: TextScreenController(),
         builder: (controller) => DefaultTabController(
               length: texts!.length,
-              child: WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                  appBar: AppBar(
-                    elevation: 0.0,
-                    backgroundColor: Theme.of(context).primaryColor,
-                    title: SizedBox(
-                      height: 20,
-                      child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Text(
-                            titleAbbar!,
-                            style: TextStyle(
-                                color: listTitleColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold),
-                          )),
-                    ),
-                    centerTitle: true,
-                    leading: IconButton(
-                      onPressed: () {
-                        controller.audioPlayer.stop();
+              child: Scaffold(
+                appBar: AppBar(
+                  elevation: 0.0,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  title: SizedBox(
+                    height: 20,
+                    child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Text(
+                          titleAbbar!,
+                          style: TextStyle(
+                              color: listTitleColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold),
+                        )),
+                  ),
+                  centerTitle: true,
+                  leading: IconButton(
+                    onPressed: () {
+                      controller.audioPlayer.stop();
 
-                        Navigator.of(context).pop();
-                      },
-                      icon: const Icon(Icons.arrow_back_ios),
-                    ),
-                    bottom: TabBar(
-                      indicatorColor: Colors.white,
-                      isScrollable: true,
-                      tabs: texts!.map((e) => Tab(text: e['id'])).toList(),
-                    ),
+                      Navigator.of(context).pop();
+                    },
+                    icon: const Icon(Icons.arrow_back_ios),
                   ),
-                  body: TabBarView(
-                    children: texts!
-                        .map(
-                          (e) => Container(
-                            color: bgColor,
-                            child: Builder(builder: (context) {
-                              return controller.buildBook(
-                                e,
-                                texts!.indexOf(e),
-                              );
-                            }),
-                          ),
-                        )
-                        .toList(),
+                  bottom: TabBar(
+                    indicatorColor: Colors.white,
+                    isScrollable: true,
+                    tabs: texts!.map((e) => Tab(text: e['id'])).toList(),
                   ),
-                  bottomSheet: Container(
-                    color: bgColor,
-                    child: Audiplayer(
-                      texts: texts,
-                      titleAbbar: titleAbbar,
-                    ),
+                ),
+                body: TabBarView(
+                  children: texts!
+                      .map(
+                        (e) => Container(
+                          color: bgColor,
+                          child: Builder(builder: (context) {
+                            return controller.buildBook(
+                              e,
+                              texts!.indexOf(e),
+                            );
+                          }),
+                        ),
+                      )
+                      .toList(),
+                ),
+                bottomSheet: Container(
+                  color: bgColor,
+                  child: Audiplayer(
+                    texts: texts,
+                    titleAbbar: titleAbbar,
                   ),
                 ),
               ),

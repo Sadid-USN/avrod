@@ -71,6 +71,7 @@ class MyTranslation extends Translations {
           "middleTextTextScreen": "Мехоҳед ба рӯйхати бобҳо бозгардед?",
           "aboutapp": "Оиди барнома",
           "support": "Кумаки моли",
+
           // chapter titles
         },
       };
