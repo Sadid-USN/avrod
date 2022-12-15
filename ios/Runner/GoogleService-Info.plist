@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:150846456276:ios:14a233363dbebc0ecd9641</string>
+	<string>1:150846456276:ios:8fe4e7a2cb61f989cd9641</string>
 	<key>DATABASE_URL</key>
 	<string>https://avrod-a2224-default-rtdb.firebaseio.com</string>
 </dict>
