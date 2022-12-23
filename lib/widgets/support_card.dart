@@ -22,8 +22,7 @@ class SupportCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlipCard(
-      fill: Fill
-          .fillBack, // Fill the back side of the card to make in the same size as the front.
+      fill: Fill.fillBack,
       direction: FlipDirection.HORIZONTAL,
       front: Container(
         width: MediaQuery.of(context).size.width / 2 * 1.9,
