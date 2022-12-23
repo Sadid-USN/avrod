@@ -7,6 +7,7 @@ import '../constant/colors/colors.dart';
 class TextScreen extends StatelessWidget {
   final String? titleAbbar;
   final int? textsIndex;
+  final int? chapterID;
 
   final List<dynamic>? texts;
 
@@ -15,7 +16,10 @@ class TextScreen extends StatelessWidget {
     this.titleAbbar,
     this.textsIndex,
     this.texts,
+    this.chapterID,
   }) : super(key: key);
+
+  static String routName = '/textScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -57,19 +61,25 @@ class TextScreen extends StatelessWidget {
                 body: TabBarView(
                   children: texts!
                       .map(
-                        (e) => Container(
-                          color: bgColor,
-                          child: Builder(builder: (context) {
-                            return controller.buildBook(
-                              e,
-                              texts!.indexOf(e),
-                            );
-                          }),
+                        (e) => Column(
+                          children: [
+                            Expanded(
+                              child: ColoredBox(
+                                color: bgColor,
+                                child: Builder(builder: (context) {
+                                  return controller.buildBook(
+                                    e,
+                                    texts!.indexOf(e),
+                                  );
+                                }),
+                              ),
+                            ),
+                          ],
                         ),
                       )
                       .toList(),
                 ),
-                bottomSheet: Container(
+                bottomSheet: ColoredBox(
                   color: bgColor,
                   child: Audiplayer(
                     texts: texts,

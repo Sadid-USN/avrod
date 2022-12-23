@@ -11,5 +11,5 @@ final navItems = [
   ),
   const Icon(Icons.favorite, color: Colors.red, size: 22),
   const Icon(FontAwesomeIcons.calendarAlt, color: navItemsColor, size: 22),
-  const Icon(Icons.star, color: navItemsColor, size: 22),
+  const Icon(Icons.share, color: navItemsColor, size: 22),
 ];

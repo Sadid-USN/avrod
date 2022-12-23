@@ -17,6 +17,8 @@ class HomePage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  static String routName = '/home';
+
   @override
   Widget build(BuildContext context) {
     HomePageController controller = Get.put(HomePageController());

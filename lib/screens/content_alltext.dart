@@ -54,8 +54,8 @@ class ContetAllTexts extends StatelessWidget {
                 TranslationText(
                   translation: translation,
                 ),
-                const SizedBox(
-                  height: 90,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 2 * 0.5,
                 ),
               ],
             ),

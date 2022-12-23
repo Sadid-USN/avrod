@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:avrod/controller/chaptercontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,9 +7,13 @@ import 'package:get/get.dart';
 import '../constant/colors/colors.dart';
 
 class SearchScreen extends StatelessWidget {
+  final int? indexChapter;
   const SearchScreen({
     Key? key,
+    this.indexChapter,
   }) : super(key: key);
+
+  static String routName = '/searchScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +59,12 @@ class SearchScreen extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         itemCount: controller.bookFromFB!.length,
                         itemBuilder: (context, index) {
-                          final book = controller.bookFromFB![index]['name'];
+                          final book = controller.bookFromFB![0]['chapters'];
+
                           return ListTile(
-                            title: Text(book),
+                            title: Text(
+                              book[index]['name'],
+                            ),
                           );
                         }),
                   ),
@@ -69,9 +78,9 @@ class SearchScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 16.0),
                       child: TextFormField(
-                        onChanged: ((value) {
-                          // bookFromFB![0]['name'] = value;
-                        }),
+                        onChanged: (value) {
+                          controller.foundChapter(value);
+                        },
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                             suffixIcon: const Icon(Icons.search),
@@ -116,23 +125,23 @@ class SearchScreen extends StatelessWidget {
 // }
 
 // class _SearcScreenState extends State<SearcScreen> {
-//   // var listSearch = [];
-//   // Future getData() async {
-//   //   var url = 'https://jsonplaceholder.typicode.com/users';
-//   //   var response = await http.get(Uri.parse(url));
-//   //   var responseBody = jsonDecode(response.body);
-//   //   for (int i = 0; i < responseBody.length; i++) {
-//   //     listSearch.add(responseBody[i]);
-//   //   }
+  // var listSearch = [];
+  // Future getData() async {
+  //   var url = 'https://jsonplaceholder.typicode.com/users';
+  //   var response = await http.get(Uri.parse(url));
+  //   var responseBody = jsonDecode(response.body);
+  //   for (int i = 0; i < responseBody.length; i++) {
+  //     listSearch.add(responseBody[i]);
+  //   }
 
-//   //   print(listSearch.toList());
-//   // }
+  //   print(listSearch.toList());
+  // }
 
-//   // @override
-//   // void initState() {
-//   //   getData();
-//   //   super.initState();
-//   // }
+  // @override
+  // void initState() {
+  //   getData();
+  //   super.initState();
+  // }
 
 //   @override
 //   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
-import 'package:avrod/constant/routes/route_names.dart';
 import 'package:avrod/main.dart';
+import 'package:avrod/screens/home_page.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -24,6 +24,6 @@ class FavoriteScreenController extends GetxController {
   }
 
   goToHomePage() {
-    Get.offNamed(AppRouteNames.homepage);
+    Get.offNamed(HomePage.routName);
   }
 }

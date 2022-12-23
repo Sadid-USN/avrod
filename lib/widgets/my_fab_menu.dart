@@ -2,7 +2,7 @@ import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share/share.dart';
-import 'package:sizer/sizer.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class MyFabCircularMenu extends StatefulWidget {
@@ -65,38 +65,38 @@ class _MyFabCircularMenuState extends State<MyFabCircularMenu> {
                 onChanged: (_) {},
               );
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.language,
               color: Colors.white,
-              size: 20.sp,
+              size: 20,
             )),
         IconButton(
             onPressed: () {
               Share.share(
                   'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.share,
               color: Colors.white,
-              size: 20.sp,
+              size: 20,
             )),
         IconButton(
             onPressed: () {
               _launchInBrowser(_lounchUrlGmail);
             },
-            icon: Icon(
+            icon: const Icon(
               FontAwesomeIcons.envelope,
               color: Colors.white,
-              size: 18.sp,
+              size: 18,
             )),
         IconButton(
             onPressed: () {
               _launchInBrowser(_linkInstagramm);
             },
-            icon: Icon(
+            icon: const Icon(
               FontAwesomeIcons.instagram,
               color: Colors.pinkAccent,
-              size: 21.sp,
+              size: 21,
             )),
       ],
     );
@@ -105,7 +105,7 @@ class _MyFabCircularMenuState extends State<MyFabCircularMenu> {
 
 
 // FabCircularMenu(
-            
+
 //             fabOpenIcon: const Icon(Icons.menu, color: Colors.white,),
 //              ringDiameter: 450,
 //              ringWidth: 70,

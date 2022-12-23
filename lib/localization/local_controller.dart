@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:avrod/constant/colors/colors.dart';
-import 'package:avrod/constant/routes/route_names.dart';
+import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -60,7 +60,7 @@ class LocalController extends GetxController {
 
   goToHomePage() {
     myServices.sharedPreferences.setString("homepage", "1");
-    Get.offNamed(AppRouteNames.homepage);
+    Get.offNamed(HomePage.routName);
     update();
   }
 }

@@ -1,20 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:get/get.dart';
+import 'package:like_button/like_button.dart';
+
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/chaptercontroller.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:avrod/widgets/path_of_images.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
-import 'package:progress_indicators/progress_indicators.dart';
 
 class ChapterScreen extends StatelessWidget {
   final int indexChapter;
+  final int? chapterID;
   const ChapterScreen({
     Key? key,
     required this.indexChapter,
+    this.chapterID,
   }) : super(key: key);
+  static String routName = '/chapterScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -69,23 +72,24 @@ class ChapterScreen extends StatelessWidget {
                   columnCount: controller
                       .bookFromFB![indexChapter]['chapters'][index]['listimage']
                       .length,
-                  child: ScaleAnimation(
-                    child: Container(
-                      color: bgColor,
-                      padding: const EdgeInsets.all(5.0),
+                  child: Container(
+                    color: bgColor,
+                    padding: const EdgeInsets.all(5.0),
+                    child: ScaleAnimation(
                       child: ListTile(
                         //  key: ValueKey(index),
                         onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: ((context) {
-                            return TextScreen(
+                          Get.to(
+                            () => TextScreen(
                               textsIndex: index,
                               texts: controller.bookFromFB![indexChapter]
                                   ['chapters'][index]['texts'],
                               titleAbbar: controller.bookFromFB![indexChapter]
                                   ['chapters'][index]['name'],
-                            );
-                          })));
+                              chapterID: controller.bookFromFB![indexChapter]
+                                  ['chapters'][index]['id'],
+                            ),
+                          );
                         },
                         trailing: CircleAvatar(
                           backgroundColor: bgColor,
@@ -116,22 +120,35 @@ class ChapterScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               CachedNetworkImage(
-                                  imageUrl: controller.bookFromFB![indexChapter]
-                                      ['chapters'][index]['listimage'],
-                                  placeholder: (context, imageProvider) {
-                                    return JumpingText(
-                                      '❤️❤️❤️',
-                                      end: const Offset(0.0, -0.5),
-                                      style: const TextStyle(
-                                          fontSize: 8, color: Colors.white),
-                                    );
-                                  },
-                                  imageBuilder: (context, imageProvider) {
-                                    return CircleAvatar(
+                                imageUrl: controller.bookFromFB![indexChapter]
+                                    ['chapters'][index]['listimage'],
+                                placeholder: (context, imageProvider) {
+                                  return ClipRRect(
+                                      borderRadius: BorderRadius.circular(90),
+                                      child: Image.asset(
+                                        'assets/icons/iconavrod.png',
+                                        height: 50,
+                                      ));
+                                  // return JumpingText(
+                                  //   '❤️❤️❤️',
+                                  //   end: const Offset(0.0, -0.5),
+                                  //   style: const TextStyle(
+                                  //       fontSize: 8, color: Colors.white),
+                                  // );
+                                },
+                                imageBuilder: (context, imageProvider) {
+                                  return CircleAvatar(
+                                    radius: 25,
+                                    backgroundImage: imageProvider,
+                                  );
+                                },
+                                errorWidget: (context, url, error) {
+                                  return const CircleAvatar(
                                       radius: 25,
-                                      backgroundImage: imageProvider,
-                                    );
-                                  }),
+                                      backgroundImage: AssetImage(
+                                          'assets/images/noimage.png'));
+                                },
+                              ),
                               Positioned(
                                 bottom: 0,
                                 right: 0,

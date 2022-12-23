@@ -1,7 +1,7 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:avrod/constant/routes/route_names.dart';
 import 'package:avrod/screens/audioplayer.dart';
+import 'package:avrod/screens/chapter_screen.dart';
 import 'package:avrod/screens/content_alltext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +35,7 @@ class TextScreenController extends GetxController {
   playSound(String url) async {
     if (isPlaying) {
       var result = await audioPlayer.pause();
-
+      update();
       if (result == 1) {
         isPlaying = false;
         update();
@@ -58,15 +58,12 @@ class TextScreenController extends GetxController {
     });
   }
 
-  void seekAudio(Duration durationToSeek) {
-    audioPlayer.seek(durationToSeek);
-    update();
+  IconData chengeIcon(bool condition) {
+    return isPlaying ? Icons.pause : Icons.play_circle;
   }
 
   @override
   void dispose() {
-    //Get.delete<TextScreenController>();
-
     audioPlayer.dispose();
 
     super.dispose();
@@ -87,26 +84,75 @@ class TextScreenController extends GetxController {
 
   Widget mySlider() {
     return SizedBox(
-      width: 180.0,
-      child: Slider(
-        onChanged: (double newPosition) {
-          seekAudio(Duration(seconds: newPosition.round()));
-          update();
-        },
-        onChangeEnd: ((value) {}),
-        activeColor: Colors.white,
-        inactiveColor: Colors.blueGrey,
-        min: 0.0,
-        max: duration.inSeconds.toDouble(),
-        value: position.inSeconds.toDouble(),
+      width: MediaQuery.of(Get.context!).size.width / 2 * 1.6,
+      child: SliderTheme(
+        data: const SliderThemeData(
+            thumbColor: Colors.red,
+            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 3.0)),
+        child: Slider(
+          mouseCursor: MouseCursor.uncontrolled,
+          onChanged: (double newPosition) {
+            audioPlayer.seek(Duration(seconds: newPosition.round()));
+
+            update();
+          },
+          onChangeEnd: ((double value) {
+            // audioPlayer.seek(Duration(seconds: value.round()));
+            // update();
+          }),
+          activeColor: Colors.white,
+          inactiveColor: Colors.blueGrey.shade200,
+          min: 0.0,
+          max: duration.inSeconds.toDouble(),
+          value: position.inSeconds.toDouble(),
+        ),
       ),
     );
   }
 
   Widget showPosition() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Spacer(),
+        Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            border: Border.all(width: 2, color: Colors.white),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+          child: Text(
+            duration.toString().split('.').first,
+            style: const TextStyle(fontSize: 10, color: Colors.white),
+          ),
+        ),
+        const Spacer(
+          flex: 3,
+        ),
+        Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            border: Border.all(width: 2, color: Colors.white),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+          child: Text(
+            position.toString().split('.').first,
+            style: const TextStyle(fontSize: 10, color: Colors.white),
+          ),
+        ),
+        const Spacer(),
+      ],
+    );
+  }
+
+  Widget showDuration() {
     return Expanded(
         child: Text(
-      position.toString().split('.').first,
+      duration.toString().split('.').first,
       style: const TextStyle(fontSize: 10, color: Colors.white),
     ));
   }
@@ -136,7 +182,7 @@ class TextScreenController extends GetxController {
   }
 
   goToChapterScreen() {
-    Get.to(AppRouteNames.chapters);
+    Get.to(ChapterScreen.routName);
   }
 
   myAudioPlayer(List<dynamic>? texts, String? titleAbbar) {

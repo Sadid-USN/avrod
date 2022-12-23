@@ -19,9 +19,7 @@ class FavoriteChaptersSceen extends StatelessWidget {
           key: key,
         );
 
-  // oninit() {
-  //   controller.onInit();
-  // }
+  static String routName = '/favoriteChaptersSceen';
 
   @override
   Widget build(BuildContext context) {

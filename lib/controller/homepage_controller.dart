@@ -1,11 +1,16 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
 
-import 'package:avrod/constant/routes/route_names.dart';
+import 'package:avrod/Calendars/calendar_tabbar.dart';
+import 'package:avrod/booksScreen/library_screen.dart';
+import 'package:avrod/screens/favorite_chapter_screen.dart';
+import 'package:avrod/screens/languge.page.dart';
+import 'package:avrod/screens/search_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:share/share.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 abstract class HomeController extends GetxController {
   final String googlePlayLink =
@@ -14,7 +19,7 @@ abstract class HomeController extends GetxController {
       'https://apps.apple.com/ru/app/avrod/id1626614344?l=en';
   int currrentIndexTab = 2;
   onTapCurvedNavigationBar(int index);
-  launchInBrowser(String url);
+  // launchInBrowser(String url);
   goToLangugePage();
 }
 
@@ -24,38 +29,36 @@ class HomePageController extends HomeController {
   List<dynamic>? book;
   DatabaseReference bookRef = FirebaseDatabase.instance.ref('book');
 
-  @override
-  Future<void> launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url,
-          forceSafariVC: false,
-          forceWebView: false,
-          headers: <String, String>{'header_key': 'header_value'});
-    } else {
-      throw 'Пайванд кушода нашуд $url';
-    }
-  }
+  // @override
+  // Future<void> launchInBrowser(String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(url,
+  //         forceSafariVC: false,
+  //         forceWebView: false,
+  //         headers: <String, String>{'header_key': 'header_value'});
+  //   } else {
+  //     throw 'Пайванд кушода нашуд $url';
+  //   }
+  // }
 
   @override
   onTapCurvedNavigationBar(int index) {
     currrentIndexTab = index;
     if (index == 0) {
-      Get.toNamed(AppRouteNames.searchScreen);
+      Get.toNamed(SearchScreen.routName);
     } else if (index == 1) {
-      Get.toNamed(AppRouteNames.bookList);
+      Get.toNamed(LibraryScreen.routName);
     } else if (index == 2) {
-      Get.toNamed(AppRouteNames.favorite);
+      Get.toNamed(FavoriteChaptersSceen.routName);
     } else if (index == 3) {
-      Get.toNamed(AppRouteNames.calendarTabBarView);
+      Get.toNamed(CalendarTabBarView.routName);
     } else if (index == 4) {
       if (Platform.isAndroid) {
-        launchInBrowser(googlePlayLink);
-
-        // Android-specific code
-      } else if (Platform.isIOS) {
-        launchInBrowser(appStoreLink);
-
-        // iOS-specific code
+        Share.share(
+            'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+      } else {
+        Share.share(
+            'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://apps.apple.com/ru/app/avrod/id1626614344?l=en');
       }
     }
   }
@@ -74,6 +77,6 @@ class HomePageController extends HomeController {
 
   @override
   goToLangugePage() {
-    Get.offNamed(AppRouteNames.languge);
+    Get.offNamed(LangugesPage.routName);
   }
 }
