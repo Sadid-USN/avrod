@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1+28
+version: 1.0.1+34
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -31,20 +31,23 @@ dependencies:
   animated_text_kit: ^4.2.1
   audioplayers: ^0.20.1
   avatar_glow: ^2.0.2
+  flip_card: ^0.6.0
   cached_network_image: ^3.2.0
+  flutter_svg: ^1.1.6
+  internet_connection_checker: ^1.0.0+1
   carousel_slider: ^4.0.0
-  clay_containers: ^0.3.2
+ # clay_containers: ^0.3.2
   clipboard: ^0.1.3
   curved_navigation_bar: ^1.0.1
   expandable: ^5.0.1
   fab_circular_menu: ^1.0.2
-  file_picker: ^4.3.1
+  #file_picker: ^4.3.1
   # Firebse
-  cloud_firestore: ^3.4.3
-  firebase_messaging: ^13.0.0
-  firebase_core: ^1.20.0
-  firebase_database: ^9.1.0
-  firebase_storage: ^10.3.4
+  cloud_firestore: ^4.0.4
+  firebase_messaging: ^14.0.4
+  firebase_core: ^2.1.1
+  firebase_database: ^10.0.4
+  firebase_storage: ^11.0.4
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.9.2
@@ -53,13 +56,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.7
-  flutter_pdfview: ^1.2.1
   flutter_staggered_animations: ^1.0.0
-  flutter_swiper: ^1.1.6
+
   font_awesome_flutter: ^10.1.0
   google_fonts: ^3.0.1
   google_fonts_arabic: ^1.1.7
-  #google_mobile_ads: ^1.3.0
+
   google_nav_bar: ^5.0.5
   get: ^4.6.1
   hijri: ^3.0.0
@@ -73,20 +75,21 @@ dependencies:
   link_text: ^0.2.0
   liquid_swipe: ^3.0.0
   lottie: ^1.3.0
-  open_file: ^3.2.1
   path: ^1.8.0
   path_provider: ^2.0.9
   progress_indicators: ^1.0.0
   provider: ^6.0.2
   share: ^2.0.4
-  shared_preferences: ^2.0.15
+  #shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   simple_animations: ^4.0.1
-  sizer: ^2.0.15
+
   sticky_and_expandable_list: ^1.0.3
   table_calendar: ^3.0.3
   timezone: ^0.8.0
-  url_launcher: ^6.0.18
+  #url_launcher: ^6.0.18
+
+
   #firebase_messaging: ^12.0.1
 flutter_native_splash:
   color: '#ffffff'
@@ -137,6 +140,7 @@ flutter:
     - lib/data/book.json
     - assets/images/
     - assets/icons/
+    - assets/svg/
     - assets/libraryimsges/
     - assets/animations/
     - lib/localization/

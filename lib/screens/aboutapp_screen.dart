@@ -1,4 +1,3 @@
-import 'package:avrod/constant/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,11 +7,11 @@ class AboutAppScreen extends StatelessWidget {
   const AboutAppScreen({
     Key? key,
   }) : super(key: key);
-
+  static String routNaem = '/aboutAppScree';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff017373),
+      backgroundColor: const Color.fromARGB(255, 201, 177, 150),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 3.0,
@@ -31,7 +30,7 @@ class AboutAppScreen extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Get.offNamed(AppRouteNames.homepage);
+            Get.back();
           },
           icon: const Icon(
             Icons.arrow_back_ios,

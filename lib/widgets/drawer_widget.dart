@@ -1,13 +1,11 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:avrod/screens/aboutapp_screen.dart';
+import 'package:avrod/screens/suppotr_screen.dart';
 import 'package:avrod/widgets/watch/watch.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../constant/colors/colors.dart';
 
 class DrawerModel extends StatefulWidget {
@@ -30,19 +28,6 @@ class _DrawerModelState extends State<DrawerModel> {
   final String _youTubeLink =
       'https://www.youtube.com/channel/UCR2bhAQKRXDmE4v_rDVNOrA';
   final String _supportLink = 'https://taplink.cc/avrod';
-
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        // headers: <String, String>{'header_key': 'header_value'}
-      );
-    } else {
-      throw 'Пайванд кушода нашуд $url';
-    }
-  }
 
   final bool _light = true;
 
@@ -84,31 +69,11 @@ class _DrawerModelState extends State<DrawerModel> {
 
             ListTile(
               title: Text(
-                'share'.tr,
-                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
-              ),
-              onTap: () {
-                if (Platform.isAndroid) {
-                  Share.share(
-                      'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
-                } else {
-                  Share.share(
-                      'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://apps.apple.com/ru/app/avrod/id1626614344?l=en');
-                }
-              },
-              leading: const Icon(
-                Icons.share,
-                color: Colors.blueGrey,
-                size: 20,
-              ),
-            ),
-            ListTile(
-              title: Text(
                 'Darul-asar',
                 style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
-                _launchInBrowser(_youTubeLink);
+                Share.share(_youTubeLink);
               },
               leading: const Icon(
                 FontAwesomeIcons.youtube,
@@ -122,7 +87,7 @@ class _DrawerModelState extends State<DrawerModel> {
                 style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
-                _launchInBrowser(_linkInstagramm);
+                Share.share(_linkInstagramm);
               },
               leading: const Icon(
                 FontAwesomeIcons.instagram,
@@ -136,10 +101,7 @@ class _DrawerModelState extends State<DrawerModel> {
                 style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return const AboutAppScreen();
-                }));
+                Get.toNamed(AboutAppScreen.routNaem);
               },
               leading: const Icon(
                 Icons.description,
@@ -154,7 +116,9 @@ class _DrawerModelState extends State<DrawerModel> {
                 style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
-                _launchInBrowser(_supportLink);
+                Get.toNamed(SupportScreen.routNaem);
+
+                //   Share.share(_supportLink);
               },
               leading: const Icon(
                 FontAwesomeIcons.donate,

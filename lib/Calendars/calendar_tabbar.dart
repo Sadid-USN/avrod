@@ -7,7 +7,7 @@ import 'calendar_hijri.dart';
 
 class CalendarTabBarView extends StatefulWidget {
   const CalendarTabBarView({Key? key}) : super(key: key);
-
+  static String routName = '/calendarTabBarView';
   @override
   _CalendarTabBarViewState createState() => _CalendarTabBarViewState();
 }

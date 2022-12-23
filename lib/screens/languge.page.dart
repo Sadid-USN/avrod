@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class LangugesPage extends GetView<LocalController> {
   const LangugesPage({Key? key}) : super(key: key);
+
+  static String routName = '/langugesPage';
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

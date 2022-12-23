@@ -1,17 +1,19 @@
 import 'package:avrod/booksScreen/book_list_controller.dart';
 import 'package:avrod/booksScreen/book_reading_screen.dart';
 
-import 'package:avrod/constant/routes/route_names.dart';
+import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/utility/skelton.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../constant/colors/colors.dart';
 
-class BookList extends StatelessWidget {
-  const BookList({
+class LibraryScreen extends StatelessWidget {
+  const LibraryScreen({
     Key? key,
   }) : super(key: key);
+
+  static String routName = '/libraryScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class BookList extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Get.offNamed(AppRouteNames.homepage);
+            Get.offNamed(HomePage.routName);
           },
           icon: const Icon(
             Icons.arrow_back_ios,
