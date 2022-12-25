@@ -40,6 +40,7 @@ class SupportScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -68,14 +69,58 @@ class SupportScreen extends StatelessWidget {
               height: 16,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'Расули  Аллоҳ (ﷺ) фармудаанд: «Аллоҳ (ҳамеша) ёвари бандааш аст, модоме ки банда ба бародараш кӯмак медиҳад». Аҳмад (2/202), Муслим (2699), Абу Довуд (4946), Тирмизӣ (1930), ан-Насоӣ дар Сунанул-Кубро (7284, 7285),\n\nАз Абуҳурайра ривоят аст, ки Расули Аллоҳ (ﷺ) фармуд: «Чун инсон мемирад, (ҳама) аъмоли ӯ қатъ мегардад ба ҷуз се чиз: садақаи ҷория, донише, ки (дигарон) аз он истифода мекунанд ё фарзандони солеҳе, ки ба сӯи Аллоҳ рӯй оварда дар ҳақи ӯ дуо мекунанд". Ин ҳадисро Аҳмад (2/372), Бухорӣ дар “Адабул-муфрад” (38), Муслим (1631), Абу Довуд (2880), Тирмизӣ (1376) ривоят кардаанд.\n\nАз Абу Кабшӣ Умар ибни Саъди Анмарӣ  ривоят аст, ки аз Расули Худо (ﷺ)  шунид, ки мефармуд: «Оиди се аъмол (ба шумо дар шаъни он) савганд мехӯрам, ба шумо сухан мекунам, шумо онро ҳифз кунед!  (Савганд мехӯрам, ки) садақа моли бандаи (Аллоҳ-ро) кам намекунад ва агар ба банда (Аллоҳ) ситам карда шавад ва ӯ сабр кунад, ҳатман Худованд иззати ӯро афзун мекунад ва агар бандаи (Аллоҳ) дарҳои пурсишро ба худ кушояд, ҳатман Худованд дарҳои фақрро назди рӯяш боз мекунад! Ривояти Аҳмад (4/231) Тирмизӣ (2325), ва Ибни Моҷа (4228)',
-                style: GoogleFonts.ptSerif(
-                    color: Colors.grey[800],
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600),
-              ),
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: RichText(
+                  text: TextSpan(children: [
+                TextSpan(
+                  text:
+                      'Саҳми шумо барои рушди барнома. Кӯмаки шумо на танҳо ба таввасути мол, балки бо дуо ва нашри пайванди барномаи Avrod мебошад, бигзор Аллоҳи меҳрубон ҳамаи моро якояк аз зумраи парҳезгорону шитобандагони роҳи хайр қарор диҳад, ҳамчуноне ки дар китобаш ба мо хабар дода гуфтааст:\n',
+                  style: GoogleFonts.ptSerif(
+                      color: const Color.fromARGB(255, 75, 65, 65),
+                      fontSize: 18,
+                      fontWeight: FontWeight.normal),
+                ),
+                TextSpan(
+                  text:
+                      '«Ва ба сӯйи омурзиши Парвардигоратон ва биҳишт бишитобед, ки паҳно-и он [ба андозаи] осмонҳо ва замин аст [ва] барои парҳезгорон муҳайё шудааст».\n',
+                  style: GoogleFonts.ptSerif(
+                      color: Colors.grey[800],
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
+                ),
+                TextSpan(
+                  text:
+                      '(Оли Имрон 133)\nИнчунин Аз Абуҳурайра ривоят аст, ки Расули Аллоҳ (ﷺ) фармуд: \n',
+                  style: GoogleFonts.ptSerif(
+                      color: Colors.grey[800],
+                      fontSize: 18,
+                      fontWeight: FontWeight.normal),
+                ),
+                TextSpan(
+                  text:
+                      '«Чун инсон мемирад, (ҳама) аъмоли ӯ қатъ мегардад ба ҷуз се чиз: садақаи ҷория, донише, ки (дигарон) аз он истифода мекунанд ё фарзандони солеҳе, ки ба сӯи Аллоҳ рӯй оварда дар ҳақи ӯ дуо мекунанд.\n',
+                  style: GoogleFonts.ptSerif(
+                      color: Colors.grey[800],
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                  text: 'Ҳамеша аз дастгирии шумо самимона миннатдорем!',
+                  style: GoogleFonts.ptSerif(
+                      color: Colors.grey[800],
+                      fontSize: 18,
+                      fontWeight: FontWeight.normal),
+                ),
+              ])
+
+                  // Text(
+                  //   '',
+                  //   style: GoogleFonts.ptSerif(
+                  //       color: Colors.grey[800],
+                  //       fontSize: 18,
+                  //       fontWeight: FontWeight.w600),
+                  // ),
+                  ),
             ),
             const SizedBox(
               height: 16,

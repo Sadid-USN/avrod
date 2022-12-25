@@ -62,8 +62,8 @@ class SupportCard extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16, top: 10),
                   child: Image.asset(
                     icon,
-                    height: 45,
-                    width: 45,
+                    height: 35,
+                    width: 35,
                   ),
                 ),
                 const SizedBox(
