@@ -21,7 +21,9 @@ class Audiplayer extends StatelessWidget {
     return GetBuilder<TextScreenController>(
       dispose: (state) => state.controller!.audioPlayer.stop(),
       builder: (controller) => Container(
-        margin: const EdgeInsets.only(right: 10.0, left: 10.0, bottom: 8.0),
+        margin: Platform.isIOS
+            ? const EdgeInsets.only(right: 18.0, left: 18.0, bottom: 16.0)
+            : const EdgeInsets.only(right: 10.0, left: 10.0, bottom: 8.0),
         height: Platform.isIOS
             ? MediaQuery.of(context).size.height / 2 * 0.4
             : MediaQuery.of(context).size.height / 2 * 0.4,

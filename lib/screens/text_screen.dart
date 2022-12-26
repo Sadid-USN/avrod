@@ -31,24 +31,37 @@ class TextScreen extends StatelessWidget {
                 appBar: AppBar(
                   elevation: 0.0,
                   backgroundColor: Theme.of(context).primaryColor,
-                  title: SizedBox(
-                    height: 20,
-                    child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Text(
-                          titleAbbar!,
-                          style: TextStyle(
-                              color: listTitleColor,
+                  title: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Text(
+                            '$chapterID',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
                               fontSize: 14,
-                              fontWeight: FontWeight.bold),
-                        )),
-                  ),
+                              fontWeight: FontWeight.w600,
+                              color: listTitleColor,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            titleAbbar!,
+                            style: TextStyle(
+                                color: listTitleColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
                   centerTitle: true,
                   leading: IconButton(
                     onPressed: () {
                       controller.audioPlayer.stop();
 
-                      Navigator.of(context).pop();
+                      Get.back();
                     },
                     icon: const Icon(Icons.arrow_back_ios),
                   ),
@@ -63,6 +76,23 @@ class TextScreen extends StatelessWidget {
                       .map(
                         (e) => Column(
                           children: [
+                            // SizedBox(
+                            //   width: MediaQuery.of(context).size.width,
+                            //   child: ColoredBox(
+                            //     color: bgColor,
+                            //     child: Text(
+                            //       chapterID.toString(),
+                            //       maxLines: 2,
+                            //       textAlign: TextAlign.center,
+                            //       style: TextStyle(
+                            //         fontSize: 12,
+                            //         overflow: TextOverflow.ellipsis,
+                            //         fontWeight: FontWeight.w600,
+                            //         color: listTitleColor,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             Expanded(
                               child: ColoredBox(
                                 color: bgColor,

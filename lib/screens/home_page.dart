@@ -26,23 +26,9 @@ class HomePage extends StatelessWidget {
       drawer: const DrawerModel(),
       backgroundColor: bgColor,
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              controller.goToLangugePage();
-            },
-            icon: const Icon(
-              Icons.language,
-              color: Color(0xff006064),
-            ),
-          ),
-        ],
+        iconTheme: const IconThemeData(color: Colors.blueGrey),
         backgroundColor: const Color(0xffF2DFC7),
-        title: const ListTile(
-          title: Center(
-            child: MyanimetedText(),
-          ),
-        ),
+        title: const MyanimetedText(),
         centerTitle: true,
         elevation: 0.0,
       ),

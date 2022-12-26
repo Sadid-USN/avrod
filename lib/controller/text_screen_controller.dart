@@ -1,10 +1,12 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:avrod/main.dart';
 import 'package:avrod/screens/audioplayer.dart';
 import 'package:avrod/screens/chapter_screen.dart';
 import 'package:avrod/screens/content_alltext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class TextScreenController extends GetxController {
   double fontSize = 16.0;
@@ -20,6 +22,8 @@ class TextScreenController extends GetxController {
   //double sliderPosition = 0.0;
   AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
   bool isPlaying = false;
+
+  Box? saveFontSize;
 
   // void stopPlaying(String url) async {
   //   if (isPlaying) {
@@ -161,11 +165,15 @@ class TextScreenController extends GetxController {
     Get.delete<TextScreenController>();
   }
 
+  void initFont() async {
+    saveFontSize = await Hive.openBox(FAVORITES_BOX);
+    update();
+  }
+
   increaseSize() {
     if (fontSize < 25.0) {
       fontSize++;
     }
-
     update();
   }
 
@@ -176,9 +184,46 @@ class TextScreenController extends GetxController {
     update();
   }
 
+  Future<double> setFont(double font) async {
+    fontSize = font;
+    if (fontSize > 0) {
+      await saveFontSize!.put(font, fontSize);
+      print(fontSize);
+      update();
+    }
+    return font;
+  }
+
   onChangedSliderSize(double newSize) {
     fontSize = newSize;
+    setFont(fontSize);
+
     update();
+  }
+
+  void getDialog(Widget title) {
+    Get.dialog(
+      AlertDialog(
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('Ҳаҷми чоп'),
+            const SizedBox(
+              height: 16,
+            ),
+            Center(child: title),
+          ],
+        ),
+        actions: [
+          TextButton(
+            child: const Text("Пӯшонидан"),
+            onPressed: () => Get.back(),
+          ),
+        ],
+      ),
+    );
   }
 
   goToChapterScreen() {

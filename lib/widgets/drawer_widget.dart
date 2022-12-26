@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:share/share.dart';
 import '../constant/colors/colors.dart';
+import '../controller/homepage_controller.dart';
 
 class DrawerModel extends StatefulWidget {
   const DrawerModel({Key? key}) : super(key: key);
@@ -42,6 +43,7 @@ class _DrawerModelState extends State<DrawerModel> {
 
   @override
   Widget build(BuildContext context) {
+    HomePageController controller = Get.put(HomePageController());
     return Drawer(
       elevation: 30,
       backgroundColor: bgColor,
@@ -56,8 +58,7 @@ class _DrawerModelState extends State<DrawerModel> {
               children: [
                 Lottie.asset(
                   'assets/animations/shine.json',
-                  // fit: BoxFit.cover,
-
+                  height: MediaQuery.of(context).size.height / 2 * 0.7,
                   width: MediaQuery.of(context).size.width,
                 ),
                 _header(context),
@@ -66,7 +67,20 @@ class _DrawerModelState extends State<DrawerModel> {
                 ),
               ],
             ),
-
+            ListTile(
+              title: Text(
+                'lang'.tr,
+                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
+              ),
+              onTap: () {
+                controller.goToLangugePage();
+              },
+              leading: const Icon(
+                Icons.language,
+                color: Color(0xff006064),
+                size: 21,
+              ),
+            ),
             ListTile(
               title: Text(
                 'Darul-asar',
@@ -81,6 +95,7 @@ class _DrawerModelState extends State<DrawerModel> {
                 size: 21,
               ),
             ),
+
             ListTile(
               title: Text(
                 '@darul_asar',
@@ -139,8 +154,8 @@ Widget _header(BuildContext context) {
     child: Padding(
       padding: const EdgeInsets.only(top: 70),
       child: Container(
-        width: 180,
-        height: 180,
+        width: 160,
+        height: 160,
         decoration: BoxDecoration(
             color: Colors.grey[200],
             borderRadius: const BorderRadius.all(Radius.circular(100)),

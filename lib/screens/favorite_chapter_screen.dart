@@ -50,19 +50,6 @@ class FavoriteChaptersSceen extends StatelessWidget {
           ? Center(
               child: Lottie.asset('assets/animations/heart.json', height: 200),
             )
-          //'https://assets9.lottiefiles.com/packages/lf20_rxdviv9w.json',
-          // Container(
-          //     decoration: favoriteGradient,
-          //     child: Center(
-          //       child: GlowingProgressIndicator(
-          //         duration: const Duration(seconds: 1),
-          //         child: const Text(
-          //           '❤️',
-          //           style: TextStyle(fontSize: 60),
-          //         ),
-          //       ),
-          //     ),
-          //   )
           : GetBuilder<FavoriteScreenController>(
               builder: (controller) => Container(
                 decoration: favoriteGradient,

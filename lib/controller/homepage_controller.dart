@@ -7,8 +7,10 @@ import 'package:avrod/screens/favorite_chapter_screen.dart';
 import 'package:avrod/screens/languge.page.dart';
 import 'package:avrod/screens/search_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:share/share.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
@@ -28,7 +30,8 @@ class HomePageController extends HomeController {
   String? data;
   List<dynamic>? book;
   DatabaseReference bookRef = FirebaseDatabase.instance.ref('book');
-
+  late BannerAd _bannerAd;
+  bool isAdLoade = false;
   // @override
   // Future<void> launchInBrowser(String url) async {
   //   if (await canLaunch(url)) {
@@ -72,7 +75,34 @@ class HomePageController extends HomeController {
       book = jsonDecode(data!);
       update();
     });
+
     super.onInit();
+    _initBanner();
+  }
+
+  _initBanner() {
+    _bannerAd = BannerAd(
+        size: AdSize.banner,
+        adUnitId: 'ca-app-pub-7613540986721565/6723282918',
+        listener: BannerAdListener(
+          onAdLoaded: (ad) {
+            isAdLoade = true;
+            update();
+          },
+          onAdFailedToLoad: (ad, error) {},
+        ),
+        request: const AdRequest());
+
+    _bannerAd.load();
+    update();
+  }
+
+  Widget adBanner() {
+    return SizedBox(
+      height: _bannerAd.size.height.toDouble(),
+      width: _bannerAd.size.width.toDouble(),
+      child: AdWidget(ad: _bannerAd),
+    );
   }
 
   @override

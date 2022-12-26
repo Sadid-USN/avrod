@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'constant/colors/colors.dart';
 import 'localization/local_controller.dart';
@@ -17,6 +18,7 @@ Future main() async {
   await intServices();
 
   await Firebase.initializeApp();
+  MobileAds.instance.initialize();
   FirebaseDatabase.instance.setPersistenceEnabled(true);
   await Hive.initFlutter();
 
