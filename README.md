@@ -1,12 +1,10 @@
 <h1 align="center">Hi 👋, I'm Sadid</h1>
 <h3 align="center">A passionate frontend Flutter developer from Bishkek!</h3>
-<img align="right" alt="Coding" width="380" src="https://ibb.co/9Gygh0x">
-<img align="right" alt="Coding" width="380" src="https://ibb.co/ydbyKk2">
-<img align="right" alt="Coding" width="380" src="https://ibb.co/f1XTDzw">
-<img align="right" alt="Coding" width="380" src="https://ibb.co/0YkDyrX">
-<img align="right" alt="Coding" width="380" src="https://ibb.co/q1GD87C">
-<img align="right" alt="Coding" width="380" src="https://ibb.co/dc5D6Lj">
-<img align="right" alt="Coding" width="380" src="https://ibb.co/4prL9pP">
+<img align="right" alt="Coding" width="380" src="https://i.postimg.cc/nzZVjKXX/Simulator-Screen-Shot-i-Phone-14-2023-01-06-at-00-11-10.png">
+<img align="right" alt="Coding" width="380" src="https://i.postimg.cc/Qd2dsZsk/Simulator-Screen-Shot-i-Phone-14-2023-01-06-at-00-11-16.png">
+<img align="right" alt="Coding" width="380" src="https://i.postimg.cc/Qd9dRdLd/Simulator-Screen-Shot-i-Phone-14-2023-01-06-at-00-11-25.png">
+<img align="right" alt="Coding" width="380" src="https://i.postimg.cc/sD026ZNL/Simulator-Screen-Shot-i-Phone-14-2023-01-06-at-00-11-50.png">
+<img align="right" alt="Coding" width="380" src="https://i.postimg.cc/T1tPXyYp/Simulator-Screen-Shot-i-Phone-14-2023-01-05-at-23-03-40.png">
 
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=sadid-usn&label=Profile%20views&color=0e75b6&style=flat" alt="sadid-usn" /> </p>
