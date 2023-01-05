@@ -9,7 +9,7 @@ final navItems = [
     color: navItemsColor,
     size: 22,
   ),
-  const Icon(Icons.favorite, color: Colors.red, size: 22),
+  const Icon(FontAwesomeIcons.heartCircleBolt, color: Colors.red, size: 22),
   const Icon(FontAwesomeIcons.calendarAlt, color: navItemsColor, size: 22),
-  const Icon(Icons.share, color: navItemsColor, size: 22),
+  const Icon(Icons.chat, color: navItemsColor, size: 22),
 ];

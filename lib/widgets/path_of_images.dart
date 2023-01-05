@@ -1,3 +1,5 @@
+const String path = 'assets/images';
+
 class PathOfImages {
   final String pathImages;
   final String name;
@@ -8,18 +10,18 @@ class PathOfImages {
 }
 
 List<PathOfImages> images = [
-  PathOfImages(pathImages: 'assets/images/morning.png', name: 'title1'),
-  PathOfImages(pathImages: 'assets/images/duasalah.png', name: 'title2'),
-  PathOfImages(pathImages: 'assets/images/silhouette.png', name: 'title3'),
-  PathOfImages(pathImages: 'assets/images/sleep.png', name: 'title4'),
-  PathOfImages(pathImages: 'assets/images/food.png', name: 'title5'),
-  PathOfImages(pathImages: 'assets/images/sadness.png', name: 'title6'),
-  PathOfImages(pathImages: 'assets/images/hajj.png', name: 'title7'),
-  PathOfImages(pathImages: 'assets/images/shakinghands.png', name: 'title8'),
-  PathOfImages(pathImages: 'assets/images/storm.png', name: 'title9'),
-  PathOfImages(pathImages: 'assets/images/sick.png', name: 'title10'),
-  PathOfImages(pathImages: 'assets/images/ruqya.png', name: 'title11'),
-  PathOfImages(pathImages: 'assets/images/family.png', name: 'title12'),
-  PathOfImages(pathImages: 'assets/images/adha.png', name: 'title13'),
-  PathOfImages(pathImages: 'assets/images/duafromQuran.png', name: 'title14'),
+  PathOfImages(pathImages: '$path/morning.png', name: 'title1'),
+  PathOfImages(pathImages: '$path/duasalah.png', name: 'title2'),
+  PathOfImages(pathImages: '$path/silhouette.png', name: 'title3'),
+  PathOfImages(pathImages: '$path/sleep.png', name: 'title4'),
+  PathOfImages(pathImages: '$path/food.png', name: 'title5'),
+  PathOfImages(pathImages: '$path/sadness.png', name: 'title6'),
+  PathOfImages(pathImages: '$path/hajj.png', name: 'title7'),
+  PathOfImages(pathImages: '$path/shakinghands.png', name: 'title8'),
+  PathOfImages(pathImages: '$path/storm.png', name: 'title9'),
+  PathOfImages(pathImages: '$path/sick.png', name: 'title10'),
+  PathOfImages(pathImages: '$path/ruqya.png', name: 'title11'),
+  PathOfImages(pathImages: '$path/family.png', name: 'title12'),
+  PathOfImages(pathImages: '$path/adha.png', name: 'title13'),
+  PathOfImages(pathImages: '$path/duafromQuran.png', name: 'title14'),
 ];

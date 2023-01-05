@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const Color primaryTextColor = Color(0xFF414C6B);
 const Color navItemsColor = Color(0xFF00827F);
+const Color errorColor = Color(0xFFFF0000);
 const Color secondaryTextColor = Color(0xFFd6791b);
 const Color whiteColor = Colors.white;
 const Color contentTextColor = Color(0xffcfbc5c);

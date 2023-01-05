@@ -48,7 +48,10 @@ class FavoriteChaptersSceen extends StatelessWidget {
       // ignore: avoid_unnecessary_containers
       body: controller.likesBox!.isEmpty
           ? Center(
-              child: Lottie.asset('assets/animations/heart.json', height: 200),
+              child: Lottie.asset(
+                'assets/animations/heart.json',
+                height: 200,
+              ),
             )
           : GetBuilder<FavoriteScreenController>(
               builder: (controller) => Container(

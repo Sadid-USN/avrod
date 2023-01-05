@@ -65,9 +65,6 @@ class SupportScreen extends StatelessWidget {
                     }),
               ),
             ),
-            const SizedBox(
-              height: 16,
-            ),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: RichText(

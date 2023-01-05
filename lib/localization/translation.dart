@@ -42,7 +42,7 @@ class MyTranslation extends Translations {
           // book titles
           "avrod": "Авроди субҳу шом",
           "lang": "Забонҳо",
-          "title1": "Дуоҳом аввали рӯз",
+          "title1": "Дуоҳои аввали рӯз",
           "title2": "Дуоҳои намоз",
           "title3": "Зикрҳои cубҳу шом",
           "title4": "Дуоҳо пеш аз хоб",

@@ -28,7 +28,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.blueGrey),
         backgroundColor: const Color(0xffF2DFC7),
-        title: const MyanimetedText(),
+        title: MyanimetedText(
+          title: 'avrod'.tr,
+        ),
         centerTitle: true,
         elevation: 0.0,
       ),

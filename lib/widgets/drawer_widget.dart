@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:avrod/screens/aboutapp_screen.dart';
 import 'package:avrod/screens/suppotr_screen.dart';
+import 'package:avrod/widgets/avrod_bunner.dart';
 import 'package:avrod/widgets/watch/watch.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -57,7 +60,7 @@ class _DrawerModelState extends State<DrawerModel> {
               alignment: Alignment.topCenter,
               children: [
                 Lottie.asset(
-                  'assets/animations/shine.json',
+                  '/Users/myname/flutter_projects/avrod/assets/animations/shine.json',
                   height: MediaQuery.of(context).size.height / 2 * 0.7,
                   width: MediaQuery.of(context).size.width,
                 ),
@@ -119,7 +122,7 @@ class _DrawerModelState extends State<DrawerModel> {
                 Get.toNamed(AboutAppScreen.routNaem);
               },
               leading: const Icon(
-                Icons.description,
+                Icons.info_outline,
                 color: Colors.blueGrey,
                 size: 22,
               ),
@@ -141,6 +144,26 @@ class _DrawerModelState extends State<DrawerModel> {
                 size: 22,
               ),
             ),
+            ListTile(
+              title: Text(
+                'share'.tr,
+                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
+              ),
+              onTap: () {
+                if (Platform.isAndroid) {
+                  Share.share(
+                      'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://play.google.com/store/apps/details?id=com.darulasar.avrod');
+                } else {
+                  Share.share(
+                      'Барномаи «Avrod» дуоҳои саҳеҳи набави (ﷺ) бо забони тоҷикӣ, ба дустону наздикони худ равон кунед, чун роҳнамоӣ ба амали хайр дар савоб монанди анҷомдиҳандаи он аст.\nhttps://apps.apple.com/ru/app/avrod/id1626614344?l=en');
+                }
+              },
+              leading: const Icon(
+                Icons.share,
+                color: Colors.blueGrey,
+                size: 22,
+              ),
+            ),
           ],
         ),
       ),
@@ -149,37 +172,14 @@ class _DrawerModelState extends State<DrawerModel> {
 }
 
 Widget _header(BuildContext context) {
-  return Material(
+  return const Material(
     color: bgColor,
     child: Padding(
-      padding: const EdgeInsets.only(top: 70),
-      child: Container(
-        width: 160,
+      padding: EdgeInsets.only(top: 70),
+      child: AvrodBunner(
         height: 160,
-        decoration: BoxDecoration(
-            color: Colors.grey[200],
-            borderRadius: const BorderRadius.all(Radius.circular(100)),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.shade400,
-                  offset: const Offset(4.0, 4.0),
-                  blurRadius: 3.0,
-                  spreadRadius: 1.0),
-              BoxShadow(
-                  color: Colors.grey[200]!,
-                  offset: const Offset(-2.0, -2.0),
-                  blurRadius: 3.0,
-                  spreadRadius: 1.0),
-            ]),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(100)),
-          child: Image.asset(
-            'assets/images/iconavrod.png',
-            height: 190,
-            width: 190,
-            fit: BoxFit.cover,
-          ),
-        ),
+        width: 160,
+        borderRadius: 100,
       ),
     ),
 

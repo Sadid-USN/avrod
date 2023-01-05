@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "150846456276-qk75p71lnn0agkcmh7nj2fnjskb62k96.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darulasar.avrod",
+            "certificate_hash": "fbc61aaa3e3353afead4de31948b79dd0584a209"
+          }
+        },
+        {
           "client_id": "150846456276-12fa379vkdn581l5e0u9h1ppu3k2adin.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -30,6 +38,13 @@
             {
               "client_id": "150846456276-12fa379vkdn581l5e0u9h1ppu3k2adin.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "150846456276-huhu6ljvqtndmft1v7kei4l57cblj3jd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.darulasar.avrod"
+              }
             }
           ]
         }

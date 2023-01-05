@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:avrod/localization/local_controller.dart';
 import 'package:avrod/main.dart';
-import 'package:avrod/screens/home_page.dart';
+import 'package:avrod/models/chapter_model.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:avrod/services/services.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -10,7 +10,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 abstract class MyChapterController extends GetxController {
   initHive();
-  setLike(String chapterID, bool isLiked, Map content);
+  setLike(String chapterID, bool isLiked, ChaptersModel content);
   isChapterLiked(int chapterID);
   goToHomePage();
   goToTextSreen();
@@ -38,6 +38,8 @@ class ChapterController extends MyChapterController {
       // convert JSON into Map<String, dynamic>
       bookFromFB = jsonDecode(data!);
 
+      // jsonDecode(data!);
+
       update();
     });
 
@@ -60,7 +62,8 @@ class ChapterController extends MyChapterController {
   }
 
   @override
-  Future<bool> setLike(String chapterID, bool isLiked, Map content) async {
+  Future<bool> setLike(
+      String chapterID, bool isLiked, ChaptersModel content) async {
     if (!isLiked) {
       await likesBox!.put(chapterID, content);
     } else {
@@ -78,7 +81,7 @@ class ChapterController extends MyChapterController {
 
   @override
   goToHomePage() {
-    Get.offAllNamed(HomePage.routName);
+    Get.back();
   }
 
   @override

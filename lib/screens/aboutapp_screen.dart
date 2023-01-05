@@ -59,6 +59,9 @@ class AboutAppScreen extends StatelessWidget {
                             fontSize: 40.0,
                             color: Color.fromARGB(255, 245, 255, 245)),
                       ),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       RichText(
                         textAlign: TextAlign.start,
                         text: TextSpan(
