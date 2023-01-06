@@ -10,6 +10,7 @@ import 'package:avrod/chat/pages/profile_page.dart';
 import 'package:avrod/chat/pages/register_page.dart';
 import 'package:avrod/chat/services/auth_servisec.dart';
 import 'package:avrod/chat/services/database_service.dart';
+import 'package:avrod/chat/widgets/Input_decoration.dart';
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/screens/favorite_chapter_screen.dart';
 import 'package:avrod/screens/languge.page.dart';
@@ -56,6 +57,9 @@ class HomePageController extends HomeController {
   String fullName = '';
   String emailRegister = '';
   String passwordRegister = '';
+  String groupName = '';
+
+  Stream? groups;
   // @override
   // Future<void> launchInBrowser(String url) async {
   //   if (await canLaunch(url)) {
@@ -99,7 +103,7 @@ class HomePageController extends HomeController {
     super.onInit();
 
     getUserLoggedInStatus();
-    getingUserData();
+    gettingUserData();
   }
 
   getdefaultDialog(String middleText, void Function() onConfirm) {
@@ -117,6 +121,111 @@ class HomePageController extends HomeController {
         Get.close;
       },
     );
+  }
+
+  popUpDialog(
+    String middleText,
+    void Function() onConfirm,
+  ) {
+    showDialog(
+        context: Get.context!,
+        builder: (context) {
+          return AlertDialog(
+            title: const Center(child: Text('Гурӯҳи нав')),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                        color: audiplayerColor,
+                      ))
+                    : TextField(
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(borderRadius),
+                            borderSide: const BorderSide(
+                              color: navItemsColor,
+                              width: 1.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(borderRadius),
+                            borderSide: const BorderSide(
+                              color: navItemsColor,
+                              width: 1.0,
+                            ),
+                          ),
+                        ),
+                        onChanged: (value) {
+                          groupName = value;
+                          update();
+                        },
+                      ),
+
+                //   SizedBox(height: 50, child: TextField()),
+              ],
+            ),
+            actions: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: bgColor, // Background color
+                ),
+                onPressed: () {
+                  Get.back();
+                },
+                child: const Text(
+                  'Илғоъ',
+                  style: TextStyle(color: skipColor),
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: bgColor, // Background color
+                ),
+                onPressed: () async {
+                  if (groupName != "") {
+                    isLoading = true;
+                    update();
+
+                    DtabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+                        .createGroup(fullName,
+                            FirebaseAuth.instance.currentUser!.uid, groupName)
+                        .whenComplete(() {
+                      isLoading = false;
+                      update();
+                    });
+
+                    Get.back();
+                    Get.snackbar(
+                      'Алҳамдулиллаҳ!',
+                      "Гурӯҳ бо мувафақият эҷод шуд!",
+                      colorText: skipColor,
+                      backgroundColor: bgColor,
+                      duration: const Duration(seconds: 4),
+                      icon: const Icon(
+                        Icons.add_alert,
+                        color: Colors.white,
+                      ),
+                    );
+                    // SnackBar(
+                    //   content: const Text(''),
+                    //   duration: const Duration(seconds: 1),
+                    //   action: SnackBarAction(
+                    //     label: 'ACTION',
+                    //     onPressed: () {},
+                    //   ),
+                    // );
+                  }
+                },
+                child: const Text(
+                  'Иншо',
+                  style: TextStyle(color: skipColor),
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   // _initBanner() {
@@ -173,7 +282,7 @@ class HomePageController extends HomeController {
     });
   }
 
-  Future<String> getingUserData() async {
+  Future<void> gettingUserData() async {
     await HelperFunction.getUserNameFromSF().then((value) {
       fullName = value!;
 
@@ -185,7 +294,13 @@ class HomePageController extends HomeController {
 
       update();
     });
-    return fullName;
+    //getting the list of snapshot in our stream
+    await DtabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+        .getUserGroups()
+        .then((snapshot) {
+      groups = snapshot;
+      update();
+    });
   }
 
   Future register() async {

@@ -5,6 +5,7 @@ import 'package:avrod/controller/homepage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//! 2:20
 class ChatHomePage extends GetView<HomePageController> {
   const ChatHomePage({Key? key}) : super(key: key);
 
@@ -92,27 +93,122 @@ class ChatHomePage extends GetView<HomePageController> {
           ),
         ],
       ),
-      body: Column(
+      body: StreamBuilder(
+        stream: controller.groups,
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data['groups'] != 0) {
+              if (snapshot.data['groups'].length != 0) {
+                return const Center(
+                    child: CustomText(
+                  title: 'Хуш омадед!',
+                  fontSize: 35,
+                  fontWeight: FontWeight.w600,
+                ));
+              } else {
+                return NoGroups(
+                  onTap: () {},
+                );
+              }
+            } else {
+              return NoGroups(
+                onTap: () {},
+              );
+            }
+            // return Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     Center(
+            //       child: Opacity(
+            //         opacity: 0.5,
+            //         child: SizedBox(
+            //           height: 200,
+            //           child: Image.asset(
+            //             'assets/icons/chat.png',
+            //             fit: BoxFit.cover,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+
+            //     // LoginButton(
+            //     //   buttonTitle: 'Баромад',
+            //     //   onPressed: () async {},
+            //     // )
+            //   ],
+            // );
+          } else {
+            return const Center(
+                child: CircularProgressIndicator(
+              color: audiplayerColor,
+            ));
+          }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            controller.popUpDialog(
+              'Гурӯҳи нав',
+              () {},
+            );
+          },
+          backgroundColor: audiplayerColor,
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          )),
+    );
+  }
+}
+
+class NoGroups extends StatelessWidget {
+  final Function()? onTap;
+  const NoGroups({Key? key, required this.onTap}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 26),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-            child: Opacity(
-              opacity: 0.5,
-              child: SizedBox(
-                height: 200,
-                child: Image.asset(
-                  'assets/icons/chat.png',
-                  fit: BoxFit.cover,
+          Stack(
+            children: [
+              GestureDetector(
+                onTap: onTap,
+                child: Opacity(
+                  opacity: 0.5,
+                  child: SizedBox(
+                    height: 200,
+                    child: Image.asset(
+                      'assets/icons/chat.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              const Positioned(
+                right: 0,
+                left: 0,
+                top: 60,
+                child: Center(
+                  child: Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.blueGrey,
+                    size: 75,
+                  ),
+                ),
+              ),
+            ],
           ),
-
-          // LoginButton(
-          //   buttonTitle: 'Баромад',
-          //   onPressed: () async {},
-          // )
+          const SizedBox(
+            height: 16,
+          ),
+          const Text(
+            'Айни ҳол шумо гурӯҳ надоред, барои изофа кардани гурӯҳ тугмаро пахш кунед ё аз боло ягон гурӯҳеро ҷустуҷӯ намоед',
+            textAlign: TextAlign.left,
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          )
         ],
       ),
     );
