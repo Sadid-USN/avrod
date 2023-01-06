@@ -42,4 +42,36 @@ class DtabaseService {
         await userCollectionRef.where("email", isEqualTo: email).get();
     return snapshot;
   }
+
+  // get user groups
+
+  Future getUserGroups() async {
+    var snapshot = userCollectionRef.doc(uid).snapshots();
+    return snapshot;
+  }
+
+  //creating Group
+
+  Future createGroup(String userName, String id, String groupName) async {
+    DocumentReference groupDocumentReference = await groupCollection.add({
+      "groupName": groupName,
+      "groupIcon": "",
+      "admin": "${id}_$userName",
+      "members": [],
+      "groupId": "",
+      "recentMessage": "",
+      "recentMessageSender": "",
+    });
+    // update the members
+    await groupDocumentReference.update({
+      "members": FieldValue.arrayUnion(["${uid}_$userName"]),
+      "groupId": groupDocumentReference.id,
+    });
+
+    DocumentReference userDocumentReference = userCollectionRef.doc(uid);
+    return await userDocumentReference.update({
+      "groups":
+          FieldValue.arrayUnion(["${groupDocumentReference.id}_$groupName"]),
+    });
+  }
 }
