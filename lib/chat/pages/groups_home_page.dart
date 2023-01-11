@@ -1,13 +1,16 @@
-import 'package:avrod/chat/helper/text_style.dart';
+import 'package:avrod/chat/helper/rout_navigator.dart';
+import 'package:avrod/chat/pages/chat_page.dart';
 import 'package:avrod/chat/widgets/chat_drawer.dart';
+import 'package:avrod/chat/widgets/group_tile.dart';
+import 'package:avrod/chat/widgets/text_style.dart';
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/homepage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //! 2:20
-class ChatHomePage extends GetView<HomePageController> {
-  const ChatHomePage({Key? key}) : super(key: key);
+class GroupsHomePage extends GetView<HomePageController> {
+  const GroupsHomePage({Key? key}) : super(key: key);
 
   static String routName = '/chatHomePage';
   @override
@@ -77,7 +80,7 @@ class ChatHomePage extends GetView<HomePageController> {
         elevation: 3.0,
         backgroundColor: appBabgColor,
         title: const CustomText(
-          title: 'Чат',
+          title: 'Гурӯҳҳо',
           fontSize: 22,
           fontWeight: FontWeight.bold,
         ),
@@ -99,15 +102,44 @@ class ChatHomePage extends GetView<HomePageController> {
           if (snapshot.hasData) {
             if (snapshot.data['groups'] != 0) {
               if (snapshot.data['groups'].length != 0) {
-                return const Center(
-                    child: CustomText(
-                  title: 'Хуш омадед!',
-                  fontSize: 35,
-                  fontWeight: FontWeight.w600,
-                ));
+                return GetBuilder<HomePageController>(
+                  builder: (controller) {
+                    return ListView.builder(
+                        itemCount: snapshot.data['groups'].length,
+                        itemBuilder: (context, index) {
+                          int reverseIndex =
+                              snapshot.data['groups'].length - index - 1;
+                          return GroupTile(
+                            onTap: () {
+                              nextScreen(
+                                context,
+                                ChatPage(
+                                  groupId: controller.getGroupId(
+                                    snapshot.data['groups'][reverseIndex],
+                                  ),
+                                  groupName: controller.getGroupName(
+                                    snapshot.data['groups'][reverseIndex],
+                                  ),
+                                  userName: snapshot.data['fullName'],
+                                ),
+                              );
+                            },
+                            groupId: controller.getGroupId(
+                              snapshot.data['groups'][reverseIndex],
+                            ),
+                            userName: snapshot.data['fullName'],
+                            groupName: controller.getGroupName(
+                              snapshot.data['groups'][reverseIndex],
+                            ),
+                          );
+                        });
+                  },
+                );
               } else {
                 return NoGroups(
-                  onTap: () {},
+                  onTap: () {
+                    controller.popUpDialog('Гурӯҳи нав');
+                  },
                 );
               }
             } else {
@@ -115,29 +147,6 @@ class ChatHomePage extends GetView<HomePageController> {
                 onTap: () {},
               );
             }
-            // return Column(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   children: [
-            //     Center(
-            //       child: Opacity(
-            //         opacity: 0.5,
-            //         child: SizedBox(
-            //           height: 200,
-            //           child: Image.asset(
-            //             'assets/icons/chat.png',
-            //             fit: BoxFit.cover,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-
-            //     // LoginButton(
-            //     //   buttonTitle: 'Баромад',
-            //     //   onPressed: () async {},
-            //     // )
-            //   ],
-            // );
           } else {
             return const Center(
                 child: CircularProgressIndicator(
@@ -150,7 +159,6 @@ class ChatHomePage extends GetView<HomePageController> {
           onPressed: () {
             controller.popUpDialog(
               'Гурӯҳи нав',
-              () {},
             );
           },
           backgroundColor: audiplayerColor,
@@ -174,28 +182,28 @@ class NoGroups extends StatelessWidget {
         children: [
           Stack(
             children: [
-              GestureDetector(
-                onTap: onTap,
-                child: Opacity(
-                  opacity: 0.5,
-                  child: SizedBox(
-                    height: 200,
-                    child: Image.asset(
-                      'assets/icons/chat.png',
-                      fit: BoxFit.cover,
-                    ),
+              Opacity(
+                opacity: 0.5,
+                child: SizedBox(
+                  height: 200,
+                  child: Image.asset(
+                    'assets/icons/chat.png',
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 right: 0,
                 left: 0,
                 top: 60,
                 child: Center(
-                  child: Icon(
-                    Icons.add_circle_outline,
-                    color: Colors.blueGrey,
-                    size: 75,
+                  child: GestureDetector(
+                    onTap: onTap,
+                    child: const Icon(
+                      Icons.add_circle_outline,
+                      color: Colors.blueGrey,
+                      size: 75,
+                    ),
                   ),
                 ),
               ),

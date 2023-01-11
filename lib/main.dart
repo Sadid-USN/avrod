@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LocalController localController = Get.put(LocalController());
+
     return GetMaterialApp(
       locale: localController.defaultLanguge,
       translations: MyTranslation(),

@@ -1,5 +1,5 @@
-import 'package:avrod/booksScreen/book_list_controller.dart';
 import 'package:avrod/booksScreen/book_reading_screen.dart';
+import 'package:avrod/controller/homepage_controller.dart';
 
 import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/utility/skelton.dart';
@@ -17,7 +17,7 @@ class LibraryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BookListController controller = Get.put(BookListController());
+    HomePageController controller = Get.put(HomePageController());
     return Scaffold(
       backgroundColor: bgColor,
       extendBodyBehindAppBar: true,

@@ -1,25 +1,24 @@
 import 'dart:convert';
-
 import 'package:avrod/Calendars/calendar_tabbar.dart';
 import 'package:avrod/booksScreen/library_screen.dart';
 import 'package:avrod/chat/helper/helper_function.dart';
-import 'package:avrod/chat/pages/chat_home_page.dart';
+import 'package:avrod/chat/pages/groups_home_page.dart';
 import 'package:avrod/chat/pages/chat_search_page.dart';
-import 'package:avrod/chat/pages/login_page.dart';
+import 'package:avrod/chat/pages/auth/login_page.dart';
 import 'package:avrod/chat/pages/profile_page.dart';
-import 'package:avrod/chat/pages/register_page.dart';
+import 'package:avrod/chat/pages/auth/register_page.dart';
 import 'package:avrod/chat/services/auth_servisec.dart';
 import 'package:avrod/chat/services/database_service.dart';
 import 'package:avrod/chat/widgets/Input_decoration.dart';
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/screens/favorite_chapter_screen.dart';
+import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/screens/languge.page.dart';
 import 'package:avrod/screens/search_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 // import 'package:url_launcher/url_launcher.dart';
@@ -44,6 +43,7 @@ class HomePageController extends HomeController {
 
   bool isSignIn = false;
   bool isLoading = false;
+  BuildContext? context;
 
   AuthService authService = AuthService();
 
@@ -51,47 +51,21 @@ class HomePageController extends HomeController {
   GlobalKey<FormState> get loginFormKey => _loginFormKey;
   final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> get registerFormKey => _registerFormKey;
+
   String emailLogin = '';
   String passwordLogin = '';
 
-  String fullName = '';
   String emailRegister = '';
   String passwordRegister = '';
+
+  String fullName = '';
   String groupName = '';
+  String groupId = '';
 
   Stream? groups;
-  // @override
-  // Future<void> launchInBrowser(String url) async {
-  //   if (await canLaunch(url)) {
-  //     await launch(url,
-  //         forceSafariVC: false,
-  //         forceWebView: false,
-  //         headers: <String, String>{'header_key': 'header_value'});
-  //   } else {
-  //     throw 'Пайванд кушода нашуд $url';
-  //   }
-  // }
 
   @override
-  onTapCurvedNavigationBar(int index) {
-    currrentIndexTab = index;
-    if (index == 0) {
-      Get.toNamed(SearchScreen.routName);
-    } else if (index == 1) {
-      Get.toNamed(LibraryScreen.routName);
-    } else if (index == 2) {
-      Get.toNamed(FavoriteChaptersSceen.routName);
-    } else if (index == 3) {
-      Get.toNamed(CalendarTabBarView.routName);
-    } else if (index == 4) {
-      isSignIn
-          ? Get.toNamed(ChatHomePage.routName)
-          : Get.toNamed(LoginPage.routName);
-    }
-  }
-
-  @override
-  void onInit() {
+  void onReady() {
     bookRef.onValue.listen((event) {
       // convert object to JSON String
       data = jsonEncode(event.snapshot.value);
@@ -100,10 +74,58 @@ class HomePageController extends HomeController {
       update();
     });
 
-    super.onInit();
+    update();
+    super.onReady();
+
+    isLoading;
+    isSignIn;
+    groups;
 
     getUserLoggedInStatus();
     gettingUserData();
+    update();
+    super.onReady();
+  }
+
+  final Stream<QuerySnapshot> books = FirebaseFirestore.instance
+      .collection('books')
+      .orderBy(
+        'author',
+      )
+      .snapshots();
+
+  @override
+  onTapCurvedNavigationBar(int index) {
+    currrentIndexTab = index;
+    if (index == 0) {
+      Get.toNamed(SearchScreen.routName);
+    } else if (index == 1) {
+      isSignIn ? Get.toNamed(LibraryScreen.routName) : goToLogin();
+    } else if (index == 2) {
+      Get.toNamed(FavoriteChaptersSceen.routName);
+    } else if (index == 3) {
+      Get.toNamed(CalendarTabBarView.routName);
+    } else if (index == 4) {
+      isSignIn ? Get.toNamed(GroupsHomePage.routName) : goToLogin();
+    }
+    update();
+  }
+
+  String getGroupId(String id) {
+    return id.split('_').first;
+  }
+
+  String getGroupName(String name) {
+    return name.split('_').last;
+  }
+
+  getUserLoggedInStatus() async {
+    await HelperFunction.getUserLoggedInStatus().then((value) {
+      if (value != null) {
+        isSignIn = value;
+        update();
+      }
+    });
   }
 
   getdefaultDialog(String middleText, void Function() onConfirm) {
@@ -125,9 +147,9 @@ class HomePageController extends HomeController {
 
   popUpDialog(
     String middleText,
-    void Function() onConfirm,
   ) {
     showDialog(
+        barrierDismissible: false,
         context: Get.context!,
         builder: (context) {
           return AlertDialog(
@@ -200,22 +222,15 @@ class HomePageController extends HomeController {
                     Get.snackbar(
                       'Алҳамдулиллаҳ!',
                       "Гурӯҳ бо мувафақият эҷод шуд!",
-                      colorText: skipColor,
-                      backgroundColor: bgColor,
+                      colorText: Colors.white,
+                      backgroundColor: audiplayerColor.withOpacity(0.7),
                       duration: const Duration(seconds: 4),
+                      snackPosition: SnackPosition.BOTTOM,
                       icon: const Icon(
                         Icons.add_alert,
                         color: Colors.white,
                       ),
                     );
-                    // SnackBar(
-                    //   content: const Text(''),
-                    //   duration: const Duration(seconds: 1),
-                    //   action: SnackBarAction(
-                    //     label: 'ACTION',
-                    //     onPressed: () {},
-                    //   ),
-                    // );
                   }
                 },
                 child: const Text(
@@ -228,32 +243,7 @@ class HomePageController extends HomeController {
         });
   }
 
-  // _initBanner() {
-  //   _bannerAd = BannerAd(
-  //       size: AdSize.banner,
-  //       adUnitId: 'ca-app-pub-7613540986721565/6723282918',
-  //       listener: BannerAdListener(
-  //         onAdLoaded: (ad) {
-  //           isAdLoade = true;
-  //           update();
-  //         },
-  //         onAdFailedToLoad: (ad, error) {},
-  //       ),
-  //       request: const AdRequest());
-
-  //   _bannerAd.load();
-  //   update();
-  // }
-
-  // Widget adBanner() {
-  //   return SizedBox(
-  //     height: _bannerAd.size.height.toDouble(),
-  //     width: _bannerAd.size.width.toDouble(),
-  //     child: AdWidget(ad: _bannerAd),
-  //   );
-  // }
-
-  Future login() async {
+  Future<void> login() async {
     if (_loginFormKey.currentState!.validate()) {
       isLoading = true;
       update();
@@ -264,15 +254,23 @@ class HomePageController extends HomeController {
       if (value == true) {
         QuerySnapshot snapshot =
             await DtabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
-                .gettingUserData(emailLogin);
+                .gettingUserData(emailLogin)
+                .whenComplete(() {
+          if (currrentIndexTab == 1) {
+            Get.offNamed(LibraryScreen.routName);
+          } else {
+            goToChatHomePage();
+            update();
+          }
+        });
         // saving the values to our shared preferences
         await HelperFunction.saveUserLoggedInStatus(true);
         await HelperFunction.saveUserEmailSf(emailLogin);
         await HelperFunction.saveUserNameSf(
           snapshot.docs[0]['fullName'],
         );
-        Get.offNamed(ChatHomePage.routName);
-        update();
+        // Get.offNamed(ChatHomePage.routName);
+        // update();
       } else {
         errorSnackbar();
         isLoading = false;
@@ -303,7 +301,7 @@ class HomePageController extends HomeController {
     });
   }
 
-  Future register() async {
+  Future<void> register() async {
     if (_registerFormKey.currentState!.validate()) {
       isLoading = true;
       update();
@@ -315,7 +313,11 @@ class HomePageController extends HomeController {
       if (value == true) {
         // saving the sharedpreference state
         await DtabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
-            .gettingUserData(emailRegister);
+            .gettingUserData(emailRegister)
+            .whenComplete(() {
+          goToChatHomePage();
+          update();
+        });
         await HelperFunction.saveUserLoggedInStatus(true);
         await HelperFunction.saveUserEmailSf(emailRegister);
         await HelperFunction.saveUserNameSf(fullName);
@@ -334,7 +336,10 @@ class HomePageController extends HomeController {
       await HelperFunction.saveUserLoggedInStatus(false);
       await HelperFunction.saveUserEmailSf("");
       await HelperFunction.saveUserNameSf("");
-      await authService.signOut();
+      await authService.signOut().whenComplete(() {
+        goToLogin();
+        update();
+      });
 
       update();
     } catch (e) {
@@ -416,11 +421,11 @@ class HomePageController extends HomeController {
   }
 
   goToRegisterPage() {
-    Get.offNamed(RegisterPage.routName);
+    Get.toNamed(RegisterPage.routName);
   }
 
   goToLogin() {
-    Get.offNamed(LoginPage.routName);
+    Get.toNamed(LoginPage.routName);
   }
 
   goToProfilePage() {
@@ -432,14 +437,36 @@ class HomePageController extends HomeController {
   }
 
   goToChatHomePage() {
-    Get.offNamed(ChatHomePage.routName);
+    Get.toNamed(GroupsHomePage.routName);
   }
 
-  getUserLoggedInStatus() async {
-    await HelperFunction.getUserLoggedInStatus().then((value) {
-      if (value != null) {
-        isSignIn = value;
-      }
-    });
+  goToHomePage() {
+    Get.offAllNamed(HomePage.routName);
   }
 }
+
+
+  // _initBanner() {
+  //   _bannerAd = BannerAd(
+  //       size: AdSize.banner,
+  //       adUnitId: 'ca-app-pub-7613540986721565/6723282918',
+  //       listener: BannerAdListener(
+  //         onAdLoaded: (ad) {
+  //           isAdLoade = true;
+  //           update();
+  //         },
+  //         onAdFailedToLoad: (ad, error) {},
+  //       ),
+  //       request: const AdRequest());
+
+  //   _bannerAd.load();
+  //   update();
+  // }
+
+  // Widget adBanner() {
+  //   return SizedBox(
+  //     height: _bannerAd.size.height.toDouble(),
+  //     width: _bannerAd.size.width.toDouble(),
+  //     child: AdWidget(ad: _bannerAd),
+  //   );
+  // }

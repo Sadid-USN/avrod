@@ -1,4 +1,4 @@
-import 'package:avrod/chat/helper/text_style.dart';
+import 'package:avrod/chat/widgets/text_style.dart';
 import 'package:avrod/constant/animated_text.dart';
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/homepage_controller.dart';
@@ -27,6 +27,7 @@ class ProfilePage extends GetView<HomePageController> {
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {

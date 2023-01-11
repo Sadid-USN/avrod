@@ -1,4 +1,4 @@
-import 'package:avrod/chat/helper/text_style.dart';
+import 'package:avrod/chat/widgets/text_style.dart';
 import 'package:avrod/chat/widgets/Input_decoration.dart';
 import 'package:avrod/chat/widgets/login_button.dart';
 import 'package:avrod/constant/colors/colors.dart';
@@ -17,7 +17,7 @@ class LoginPage extends GetView<HomePageController> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: GetBuilder<HomePageController>(
-        builder: (_) {
+        builder: (controller) {
           return
               // controller.isLoading
               //     ? const Center(
@@ -34,17 +34,21 @@ class LoginPage extends GetView<HomePageController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const CustomText(
-                      title: 'Врорид шудан',
+                    CustomText(
+                      title: controller.currrentIndexTab == 1
+                          ? "Китобхона"
+                          : 'Чат',
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    const CustomText(
-                      title:
-                          'Барои дохил шудан ба чат, ба ҳисоби корбари худ ворид шавед!',
+                    CustomText(
+                      maxLines: 3,
+                      title: controller.currrentIndexTab == 1
+                          ? 'Барои дохил шудан ба китобхона, шумо бояд ба ҳисоби корбари худ ворид шавед!'
+                          : 'Барои дохил шудан ба чат, шумо бояд ба ҳисоби корбари худ ворид шавед!',
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),
@@ -107,9 +111,7 @@ class LoginPage extends GetView<HomePageController> {
                     LoginButton(
                       buttonTitle: 'Вуруд',
                       onPressed: () {
-                        controller.login().whenComplete(() async {
-                          await controller.goToChatHomePage();
-                        });
+                        controller.login();
                       },
                     ),
                     const SizedBox(

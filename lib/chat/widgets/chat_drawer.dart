@@ -1,4 +1,4 @@
-import 'package:avrod/chat/helper/text_style.dart';
+import 'package:avrod/chat/widgets/text_style.dart';
 import 'package:flutter/material.dart';
 
 import 'package:avrod/constant/colors/colors.dart';
@@ -34,6 +34,7 @@ class ChatDrawer extends StatelessWidget {
               height: 8,
             ),
             CustomText(
+              maxLines: 1,
               title: userEmail,
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -42,6 +43,7 @@ class ChatDrawer extends StatelessWidget {
               height: 5,
             ),
             CustomText(
+              maxLines: 1,
               title: userName.toUpperCase(),
               fontSize: 16,
               fontWeight: FontWeight.w500,
