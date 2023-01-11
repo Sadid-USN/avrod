@@ -8,7 +8,7 @@ import 'package:avrod/controller/homepage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//! 2:20
+//! 2:43
 class GroupsHomePage extends GetView<HomePageController> {
   const GroupsHomePage({Key? key}) : super(key: key);
 
@@ -84,6 +84,7 @@ class GroupsHomePage extends GetView<HomePageController> {
           fontSize: 22,
           fontWeight: FontWeight.bold,
         ),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {

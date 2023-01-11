@@ -61,11 +61,5 @@ class GroupTile extends StatelessWidget {
         ),
       ),
     );
-
-    // ListTile(
-    //   title: Text(groupName),
-    //   leading: Text(userName),
-    //   subtitle: Text(groupId),
-    // );
   }
 }

@@ -1,14 +1,14 @@
+import 'package:avrod/chat/services/database_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:avrod/chat/helper/rout_navigator.dart';
 import 'package:avrod/chat/pages/group_info_page.dart';
 import 'package:avrod/chat/widgets/text_style.dart';
 import 'package:avrod/constant/colors/colors.dart';
-import 'package:avrod/controller/homepage_controller.dart';
 
 //! 2:37
-class ChatPage extends GetView<HomePageController> {
+class ChatPage extends StatefulWidget {
   final String groupId;
   final String groupName;
   final String userName;
@@ -19,6 +19,35 @@ class ChatPage extends GetView<HomePageController> {
     required this.groupName,
     required this.userName,
   }) : super(key: key);
+
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  Stream<QuerySnapshot>? chats;
+  String admnin = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getChatAndAdmin();
+  }
+
+  getChatAndAdmin() {
+    DtabaseService().getChats(widget.groupId).then((val) {
+      setState(() {
+        chats = val;
+      });
+    });
+
+    DtabaseService().getGroupAdmin(widget.groupId).then((value) {
+      setState(() {
+        admnin = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +61,7 @@ class ChatPage extends GetView<HomePageController> {
                 bottomRight: Radius.circular(12))),
         title: CustomText(
           maxLines: 1,
-          title: controller.groupName,
+          title: widget.groupName,
           fontSize: 22,
           fontWeight: FontWeight.w600,
           textAlign: TextAlign.start,
@@ -44,9 +73,9 @@ class ChatPage extends GetView<HomePageController> {
               nextScreen(
                 context,
                 GroupInfoPage(
-                  groupId: groupId,
-                  groupName: groupName,
-                  adminName: userName,
+                  groupId: widget.groupId,
+                  groupName: widget.groupName,
+                  adminName: admnin,
                 ),
               );
             },
@@ -60,18 +89,18 @@ class ChatPage extends GetView<HomePageController> {
         children: [
           Center(
             child: CustomText(
-              title: groupName,
+              title: widget.groupName,
               fontSize: 22,
               fontWeight: FontWeight.w400,
               textAlign: TextAlign.start,
             ),
           ),
-          CustomText(
-            title: groupId,
-            fontSize: 22,
-            fontWeight: FontWeight.w400,
-            textAlign: TextAlign.start,
-          ),
+          // CustomText(
+          //   title: groupId,
+          //   fontSize: 22,
+          //   fontWeight: FontWeight.w400,
+          //   textAlign: TextAlign.start,
+          // ),
         ],
       ),
     );

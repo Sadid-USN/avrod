@@ -89,4 +89,16 @@ class DtabaseService {
     DocumentSnapshot documentSnapshot = await d.get();
     return documentSnapshot['admin'];
   }
+
+  // Get Group member
+
+  Future groupMembers(String groupId) async {
+    return groupCollection.doc(groupId).snapshots();
+  }
+
+  // Search
+
+  Future searchGroupByName(String groupName) async {
+    return groupCollection.where("groupName", isEqualTo: groupName).get();
+  }
 }
