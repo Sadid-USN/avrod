@@ -43,14 +43,13 @@ class HomePageController extends HomeController {
 
   bool isSignIn = false;
   bool isLoading = false;
-  BuildContext? context;
 
   AuthService authService = AuthService();
 
-  final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> get loginFormKey => _loginFormKey;
-  final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> get registerFormKey => _registerFormKey;
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> get loginFormKey => _loginFormKey;
+  //GlobalKey<FormState> get registerFormKey => _registerFormKey;
 
   String emailLogin = '';
   String passwordLogin = '';
@@ -244,7 +243,7 @@ class HomePageController extends HomeController {
   }
 
   Future<void> login() async {
-    if (_loginFormKey.currentState!.validate()) {
+    if (loginFormKey.currentState!.validate()) {
       isLoading = true;
       update();
     }
@@ -302,7 +301,7 @@ class HomePageController extends HomeController {
   }
 
   Future<void> register() async {
-    if (_registerFormKey.currentState!.validate()) {
+    if (registerFormKey.currentState!.validate()) {
       isLoading = true;
       update();
     }

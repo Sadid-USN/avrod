@@ -117,7 +117,7 @@ class RegisterPage extends GetView<HomePageController> {
                 ),
                 LoginButton(
                   onPressed: () {
-                    controller.register();
+                    controller.goToLogin();
                   },
                   buttonTitle: 'Сабт',
                 ),
@@ -139,7 +139,7 @@ class RegisterPage extends GetView<HomePageController> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            controller.goToLogin();
+                            Navigator.of(context).pop();
                           },
                       ),
                     ],
