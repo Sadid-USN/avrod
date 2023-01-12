@@ -1,12 +1,13 @@
-import 'package:avrod/chat/helper/helper_function.dart';
-import 'package:avrod/chat/services/database_service.dart';
-import 'package:avrod/chat/widgets/text_style.dart';
-import 'package:avrod/constant/colors/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-//! 3:11
+import 'package:avrod/chat/helper/helper_function.dart';
+import 'package:avrod/chat/services/database_service.dart';
+import 'package:avrod/chat/widgets/text_style.dart';
+import 'package:avrod/constant/colors/colors.dart';
+
+//! 3:23
 class ChatSearchPage extends StatefulWidget {
   const ChatSearchPage({Key? key}) : super(key: key);
   static String routName = '/chatSearchPage';
@@ -20,6 +21,7 @@ class _ChatSearchPageState extends State<ChatSearchPage> {
   QuerySnapshot? searchSnapshot;
   bool hasUserSearch = false;
   bool isLoading = false;
+  bool isJoin = false;
   String userName = "";
   User? user;
 
@@ -37,6 +39,14 @@ class _ChatSearchPageState extends State<ChatSearchPage> {
     });
 
     user = FirebaseAuth.instance.currentUser;
+  }
+
+  String getGroupId(String id) {
+    return id.split('_').first;
+  }
+
+  String getAdmin(String res) {
+    return res.substring(res.indexOf("_") + 1);
   }
 
   @override
@@ -142,12 +152,121 @@ class _ChatSearchPageState extends State<ChatSearchPage> {
             });
   }
 
+  joinOerNot(
+      String userName, String groupId, String groupName, String admin) async {
+    await DtabaseService(uid: user!.uid)
+        .isUserJoined(groupName, groupId, userName)
+        .then((value) {
+      setState(() {
+        isJoin = value;
+      });
+    });
+  }
+
   Widget groupTile(
-    String userName,
-    String groupId,
-    String groupName,
-    String admin,
-  ) {
-    return const Text('Assalamualaykum');
+      String userName, String groupId, String groupName, String admin) {
+    // function to check user alredy exists in group
+    joinOerNot(userName, groupId, groupName, admin);
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      leading: CircleAvatar(
+        radius: 30,
+        backgroundColor: audiplayerColor.withOpacity(0.7),
+        child: Text(
+          groupName.substring(0, 1).toUpperCase(),
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      title: Text(
+        "Гурӯҳи: $groupName",
+        style: const TextStyle(
+          color: skipColor,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      subtitle: Text(
+        'Корфармон: ${getAdmin(admin)}',
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      trailing: InkWell(
+        onTap: () async {},
+        child: isJoin
+            ? Container(
+                alignment: Alignment.center,
+                width: 105,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.green.shade400,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.white, width: 1),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                child: const Text(
+                  "Пайваст шудед!",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              )
+            : Container(
+                alignment: Alignment.center,
+                width: 105,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.black54,
+                  border: Border.all(color: Colors.white, width: 1),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                child: const Text(
+                  "Пайвастан",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+      ),
+    );
   }
 }
+
+// class GroupList extends StatelessWidget {
+//   final String groupId;
+//   final String groupName;
+//   final String admin;
+//   const GroupList({
+//     Key? key,
+//     required this.groupId,
+//     required this.groupName,
+//     required this.admin,
+//   }) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView.builder(
+//         shrinkWrap: true,
+//         itemCount: 5, //searchSnapshot!.docs.length,
+//         itemBuilder: (context, index) {
+//           return Column(
+//             children: const [
+//               Text(''),
+//               Text(''),
+//               Text(''),
+//             ],
+//           );
+//         });
+//   }
+// }

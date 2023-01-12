@@ -35,16 +35,16 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
     return id.split('_').first;
   }
 
+  String getAdmin(String res) {
+    return res.substring(res.indexOf("_") + 1);
+  }
+
   getMembers() async {
     DtabaseService().groupMembers(widget.groupId).then((value) {
       setState(() {
         members = value;
       });
     });
-  }
-
-  String getAdmin(String res) {
-    return res.substring(res.indexOf("_") + 1);
   }
 
   @override

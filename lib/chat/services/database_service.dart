@@ -101,4 +101,17 @@ class DtabaseService {
   Future searchGroupByName(String groupName) async {
     return groupCollection.where("groupName", isEqualTo: groupName).get();
   }
+
+  // function -> bool
+  Future<bool> isUserJoined(
+      String groupName, String groupId, String userName) async {
+    DocumentReference userDocumentRef = userCollectionRef.doc(uid);
+    DocumentSnapshot documentSnapshot = await userDocumentRef.get();
+    List<dynamic> groups = await documentSnapshot['groups'];
+    if (groups.contains("${groupId}_$groupName")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
