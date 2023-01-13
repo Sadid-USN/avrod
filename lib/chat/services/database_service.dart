@@ -114,4 +114,30 @@ class DtabaseService {
       return false;
     }
   }
+
+  // toggling the group join/exit
+  Future toggleGroupJoin(
+      String groupName, String groupId, String userName) async {
+    DocumentReference userReference = userCollectionRef.doc(uid);
+    DocumentReference groupReference = groupCollection.doc(groupId);
+    DocumentSnapshot documentSnapshot = await userReference.get();
+    List<dynamic> groups = await documentSnapshot['groups'];
+
+    // if user has our groups -> then remove then or also re join
+    if (groups.contains("${groupId}_$groupName")) {
+      await userReference.update({
+        "groups": FieldValue.arrayRemove(["${groupId}_$groupName"])
+      });
+      await groupReference.update({
+        "groups": FieldValue.arrayRemove(["${uid}_$userName"])
+      });
+    } else {
+      await userReference.update({
+        "groups": FieldValue.arrayUnion(["${groupId}_$groupName"])
+      });
+      await groupReference.update({
+        "groups": FieldValue.arrayUnion(["${uid}_$userName"])
+      });
+    }
+  }
 }

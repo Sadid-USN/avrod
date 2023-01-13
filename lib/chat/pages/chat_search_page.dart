@@ -1,3 +1,4 @@
+import 'package:avrod/chat/widgets/snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:avrod/chat/services/database_service.dart';
 import 'package:avrod/chat/widgets/text_style.dart';
 import 'package:avrod/constant/colors/colors.dart';
 
-//! 3:23
 class ChatSearchPage extends StatefulWidget {
   const ChatSearchPage({Key? key}) : super(key: key);
   static String routName = '/chatSearchPage';
@@ -197,7 +197,23 @@ class _ChatSearchPageState extends State<ChatSearchPage> {
         ),
       ),
       trailing: InkWell(
-        onTap: () async {},
+        onTap: () async {
+          await DtabaseService(uid: user!.uid)
+              .toggleGroupJoin(groupName, groupId, userName);
+
+          if (isJoin) {
+            setState(() {
+              isJoin = !isJoin;
+            });
+            if (!mounted) return;
+            snackBar(context, Colors.green.shade400,
+                'Шумо ба гурӯҳи $groupName пайваст шудед!');
+          } else {
+            if (!mounted) return;
+            snackBar(context, Colors.red.shade500,
+                'Шумо аз гурӯҳи $groupName хориҷ шудед!');
+          }
+        },
         child: isJoin
             ? Container(
                 alignment: Alignment.center,
@@ -225,7 +241,7 @@ class _ChatSearchPageState extends State<ChatSearchPage> {
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.black54,
+                  color: Colors.black.withOpacity(0.8),
                   border: Border.all(color: Colors.white, width: 1),
                 ),
                 padding:

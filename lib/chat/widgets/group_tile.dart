@@ -1,6 +1,7 @@
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:flutter/material.dart';
 
+//! 3:31
 class GroupTile extends StatelessWidget {
   final String userName;
   final String groupId;
@@ -20,7 +21,7 @@ class GroupTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Container(
         margin: EdgeInsets.all(margin > 0 ? margin : 0),
         alignment: Alignment.center,
