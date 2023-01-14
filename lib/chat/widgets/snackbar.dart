@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 snackBar(BuildContext context, Color color, String content) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -8,7 +7,7 @@ snackBar(BuildContext context, Color color, String content) {
       backgroundColor: color,
       content: Text(
         content,
-        style: GoogleFonts.ptSerif(
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 16,
         ),
@@ -19,4 +18,27 @@ snackBar(BuildContext context, Color color, String content) {
       ),
     ),
   );
+}
+
+class MyDialog extends StatefulWidget {
+  final Text content;
+  final void Function()? onTap;
+  const MyDialog({
+    Key? key,
+    required this.content,
+    this.onTap,
+  }) : super(key: key);
+  @override
+  State<MyDialog> createState() => _MyDialogState();
+}
+
+class _MyDialogState extends State<MyDialog> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: widget.onTap,
+        child: AlertDialog(
+          content: widget.content,
+        ));
+  }
 }

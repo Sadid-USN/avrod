@@ -50,11 +50,9 @@ class GroupsHomePage extends GetView<HomePageController> {
           ),
           ListTile(
             onTap: () {
-              controller.getdefaultDialog(
-                  'Таъкидан мехоҳед аз ҳисоб худ берун шавед?', () {
-                controller.signOut().whenComplete(() {
-                  controller.goToLogin();
-                });
+              controller
+                  .exitDialog('Таъкидан мехоҳед аз ҳисоб худ берун шавед?', () {
+                controller.signOut();
               });
             },
             title: const CustomText(

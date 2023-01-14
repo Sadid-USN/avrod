@@ -127,26 +127,48 @@ class HomePageController extends HomeController {
     });
   }
 
-  getdefaultDialog(String middleText, void Function() onConfirm) {
-    Get.defaultDialog(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 16),
-      buttonColor: audiplayerColor,
-      radius: 16,
-      title: '!',
-      middleText: middleText,
-      backgroundColor: appBabgColor,
-      titleStyle: const TextStyle(color: Colors.yellow, fontSize: 30),
-      middleTextStyle: const TextStyle(color: skipColor),
-      onConfirm: onConfirm,
-      onCancel: () {
-        Get.close;
-      },
-    );
+  exitDialog(String middleText, void Function()? onPressed) {
+    showDialog(
+        barrierDismissible: false,
+        context: Get.context!,
+        builder: (context) {
+          return AlertDialog(
+            title: Center(child: Text(middleText)),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                //   SizedBox(height: 50, child: TextField()),
+              ],
+            ),
+            actions: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: bgColor, // Background color
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Илғоъ',
+                  style: TextStyle(color: skipColor),
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: bgColor, // Background color
+                ),
+                onPressed: onPressed,
+                child: const Text(
+                  'Бале',
+                  style: TextStyle(color: skipColor),
+                ),
+              ),
+            ],
+          );
+        });
   }
 
-  popUpDialog(
-    String middleText,
-  ) {
+  popUpDialog(String middleText) {
     showDialog(
         barrierDismissible: false,
         context: Get.context!,
@@ -337,7 +359,6 @@ class HomePageController extends HomeController {
       await HelperFunction.saveUserNameSf("");
       await authService.signOut().whenComplete(() {
         goToLogin();
-        update();
       });
 
       update();

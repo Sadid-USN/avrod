@@ -60,7 +60,7 @@ class _DrawerModelState extends State<DrawerModel> {
               alignment: Alignment.topCenter,
               children: [
                 Lottie.asset(
-                  '/Users/myname/flutter_projects/avrod/assets/animations/shine.json',
+                  'assets/animations/shine.json',
                   height: MediaQuery.of(context).size.height / 2 * 0.7,
                   width: MediaQuery.of(context).size.width,
                 ),

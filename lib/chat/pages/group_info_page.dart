@@ -1,5 +1,8 @@
+import 'package:avrod/chat/helper/rout_navigator.dart';
+import 'package:avrod/chat/pages/groups_home_page.dart';
 import 'package:avrod/chat/services/database_service.dart';
 import 'package:avrod/controller/homepage_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:avrod/chat/widgets/text_style.dart';
@@ -69,9 +72,25 @@ class _GroupInfoPageState extends State<GroupInfoPage> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              controller.exitDialog(
+                'Таъкидан мехоҳед аз гурӯҳи «${widget.groupName}» бароед?',
+                () {
+                  DtabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+                      .toggleGroupJoin(
+                    widget.groupName,
+                    widget.groupId,
+                    getAdmin(widget.adminName),
+                  )
+                      .whenComplete(() {
+                    nextScreen(context, const GroupsHomePage());
+                  });
+                },
+              );
+            },
             icon: const Icon(
               Icons.exit_to_app,
+              color: skipColor,
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:avrod/chat/services/database_service.dart';
+import 'package:avrod/chat/widgets/message_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -27,11 +28,34 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   Stream<QuerySnapshot>? chats;
   String admnin = "";
+  TextEditingController messageController = TextEditingController();
+
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
+
     getChatAndAdmin();
+  }
+
+  void scrollDown() {
+    if (chats != null) {
+      if (scrollController.hasClients) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          duration: const Duration(microseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    messageController.dispose();
+    scrollController.dispose();
+    super.dispose();
   }
 
   getChatAndAdmin() {
@@ -81,28 +105,126 @@ class _ChatPageState extends State<ChatPage> {
             },
             icon: const Icon(
               Icons.info_outline,
+              color: skipColor,
             ),
           ),
         ],
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Center(
-            child: CustomText(
-              title: widget.groupName,
-              fontSize: 22,
-              fontWeight: FontWeight.w400,
-              textAlign: TextAlign.start,
+          // chat messages here
+          chatMessages(),
+          Container(
+            alignment: Alignment.bottomCenter,
+            width: MediaQuery.of(context).size.width,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 20,
+              ),
+              color: Colors.grey[700],
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: messageController,
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      decoration: const InputDecoration(
+                        hintText: 'Чат...',
+                        hintStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      sendMwssage();
+                    },
+                    child: SizedBox(
+                      height: 45,
+                      width: 45,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(90),
+                        child: ColoredBox(
+                          color: audiplayerColor.withOpacity(0.7),
+                          child: const Icon(
+                            Icons.send,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          // CustomText(
-          //   title: groupId,
-          //   fontSize: 22,
-          //   fontWeight: FontWeight.w400,
-          //   textAlign: TextAlign.start,
-          // ),
         ],
       ),
     );
+  }
+
+  chatMessages() {
+    return StreamBuilder(
+        stream: chats,
+        builder: (context, AsyncSnapshot snapshot) {
+          if (chats != null && scrollController.hasClients) {
+            scrollController.animateTo(
+              scrollController.position.maxScrollExtent,
+              duration: const Duration(microseconds: 100),
+              curve: Curves.easeOut,
+            );
+          }
+          return snapshot.hasData
+              ? ListView.builder(
+                  controller: scrollController,
+                  padding: const EdgeInsets.only(bottom: 116.0),
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, index) {
+                    return MessageTile(
+                      message: snapshot.data.docs[index]['message'],
+                      sender: snapshot.data.docs[index]['sender'],
+                      sendByMe: widget.userName ==
+                          snapshot.data.docs[index]['sender'],
+                    );
+                  })
+              : const SizedBox();
+        });
+  }
+
+  sendMwssage() {
+    if (messageController.text.isNotEmpty) {
+      Map<String, dynamic> chatMessage = {
+        "message": messageController.text,
+        "sender": widget.userName,
+        "time": DateTime.now().millisecondsSinceEpoch,
+      };
+
+      DtabaseService().sendMessage(widget.groupId, chatMessage);
+
+      setState(() {
+        messageController.clear();
+      });
+    }
   }
 }

@@ -1,3 +1,5 @@
+import 'package:avrod/chat/helper/rout_navigator.dart';
+import 'package:avrod/chat/pages/chat_page.dart';
 import 'package:avrod/chat/widgets/snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -208,6 +210,13 @@ class _ChatSearchPageState extends State<ChatSearchPage> {
             if (!mounted) return;
             snackBar(context, Colors.green.shade400,
                 'Шумо ба гурӯҳи $groupName пайваст шудед!');
+            Future.delayed(const Duration(seconds: 2));
+            nextScreen(
+                context,
+                ChatPage(
+                    groupId: groupId,
+                    groupName: groupName,
+                    userName: userName));
           } else {
             if (!mounted) return;
             snackBar(context, Colors.red.shade500,

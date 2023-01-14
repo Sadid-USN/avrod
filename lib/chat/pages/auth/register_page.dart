@@ -117,7 +117,7 @@ class RegisterPage extends GetView<HomePageController> {
                 ),
                 LoginButton(
                   onPressed: () {
-                    controller.goToLogin();
+                    controller.register();
                   },
                   buttonTitle: 'Сабт',
                 ),

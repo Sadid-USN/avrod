@@ -129,15 +129,25 @@ class DtabaseService {
         "groups": FieldValue.arrayRemove(["${groupId}_$groupName"])
       });
       await groupReference.update({
-        "groups": FieldValue.arrayRemove(["${uid}_$userName"])
+        "members": FieldValue.arrayRemove(["${uid}_$userName"])
       });
     } else {
       await userReference.update({
         "groups": FieldValue.arrayUnion(["${groupId}_$groupName"])
       });
       await groupReference.update({
-        "groups": FieldValue.arrayUnion(["${uid}_$userName"])
+        "members": FieldValue.arrayUnion(["${uid}_$userName"])
       });
     }
+  }
+
+  // send message
+  sendMessage(String groupId, Map<String, dynamic> chatMessage) async {
+    groupCollection.doc(groupId).collection("messages").add(chatMessage);
+    groupCollection.doc(groupId).update({
+      "recentMessage": chatMessage["message"],
+      "recentMessageSender": chatMessage["sender"],
+      "recentMessageTime": chatMessage["time"].toString(),
+    });
   }
 }
