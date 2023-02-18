@@ -15,6 +15,7 @@ class GroupsHomePage extends GetView<HomePageController> {
   static String routName = '/chatHomePage';
   @override
   Widget build(BuildContext context) {
+    var groupStream = controller.groups;
     return Scaffold(
       drawer: ChatDrawer(
         userEmail: controller.emailLogin,
@@ -95,8 +96,8 @@ class GroupsHomePage extends GetView<HomePageController> {
           ),
         ],
       ),
-      body: StreamBuilder(
-        stream: controller.groups,
+      body: StreamBuilder<dynamic>(
+        stream: groupStream,
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data['groups'] != 0) {

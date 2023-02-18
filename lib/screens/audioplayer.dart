@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:animate_icons/animate_icons.dart';
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/text_screen_controller.dart';
+import 'package:avrod/widgets/audio/duration_and_position.dart';
+import 'package:avrod/widgets/audio/my_slider.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,8 +49,13 @@ class Audiplayer extends StatelessWidget {
             const Spacer(
               flex: 3,
             ),
-            controller.showPosition(),
-            controller.mySlider(),
+            GetBuilder<TextScreenController>(
+              builder: (_) => DurationAndPosition(
+                duration: controller.duration,
+                position: controller.position,
+              ),
+            ),
+            const MySlider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

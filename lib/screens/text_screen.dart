@@ -76,23 +76,6 @@ class TextScreen extends StatelessWidget {
                       .map(
                         (e) => Column(
                           children: [
-                            // SizedBox(
-                            //   width: MediaQuery.of(context).size.width,
-                            //   child: ColoredBox(
-                            //     color: bgColor,
-                            //     child: Text(
-                            //       chapterID.toString(),
-                            //       maxLines: 2,
-                            //       textAlign: TextAlign.center,
-                            //       style: TextStyle(
-                            //         fontSize: 12,
-                            //         overflow: TextOverflow.ellipsis,
-                            //         fontWeight: FontWeight.w600,
-                            //         color: listTitleColor,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
                             Expanded(
                               child: ColoredBox(
                                 color: bgColor,

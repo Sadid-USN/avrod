@@ -122,12 +122,13 @@ class RegisterPage extends GetView<HomePageController> {
                   buttonTitle: 'Сабт',
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 16,
                 ),
                 Text.rich(
                   TextSpan(
                     text: 'Ба сафҳаи вуруд ',
                     style: const TextStyle(
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
                     children: [
@@ -139,10 +140,23 @@ class RegisterPage extends GetView<HomePageController> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.of(context).pop();
+                            controller.goToLogin();
                           },
                       ),
                     ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                IconButton(
+                  onPressed: () {
+                    controller.goToHomePage();
+                  },
+                  icon: const Icon(
+                    Icons.home,
+                    color: navItemsColor,
+                    size: 50,
                   ),
                 ),
               ],

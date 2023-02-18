@@ -24,8 +24,8 @@ class _ChatSearchPageState extends State<ChatSearchPage> {
   bool hasUserSearch = false;
   bool isLoading = false;
   bool isJoin = false;
-  String userName = "";
   User? user;
+  String userName = "";
 
   @override
   void initState() {

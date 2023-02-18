@@ -60,6 +60,12 @@ class TextScreenController extends GetxController {
       position = event;
       update();
     });
+
+    audioPlayer.onPlayerCompletion.listen((event) {
+      isPlaying = false;
+      position = const Duration(seconds: 0);
+      update();
+    });
   }
 
   IconData chengeIcon(bool condition) {
@@ -86,80 +92,52 @@ class TextScreenController extends GetxController {
     );
   }
 
-  Widget mySlider() {
-    return SizedBox(
-      width: MediaQuery.of(Get.context!).size.width / 2 * 1.6,
-      child: SliderTheme(
-        data: const SliderThemeData(
-            thumbColor: Colors.red,
-            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 3.0)),
-        child: Slider(
-          mouseCursor: MouseCursor.uncontrolled,
-          onChanged: (double newPosition) {
-            audioPlayer.seek(Duration(seconds: newPosition.round()));
+  // Widget showPosition() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: [
+  //       const Spacer(),
+  //       Container(
+  //         padding: const EdgeInsets.all(4),
+  //         decoration: BoxDecoration(
+  //           border: Border.all(width: 2, color: Colors.white),
+  //           borderRadius: const BorderRadius.all(
+  //             Radius.circular(12),
+  //           ),
+  //         ),
+  //         child: Text(
+  //           duration.toString().split('.').first,
+  //           style: const TextStyle(fontSize: 10, color: Colors.white),
+  //         ),
+  //       ),
+  //       const Spacer(
+  //         flex: 3,
+  //       ),
+  //       Container(
+  //         padding: const EdgeInsets.all(4),
+  //         decoration: BoxDecoration(
+  //           border: Border.all(width: 2, color: Colors.white),
+  //           borderRadius: const BorderRadius.all(
+  //             Radius.circular(12),
+  //           ),
+  //         ),
+  //         child: Text(
+  //           position.toString().split('.').first,
+  //           style: const TextStyle(fontSize: 10, color: Colors.white),
+  //         ),
+  //       ),
+  //       const Spacer(),
+  //     ],
+  //   );
+  // }
 
-            update();
-          },
-          onChangeEnd: ((double value) {
-            // audioPlayer.seek(Duration(seconds: value.round()));
-            // update();
-          }),
-          activeColor: Colors.white,
-          inactiveColor: Colors.blueGrey.shade200,
-          min: 0.0,
-          max: duration.inSeconds.toDouble(),
-          value: position.inSeconds.toDouble(),
-        ),
-      ),
-    );
-  }
-
-  Widget showPosition() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Spacer(),
-        Container(
-          padding: const EdgeInsets.all(4),
-          decoration: BoxDecoration(
-            border: Border.all(width: 2, color: Colors.white),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(12),
-            ),
-          ),
-          child: Text(
-            duration.toString().split('.').first,
-            style: const TextStyle(fontSize: 10, color: Colors.white),
-          ),
-        ),
-        const Spacer(
-          flex: 3,
-        ),
-        Container(
-          padding: const EdgeInsets.all(4),
-          decoration: BoxDecoration(
-            border: Border.all(width: 2, color: Colors.white),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(12),
-            ),
-          ),
-          child: Text(
-            position.toString().split('.').first,
-            style: const TextStyle(fontSize: 10, color: Colors.white),
-          ),
-        ),
-        const Spacer(),
-      ],
-    );
-  }
-
-  Widget showDuration() {
-    return Expanded(
-        child: Text(
-      duration.toString().split('.').first,
-      style: const TextStyle(fontSize: 10, color: Colors.white),
-    ));
-  }
+  // Widget showDuration() {
+  //   return Expanded(
+  //       child: Text(
+  //     duration.toString().split('.').first,
+  //     style: const TextStyle(fontSize: 10, color: Colors.white),
+  //   ));
+  // }
 
   deletAllControllers() {
     Get.delete<TextScreenController>();

@@ -46,7 +46,6 @@ class HomePageController extends HomeController {
 
   AuthService authService = AuthService();
 
-  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   // GlobalKey<FormState> get loginFormKey => _loginFormKey;
   //GlobalKey<FormState> get registerFormKey => _registerFormKey;
@@ -264,42 +263,42 @@ class HomePageController extends HomeController {
         });
   }
 
-  Future<void> login() async {
-    if (loginFormKey.currentState!.validate()) {
-      isLoading = true;
-      update();
-    }
-    await authService
-        .signInWithEmailAndPassword(emailLogin, passwordLogin)
-        .then((value) async {
-      if (value == true) {
-        QuerySnapshot snapshot =
-            await DtabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
-                .gettingUserData(emailLogin)
-                .whenComplete(() {
-          if (currrentIndexTab == 1) {
-            Get.offNamed(LibraryScreen.routName);
-          } else {
-            goToChatHomePage();
-            update();
-          }
-        });
-        // saving the values to our shared preferences
-        await HelperFunction.saveUserLoggedInStatus(true);
-        await HelperFunction.saveUserEmailSf(emailLogin);
-        await HelperFunction.saveUserNameSf(
-          snapshot.docs[0]['fullName'],
-        );
-        // Get.offNamed(ChatHomePage.routName);
-        // update();
-      } else {
-        errorSnackbar();
-        isLoading = false;
+  // Future<void> login() async {
+  //   if (loginFormKey.currentState!.validate()) {
+  //     isLoading = true;
+  //     update();
+  //   }
+  //   await authService
+  //       .signInWithEmailAndPassword(emailLogin, passwordLogin)
+  //       .then((value) async {
+  //     if (value == true) {
+  //       QuerySnapshot snapshot =
+  //           await DtabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+  //               .gettingUserData(emailLogin)
+  //               .whenComplete(() {
+  //         if (currrentIndexTab == 1) {
+  //           Get.offNamed(LibraryScreen.routName);
+  //         } else {
+  //           goToChatHomePage();
+  //           update();
+  //         }
+  //       });
+  //       // saving the values to our shared preferences
+  //       await HelperFunction.saveUserLoggedInStatus(true);
+  //       await HelperFunction.saveUserEmailSf(emailLogin);
+  //       await HelperFunction.saveUserNameSf(
+  //         snapshot.docs[0]['fullName'],
+  //       );
+  //       // Get.offNamed(ChatHomePage.routName);
+  //       // update();
+  //     } else {
+  //       errorSnackbar();
+  //       isLoading = false;
 
-        update();
-      }
-    });
-  }
+  //       update();
+  //     }
+  //   });
+  // }
 
   Future<void> gettingUserData() async {
     await HelperFunction.getUserNameFromSF().then((value) {
@@ -441,11 +440,11 @@ class HomePageController extends HomeController {
   }
 
   goToRegisterPage() {
-    Get.toNamed(RegisterPage.routName);
+    Get.offNamed(RegisterPage.routName);
   }
 
   goToLogin() {
-    Get.toNamed(LoginPage.routName);
+    Get.offNamed(LoginPage.routName);
   }
 
   goToProfilePage() {
