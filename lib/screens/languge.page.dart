@@ -50,14 +50,6 @@ class LangugesPage extends GetView<LocalController> {
                   controller.goToHomePage();
                   controller.changeLang('ru');
                 }),
-            // ListTile(
-            //   title: const Text('🇸🇦 العربية'),
-            //   onTap: () => LocaleNotifier.of(context)!.change('ar'),
-            // ),
-            // ListTile(
-            //   title: const Text('🇷🇺 Русский'),
-            //   onTap: () => LocaleNotifier.of(context)!.change('ru'),
-            // ),
           ],
         ),
       ),

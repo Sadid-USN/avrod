@@ -1,13 +1,16 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
 
 import 'package:avrod/controller/chaptercontroller.dart';
+import 'package:avrod/screens/text_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../constant/colors/colors.dart';
+import '../models/book.dart';
 
 class SearchScreen extends StatelessWidget {
   final int? indexChapter;
+
   const SearchScreen({
     Key? key,
     this.indexChapter,
@@ -18,84 +21,123 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ChapterController controller = Get.put(ChapterController());
-    return GetBuilder(
-      builder: (ChapterController controller) => Scaffold(
-        backgroundColor: bgColor,
-        appBar: AppBar(
-          elevation: 3.0,
-          backgroundColor: appBabgColor,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12))),
-          leading: IconButton(
-            onPressed: () {
-              controller.goToHomePage();
-            },
-            icon: const Icon(Icons.arrow_back_ios),
+    return Scaffold(
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        elevation: 3.0,
+        backgroundColor: appBabgColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(12),
+            bottomRight: Radius.circular(12),
           ),
-          title: Text(
-            'hintText'.tr,
-            style: const TextStyle(
-              fontSize: 18,
-              color: titleColor,
-            ),
-          ),
-          centerTitle: true,
         ),
-        body: controller.bookFromFB == null
-            ? const Center(child: CircularProgressIndicator())
-            : Column(
-                children: [
-                  Expanded(
-                    child: ListView.separated(
-                        separatorBuilder: (context, index) {
-                          return Divider(
-                            color: Colors.blueGrey[800],
-                          );
-                        },
-                        scrollDirection: Axis.vertical,
-                        padding: const EdgeInsets.only(top: 5),
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: controller.bookFromFB!.length,
-                        itemBuilder: (context, index) {
-                          final book = controller.bookFromFB![0]['chapters'];
-
-                          return ListTile(
-                            title: Text(
-                              book[index]['name'],
-                            ),
-                          );
-                        }),
+        leading: IconButton(
+          onPressed: () {
+            controller.goToHomePage();
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+        title: Text(
+          'hintText'.tr,
+          style: const TextStyle(
+            fontSize: 18,
+            color: titleColor,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: FutureBuilder<List<Book>>(
+        future: controller.bookInit(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final books = snapshot.data!;
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        color: Colors.blueGrey[800],
+                      );
+                    },
+                    scrollDirection: Axis.vertical,
+                    padding: const EdgeInsets.only(top: 5),
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: books.fold<int>(
+                        0, (count, book) => count + book.chapters!.length),
+                    itemBuilder: (context, index) {
+                      int chapterIndex = 0;
+                      for (final book in books) {
+                        final chapters = book.chapters!;
+                        for (final chapter in chapters) {
+                          if (chapterIndex == index) {
+                            final name = chapter.name;
+                            final id = chapter.id;
+                            return ListTile(
+                              leading: Text('${id! + 1}'),
+                              title: Text(name ?? 'oops'),
+                              onTap: () {
+                                Get.to(
+                                  () => TextScreen(
+                                    textsIndex: index,
+                                    texts: chapter.texts,
+                                    titleAbbar: name!,
+                                    chapterID: id + 1,
+                                  ),
+                                );
+                              },
+                            );
+                          }
+                          chapterIndex++;
+                        }
+                      }
+                      return null;
+                    },
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
+                ),
+                GetBuilder<ChapterController>(
+                  builder: (_) => Container(
+                    margin: const EdgeInsets.only(right: 16, left: 16),
                     decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(12)),
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 16.0),
                       child: TextFormField(
+                        controller: controller.textEditingController,
                         onChanged: (value) {
-                          controller.foundChapter(value);
+                          controller.searchChapters(value);
                         },
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                            suffixIcon: const Icon(Icons.search),
-                            border: InputBorder.none,
-                            hintText: 'hintText'.tr),
+                          suffixIcon: const Icon(Icons.search),
+                          border: InputBorder.none,
+                          hintText: 'hintText'.tr,
+                        ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 40,
+                )
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('${snapshot.error}'),
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
 }
-
 
 
 

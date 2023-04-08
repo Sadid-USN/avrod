@@ -68,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 40,
                 ),
                 TextFormField(
+                  initialValue: controller.emailLogin,
                   validator: (val) {
                     return RegExp(
                                 r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -90,6 +91,8 @@ class _LoginPageState extends State<LoginPage> {
                   height: 12,
                 ),
                 TextFormField(
+                  obscureText: controller.passwordVisible,
+                  initialValue: controller.passwordLogin,
                   validator: (val) {
                     if (val!.length < 6) {
                       return "Рамз бояд на камтар аз 6 аломат бошад";
@@ -98,16 +101,28 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                   decoration: inputDecoration.copyWith(
-                    prefixIcon: const Icon(
-                      Icons.lock_outline,
-                      color: navItemsColor,
+                    prefixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          controller.passwordVisible =
+                              !controller.passwordVisible;
+                        });
+                      },
+                      icon: controller.passwordVisible
+                          ? const Icon(
+                              Icons.lock_outline,
+                              color: navItemsColor,
+                            )
+                          : const Icon(
+                              Icons.lock_open,
+                              color: navItemsColor,
+                            ),
                     ),
                     hintText: 'Password',
                   ),
                   onChanged: (val) {
                     controller.onChangedLoginPassword(val);
                   },
-                  obscureText: true,
                 ),
                 const SizedBox(
                   height: 16,

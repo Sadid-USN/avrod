@@ -1,82 +1,93 @@
 import 'dart:convert';
 import 'package:avrod/localization/local_controller.dart';
-import 'package:avrod/main.dart';
+import 'package:avrod/models/book.dart';
 import 'package:avrod/models/chapter_model.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:avrod/services/services.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:get_storage/get_storage.dart';
 
 abstract class MyChapterController extends GetxController {
   initHive();
-  setLike(String chapterID, bool isLiked, ChaptersModel content);
-  isChapterLiked(int chapterID);
   goToHomePage();
   goToTextSreen();
+  isChapterLiked(ChaptersModel chapter);
+  saveLikedChapter(ChaptersModel chapter, bool isLiked);
 }
 
 class ChapterController extends MyChapterController {
   LocalController localController = LocalController();
   MyServices myServices = Get.find();
   String? data;
-  List<dynamic>? bookFromFB;
-  List<dynamic>? chapters;
-
+  List<Book>? bookFromFB;
+  TextEditingController textEditingController = TextEditingController();
   //DatabaseReference bookRuRef = FirebaseDatabase.instance.ref('book');
   DatabaseReference bookEnRef = FirebaseDatabase.instance.ref('book');
+  List<ChaptersModel> searchResults = [];
+  final likes = GetStorage();
 
-  Box? likesBox;
+  @override
+  Future<void> saveLikedChapter(ChaptersModel chapter, bool isLiked) async {
+    if (isLiked) {
+      await likes.write(chapter.id.toString(), chapter);
+    } else {
+      await likes.remove(chapter.id.toString());
+    }
+  }
+
+  @override
+  bool isChapterLiked(ChaptersModel chapter) {
+    final likes = GetStorage();
+    return likes.hasData(chapter.id.toString());
+  }
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   void onInit() {
     initHive();
+    bookInit();
 
+    super.onInit();
+    update();
+  }
+
+  Future<List<Book>> bookInit() async {
     bookEnRef.onValue.listen((event) {
       // convert object to JSON String
       data = jsonEncode(event.snapshot.value);
       // convert JSON into Map<String, dynamic>
-      bookFromFB = jsonDecode(data!);
-
-      // jsonDecode(data!);
-
+      List<dynamic> jsonData = jsonDecode(data!);
+      bookFromFB = jsonData.map((book) => Book.fromJson(book)).toList();
       update();
     });
-
-    super.onInit();
-  }
-
-  void foundChapter(String inputKeyWord) {
-    List<dynamic>? results;
-    if (inputKeyWord.isEmpty) {
-      results = chapters;
-    } else {
-      // results!.contains([results].map((e) => e['name']));
-    }
-    update();
+    return bookFromFB!;
   }
 
   @override
   void initHive() async {
-    likesBox = await Hive.openBox(FAVORITES_BOX);
+    // likesBox = await Hive.openBox(FAVORITES_BOX);
   }
 
-  @override
-  Future<bool> setLike(
-      String chapterID, bool isLiked, ChaptersModel content) async {
-    if (!isLiked) {
-      await likesBox!.put(chapterID, content);
+  searchChapters(String searchText) {
+    if (searchText.isEmpty) {
+      // If search text is empty, show all chapters
+      searchResults = bookFromFB!.expand((book) => book.chapters!).toList();
     } else {
-      await likesBox!.delete(chapterID);
+      // Otherwise, filter chapters based on search text
+      searchResults = bookFromFB!
+          .expand((book) => book.chapters!)
+          .where((chapter) =>
+              chapter.name!.toLowerCase().contains(searchText.toLowerCase()))
+          .toList();
     }
-
-    return !isLiked;
-  }
-
-  @override
-  bool isChapterLiked(int chapterID) {
-    bool isLiked = likesBox!.containsKey(chapterID);
-    return isLiked;
+    update();
   }
 
   @override

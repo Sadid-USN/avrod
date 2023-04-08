@@ -1,6 +1,7 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:avrod/main.dart';
+import 'package:avrod/models/text_model.dart';
 import 'package:avrod/screens/audioplayer.dart';
 import 'package:avrod/screens/chapter_screen.dart';
 import 'package:avrod/screens/content_alltext.dart';
@@ -81,63 +82,16 @@ class TextScreenController extends GetxController {
   }
 
   Widget buildBook(
-    var text,
+    TextsModel text,
     int index,
   ) {
     currentIndex = index;
     return ContetAllTexts(
-      text: text['text'],
-      arabic: text['arabic'],
-      translation: text['translation'],
+      text: text.text!,
+      arabic: text.arabic!,
+      translation: text.translation!,
     );
   }
-
-  // Widget showPosition() {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.center,
-  //     children: [
-  //       const Spacer(),
-  //       Container(
-  //         padding: const EdgeInsets.all(4),
-  //         decoration: BoxDecoration(
-  //           border: Border.all(width: 2, color: Colors.white),
-  //           borderRadius: const BorderRadius.all(
-  //             Radius.circular(12),
-  //           ),
-  //         ),
-  //         child: Text(
-  //           duration.toString().split('.').first,
-  //           style: const TextStyle(fontSize: 10, color: Colors.white),
-  //         ),
-  //       ),
-  //       const Spacer(
-  //         flex: 3,
-  //       ),
-  //       Container(
-  //         padding: const EdgeInsets.all(4),
-  //         decoration: BoxDecoration(
-  //           border: Border.all(width: 2, color: Colors.white),
-  //           borderRadius: const BorderRadius.all(
-  //             Radius.circular(12),
-  //           ),
-  //         ),
-  //         child: Text(
-  //           position.toString().split('.').first,
-  //           style: const TextStyle(fontSize: 10, color: Colors.white),
-  //         ),
-  //       ),
-  //       const Spacer(),
-  //     ],
-  //   );
-  // }
-
-  // Widget showDuration() {
-  //   return Expanded(
-  //       child: Text(
-  //     duration.toString().split('.').first,
-  //     style: const TextStyle(fontSize: 10, color: Colors.white),
-  //   ));
-  // }
 
   deletAllControllers() {
     Get.delete<TextScreenController>();
@@ -208,7 +162,7 @@ class TextScreenController extends GetxController {
     Get.to(ChapterScreen.routName);
   }
 
-  myAudioPlayer(List<dynamic>? texts, String? titleAbbar) {
+  myAudioPlayer(List<TextsModel>? texts, String? titleAbbar) {
     return Audiplayer(
       titleAbbar: titleAbbar,
       texts: texts,

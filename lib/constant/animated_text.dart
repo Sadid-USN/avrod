@@ -1,5 +1,6 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:avrod/constant/colors/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class MyanimetedText extends StatelessWidget {
   final String title;
@@ -8,31 +9,15 @@ class MyanimetedText extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return TweenAnimationBuilder(
-      tween: Tween<double>(begin: 0.0, end: 1.0),
-      duration: const Duration(milliseconds: 1500),
-      curve: Curves.bounceIn,
-      builder: (context, double value, child) {
-        return Opacity(
-          opacity: value,
-          child: Padding(
-            padding: EdgeInsets.only(top: value * 20, bottom: 16),
-            child: child,
-          ),
-        );
-      },
-      child: AnimatedTextKit(
-        totalRepeatCount: 3,
-        animatedTexts: [
-          ColorizeAnimatedText(
-            title,
-            textStyle:
-                TextStyle(fontSize: fontSize, fontWeight: FontWeight.w900),
-            colors: colorizeColors,
-          ),
-        ],
-      ),
-    );
+    return Text(
+      title,
+      style: const TextStyle(color: skipColor),
+    )
+        .animate()
+        .fadeIn() // uses `Animate.defaultDuration`
+        .scale()
+        .move(delay: 1000.ms, duration: 1000.ms)
+        .scaleXY();
   }
 }
 

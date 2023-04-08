@@ -9,7 +9,7 @@ class MyMiddleware extends GetMiddleware {
   MyServices myServices = Get.find();
   @override
   RouteSettings? redirect(String? route) {
-    if (myServices.sharedPreferences.getString('homepage') == "1") {
+    if (myServices.sharedPreferences.getString(HomePage.routName) == "1") {
       return RouteSettings(name: HomePage.routName);
     }
     return null;

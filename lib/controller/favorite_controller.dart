@@ -1,29 +1,34 @@
-import 'package:avrod/main.dart';
-import 'package:avrod/screens/home_page.dart';
-import 'package:get/get.dart';
-import 'package:hive_flutter/adapters.dart';
+// import 'package:avrod/controller/chaptercontroller.dart';
+// import 'package:avrod/main.dart';
+// import 'package:avrod/models/text_model.dart';
+// import 'package:avrod/screens/home_page.dart';
+// import 'package:get/get.dart';
+// import 'package:hive_flutter/adapters.dart';
 
-class FavoriteScreenController extends GetxController {
-  Box? likesBox;
+// class FavoriteScreenController extends GetxController {
+//   Box<List<TextsModel>>? likesBox;
 
-  Future<void> setLike(String chapterID, bool isLiked, Map content) async {
-    await likesBox!.delete(chapterID);
-    update();
-  }
+//   ChapterController chapterController = Get.put(ChapterController());
 
-  bool isChapterLiked(String chapterID) {
-    bool isLiked = likesBox!.containsKey(chapterID);
+//   Future<void> setLike(
+//       String chapterID, bool isLiked, List<TextsModel> content) async {
+//     await likesBox!.delete(chapterID);
+//     update();
+//   }
 
-    return isLiked;
-  }
+//   bool isChapterLiked(String chapterID) {
+//     bool isLiked = likesBox!.containsKey(chapterID);
 
-  @override
-  void onInit() {
-    likesBox = Hive.box(FAVORITES_BOX);
-    super.onInit();
-  }
+//     return isLiked;
+//   }
 
-  goToHomePage() {
-    Get.offNamed(HomePage.routName);
-  }
-}
+//   @override
+//   void onInit() {
+//     likesBox = Hive.box(FAVORITES_BOX);
+//     super.onInit();
+//   }
+
+//   goToHomePage() {
+//     Get.offNamed(HomePage.routName);
+//   }
+// }

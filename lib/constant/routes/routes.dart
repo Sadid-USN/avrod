@@ -36,17 +36,10 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AboutAppScreen.routNaem, page: () => const AboutAppScreen()),
   GetPage(name: SupportScreen.routNaem, page: () => const SupportScreen()),
   GetPage(name: GroupsHomePage.routName, page: () => const GroupsHomePage()),
-  GetPage(name: LoginPage.routName, page: () => LoginPage()),
+  GetPage(name: LoginPage.routName, page: () => const LoginPage()),
   GetPage(name: RegisterPage.routName, page: () => const RegisterPage()),
   GetPage(name: ChatSearchPage.routName, page: () => const ChatSearchPage()),
   GetPage(name: ProfilePage.routName, page: () => const ProfilePage()),
-//  GetPage(name: ChatPage.routName, page: () => const ChatPage()),
-  //GetPage(name: GroupInfoPage.routName, page: () => GroupInfoPage()),
-  // GetPage(
-  //     name: AppRouteNames.chapters,
-  //     page: () => ChapterScreen(
-  //           indexChapter: ,
-  //         )),
   GetPage(
     name: FavoriteChaptersSceen.routName,
     page: () => const FavoriteChaptersSceen(),

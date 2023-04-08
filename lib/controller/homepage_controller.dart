@@ -11,6 +11,7 @@ import 'package:avrod/chat/services/auth_servisec.dart';
 import 'package:avrod/chat/services/database_service.dart';
 import 'package:avrod/chat/widgets/Input_decoration.dart';
 import 'package:avrod/constant/colors/colors.dart';
+import 'package:avrod/controller/chaptercontroller.dart';
 import 'package:avrod/screens/favorite_chapter_screen.dart';
 import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/screens/languge.page.dart';
@@ -40,18 +41,17 @@ class HomePageController extends HomeController {
   List<dynamic>? book;
   DatabaseReference bookRef = FirebaseDatabase.instance.ref('book');
   // late BannerAd _bannerAd;
-
+  ChapterController get chapterController => ChapterController();
   bool isSignIn = false;
   bool isLoading = false;
 
   AuthService authService = AuthService();
 
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
-  // GlobalKey<FormState> get loginFormKey => _loginFormKey;
-  //GlobalKey<FormState> get registerFormKey => _registerFormKey;
 
   String emailLogin = '';
   String passwordLogin = '';
+  bool passwordVisible = true;
 
   String emailRegister = '';
   String passwordRegister = '';
@@ -61,6 +61,18 @@ class HomePageController extends HomeController {
   String groupId = '';
 
   Stream? groups;
+
+  @override
+  void onInit() {
+    super.onInit();
+    groups;
+  }
+
+  @override
+  void dispose() {
+    groups;
+    super.dispose();
+  }
 
   @override
   void onReady() {
@@ -96,9 +108,9 @@ class HomePageController extends HomeController {
   onTapCurvedNavigationBar(int index) {
     currrentIndexTab = index;
     if (index == 0) {
-      Get.toNamed(SearchScreen.routName);
+      Get.toNamed(SearchScreen.routName, parameters: {});
     } else if (index == 1) {
-      isSignIn ? Get.toNamed(LibraryScreen.routName) : goToLogin();
+      Get.toNamed(LibraryScreen.routName);
     } else if (index == 2) {
       Get.toNamed(FavoriteChaptersSceen.routName);
     } else if (index == 3) {

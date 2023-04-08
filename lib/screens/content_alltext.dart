@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class ContetAllTexts extends StatelessWidget {
   final String text, arabic, translation;
-  final List<dynamic>? texts;
+
   final String? titleAbbar;
 
   const ContetAllTexts({
@@ -16,7 +16,6 @@ class ContetAllTexts extends StatelessWidget {
     required this.text,
     required this.translation,
     required this.arabic,
-    this.texts,
     this.titleAbbar,
   }) : super(key: key);
 

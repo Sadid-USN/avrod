@@ -1,7 +1,10 @@
-import 'package:avrod/screens/audioplayer.dart';
+import 'package:avrod/models/text_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:avrod/controller/text_screen_controller.dart';
+import 'package:avrod/screens/audioplayer.dart';
+
 import '../constant/colors/colors.dart';
 
 class TextScreen extends StatelessWidget {
@@ -9,7 +12,7 @@ class TextScreen extends StatelessWidget {
   final int? textsIndex;
   final int? chapterID;
 
-  final List<dynamic>? texts;
+  final List<TextsModel>? texts;
 
   const TextScreen({
     Key? key,
@@ -68,7 +71,7 @@ class TextScreen extends StatelessWidget {
                   bottom: TabBar(
                     indicatorColor: Colors.white,
                     isScrollable: true,
-                    tabs: texts!.map((e) => Tab(text: e['id'])).toList(),
+                    tabs: texts!.map((e) => Tab(text: e.id)).toList(),
                   ),
                 ),
                 body: TabBarView(
@@ -102,4 +105,16 @@ class TextScreen extends StatelessWidget {
               ),
             ));
   }
+
+  // Widget buildBook(
+  //   var text,
+  //   int index,
+  // ) {
+  //   currentIndex = index;
+  //   return ContetAllTexts(
+  //     text: text['text'],
+  //     arabic: text['arabic'],
+  //     translation: text['translation'],
+  //   );
+  // }
 }

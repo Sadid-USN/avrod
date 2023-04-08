@@ -15,7 +15,6 @@ class GroupsHomePage extends GetView<HomePageController> {
   static String routName = '/chatHomePage';
   @override
   Widget build(BuildContext context) {
-    var groupStream = controller.groups;
     return Scaffold(
       drawer: ChatDrawer(
         userEmail: controller.emailLogin,
@@ -97,7 +96,11 @@ class GroupsHomePage extends GetView<HomePageController> {
         ],
       ),
       body: StreamBuilder<dynamic>(
-        stream: groupStream,
+        stream: controller.groups!.handleError((error) {
+          print('Error occurred: $error');
+          // show an error message to the user
+          return Text('An error occurred: $error');
+        }),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data['groups'] != 0) {
