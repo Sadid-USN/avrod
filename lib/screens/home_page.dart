@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static String routName = '/home';
+  static String routName = '/';
 
   @override
   Widget build(BuildContext context) {

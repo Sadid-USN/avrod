@@ -18,13 +18,13 @@ import 'package:avrod/screens/text_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? getPages = [
-  GetPage(
-    name: '/',
-    page: () => const LangugesPage(),
-    middlewares: [
-      MyMiddleware(),
-    ],
-  ),
+  // GetPage(
+  //   name: '/',
+  //   page: () => const LangugesPage(),
+  //   middlewares: [
+  //     MyMiddleware(),
+  //   ],
+  // ),
   GetPage(
     name: LangugesPage.routName,
     page: () => const LangugesPage(),

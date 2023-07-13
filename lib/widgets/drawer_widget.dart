@@ -70,20 +70,20 @@ class _DrawerModelState extends State<DrawerModel> {
                 ),
               ],
             ),
-            ListTile(
-              title: Text(
-                'lang'.tr,
-                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
-              ),
-              onTap: () {
-                controller.goToLangugePage();
-              },
-              leading: const Icon(
-                Icons.language,
-                color: Color(0xff006064),
-                size: 21,
-              ),
-            ),
+            // ListTile(
+            //   title: Text(
+            //     'lang'.tr,
+            //     style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
+            //   ),
+            //   onTap: () {
+            //     controller.goToLangugePage();
+            //   },
+            //   leading: const Icon(
+            //     Icons.language,
+            //     color: Color(0xff006064),
+            //     size: 21,
+            //   ),
+            // ),
             ListTile(
               title: Text(
                 'Darul-asar',

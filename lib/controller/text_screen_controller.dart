@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../helper/text_storage.dart';
+
 class TextScreenController extends GetxController {
   double fontSize = 16.0;
   double fontSizeIncrease = 25.0;
@@ -24,8 +26,6 @@ class TextScreenController extends GetxController {
   AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
   bool isPlaying = false;
 
-  Box? saveFontSize;
-
   // void stopPlaying(String url) async {
   //   if (isPlaying) {
   //     var reslult = await audioPlayer.pause();
@@ -36,6 +36,11 @@ class TextScreenController extends GetxController {
   //     }
   //   }
   // }
+  @override
+  void onInit() {
+    super.onInit();
+    fontSize = textStorage.read('fontSize') ?? 16.0;
+  }
 
   playSound(String url) async {
     if (isPlaying) {
@@ -97,39 +102,19 @@ class TextScreenController extends GetxController {
     Get.delete<TextScreenController>();
   }
 
-  void initFont() async {
-    saveFontSize = await Hive.openBox(FAVORITES_BOX);
-    update();
-  }
-
-  increaseSize() {
+  void increaseSize() {
     if (fontSize < 25.0) {
       fontSize++;
+      textStorage.write('fontSize', fontSize);
     }
     update();
   }
 
-  decreaseSize() {
+  void decreaseSize() {
     if (fontSize > 16.0) {
       fontSize--;
+      textStorage.write('fontSize', fontSize);
     }
-    update();
-  }
-
-  Future<double> setFont(double font) async {
-    fontSize = font;
-    if (fontSize > 0) {
-      await saveFontSize!.put(font, fontSize);
-      print(fontSize);
-      update();
-    }
-    return font;
-  }
-
-  onChangedSliderSize(double newSize) {
-    fontSize = newSize;
-    setFont(fontSize);
-
     update();
   }
 
@@ -150,9 +135,10 @@ class TextScreenController extends GetxController {
         ),
         actions: [
           TextButton(
-            child: const Text("Пӯшонидан"),
+            child: const Text("Сабт"),
             onPressed: () => Get.back(),
           ),
+         
         ],
       ),
     );

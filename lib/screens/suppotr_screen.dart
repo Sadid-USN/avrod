@@ -110,13 +110,7 @@ class SupportScreen extends StatelessWidget {
                 ),
               ])
 
-                  // Text(
-                  //   '',
-                  //   style: GoogleFonts.ptSerif(
-                  //       color: Colors.grey[800],
-                  //       fontSize: 18,
-                  //       fontWeight: FontWeight.w600),
-                  // ),
+                 
                   ),
             ),
             const SizedBox(

@@ -9,12 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 //! 2:43
-class GroupsHomePage extends GetView<HomePageController> {
+class GroupsHomePage extends StatelessWidget {
   const GroupsHomePage({Key? key}) : super(key: key);
 
   static String routName = '/chatHomePage';
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(HomePageController());
     return Scaffold(
       drawer: ChatDrawer(
         userEmail: controller.emailLogin,
@@ -96,7 +97,7 @@ class GroupsHomePage extends GetView<HomePageController> {
         ],
       ),
       body: StreamBuilder<dynamic>(
-        stream: controller.groups!.handleError((error) {
+        stream: controller.groups?.handleError((error) {
           print('Error occurred: $error');
           // show an error message to the user
           return Text('An error occurred: $error');
@@ -105,39 +106,39 @@ class GroupsHomePage extends GetView<HomePageController> {
           if (snapshot.hasData) {
             if (snapshot.data['groups'] != 0) {
               if (snapshot.data['groups'].length != 0) {
-                return GetBuilder<HomePageController>(
-                  builder: (controller) {
-                    return ListView.builder(
-                        itemCount: snapshot.data['groups'].length,
-                        itemBuilder: (context, index) {
-                          int reverseIndex =
-                              snapshot.data['groups'].length - index - 1;
-                          return GroupTile(
-                            onTap: () {
-                              nextScreen(
-                                context,
-                                ChatPage(
-                                  groupId: controller.getGroupId(
-                                    snapshot.data['groups'][reverseIndex],
-                                  ),
-                                  groupName: controller.getGroupName(
-                                    snapshot.data['groups'][reverseIndex],
-                                  ),
-                                  userName: snapshot.data['fullName'],
-                                ),
-                              );
-                            },
-                            groupId: controller.getGroupId(
-                              snapshot.data['groups'][reverseIndex],
-                            ),
-                            userName: snapshot.data['fullName'],
-                            groupName: controller.getGroupName(
-                              snapshot.data['groups'][reverseIndex],
+                return  ListView.builder(
+                    itemCount: snapshot.data['groups'].length,
+                    itemBuilder: (context, index) {
+                      int reverseIndex =
+                          snapshot.data['groups'].length - index - 1;
+                      return 
+                      
+                      GroupTile(
+                        onTap: () {
+                          nextScreen(
+                            context,
+                            ChatPage(
+                              groupId: controller.getGroupId(
+                                snapshot.data['groups'][reverseIndex],
+                              ),
+                              groupName: controller.getGroupName(
+                                snapshot.data['groups'][reverseIndex],
+                              ),
+                              userName: snapshot.data['fullName'],
                             ),
                           );
-                        });
-                  },
-                );
+                        },
+                        groupId: controller.getGroupId(
+                          snapshot.data['groups'][reverseIndex],
+                        ),
+                        userName: snapshot.data['fullName'],
+                        groupName: controller.getGroupName(
+                          snapshot.data['groups'][reverseIndex],
+                        ),
+                      );
+                    },
+                  );
+                
               } else {
                 return NoGroups(
                   onTap: () {
