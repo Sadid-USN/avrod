@@ -6,6 +6,7 @@ import 'package:avrod/controller/text_screen_controller.dart';
 import 'package:avrod/screens/audioplayer.dart';
 
 import '../constant/colors/colors.dart';
+import 'book_widget.dart';
 
 class TextScreen extends StatelessWidget {
   final String? titleAbbar;
@@ -83,9 +84,9 @@ class TextScreen extends StatelessWidget {
                               child: ColoredBox(
                                 color: bgColor,
                                 child: Builder(builder: (context) {
-                                  return controller.buildBook(
-                                    e,
-                                    texts!.indexOf(e),
+                                  return BookWidget(
+                                    text: e,
+                                    index: texts!.indexOf(e),
                                   );
                                 }),
                               ),

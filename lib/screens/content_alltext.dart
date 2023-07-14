@@ -1,3 +1,4 @@
+import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/text_screen_controller.dart';
 import 'package:avrod/utility/texts/arabic_text.dart';
 import 'package:avrod/utility/font_magnifier_button.dart';
@@ -36,7 +37,19 @@ class ContetAllTexts extends StatelessWidget {
                   height: 10,
                 ),
                 // todo FONTSIZE
-                const FontMagnifiereButton(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      controller.fontSize.toString().split(".").first,
+                      style: const TextStyle(
+                          fontSize: 18,
+                          color: audiplayerColor,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    const FontMagnifiereButton(),
+                  ],
+                ),
 
                 PronunciationText(
                   text: text,

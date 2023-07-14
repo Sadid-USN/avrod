@@ -13,7 +13,7 @@ import '../helper/text_storage.dart';
 
 class TextScreenController extends GetxController {
   double fontSize = 16.0;
-  double fontSizeIncrease = 25.0;
+
 
   int currentIndex = 0;
   double? newSize;
@@ -86,17 +86,7 @@ class TextScreenController extends GetxController {
     update();
   }
 
-  Widget buildBook(
-    TextsModel text,
-    int index,
-  ) {
-    currentIndex = index;
-    return ContetAllTexts(
-      text: text.text!,
-      arabic: text.arabic!,
-      translation: text.translation!,
-    );
-  }
+ 
 
   deletAllControllers() {
     Get.delete<TextScreenController>();
@@ -118,31 +108,6 @@ class TextScreenController extends GetxController {
     update();
   }
 
-  void getDialog(Widget title) {
-    Get.dialog(
-      AlertDialog(
-        content: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Ҳаҷми чоп'),
-            const SizedBox(
-              height: 16,
-            ),
-            Center(child: title),
-          ],
-        ),
-        actions: [
-          TextButton(
-            child: const Text("Сабт"),
-            onPressed: () => Get.back(),
-          ),
-         
-        ],
-      ),
-    );
-  }
 
   goToChapterScreen() {
     Get.to(ChapterScreen.routName);
