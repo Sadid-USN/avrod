@@ -22,6 +22,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../Calendars/gregorian_calendar.dart';
+
 // import 'package:url_launcher/url_launcher.dart';
 
 abstract class HomeController extends GetxController {
@@ -114,7 +116,7 @@ class HomePageController extends HomeController {
     } else if (index == 2) {
       Get.toNamed(FavoriteChaptersSceen.routName);
     } else if (index == 3) {
-      Get.toNamed(CalendarTabBarView.routName);
+      Get.toNamed(GregorianCalendar.routName);
     } else if (index == 4) {
       isSignIn ? Get.toNamed(GroupsHomePage.routName) : goToLogin();
     }

@@ -8,6 +8,7 @@ import 'package:like_button/like_button.dart';
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/chaptercontroller.dart';
 
+import '../controller/text_screen_controller.dart';
 import '../models/chapter_model.dart';
 
 class ChapterScreen extends StatelessWidget {
@@ -81,20 +82,25 @@ class ChapterScreen extends StatelessWidget {
                           //  key: ValueKey(index),
                           onTap: () {
                             Get.to(
-                              () => TextScreen(
-                                textsIndex: index,
-                                texts: controller.bookFromFB![indexChapter]
-                                    .chapters![index].texts,
+                              () {
+                                return TextScreen(
+                                  texts: controller.bookFromFB![indexChapter]
+                                      .chapters![index].texts,
 
-                                titleAbbar: controller.bookFromFB![indexChapter]
-                                    .chapters![index].name,
+                                  titleAbbar: controller
+                                      .bookFromFB![indexChapter]
+                                      .chapters![index]
+                                      .name,
 
-                                chapterID: controller.bookFromFB![indexChapter]
-                                        .chapters![index].id! +
-                                    1,
+                                  chapterID: controller
+                                          .bookFromFB![indexChapter]
+                                          .chapters![index]
+                                          .id! +
+                                      1,
 
-                                //     1,
-                              ),
+                                  //     1,
+                                );
+                              },
                             );
                           },
                           trailing: CircleAvatar(

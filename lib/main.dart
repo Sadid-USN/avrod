@@ -55,10 +55,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LocalController localController = Get.put(LocalController());
+    // LocalController localController = Get.put(LocalController());
 
     return GetMaterialApp(
-      locale: localController.defaultLanguge,
+      locale: const Locale("ru_RU"),
       translations: MyTranslation(),
       getPages: getPages,
       debugShowCheckedModeBanner: false,

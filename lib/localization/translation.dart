@@ -3,7 +3,7 @@ import 'package:get/route_manager.dart';
 class MyTranslation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
-        "en": {
+        "en_US": {
           // book titles
           "avrod": "Avrod Daily prayers",
           "lang": "Languages",
@@ -38,7 +38,7 @@ class MyTranslation extends Translations {
           "support": "Support our project",
           // chapter titles
         },
-        "ru": {
+        "ru_RU": {
           // book titles
           "avrod": "Авроди субҳу шом",
           "lang": "Забонҳо",

@@ -1,6 +1,7 @@
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 
 class MyanimetedText extends StatelessWidget {
   final String title;
@@ -10,7 +11,7 @@ class MyanimetedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      title,
+      title.tr,
       style: const TextStyle(color: skipColor),
     )
         .animate()

@@ -80,7 +80,6 @@ class SearchScreen extends StatelessWidget {
                               onTap: () {
                                 Get.to(
                                   () => TextScreen(
-                                    textsIndex: index,
                                     texts: chapter.texts,
                                     titleAbbar: name!,
                                     chapterID: id + 1,

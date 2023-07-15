@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 
+import '../widgets/path_of_images.dart';
 import 'chapter_screen.dart';
 
 class HomeBody extends StatelessWidget {
@@ -45,8 +46,8 @@ class HomeBody extends StatelessWidget {
                             );
                           },
                           child: Image.asset(
-                            controller.bookFromFB![index].image ?? '',
-                            height: 110,
+                            images[index].pathImages,
+                          height: 110,
                             width: 110,
                           ),
                         ),

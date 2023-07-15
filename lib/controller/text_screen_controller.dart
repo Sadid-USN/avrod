@@ -1,5 +1,5 @@
 import 'package:animate_icons/animate_icons.dart';
-import 'package:audioplayers/audioplayers.dart';
+
 import 'package:avrod/main.dart';
 import 'package:avrod/models/text_model.dart';
 import 'package:avrod/screens/audioplayer.dart';
@@ -7,13 +7,18 @@ import 'package:avrod/screens/chapter_screen.dart';
 import 'package:avrod/screens/content_alltext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart' as get_rx;
+import 'package:rxdart/rxdart.dart' as rxdart;
+
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 import '../helper/text_storage.dart';
+import '../screens/text_screen.dart';
 
 class TextScreenController extends GetxController {
   double fontSize = 16.0;
-
 
   int currentIndex = 0;
   double? newSize;
@@ -23,59 +28,60 @@ class TextScreenController extends GetxController {
   Duration duration = const Duration();
   Duration position = const Duration();
   //double sliderPosition = 0.0;
-  AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
-  bool isPlaying = false;
 
-  // void stopPlaying(String url) async {
-  //   if (isPlaying) {
-  //     var reslult = await audioPlayer.pause();
-  //     if (reslult == 1) {
-  //       isPlaying = false;
-  //       audioPlayer.stop();
-  //       update();
-  //     }
-  //   }
-  // }
   @override
   void onInit() {
     super.onInit();
     fontSize = textStorage.read('fontSize') ?? 16.0;
   }
 
-  playSound(String url) async {
-    if (isPlaying) {
-      var result = await audioPlayer.pause();
-      update();
-      if (result == 1) {
-        isPlaying = false;
-        update();
-      }
-    } else if (!isPlaying) {
-      var result = await audioPlayer.play(url);
-      if (result == 1) {
-        isPlaying = true;
-        update();
-      }
-    }
+  late final List<AudioPlayer> _audioPlayers;
 
-    audioPlayer.onDurationChanged.listen((event) {
-      duration = event;
-      update();
-    });
-    audioPlayer.onAudioPositionChanged.listen((event) {
-      position = event;
-      update();
-    });
-
-    audioPlayer.onPlayerCompletion.listen((event) {
-      isPlaying = false;
-      position = const Duration(seconds: 0);
-      update();
-    });
+  getAudioPlayers(int trackCount) {
+    _audioPlayers = List.generate(trackCount, (_) => AudioPlayer());
   }
 
-  IconData chengeIcon(bool condition) {
-    return isPlaying ? Icons.pause : Icons.play_circle;
+  late final AudioPlayer _audioPlayer = AudioPlayer();
+
+  AudioPlayer get audioPlayer => _audioPlayer;
+
+  List<AudioPlayer> get audioPlayers => _audioPlayers;
+
+// void refreshAudioUrls() {
+//   for (int i = 0; i < listInfo.length; i++) {
+//     listInfo[i].audioUrl = generateRandomAudioUrl();
+//     notifyListeners();
+//   }
+// }
+
+  Stream<PositioneData> get positioneDataStream =>
+      rxdart.Rx.combineLatest3<Duration, Duration, Duration?, PositioneData>(
+          _audioPlayer.positionStream,
+          _audioPlayer.bufferedPositionStream,
+          _audioPlayer.durationStream,
+          (positione, bufferedPosition, duration) => PositioneData(
+                positione,
+                bufferedPosition,
+                duration ?? Duration.zero,
+              ));
+
+  void playAudio({
+    required String url,
+    required String id,
+    required String title,
+  }) {
+    _audioPlayer.setAudioSource(
+      AudioSource.uri(
+        Uri.parse(url),
+        tag: MediaItem(
+          id: id,
+          title: title,
+        ),
+      ),
+    );
+    _audioPlayer.play();
+
+    update();
   }
 
   @override
@@ -85,8 +91,6 @@ class TextScreenController extends GetxController {
     super.dispose();
     update();
   }
-
- 
 
   deletAllControllers() {
     Get.delete<TextScreenController>();
@@ -108,15 +112,15 @@ class TextScreenController extends GetxController {
     update();
   }
 
-
   goToChapterScreen() {
     Get.to(ChapterScreen.routName);
   }
 
-  myAudioPlayer(List<TextsModel>? texts, String? titleAbbar) {
-    return Audiplayer(
-      titleAbbar: titleAbbar,
-      texts: texts,
-    );
-  }
+  // myAudioPlayer(List<TextsModel>? texts, String? titleAbbar, int index) {
+  //   return Audiplayer(
+  //     index: index,
+  //     titleAbbar: titleAbbar,
+  //     texts: texts,
+  //   );
+  // }
 }

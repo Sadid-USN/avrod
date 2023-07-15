@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:avrod/controller/chaptercontroller.dart';
+import 'package:avrod/screens/text_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
@@ -49,17 +50,6 @@ class FavoriteChaptersSceen extends StatelessWidget {
         body: GetBuilder<ChapterController>(
           builder: (controller) {
             List keys = controller.likes.getKeys().toList();
-            List<ChaptersModel> chaptersList = [];
-
-            for (int i = 0; i < keys.length; i++) {
-              try {
-                Map<String, dynamic> data = json.decode(keys[i]);
-                ChaptersModel chapter = ChaptersModel.fromJson(data);
-                chaptersList.add(chapter);
-              } catch (e) {
-                print('Error decoding chapter data: $e');
-              }
-            }
 
             return Container(
               decoration: favoriteGradient,
@@ -73,7 +63,7 @@ class FavoriteChaptersSceen extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     padding: const EdgeInsets.only(top: 10.0),
                     physics: const BouncingScrollPhysics(),
-                    itemCount: chaptersList.length,
+                    itemCount: 4,
                     itemBuilder: (context, index) {
                       return AnimationConfiguration.staggeredGrid(
                         position: index,
@@ -85,22 +75,21 @@ class FavoriteChaptersSceen extends StatelessWidget {
                               padding: const EdgeInsets.all(5.0),
                               child: ListTile(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) {
-                                  //       return TextScreen(
-                                  //         textsIndex: index,
-                                  //         texts: controller.likesBox!.values
-                                  //             .toList()[index],
-                                  //         titleAbbar: controller
-                                  //             .likesBox!.values
-                                  //             .toList()
-                                  //             .toString(),
-                                  //       );
-                                  //     },
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return TextScreen(
+                                      
+                                          texts: controller.likes
+                                              .getValues()[index],
+                                          titleAbbar: controller.likes
+                                              .getValues()
+                                              .toString(),
+                                        );
+                                      },
+                                    ),
+                                  );
                                 },
                                 trailing: const CircleAvatar(
                                   backgroundColor: bgColor,
@@ -144,7 +133,7 @@ class FavoriteChaptersSceen extends StatelessWidget {
                                         bottom: 0,
                                         right: 0,
                                         child: Text(
-                                          chaptersList[index].id.toString(),
+                                         " controller.likes.getValues()[index]",
                                           maxLines: 2,
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
@@ -158,7 +147,7 @@ class FavoriteChaptersSceen extends StatelessWidget {
                                   ),
                                 ),
                                 title: Text(
-                                  chaptersList[index].name!,
+                                  controller.likes.getValues(),
                                   maxLines: 2,
                                   textAlign: TextAlign.start,
                                   style: TextStyle(

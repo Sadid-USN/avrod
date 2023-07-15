@@ -15,7 +15,7 @@ class CalendarTabBarView extends StatefulWidget {
 class _CalendarTabBarViewState extends State<CalendarTabBarView> {
   final pages = [
     // ignore: avoid_unnecessary_containers
-    Container(color: Colors.white, child: const HijriPickerScreen()),
+    // Container(color: Colors.white, child: const HijriPickerScreen()),
     Container(color: Colors.white, child: const GregorianCalendar()),
   ];
   LiquidController? liquidController;

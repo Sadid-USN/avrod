@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-7613540986721565/6723282918</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>

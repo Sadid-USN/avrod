@@ -17,6 +17,8 @@ import 'package:avrod/screens/text_screen.dart';
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
+import '../../Calendars/gregorian_calendar.dart';
+
 List<GetPage<dynamic>>? getPages = [
   // GetPage(
   //   name: '/',
@@ -30,6 +32,7 @@ List<GetPage<dynamic>>? getPages = [
     page: () => const LangugesPage(),
   ),
   GetPage(name: HomePage.routName, page: () => const HomePage()),
+
   GetPage(name: TextScreen.routName, page: () => const TextScreen()),
   GetPage(name: SearchScreen.routName, page: () => const SearchScreen()),
   GetPage(name: LibraryScreen.routName, page: () => const LibraryScreen()),
@@ -45,7 +48,7 @@ List<GetPage<dynamic>>? getPages = [
     page: () => const FavoriteChaptersSceen(),
   ),
   GetPage(
-    name: CalendarTabBarView.routName,
-    page: () => const CalendarTabBarView(),
+    name: GregorianCalendar.routName,
+    page: () => const GregorianCalendar(),
   ),
 ];

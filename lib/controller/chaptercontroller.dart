@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:avrod/controller/text_screen_controller.dart';
 import 'package:avrod/localization/local_controller.dart';
 import 'package:avrod/models/book.dart';
 import 'package:avrod/models/chapter_model.dart';
@@ -26,14 +27,30 @@ class ChapterController extends MyChapterController {
   //DatabaseReference bookRuRef = FirebaseDatabase.instance.ref('book');
   DatabaseReference bookEnRef = FirebaseDatabase.instance.ref('book');
   List<ChaptersModel> searchResults = [];
-  final likes = GetStorage();
+  final likes = GetStorage("chapters");
+  int currentIndex = 0;
+  
+
+
+
+  
+ 
+  
 
   @override
   Future<void> saveLikedChapter(ChaptersModel chapter, bool isLiked) async {
     if (isLiked) {
+      // Глава еще не сохранена, сохраняем её
       await likes.write(chapter.id.toString(), chapter);
+      print(chapter.id);
     } else {
-      await likes.remove(chapter.id.toString());
+      // Проверяем, есть ли глава в коллекции likes
+      final isChapterSaved = await likes.getValues();
+      if (isChapterSaved != null) {
+        // Глава уже сохранена, удаляем её
+        await likes.remove(chapter.id.toString());
+        print("CHAPTER ${chapter.id} REMOVED");
+      }
     }
   }
 

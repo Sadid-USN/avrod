@@ -6,6 +6,7 @@ import '../constant/colors/colors.dart';
 
 class GregorianCalendar extends StatefulWidget {
   const GregorianCalendar({Key? key}) : super(key: key);
+  static const routName = '/calendar';
 
   @override
   _GregorianCalendarState createState() => _GregorianCalendarState();
