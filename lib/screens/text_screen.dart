@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:avrod/controller/text_screen_controller.dart';
-import 'package:avrod/screens/audioplayer.dart';
 import '../constant/colors/colors.dart';
 import 'content_alltext.dart';
 
@@ -83,6 +82,7 @@ class TextScreen extends StatelessWidget {
                         color: bgColor,
                         child: Builder(builder: (context) {
                           return ContetAllTexts(
+                            titleAbbar: titleAbbar,
                             textsModel: e,
                             text: e.text ?? "error",
                             arabic: e.arabic ?? "error",

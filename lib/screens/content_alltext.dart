@@ -86,6 +86,7 @@ class ContetAllTexts extends StatelessWidget {
       bottomSheet: ColoredBox(
          color: bgColor,
         child: Audiplayer(
+          
           textModel: textsModel!,
           titleAbbar: titleAbbar,
         ),
