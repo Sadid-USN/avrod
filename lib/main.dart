@@ -11,8 +11,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'constant/colors/colors.dart';
-import 'localization/local_controller.dart';
-import 'models/chapter_model.dart';
 
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
@@ -25,7 +23,7 @@ Future main() async {
   FirebaseDatabase.instance.setPersistenceEnabled(true);
   await Hive.initFlutter();
 
-  await Hive.openBox<ChaptersModel>(FAVORITES_BOX);
+  await Hive.openBox(FAVORITES_BOX);
   await Hive.openBox('pageBox');
   // TODO messaging
   FirebaseMessaging messaging = FirebaseMessaging.instance;

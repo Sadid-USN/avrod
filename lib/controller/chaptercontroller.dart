@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:avrod/controller/text_screen_controller.dart';
 import 'package:avrod/localization/local_controller.dart';
 import 'package:avrod/models/book.dart';
 import 'package:avrod/models/chapter_model.dart';
@@ -9,13 +8,16 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import '../main.dart';
 
 abstract class MyChapterController extends GetxController {
   initHive();
   goToHomePage();
   goToTextSreen();
-  isChapterLiked(ChaptersModel chapter);
-  saveLikedChapter(ChaptersModel chapter, bool isLiked);
+
+  saveLikedChapter(int chapterId, bool isLiked);
 }
 
 class ChapterController extends MyChapterController {
@@ -27,37 +29,30 @@ class ChapterController extends MyChapterController {
   //DatabaseReference bookRuRef = FirebaseDatabase.instance.ref('book');
   DatabaseReference bookEnRef = FirebaseDatabase.instance.ref('book');
   List<ChaptersModel> searchResults = [];
-  final likes = GetStorage("chapters");
+  final likesStorage = GetStorage();
   int currentIndex = 0;
-  
+   Box ? likesBox;
 
 
 
-  
- 
-  
+
 
   @override
-  Future<void> saveLikedChapter(ChaptersModel chapter, bool isLiked) async {
-    if (isLiked) {
-      // Глава еще не сохранена, сохраняем её
-      await likes.write(chapter.id.toString(), chapter);
-      print(chapter.id);
+  Future<bool> saveLikedChapter(int chapterId, bool isLiked) async {
+    if (!isLiked) {
+      await likesBox!.put(chapterId, (false).toString());
+      print("CHAPTER $chapterId WAS SAVED");
     } else {
-      // Проверяем, есть ли глава в коллекции likes
-      final isChapterSaved = await likes.getValues();
-      if (isChapterSaved != null) {
-        // Глава уже сохранена, удаляем её
-        await likes.remove(chapter.id.toString());
-        print("CHAPTER ${chapter.id} REMOVED");
-      }
+      await likesBox!.delete(chapterId);
+      print("CHAPTER $chapterId WAS DELETED");
     }
+
+    return !isLiked;
   }
 
-  @override
-  bool isChapterLiked(ChaptersModel chapter) {
-    final likes = GetStorage();
-    return likes.hasData(chapter.id.toString());
+  bool isChapterLiked(int chapterID) {
+    bool isLiked = likesBox!.containsKey(chapterID);
+    return isLiked;
   }
 
   @override
@@ -74,6 +69,10 @@ class ChapterController extends MyChapterController {
     super.onInit();
     update();
   }
+    @override
+    void initHive() async {
+    likesBox = await Hive.openBox(FAVORITES_BOX);
+  }
 
   Future<List<Book>> bookInit() async {
     bookEnRef.onValue.listen((event) {
@@ -87,10 +86,7 @@ class ChapterController extends MyChapterController {
     return bookFromFB!;
   }
 
-  @override
-  void initHive() async {
-    // likesBox = await Hive.openBox(FAVORITES_BOX);
-  }
+ 
 
   searchChapters(String searchText) {
     if (searchText.isEmpty) {

@@ -8,7 +8,6 @@ import 'package:like_button/like_button.dart';
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/chaptercontroller.dart';
 
-import '../controller/text_screen_controller.dart';
 import '../models/chapter_model.dart';
 
 class ChapterScreen extends StatelessWidget {
@@ -24,7 +23,7 @@ class ChapterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ChapterController controller = Get.put(ChapterController());
-
+    var chapterID = controller.bookFromFB![indexChapter].chapters;
     return Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
@@ -86,36 +85,45 @@ class ChapterScreen extends StatelessWidget {
                                 return TextScreen(
                                   texts: controller.bookFromFB![indexChapter]
                                       .chapters![index].texts,
-
                                   titleAbbar: controller
                                       .bookFromFB![indexChapter]
                                       .chapters![index]
                                       .name,
-
                                   chapterID: controller
                                           .bookFromFB![indexChapter]
                                           .chapters![index]
                                           .id! +
                                       1,
-
-                                  //     1,
                                 );
                               },
                             );
                           },
                           trailing: CircleAvatar(
                             backgroundColor: bgColor,
-                            child: LikeButton(
+                            child: 
+                            
+                            LikeButton(
                               onTap: (isLiked) async {
-                                final chapter = controller
-                                    .bookFromFB![indexChapter].chapters![index];
-                                final newIsLiked = !isLiked;
-                                await controller.saveLikedChapter(
-                                    chapter, newIsLiked);
-                                return newIsLiked;
+
+                                return controller.saveLikedChapter(controller.bookFromFB![indexChapter]
+                                      .chapters?[index].id?? 0, isLiked);
+                                // final chapter = controller
+                                //     .bookFromFB![indexChapter].chapters![index];
+                                // final newIsLiked = !isLiked;
+                                // await controller.saveLikedChapter(
+                                //     chapter, newIsLiked);
+                                // return newIsLiked;
                               },
-                              isLiked: controller.isChapterLiked(controller
-                                  .bookFromFB![indexChapter].chapters![index]),
+                              isLiked: controller.isChapterLiked(chapterID![index].id!),
+                              likeBuilder: (isLiked) {
+                                return Icon(
+                                  isLiked
+                                      ? Icons.favorite
+                                      : Icons.favorite_outline,
+                                  color: isLiked ? Colors.red : Colors.grey,
+                                );
+                              },
+                             
                               size: 25,
                               circleColor: const CircleColor(
                                   start: Color(0xffFF0000),
