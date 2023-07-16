@@ -101,7 +101,8 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                   decoration: inputDecoration.copyWith(
-                    prefixIcon: IconButton(
+                    prefixIcon: 
+                    IconButton(
                       onPressed: () {
                         setState(() {
                           controller.passwordVisible =

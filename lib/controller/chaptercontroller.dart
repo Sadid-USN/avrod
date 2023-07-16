@@ -82,7 +82,7 @@ class ChapterController extends MyChapterController {
       bookFromFB = jsonData.map((book) => Book.fromJson(book)).toList();
       update();
     });
-    return bookFromFB!;
+    return bookFromFB ?? [];
   }
 
  

@@ -45,6 +45,7 @@ class HomePageController extends HomeController {
   ChapterController get chapterController => ChapterController();
   bool isSignIn = false;
   bool isLoading = false;
+  
 
   AuthService authService = AuthService();
 

@@ -8,10 +8,16 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RegisterPage extends GetView<HomePageController> {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
   static String routName = '/registerPage';
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     HomePageController controller = Get.put(HomePageController());
@@ -93,6 +99,7 @@ class RegisterPage extends GetView<HomePageController> {
                   height: 12,
                 ),
                 TextFormField(
+                   obscureText: controller.passwordVisible,
                   validator: (val) {
                     if (val!.length < 6) {
                       return "Рамз бояд на камтар аз 6 аломат бошад";
@@ -101,16 +108,29 @@ class RegisterPage extends GetView<HomePageController> {
                     }
                   },
                   decoration: inputDecoration.copyWith(
-                    prefixIcon: const Icon(
-                      Icons.lock_outline,
-                      color: navItemsColor,
+                    prefixIcon:IconButton(
+                      onPressed: () {
+                        setState(() {
+                          controller.passwordVisible =
+                              !controller.passwordVisible;
+                        });
+                      },
+                      icon: controller.passwordVisible
+                          ? const Icon(
+                              Icons.lock_outline,
+                              color: navItemsColor,
+                            )
+                          : const Icon(
+                              Icons.lock_open,
+                              color: navItemsColor,
+                            ),
                     ),
                     hintText: 'Password',
                   ),
                   onChanged: (val) {
                     controller.onChangedRegisterPassword(val);
                   },
-                  obscureText: true,
+            
                 ),
                 const SizedBox(
                   height: 16,
