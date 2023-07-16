@@ -32,6 +32,16 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
         elevation: 0.0,
+        actions: const [
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 10),
+          //   child: IconButton(onPressed: (){
+          //       controller.goToLangugePage();
+          
+          
+          //   }, icon: const Icon(Icons.language)),
+          // )
+        ],
       ),
       body: const HomeBody(),
       bottomNavigationBar: CurvedNavigationBar(

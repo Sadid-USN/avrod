@@ -10,48 +10,41 @@ class LangugesPage extends GetView<LocalController> {
   static String routName = '/langugesPage';
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        bool? result = await controller.exitDialog();
-        result ??= false;
-        return result;
-      },
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        elevation: 0.0,
+        automaticallyImplyLeading: false,
         backgroundColor: bgColor,
-        appBar: AppBar(
-          elevation: 0.0,
-          automaticallyImplyLeading: false,
-          backgroundColor: bgColor,
-          title: Text(
-            'lang'.tr,
-            style: const TextStyle(color: skipColor),
+        title: Text(
+          'lang'.tr,
+          style: const TextStyle(color: skipColor),
+        ),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 20,
           ),
-          centerTitle: true,
-        ),
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            ListTile(
-                title: const Text(
-                  '🇺🇸  English',
-                ),
-                onTap: () {
-                  controller.goToHomePage();
-                  controller.changeLang('en');
-                }),
-            ListTile(
-                title: Text(
-                  '🇹🇯  Тоҷики',
-                  style: GoogleFonts.ptSerif(),
-                ),
-                onTap: () {
-                  controller.goToHomePage();
-                  controller.changeLang('ru');
-                }),
-          ],
-        ),
+          ListTile(
+              title: const Text(
+                '🇺🇸  English',
+              ),
+              onTap: () {
+              
+                controller.onLanguageTapped('en', 'US');
+              }),
+          ListTile(
+              title: Text(
+                '🇹🇯  Тоҷики',
+                style: GoogleFonts.ptSerif(),
+              ),
+              onTap: () {
+              
+                controller.onLanguageTapped('ru', "RU");
+              }),
+        ],
       ),
     );
   }

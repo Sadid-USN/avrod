@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:avrod/Calendars/calendar_tabbar.dart';
 import 'package:avrod/booksScreen/library_screen.dart';
 import 'package:avrod/chat/helper/helper_function.dart';
 import 'package:avrod/chat/pages/groups_home_page.dart';
@@ -114,7 +113,7 @@ class HomePageController extends HomeController {
     } else if (index == 1) {
       Get.toNamed(LibraryScreen.routName);
     } else if (index == 2) {
-      Get.toNamed(FavoriteChaptersSceen.routName);
+      Get.toNamed(FavoriteChaptersScreen.routName);
     } else if (index == 3) {
       Get.toNamed(GregorianCalendar.routName);
     } else if (index == 4) {
@@ -147,9 +146,9 @@ class HomePageController extends HomeController {
         builder: (context) {
           return AlertDialog(
             title: Center(child: Text(middleText)),
-            content: Column(
+            content: const Column(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 //   SizedBox(height: 50, child: TextField()),
               ],
             ),
@@ -450,7 +449,7 @@ class HomePageController extends HomeController {
 
   @override
   goToLangugePage() {
-    Get.offNamed(LangugesPage.routName);
+    Get.to(() => const LangugesPage());
   }
 
   goToRegisterPage() {

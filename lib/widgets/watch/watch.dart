@@ -51,13 +51,21 @@ class _WatchState extends State<Watch> {
           bottomRight: Radius.circular(8),
         ),
       ),
-      child: Text(
-        _timeString.toString(),
-        style: TextStyle(
-          fontSize: widget.fontSize,
-          color: navigationColor,
-        ),
-      ),
+      child: _timeString == null
+          ?  SizedBox(
+            width: 100,
+            height: 30,
+            child: Center(
+                child: LinearProgressIndicator(color: audiplayerColor, backgroundColor: Colors.grey.shade200,),
+              ),
+          )
+          : Text(
+              _timeString.toString(),
+              style: TextStyle(
+                fontSize: widget.fontSize,
+                color: navigationColor,
+              ),
+            ),
     );
   }
 }

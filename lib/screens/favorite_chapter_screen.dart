@@ -14,74 +14,104 @@ import '../constant/colors/gradient_class.dart';
 import '../main.dart';
 import '../models/book.dart';
 
-class FavoriteChaptersSceen extends StatelessWidget {
-  const FavoriteChaptersSceen({
-    Key? key,
-  }) : super(
-          key: key,
-        );
+class FavoriteChaptersScreen extends StatefulWidget {
+  const FavoriteChaptersScreen({Key? key}) : super(key: key);
 
-  static String routName = '/favoriteChaptersSceen';
+  static String routName = '/favoriteChaptersScreen';
+
+  @override
+  _FavoriteChaptersScreenState createState() => _FavoriteChaptersScreenState();
+}
+
+class _FavoriteChaptersScreenState extends State<FavoriteChaptersScreen>
+    with TickerProviderStateMixin {
+  late AnimationController _slideAnimationController;
+  late AnimationController _rotationAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _slideAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat(reverse: true);
+
+    _rotationAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 3000),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _slideAnimationController.dispose();
+    _rotationAnimationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     ChapterController controller = Get.put(ChapterController());
     final books = controller.bookFromFB!;
+
     return Scaffold(
-        backgroundColor: bgColor,
-        appBar: AppBar(
-          elevation: 3.0,
-          backgroundColor: appBabgColor,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12))),
-          leading: IconButton(
-            onPressed: () {
-              controller.goToHomePage();
-            },
-            icon: const Icon(Icons.arrow_back_ios),
-          ),
-          centerTitle: true,
-          title: Text(
-            'favorite'.tr,
-            style: TextStyle(fontSize: 18, color: calendarAppbar),
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        elevation: 3.0,
+        backgroundColor: appBabgColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(12),
+            bottomRight: Radius.circular(12),
           ),
         ),
-        // ignore: avoid_unnecessary_containers
-        body: Container(
-          decoration: favoriteGradient,
-          child: ValueListenableBuilder(
-            valueListenable: Hive.box(FAVORITES_BOX).listenable(),
-            builder: (context, Box box, child) {
-              List<ChaptersModel> chapters = [];
-              for (Book book in books) {
-                chapters.addAll(book.chapters!);
-              }
-              final List<dynamic> likedChapterIds = box.keys.toList();
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+        centerTitle: true,
+        title: Text(
+          'favorite'.tr,
+          style: TextStyle(fontSize: 18, color: calendarAppbar),
+        ),
+      ),
+      body: Container(
+        decoration: favoriteGradient,
+        child: ValueListenableBuilder(
+          valueListenable: Hive.box(FAVORITES_BOX).listenable(),
+          builder: (context, Box box, child) {
+            List<ChaptersModel> chapters = [];
+            for (Book book in books) {
+              chapters.addAll(book.chapters!);
+            }
+            final List<dynamic> likedChapterIds = box.keys.toList();
 
-              final likedChapters = chapters
-                  .where((ChaptersModel chapter) =>
-                      likedChapterIds.contains(chapter.id))
-                  .toList();
-              return AnimationLimiter(
-                child: ListView.separated(
-                    separatorBuilder: (context, index) {
-                      return Divider(
-                        color: Colors.blueGrey[800],
-                      );
-                    },
-                    scrollDirection: Axis.vertical,
-                    padding: const EdgeInsets.only(top: 10.0),
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: likedChapters.length,
-                    itemBuilder: (context, index) {
-                      return AnimationConfiguration.staggeredGrid(
-                        position: index,
-                        duration: const Duration(milliseconds: 500),
-                        columnCount: likedChapters.length,
-                        child: ScaleAnimation(
-                          child: Container(
+            final likedChapters = chapters
+                .where((ChaptersModel chapter) =>
+                    likedChapterIds.contains(chapter.id))
+                .toList();
+            return likedChapters.isNotEmpty
+                ? AnimationLimiter(
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          color: Colors.blueGrey[800],
+                        );
+                      },
+                      scrollDirection: Axis.vertical,
+                      padding: const EdgeInsets.only(top: 10.0),
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: likedChapters.length,
+                      itemBuilder: (context, index) {
+                        return AnimationConfiguration.staggeredGrid(
+                          position: index,
+                          duration: const Duration(milliseconds: 500),
+                          columnCount: likedChapters.length,
+                          child: ScaleAnimation(
+                            child: Container(
                               color: bgColor,
                               padding: const EdgeInsets.all(5.0),
                               child: ListTile(
@@ -91,7 +121,8 @@ class FavoriteChaptersSceen extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return TextScreen(
-                                           chapterID: likedChapters[index].id! +1,
+                                          chapterID:
+                                              likedChapters[index].id! + 1,
                                           texts: likedChapters[index].texts,
                                           titleAbbar: likedChapters[index].name,
                                         );
@@ -99,16 +130,22 @@ class FavoriteChaptersSceen extends StatelessWidget {
                                     ),
                                   );
                                 },
-                                trailing: const CircleAvatar(
+                                trailing: CircleAvatar(
                                   backgroundColor: bgColor,
                                   child: LikeButton(
-                                    // isLiked: controller.isChapterLiked(chapterID![index].id!),
+                                    onTap: (isLiked) async {
+                                      controller.likesBox!
+                                          .delete(likedChapters[index].id!);
+                                      return !isLiked;
+                                    },
+                                    isLiked: controller.isChapterLiked(
+                                        likedChapters[index].id!),
                                     size: 25,
-                                    circleColor: CircleColor(
+                                    circleColor: const CircleColor(
                                       start: Color(0xffFF0000),
                                       end: Color(0xffFF0000),
                                     ),
-                                    bubblesColor: BubblesColor(
+                                    bubblesColor: const BubblesColor(
                                       dotPrimaryColor: Color(0xffffffff),
                                       dotSecondaryColor: Color(0xffBF40BF),
                                     ),
@@ -122,35 +159,37 @@ class FavoriteChaptersSceen extends StatelessWidget {
                                       child: Stack(
                                         children: [
                                           Positioned(
-                                        
                                             right: 0,
                                             bottom: 0,
-
-                                          
                                             child: Text(
-                                                "${likedChapters[index].id! +1}",
-                                                maxLines: 3,
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: listTitleColor),
+                                              "${likedChapters[index].id! + 1}",
+                                              maxLines: 3,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                overflow: TextOverflow.ellipsis,
+                                                fontWeight: FontWeight.w600,
+                                                color: listTitleColor,
                                               ),
+                                            ),
                                           ),
                                           CachedNetworkImage(
-                                            imageUrl:
-                                                likedChapters[index].listimage ?? '',
-                                            placeholder: (context, imageProvider) {
+                                            imageUrl: likedChapters[index]
+                                                    .listimage ??
+                                                '',
+                                            placeholder:
+                                                (context, imageProvider) {
                                               return ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(90),
-                                                  child: Image.asset(
-                                                    'assets/icons/iconavrod.png',
-                                                    height: 50,
-                                                  ));
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: Image.asset(
+                                                  'assets/icons/iconavrod.png',
+                                                  height: 50,
+                                                ),
+                                              );
                                             },
-                                            imageBuilder: (context, imageProvider) {
+                                            imageBuilder:
+                                                (context, imageProvider) {
                                               return CircleAvatar(
                                                 radius: 25,
                                                 backgroundImage: imageProvider,
@@ -158,46 +197,59 @@ class FavoriteChaptersSceen extends StatelessWidget {
                                             },
                                             errorWidget: (context, url, error) {
                                               return const CircleAvatar(
-                                                  radius: 25,
-                                                  backgroundImage: AssetImage(
-                                                      'assets/images/noimage.png'));
+                                                radius: 25,
+                                                backgroundImage: AssetImage(
+                                                    'assets/images/noimage.png'),
+                                              );
                                             },
                                           ),
                                         ],
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 14,
+                                    const SizedBox(width: 14),
+                                    Expanded(
+                                      child: Text(
+                                        likedChapters[index].name ?? "null",
+                                        maxLines: 3,
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          overflow: TextOverflow.ellipsis,
+                                          fontWeight: FontWeight.w600,
+                                          color: listTitleColor,
+                                        ),
+                                      ),
                                     ),
-                                     Expanded(
-                                       child: Text(
-                                            likedChapters[index].name ?? "null",
-                                            maxLines: 3,
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                overflow: TextOverflow.ellipsis,
-                                                fontWeight: FontWeight.w600,
-                                                color: listTitleColor),
-                                          ),
-                                     ),
                                   ],
                                 ),
-                              )),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                : Center(
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(0, -1),
+                        end: const Offset(1, 0),
+                      ).animate(_slideAnimationController),
+                      child: RotationTransition(
+                        turns: Tween<double>(
+                          begin: 1.0,
+                          end: 2.0,
+                        ).animate(_rotationAnimationController),
+                        child: const Text(
+                          "❤️",
+                          style: TextStyle(fontSize: 80),
                         ),
-                      );
-                    }),
-              );
-            },
-          ),
-        )
-
-        // : Center(
-        //     child: Lottie.asset(
-        //       'assets/animations/heart.json',
-        //       height: 200,
-        //     ),
-        //   ),
-        );
+                      ),
+                    ),
+                  );
+          },
+        ),
+      ),
+    );
   }
 }

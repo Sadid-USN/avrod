@@ -64,7 +64,7 @@ class _DrawerModelState extends State<DrawerModel> {
                   height: MediaQuery.of(context).size.height / 2 * 0.7,
                   width: MediaQuery.of(context).size.width,
                 ),
-                _header(context),
+                _HeaderWidget(context: context),
                 const Watch(
                   fontSize: 20,
                 ),
@@ -171,28 +171,22 @@ class _DrawerModelState extends State<DrawerModel> {
   }
 }
 
-Widget _header(BuildContext context) {
-  return const Material(
-    color: bgColor,
-    child: Padding(
-      padding: EdgeInsets.only(top: 70),
-      child: AvrodBunner(
-        height: 160,
-        width: 160,
-        borderRadius: 100,
-      ),
-    ),
+class _HeaderWidget extends StatelessWidget {
+  final BuildContext context;
+  const _HeaderWidget({Key? key, required this.context}) : super(key: key);
 
-    // Container(
-    //   width: MediaQuery.of(context).size.width,
-    //   padding: EdgeInsets.only(
-    //       top: 22 + MediaQuery.of(context).padding.top, bottom: 25),
-    //   child: Column(
-    //     children: const [
-    //       CircleAvatar(
-    //           radius: 72, backgroundImage: AssetImage('images/iconavrod.png'))
-    //     ],
-    //   ),
-    // ),
-  );
+  @override
+  Widget build(BuildContext context) {
+    return const Material(
+      color: bgColor,
+      child: Padding(
+        padding: EdgeInsets.only(top: 70),
+        child: AvrodBunner(
+          height: 160,
+          width: 160,
+          borderRadius: 100,
+        ),
+      ),
+    );
+  }
 }

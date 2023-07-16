@@ -11,7 +11,7 @@ class AboutAppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 201, 177, 150),
+      backgroundColor: const Color.fromARGB(255, 230, 209, 185),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 3.0,
@@ -81,9 +81,12 @@ class AboutAppScreen extends StatelessWidget {
                                   //   ),
                                   // ],
                                 )),
+                         
                             TextSpan(
                                 text: ' ulamuyaman@gmail.com',
+                                
                                 style: GoogleFonts.alice(
+                                  height: 1.6,
                                     color: Colors.blue[900],
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold))

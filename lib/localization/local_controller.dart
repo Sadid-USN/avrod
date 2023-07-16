@@ -5,6 +5,9 @@ import 'package:avrod/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+import '../language_storage.dart';
 
 class LocalController extends GetxController {
   // ThemeData appTheme = tajikTheme;
@@ -12,10 +15,11 @@ class LocalController extends GetxController {
   Locale? defaultLanguge;
   MyServices myServices = Get.find();
 
-  changeLang(String langCode) {
-    Locale locale = Locale(langCode);
-    myServices.sharedPreferences.setString('lang', langCode);
-    Get.updateLocale(locale);
+  void onLanguageTapped(String languageCode, String countryCode) {
+    Get.updateLocale(Locale(languageCode, countryCode));
+    languageBox.write('code', languageCode);
+    Intl.defaultLocale = languageCode;
+    Get.back();
   }
 
   Future<bool?> exitDialog() {

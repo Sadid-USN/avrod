@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'constant/colors/colors.dart';
+import 'language_storage.dart';
 
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {
@@ -53,10 +54,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // LocalController localController = Get.put(LocalController());
+  // LocalController localController = Get.put(LocalController());
 
     return GetMaterialApp(
-      locale: const Locale("ru_RU"),
+      locale: Locale("${languageBox.read('code') ?? Get.deviceLocale}"),
       translations: MyTranslation(),
       getPages: getPages,
       debugShowCheckedModeBanner: false,
