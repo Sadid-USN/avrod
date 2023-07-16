@@ -3,7 +3,6 @@ import 'package:avrod/booksScreen/library_screen.dart';
 import 'package:avrod/chat/helper/helper_function.dart';
 import 'package:avrod/chat/pages/groups_home_page.dart';
 import 'package:avrod/chat/pages/chat_search_page.dart';
-import 'package:avrod/chat/pages/auth/login_page.dart';
 import 'package:avrod/chat/pages/profile_page.dart';
 import 'package:avrod/chat/pages/auth/register_page.dart';
 import 'package:avrod/chat/services/auth_servisec.dart';
@@ -21,7 +20,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Calendars/gregorian_calendar.dart';
+import '../screens/radioplayer_screen.dart';
 
 // import 'package:url_launcher/url_launcher.dart';
 
@@ -106,6 +105,8 @@ class HomePageController extends HomeController {
       )
       .snapshots();
 
+    
+
   @override
   onTapCurvedNavigationBar(int index) {
     currrentIndexTab = index;
@@ -116,7 +117,7 @@ class HomePageController extends HomeController {
     } else if (index == 2) {
       Get.toNamed(FavoriteChaptersScreen.routName);
     } else if (index == 3) {
-      Get.toNamed(GregorianCalendar.routName);
+      Get.toNamed(RadioPlayerScreen.routName);
     } else if (index == 4) {
       isSignIn ? Get.toNamed(GroupsHomePage.routName) : goToLogin();
     }
@@ -458,7 +459,7 @@ class HomePageController extends HomeController {
   }
 
   goToLogin() {
-    Get.offNamed(LoginPage.routName);
+    Get.to(()=>const HomePage());
   }
 
   goToProfilePage() {

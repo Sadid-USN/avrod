@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Theme.of(context).primaryColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Form(
             key: loginFormKey,
             child: Column(

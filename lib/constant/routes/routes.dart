@@ -9,6 +9,7 @@ import 'package:avrod/screens/favorite_chapter_screen.dart';
 
 import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/screens/languge.page.dart';
+import 'package:avrod/screens/radioplayer_screen.dart';
 import 'package:avrod/screens/search_screen.dart';
 import 'package:avrod/screens/suppotr_screen.dart';
 import 'package:avrod/screens/text_screen.dart';
@@ -44,6 +45,10 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(
     name: FavoriteChaptersScreen.routName,
     page: () => const FavoriteChaptersScreen(),
+  ),
+  GetPage(
+    name: RadioPlayerScreen.routName,
+    page: () => const RadioPlayerScreen(),
   ),
   GetPage(
     name: GregorianCalendar.routName,

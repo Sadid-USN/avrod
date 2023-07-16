@@ -1,6 +1,5 @@
 import 'package:avrod/chat/helper/rout_navigator.dart';
 import 'package:avrod/chat/pages/chat_page.dart';
-import 'package:avrod/chat/widgets/chat_drawer.dart';
 import 'package:avrod/chat/widgets/group_tile.dart';
 import 'package:avrod/chat/widgets/text_style.dart';
 import 'package:avrod/constant/colors/colors.dart';
@@ -8,7 +7,7 @@ import 'package:avrod/controller/homepage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//! 2:43
+
 class GroupsHomePage extends StatelessWidget {
   const GroupsHomePage({Key? key}) : super(key: key);
 
@@ -17,67 +16,26 @@ class GroupsHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.put(HomePageController());
     return Scaffold(
-      drawer: ChatDrawer(
-        userEmail: controller.emailLogin,
-        userName: controller.fullName,
-        column: Column(children: [
-          ListTile(
-            onTap: () {},
-            title: const CustomText(
-              title: 'Гурӯҳҳо',
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              textAlign: TextAlign.start,
-            ),
-            leading: const Icon(
-              Icons.group,
-              color: audiplayerColor,
-            ),
-          ),
-          ListTile(
-            onTap: () {
-              controller.goToProfilePage();
-            },
-            title: const CustomText(
-              title: 'Ҳисоб',
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              textAlign: TextAlign.start,
-            ),
-            leading: const Icon(
-              Icons.account_circle_outlined,
-              color: audiplayerColor,
-            ),
-          ),
-          ListTile(
-            onTap: () {
-              controller
-                  .exitDialog('Таъкидан мехоҳед аз ҳисоб худ берун шавед?', () {
-                controller.signOut();
-              });
-            },
-            title: const CustomText(
-              title: 'Берун',
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              textAlign: TextAlign.start,
-            ),
-            leading: const Icon(
-              Icons.exit_to_app,
-              color: audiplayerColor,
-            ),
-          ),
-        ]),
-      ),
+      
+   
+    
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+           controller
+                  .exitDialog('Таъкидан мехоҳед аз ҳисоб худ берун шавед?', () {
+                controller.signOut();
+                controller.goToHomePage();
+              });
+
+        }, icon: const Icon(Icons.exit_to_app_outlined)),
         iconTheme: const IconThemeData(color: Colors.blueGrey),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(12),
                 bottomRight: Radius.circular(12))),
-        elevation: 3.0,
-        backgroundColor: appBabgColor,
+        elevation: 0.0,
+        backgroundColor: bgColor,
         title: const CustomText(
           title: 'Гурӯҳҳо',
           fontSize: 22,

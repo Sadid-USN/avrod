@@ -1,7 +1,6 @@
 import 'package:avrod/booksScreen/book_reading_screen.dart';
 import 'package:avrod/controller/homepage_controller.dart';
 
-import 'package:avrod/screens/home_page.dart';
 import 'package:avrod/utility/skelton.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -21,31 +20,33 @@ class LibraryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgColor,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 3.0,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(12),
-                bottomRight: Radius.circular(12))),
-        backgroundColor: appBabgColor,
-        title: Text(
-          'library'.tr,
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.blueGrey.shade800,
-          ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Get.offNamed(HomePage.routName);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: whiteColor,
-          ),
-        ),
-      ),
+      // appBar: 
+      // AppBar(
+      //   elevation: 3.0,
+      //   shape: const RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.only(
+      //           bottomLeft: Radius.circular(12),
+      //           bottomRight: Radius.circular(12))),
+      //   backgroundColor: appBabgColor,
+      //   title: Text(
+      //     'library'.tr,
+      //     style: TextStyle(
+      //       fontSize: 18,
+      //       color: Colors.blueGrey.shade800,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Get.offNamed(HomePage.routName);
+      //     },
+      //     icon: const Icon(
+      //       Icons.arrow_back_ios,
+      //       color: whiteColor,
+      //     ),
+      //   ),
+      // ),
+    
       body: StreamBuilder<QuerySnapshot>(
         stream: controller.books,
         builder:

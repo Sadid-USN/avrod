@@ -1,5 +1,6 @@
 import 'package:avrod/constant/routes/routes.dart';
 import 'package:avrod/localization/translation.dart';
+import 'package:avrod/language_storage.dart';
 import 'package:avrod/services/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -11,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'constant/colors/colors.dart';
-import 'language_storage.dart';
+
 
 const String FAVORITES_BOX = 'favorites_box';
 Future main() async {

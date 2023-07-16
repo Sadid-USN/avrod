@@ -57,27 +57,27 @@ class _FavoriteChaptersScreenState extends State<FavoriteChaptersScreen>
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: AppBar(
-        elevation: 3.0,
-        backgroundColor: appBabgColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(12),
-            bottomRight: Radius.circular(12),
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-        centerTitle: true,
-        title: Text(
-          'favorite'.tr,
-          style: TextStyle(fontSize: 18, color: calendarAppbar),
-        ),
-      ),
+      // appBar: AppBar(
+      //   elevation: 3.0,
+      //   backgroundColor: appBabgColor,
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //       bottomLeft: Radius.circular(12),
+      //       bottomRight: Radius.circular(12),
+      //     ),
+      //   ),
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Get.back();
+      //     },
+      //     icon: const Icon(Icons.arrow_back_ios),
+      //   ),
+      //   centerTitle: true,
+      //   title: Text(
+      //     'favorite'.tr,
+      //     style: TextStyle(fontSize: 18, color: calendarAppbar),
+      //   ),
+      // ),
       body: Container(
         decoration: favoriteGradient,
         child: ValueListenableBuilder(
