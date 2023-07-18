@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:animate_icons/animate_icons.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
+
 import '../controller/audio_controller.dart';
 import '../screens/text_screen.dart';
 
@@ -14,6 +17,7 @@ class RadioPlayerBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PageController pageController = PageController();
+
     return AnimationLimiter(
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -67,121 +71,154 @@ class AudiPlyerCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    AudioController controller = Get.put(AudioController());
     return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        GetBuilder<AudioController>(
-          builder: (controller) => Container(
-            height: MediaQuery.sizeOf(context).height / 2,
-            margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        const Spacer(),
 
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(controller.listInfo[index].image),
-                  fit: BoxFit.cover),
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            height: 200,
-            margin: const EdgeInsets.only(
-              top: 16,
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.center,
-                end: Alignment(-0.2, -0.5),
-                stops: [-1.0, 0.1, 0.1, 0.2],
-                colors: [
-                  Color.fromARGB(255, 72, 69, 66),
-                  Color.fromARGB(255, 72, 69, 66),
-                  Color.fromARGB(255, 72, 69, 66),
-                  Color.fromARGB(255, 72, 69, 66),
-                ],
-                tileMode: TileMode.clamp,
-              ),
-              color: Color.fromARGB(255, 92, 109, 110),
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-            ),
+        Center(
             child: Stack(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ListTile(
-                      title: Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 8,
-                        ),
-                        child: Text(
-                          "$name  $subtitle",
-                          style: const TextStyle(
-                              height: 1.5,
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                      subtitle: index == 0
-                          ? const SizedBox()
-                          : GetBuilder<AudioController>(
-                              builder: (controller) {
-                                return StreamBuilder<PositioneData>(
-                                    stream: controller.positioneDataStream,
-                                    builder: (context, snapshot) {
-                                      final positionData = snapshot.data;
-
-                                      return ProgressBar(
-                                        barHeight: 4,
-                                        baseBarColor: Colors.grey.shade400,
-                                        bufferedBarColor: Colors.white,
-                                        progressBarColor: Colors.blueGrey,
-                                        thumbColor: Colors.blueGrey,
-                                        thumbRadius: 6,
-                                        timeLabelTextStyle: const TextStyle(
-                                            height: 1.2,
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold),
-                                        progress: positionData?.positione ??
-                                            Duration.zero,
-                                        buffered:
-                                            positionData?.bufferedPosition ??
-                                                Duration.zero,
-                                        total: positionData?.duration ??
-                                            Duration.zero,
-                                        onSeek: controller.audioPlayer.seek,
-                                      );
-                                    });
-                              },
-                            ),
-                      // trailing: Container(
-                      //   decoration: BoxDecoration(
-                      //     shape: BoxShape.circle,
-                      //     border: Border.all(
-                      //       color: Colors.white,
-                      //       width: 2.0,
-                      //     ),
-                      //   ),
-                      //   child: CircleAvatar(
-                      //     radius: 25,
-                      //     backgroundImage: NetworkImage(image),
-                      //   ),
-                      // ),
-                    ),
-                    NextPreviousButton(
-                      pageController: pageController,
-                      index: index,
-                    ),
-                  ],
+          children: [
+            Container(
+              alignment: Alignment.center,
+              height: MediaQuery.sizeOf(context).height / 3,
+              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                  image: AssetImage(
+                    "assets/icons/iconavrod.png",
+                  ),
+                  fit: BoxFit.cover,
                 ),
-                index == 0 ? const SizedBox() : const RefreshButton(),
-              ],
+                borderRadius: BorderRadius.circular(60),
+              ),
             ),
+            controller.audioPlayer.playing
+                ? Positioned(
+                    left: 110,
+                    bottom: 70,
+                    child: SizedBox(
+                        height: 40, width: 200, child: _MusicVisualizer()),
+                  )
+                : const SizedBox()
+          ],
+        )),
+
+        const Spacer(),
+        // GetBuilder<AudioController>(
+        //   builder: (controller) =>
+        // Container(
+        //     alignment: Alignment.center,
+        //     height: MediaQuery.sizeOf(context).height / 2,
+        //     margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        //     decoration: BoxDecoration(
+        //       image: DecorationImage(
+        //           image: AssetImage(controller.listInfo[index].image),
+        //           fit: BoxFit.cover),
+        //       borderRadius: BorderRadius.circular(8),
+        //     ),
+
+        //   ),
+        // ),
+
+        Container(
+          height: 200,
+          margin: const EdgeInsets.only(
+            top: 16,
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.center,
+              end: Alignment(-0.2, -0.5),
+              stops: [-1.0, 0.1, 0.1, 0.2],
+              colors: [
+                Color.fromARGB(255, 72, 69, 66),
+                Color.fromARGB(255, 72, 69, 66),
+                Color.fromARGB(255, 72, 69, 66),
+                Color.fromARGB(255, 72, 69, 66),
+              ],
+              tileMode: TileMode.clamp,
+            ),
+            color: Color.fromARGB(255, 92, 109, 110),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          ),
+          child: Stack(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ListTile(
+                    title: Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 8,
+                      ),
+                      child: Text(
+                        "$name  $subtitle",
+                        style: const TextStyle(
+                            height: 1.5,
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    subtitle: index == 0
+                        ? const SizedBox()
+                        : GetBuilder<AudioController>(
+                            builder: (controller) {
+                              return StreamBuilder<PositioneData>(
+                                  stream: controller.positioneDataStream,
+                                  builder: (context, snapshot) {
+                                    final positionData = snapshot.data;
+
+                                    return ProgressBar(
+                                      barHeight: 4,
+                                      baseBarColor: Colors.grey.shade400,
+                                      bufferedBarColor: Colors.white,
+                                      progressBarColor: Colors.blueGrey,
+                                      thumbColor: Colors.blueGrey,
+                                      thumbRadius: 6,
+                                      timeLabelTextStyle: const TextStyle(
+                                          height: 1.2,
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                      progress: positionData?.positione ??
+                                          Duration.zero,
+                                      buffered:
+                                          positionData?.bufferedPosition ??
+                                              Duration.zero,
+                                      total: positionData?.duration ??
+                                          Duration.zero,
+                                      onSeek: controller.audioPlayer.seek,
+                                    );
+                                  });
+                            },
+                          ),
+                    // trailing: Container(
+                    //   decoration: BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     border: Border.all(
+                    //       color: Colors.white,
+                    //       width: 2.0,
+                    //     ),
+                    //   ),
+                    //   child: CircleAvatar(
+                    //     radius: 25,
+                    //     backgroundImage: NetworkImage(image),
+                    //   ),
+                    // ),
+                  ),
+                  NextPreviousButton(
+                    pageController: pageController,
+                    index: index,
+                  ),
+                ],
+              ),
+              index == 0 ? const SizedBox() : const RefreshButton(),
+            ],
           ),
         ),
         // const SizedBox(
@@ -250,8 +287,8 @@ class NextPreviousButton extends StatelessWidget {
                   curve: Curves.easeInOut,
                 );
               } else {
-                pageController.jumpToPage(
-                    (pageController.page!.toInt() - 1) % controller.listInfo.length);
+                pageController.jumpToPage((pageController.page!.toInt() - 1) %
+                    controller.listInfo.length);
               }
               controller.audioPlayer.stop();
             },
@@ -335,4 +372,90 @@ class InfoData {
       required this.name,
       required this.subtitle,
       required this.audioUrl});
+}
+
+class _MusicVisualizer extends StatelessWidget {
+  List<Color> colors = [Colors.white, Colors.white, Colors.white, Colors.white];
+  List<int> duration = [900, 700, 600, 800, 500];
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: List<Widget>.generate(
+          8,
+          (index) => VisualComponent(
+                duration: duration[index % 5],
+                color: colors[index % 4],
+              )),
+    );
+  }
+}
+
+class VisualComponent extends StatefulWidget {
+  final int duration;
+  final Color color;
+  const VisualComponent({
+    Key? key,
+    required this.duration,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  State<VisualComponent> createState() => _VisualComponentState();
+}
+
+class _VisualComponentState extends State<VisualComponent>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController musicVisualizationController;
+
+  @override
+  void dispose() {
+    musicVisualizationController.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final randomCurve = _getRandomCurve();
+    musicVisualizationController = AnimationController(
+        duration: Duration(
+          milliseconds: widget.duration,
+        ),
+        vsync: this);
+    final curveAnimation = CurvedAnimation(
+        parent: musicVisualizationController, curve: randomCurve);
+    animation = Tween<double>(begin: 0, end: 100).animate(curveAnimation)
+      ..addListener(() {
+        setState(() {});
+      });
+    musicVisualizationController.repeat(reverse: true);
+  }
+
+  Curve _getRandomCurve() {
+    final List<Curve> curves = [
+      Curves.easeInCubic,
+      Curves.easeInOutCirc,
+      Curves.easeInOutQuart,
+      Curves.easeOutExpo,
+    ];
+
+    final random = Random();
+    final randomIndex = random.nextInt(curves.length);
+    return curves[randomIndex];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: animation.value,
+      width: 4,
+      decoration: BoxDecoration(
+        color: widget.color,
+        borderRadius: BorderRadius.circular(5),
+      ),
+    );
+  }
 }
