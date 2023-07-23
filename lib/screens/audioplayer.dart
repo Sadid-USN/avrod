@@ -6,9 +6,6 @@ import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/text_screen_controller.dart';
 import 'package:avrod/models/text_model.dart';
 import 'package:avrod/screens/text_screen.dart';
-import 'package:avrod/widgets/audio/duration_and_position.dart';
-import 'package:avrod/widgets/audio/my_slider.dart';
-import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share/share.dart';
@@ -17,20 +14,16 @@ class Audiplayer extends StatelessWidget {
   final TextsModel textModel;
   final String? titleAbbar;
 
-
   const Audiplayer({
     Key? key,
-   required this.textModel,
+    required this.textModel,
     this.titleAbbar,
-
-   
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TextScreenController>(
       dispose: (state) => state.controller!.audioPlayer.stop(),
       builder: (controller) {
-    
         return Container(
           margin: const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 8.0),
           height: MediaQuery.of(context).size.height / 2 * 0.3,
@@ -64,30 +57,43 @@ class Audiplayer extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AnimateIcons(
-                    startIcon: Icons.copy,
-                    endIcon: Icons.check_circle_outline,
-                    controller: controller.animateIconController,
-                    size: 25.0,
-                    onStartIconPress: () {
+                  GestureDetector(
+                    onTap: () {
                       if (Platform.isIOS) {
-                        FlutterClipboard.copy(
-                            '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nСадо 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
+                        Share.share(
+                            '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nAudio 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
                       } else {
-                        FlutterClipboard.copy(
-                            '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nСадо 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
+                        Share.share(
+                            '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nAudio 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
                       }
-
-                      return true;
                     },
-                    onEndIconPress: () {
-                      return true;
-                    },
-                    duration: const Duration(milliseconds: 250),
-                    startIconColor: Colors.white,
-                    endIconColor: Colors.white,
-                    clockwise: false,
+                    child: const Icon(Icons.share,
+                        size: 25.0, color: Colors.white),
                   ),
+                  // AnimateIcons(
+                  //   startIcon: Icons.copy,
+                  //   endIcon: Icons.check_circle_outline,
+                  //   controller: controller.animateIconController,
+                  //   size: 25.0,
+                  //   onStartIconPress: () {
+                  //     if (Platform.isIOS) {
+                  //       FlutterClipboard.copy(
+                  //           '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nСадо 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
+                  //     } else {
+                  //       FlutterClipboard.copy(
+                  //           '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nСадо 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
+                  //     }
+
+                  //     return true;
+                  //   },
+                  //   onEndIconPress: () {
+                  //     return true;
+                  //   },
+                  //   duration: const Duration(milliseconds: 250),
+                  //   startIconColor: Colors.white,
+                  //   endIconColor: Colors.white,
+                  //   clockwise: false,
+                  // ),
                   AnimateIcons(
                     startIcon: Icons.play_circle_outline,
                     endIcon: Icons.pause_circle_outline,
@@ -95,7 +101,7 @@ class Audiplayer extends StatelessWidget {
                     size: 40.0,
                     onStartIconPress: () {
                       controller.playAudio(
-                        url: textModel.url?? "",
+                        url: textModel.url ?? "",
                         id: textModel.id!,
                         title: titleAbbar ?? "",
                       );
@@ -113,18 +119,14 @@ class Audiplayer extends StatelessWidget {
                     endIconColor: Colors.white,
                     clockwise: false,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      if (Platform.isIOS) {
-                        Share.share(
-                            '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nAudio 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
-                      } else {
-                        Share.share(
-                            '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nAudio 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
-                      }
-                    },
-                    child: const Icon(Icons.share,
-                        size: 25.0, color: Colors.white),
+                  StreamBuilder<double>(
+                    stream: controller.audioPlayer.speedStream,
+                    builder: (context, snapshot) => PopupMenuButtonWidget(
+                      speedStream: controller.audioPlayer.speedStream,
+                      onSpeedSelected: (double newValue) {
+                        controller.audioPlayer.setSpeed(newValue);
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -172,6 +174,93 @@ class Audiplayer extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class PopupMenuButtonWidget extends StatelessWidget {
+  final Stream<double> speedStream;
+  final Function(double) onSpeedSelected;
+
+  const PopupMenuButtonWidget(
+      {Key? key, required this.speedStream, required this.onSpeedSelected})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<double>(
+      elevation: 3,
+      surfaceTintColor: const Color(0xff376404),
+      itemBuilder: (context) {
+        return <PopupMenuEntry<double>>[
+          PopupMenuItem<double>(
+            value: 0.25,
+            child: Text("0.25",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey.shade700)),
+          ),
+          PopupMenuItem<double>(
+            value: 0.5,
+            child: Text("0.5",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey.shade700)),
+          ),
+          PopupMenuItem<double>(
+            value: 0.75,
+            child: Text("0.75",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey.shade700)),
+          ),
+          PopupMenuItem<double>(
+            value: 1.0,
+            child: Text("Normal",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey.shade700)),
+          ),
+          const PopupMenuItem<double>(
+            value: 1.25,
+            child: Text("1.25x",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+          ),
+          const PopupMenuItem<double>(
+            value: 1.5,
+            child: Text("1.5x",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+          ),
+          const PopupMenuItem<double>(
+            value: 1.75,
+            child: Text("1.75x",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+          ),
+          const PopupMenuItem<double>(
+            value: 2.0,
+            child: Text("2.0x",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+          ),
+        ];
+      },
+      onSelected: onSpeedSelected,
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.black12,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: StreamBuilder<double>(
+          stream: speedStream,
+          builder: (context, snapshot) {
+            return Text(
+              "${snapshot.data?.toStringAsFixed(1)}x",
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.white),
+            );
+          },
+        ),
+      ),
     );
   }
 }
