@@ -12,6 +12,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'constant/colors/colors.dart';
 
 
@@ -21,6 +22,11 @@ Future main() async {
   await GetStorage.init();
   await intServices();
   await Firebase.initializeApp();
+   await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
 
   //MobileAds.instance.initialize();
   FirebaseDatabase.instance.setPersistenceEnabled(true);
