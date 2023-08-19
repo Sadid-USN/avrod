@@ -8,6 +8,7 @@ import 'package:avrod/models/text_model.dart';
 import 'package:avrod/screens/text_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:share/share.dart';
 
 class Audiplayer extends StatelessWidget {
@@ -70,30 +71,6 @@ class Audiplayer extends StatelessWidget {
                     child: const Icon(Icons.share,
                         size: 25.0, color: Colors.white),
                   ),
-                  // AnimateIcons(
-                  //   startIcon: Icons.copy,
-                  //   endIcon: Icons.check_circle_outline,
-                  //   controller: controller.animateIconController,
-                  //   size: 25.0,
-                  //   onStartIconPress: () {
-                  //     if (Platform.isIOS) {
-                  //       FlutterClipboard.copy(
-                  //           '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nСадо 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар App Store\n👇👇👇👇\nhttps://apple.co/3GNRT3D');
-                  //     } else {
-                  //       FlutterClipboard.copy(
-                  //           '**$titleAbbar**\n\nТалаффуз:\n${textModel.text}\n\nАраби:\n${textModel.arabic}\n\nТарҷума:\n${textModel.translation}\n\nСадо 🎵:\n${textModel.url}\n\nБарномаи *Avrod* дар Google Play\n👇👇👇👇\nhttps://bit.ly/3mdiwFw');
-                  //     }
-
-                  //     return true;
-                  //   },
-                  //   onEndIconPress: () {
-                  //     return true;
-                  //   },
-                  //   duration: const Duration(milliseconds: 250),
-                  //   startIconColor: Colors.white,
-                  //   endIconColor: Colors.white,
-                  //   clockwise: false,
-                  // ),
                   AnimateIcons(
                     startIcon: Icons.play_circle_outline,
                     endIcon: Icons.pause_circle_outline,

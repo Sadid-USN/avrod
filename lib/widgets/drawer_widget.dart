@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:avrod/screens/aboutapp_screen.dart';
-import 'package:avrod/screens/suppotr_screen.dart';
 import 'package:avrod/widgets/avrod_bunner.dart';
 import 'package:avrod/widgets/watch/watch.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +114,7 @@ class _DrawerModelState extends State<DrawerModel> {
             ),
             ListTile(
               title: Text(
-                'aboutapp'.tr,
+                'Оиди барнома',
                 style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {
@@ -128,25 +127,25 @@ class _DrawerModelState extends State<DrawerModel> {
               ),
             ),
 
-            ListTile(
-              title: Text(
-                'support'.tr,
-                style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
-              ),
-              onTap: () {
-                Get.toNamed(SupportScreen.routNaem);
+            // ListTile(
+            //   title: Text(
+            //     'support'.tr,
+            //     style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
+            //   ),
+            //   onTap: () {
+            //     Get.toNamed(SupportScreen.routNaem);
 
-                //   Share.share(_supportLink);
-              },
-              leading: const Icon(
-                FontAwesomeIcons.donate,
-                color: Colors.blueGrey,
-                size: 22,
-              ),
-            ),
+            //     //   Share.share(_supportLink);
+            //   },
+            //   leading: const Icon(
+            //     FontAwesomeIcons.donate,
+            //     color: Colors.blueGrey,
+            //     size: 22,
+            //   ),
+            // ),
             ListTile(
               title: Text(
-                'share'.tr,
+                'Ба дигарон ирсол кунед',
                 style: TextStyle(fontSize: 14, color: Colors.blueGrey[700]),
               ),
               onTap: () {

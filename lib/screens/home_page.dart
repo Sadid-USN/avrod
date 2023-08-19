@@ -14,8 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../booksScreen/library_screen.dart';
-import '../chat/pages/auth/login_page.dart';
-import '../chat/pages/groups_home_page.dart';
 import '../controller/audio_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,7 +47,7 @@ class _HomePageState extends State<HomePage> {
         iconTheme: const IconThemeData(color: Colors.blueGrey),
         backgroundColor: const Color(0xffF2DFC7),
         title: const MyanimetedText(
-          title: 'avrod',
+          title: 'Авроди субҳу шом',
         ),
         centerTitle: true,
         elevation: 0.0,

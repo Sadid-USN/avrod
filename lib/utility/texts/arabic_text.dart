@@ -22,7 +22,10 @@ class ArabicText extends StatelessWidget {
         gradient: LinearGradient(
             colors: [bgColor, bgColor],
             begin: Alignment.centerLeft,
-            end: Alignment.centerRight),
+            end: Alignment.centerRight,
+            
+            
+            ),
         borderRadius: BorderRadius.all(
           Radius.circular(10.0),
         ),

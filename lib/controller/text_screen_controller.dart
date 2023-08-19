@@ -33,6 +33,7 @@ class TextScreenController extends GetxController {
   void onInit() {
     super.onInit();
     fontSize = textStorage.read('fontSize') ?? 16.0;
+   
   }
 
   late final List<AudioPlayer> _audioPlayers;
