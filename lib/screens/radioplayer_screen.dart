@@ -9,11 +9,16 @@ class RadioPlayerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return    const Scaffold(
+    return     Scaffold(
      
-          backgroundColor: Color(0xffF3EEE2),
+          backgroundColor: const Color(0xffF3EEE2),
         
-          body: RadioPlayerBody(),
+          body: SizedBox(
+           height:  MediaQuery.sizeOf(context).height,
+            child: const RadioPlayerBody(),
+            
+            
+            ),
         );
     
   }

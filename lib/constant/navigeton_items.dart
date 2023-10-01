@@ -11,5 +11,5 @@ final navItems = [
   ),
   const Icon(FontAwesomeIcons.heartCircleBolt, color: Colors.red, size: 22),
   const Icon(FontAwesomeIcons.radio, color: navItemsColor, size: 22),
-  const Icon(Icons.chat, color: navItemsColor, size: 22),
+  //  const Icon(Icons.radio, color: navItemsColor, size: 22),
 ];

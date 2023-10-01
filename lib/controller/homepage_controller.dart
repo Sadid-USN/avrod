@@ -93,7 +93,7 @@ class HomePageController extends HomeController {
     groups;
 
     getUserLoggedInStatus();
-    gettingUserData();
+    // gettingUserData();
     update();
     super.onReady();
   }
@@ -118,9 +118,10 @@ class HomePageController extends HomeController {
       Get.toNamed(FavoriteChaptersScreen.routName);
     } else if (index == 3) {
       Get.toNamed(RadioPlayerScreen.routName);
-    } else if (index == 4) {
-      isSignIn ? Get.toNamed(GroupsHomePage.routName) : goToLogin();
-    }
+    } 
+    // else if (index == 4) {
+    //   isSignIn ? Get.toNamed(GroupsHomePage.routName) : goToLogin();
+    // }
     update();
   }
 

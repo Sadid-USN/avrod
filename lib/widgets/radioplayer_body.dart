@@ -2,50 +2,89 @@ import 'dart:math';
 
 import 'package:animate_icons/animate_icons.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:avrod/core/addbunner_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../controller/audio_controller.dart';
 import '../screens/text_screen.dart';
 
-class RadioPlayerBody extends StatelessWidget {
+class RadioPlayerBody extends StatefulWidget {
   const RadioPlayerBody({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<RadioPlayerBody> createState() => _RadioPlayerBodyState();
+}
+
+class _RadioPlayerBodyState extends State<RadioPlayerBody> {
+  BannerAdHelper bannerAdHelper = BannerAdHelper();
+
+  @override
+  void initState() {
+    super.initState();
+
+    bannerAdHelper.initializeAdMob(
+      onAdLoaded: (ad) {
+        setState(() {
+          bannerAdHelper.isBannerAd = true;
+        });
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    bannerAdHelper.bannerAd.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final PageController pageController = PageController();
 
     return AnimationLimiter(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: GetBuilder<AudioController>(
-          builder: (audioController) => PageView.builder(
-            controller: pageController,
-            itemCount: audioController.listInfo.length,
-            onPageChanged: (value) {
-              audioController.audioPlayer.stop();
-            },
-            itemBuilder: (context, index) {
-              return AnimationConfiguration.staggeredGrid(
-                position: index,
-                duration: const Duration(milliseconds: 400),
-                columnCount: audioController.listInfo.length,
-                child: ScaleAnimation(
-                  child: AudiPlyerCard(
-                    index: index,
-                    audioUrl: audioController.listInfo[index].audioUrl,
-                    image: audioController.listInfo[index].image,
-                    name: audioController.listInfo[index].name,
-                    subtitle: audioController.listInfo[index].subtitle,
-                    pageController: pageController,
-                  ),
-                ),
-              );
-            },
-          ),
+      child: GetBuilder<AudioController>(
+        builder: (audioController) => Column(
+          children: [
+            bannerAdHelper.isBannerAd
+                ? SizedBox(
+                    height: bannerAdHelper.bannerAd.size.height.toDouble(),
+                    width: bannerAdHelper.bannerAd.size.width.toDouble(),
+                    child: AdWidget(ad: bannerAdHelper.bannerAd),
+                  )
+                : const SizedBox(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 2 * 1.5,
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: audioController.listInfo.length,
+                onPageChanged: (value) {
+                  audioController.audioPlayer.stop();
+                },
+                itemBuilder: (context, index) {
+                  return AnimationConfiguration.staggeredGrid(
+                    position: index,
+                    duration: const Duration(milliseconds: 400),
+                    columnCount: audioController.listInfo.length,
+                    child: ScaleAnimation(
+                      child: AudiPlyerCard(
+                        index: index,
+                        audioUrl: audioController.listInfo[index].audioUrl,
+                        image: audioController.listInfo[index].image,
+                        name: audioController.listInfo[index].name,
+                        subtitle: audioController.listInfo[index].subtitle,
+                        pageController: pageController,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

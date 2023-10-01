@@ -39,11 +39,13 @@ class ContetAllTexts extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               // ignore: sized_box_for_whitespace
               child: Column(
+
                 children: [
+                  
                   const SizedBox(
                     height: 10,
                   ),
-                  // todo FONTSIZE
+                 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -75,7 +77,7 @@ class ContetAllTexts extends StatelessWidget {
                   ),
 
                    SizedBox(
-                  height: MediaQuery.of(context).size.height / 2 * 0.3,
+                  height: MediaQuery.of(context).size.height / 2 * 0.4,
                 ),
                 ],
               ),

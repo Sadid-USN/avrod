@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
       const LibraryScreen(),
       const FavoriteChaptersScreen(),
       const RadioPlayerScreen(),
-      const OnBoard()
+      // const OnBoard()
     ];
     return Scaffold(
       drawer: const DrawerModel(),
