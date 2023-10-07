@@ -29,27 +29,6 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
-  BannerAdHelper bannerAdHelper = BannerAdHelper();
-
-  @override
-  void initState() {
-    super.initState();
-
-    bannerAdHelper.initializeAdMob(
-      onAdLoaded: (ad) {
-        setState(() {
-          bannerAdHelper.isBannerAd = true;
-        });
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    bannerAdHelper.bannerAd.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TextScreenController>(
@@ -60,70 +39,32 @@ class _TextScreenState extends State<TextScreen> {
           appBar: AppBar(
             elevation: 0.0,
             backgroundColor: Theme.of(context).primaryColor,
-            flexibleSpace: SafeArea(
-              child:
-                  bannerAdHelper.isBannerAd
-                      ? SizedBox(
-                          height:
-                              bannerAdHelper.bannerAd.size.height.toDouble(),
-                          width: bannerAdHelper.bannerAd.size.width.toDouble(),
-                          child: AdWidget(ad: bannerAdHelper.bannerAd),
-                        )
-                      : const SizedBox(),
-                  // SingleChildScrollView(
-                  //   scrollDirection: Axis.horizontal,
-                  //   child: Row(
-                  //     children: [
-                  //       Text(
-                  //         '${widget.chapterID}',
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //           fontSize: 14,
-                  //           fontWeight: FontWeight.w600,
-                  //           color: listTitleColor,
-                  //         ),
-                  //       ),
-                  //       const SizedBox(
-                  //         width: 10,
-                  //       ),
-                  //       Text(
-                  //         widget.titleAbbar ?? "error",
-                  //         style: TextStyle(
-                  //             color: listTitleColor,
-                  //             fontSize: 14,
-                  //             fontWeight: FontWeight.bold),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-              
+            title: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Text(
+                    '${widget.chapterID}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: listTitleColor,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    widget.titleAbbar ?? "error",
+                    style: TextStyle(
+                        color: listTitleColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
-            // title:
-            // SingleChildScrollView(
-            //     scrollDirection: Axis.horizontal,
-            //     child: Row(
-            //       children: [
-            //         Text(
-            //           '${widget.chapterID}',
-            //           textAlign: TextAlign.center,
-            //           style: TextStyle(
-            //             fontSize: 14,
-            //             fontWeight: FontWeight.w600,
-            //             color: listTitleColor,
-            //           ),
-            //         ),
-            //         const SizedBox(
-            //           width: 10,
-            //         ),
-            //         Text(
-            //           widget.titleAbbar ?? "error",
-            //           style: TextStyle(
-            //               color: listTitleColor,
-            //               fontSize: 14,
-            //               fontWeight: FontWeight.bold),
-            //         ),
-            //       ],
-            //     )),
             centerTitle: true,
             leading: IconButton(
               onPressed: () {

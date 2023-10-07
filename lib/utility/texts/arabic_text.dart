@@ -1,3 +1,4 @@
+import 'package:arabic_font/arabic_font.dart';
 import 'package:avrod/constant/colors/colors.dart';
 import 'package:avrod/controller/text_screen_controller.dart';
 
@@ -35,13 +36,14 @@ class ArabicText extends StatelessWidget {
         collapsed: Center(
           child: SelectableText(
             arabic,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.amiri(
-              textBaseline: TextBaseline.ideographic,
+            textAlign: TextAlign.justify,
+            style: ArabicTextStyle(
+               arabicFont: ArabicFont.scheherazade,
+          
               wordSpacing: 0.6,
               color: listTitleColor,
-              fontSize: controller.fontSize,
-              fontWeight: FontWeight.bold,
+              fontSize: 28,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
